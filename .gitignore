@@ -1,0 +1,49 @@
+unicine/unicine_back/.gradle
+unicine/unicine_back/.idea
+unicine/unicine_back/negocio/build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+*.class
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+# Flutter/Dart/Pub related
+**/doc/api/
+unicine/unicine_front/.dart_tool/
+unicine/unicine_front/.flutter-plugins
+unicine/unicine_front/.packages
+unicine/unicine_front/.pub-cache/
+unicine/unicine_front/.pub/
+unicine/unicine_front/build/
