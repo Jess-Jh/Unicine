@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_cine/ui/shared/cards/white_card.dart';
 import 'package:uni_cine/ui/views/administrator/manage_movie/form_movies.dart';
+import 'package:uni_cine/ui/views/administrator/manage_movie/table_movies.dart';
 
 class ManageMovieView extends StatelessWidget {
   const ManageMovieView({super.key});
@@ -19,7 +20,8 @@ class ManageMovieView extends StatelessWidget {
             WhiteCard(
               title: 'Detalle Película',
               child: FormMovies(),
-            )
+            ),
+            TableMovies(),
           ],
         )
       ],

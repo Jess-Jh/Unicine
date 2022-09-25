@@ -13,7 +13,7 @@ class WhiteCard extends StatelessWidget {
     return Container(
       width: width,
       margin: const EdgeInsets.all(8),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       decoration: buildBoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +32,8 @@ class WhiteCard extends StatelessWidget {
             const Divider(),
             const SizedBox(height: 15)
           ],
-          child
+          child,
+          const SizedBox(height: 15)
         ],
       ),
     );
