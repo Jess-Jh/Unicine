@@ -14,6 +14,7 @@ import java.util.Map;
 @ToString
 public class Cliente extends Persona implements Serializable {
 
+    @Column(length = 150)
     private String imagenPerfil;
 
     private Integer membresia;
@@ -34,7 +35,5 @@ public class Cliente extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "cliente")
     private List<CuponCliente> listaCuponClientes;
-
-
 
 }

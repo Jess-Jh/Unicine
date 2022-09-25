@@ -18,6 +18,7 @@ public class DistribuccionSilla implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDistribuccionSilla;
 
+    @Column(length = 45, nullable = false)
     private String distribuccionSillas;
 
     private Integer totalSillas;
@@ -29,4 +30,12 @@ public class DistribuccionSilla implements Serializable {
     @ManyToOne
     private Sala sala;
 
+    @Builder
+    public DistribuccionSilla(String distribuccionSillas, Integer totalSillas, Integer filas, Integer columnas, Sala sala) {
+        this.distribuccionSillas = distribuccionSillas;
+        this.totalSillas = totalSillas;
+        this.filas = filas;
+        this.columnas = columnas;
+        this.sala = sala;
+    }
 }

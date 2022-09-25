@@ -19,8 +19,10 @@ public class Teatro implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTeatro;
 
+    @Column(length = 100, nullable = false)
     private String nombre;
 
+    @Column(length = 100, nullable = false)
     private String direccion;
 
     @ManyToOne
@@ -29,4 +31,10 @@ public class Teatro implements Serializable {
     @OneToMany(mappedBy = "teatro")
     private List<Sala> listaSalas;
 
+    @Builder
+    public Teatro(String nombre, String direccion, Ciudad ciudad) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+    }
 }

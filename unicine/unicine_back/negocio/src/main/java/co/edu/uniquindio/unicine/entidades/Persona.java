@@ -17,13 +17,24 @@ public class Persona implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
+    @Column(length = 20)
     private String cedula;
 
+    @Column(length = 45, nullable = false)
     private String nombreCompleto;
 
     @Email
+    @Column(length = 45, nullable = false, unique = true)
     private String email;
 
+    @Column(length = 45, nullable = false)
     private String contrasena;
 
+    @Builder
+    public Persona(String cedula, String nombreCompleto, String email, String contrasena) {
+        this.cedula = cedula;
+        this.nombreCompleto = nombreCompleto;
+        this.email = email;
+        this.contrasena = contrasena;
+    }
 }

@@ -22,4 +22,5 @@ public class TipoAdministrador implements Serializable {
     @ManyToOne
     private Administrador administrador;
 
+
 }

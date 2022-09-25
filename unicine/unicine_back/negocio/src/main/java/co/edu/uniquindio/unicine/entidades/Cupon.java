@@ -19,15 +19,26 @@ public class Cupon implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCupon;
 
+    @Column(nullable = false)
     private Double valorDescuento;
 
+    @Column(nullable = false)
     private LocalDate fechaVencimiento;
 
+    @Column(length = 100, nullable = false)
     private String descripcion;
 
+    @Column(length = 100, nullable = false)
     private String criterio;
 
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> listaCuponClientes;
 
+    @Builder
+    public Cupon(Double valorDescuento, LocalDate fechaVencimiento, String descripcion, String criterio) {
+        this.valorDescuento = valorDescuento;
+        this.fechaVencimiento = fechaVencimiento;
+        this.descripcion = descripcion;
+        this.criterio = criterio;
+    }
 }

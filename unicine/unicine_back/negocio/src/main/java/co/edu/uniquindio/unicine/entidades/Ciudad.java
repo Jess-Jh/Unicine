@@ -19,6 +19,7 @@ public class Ciudad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCiudad;
 
+    @Column(length = 45, nullable = false)
     private String nombre;
 
     @OneToMany(mappedBy = "ciudad")
@@ -29,5 +30,6 @@ public class Ciudad implements Serializable {
 
     @OneToMany(mappedBy = "ciudad")
     private List<Teatro> listaTeatros;
+
 
 }

@@ -19,6 +19,7 @@ public class Sala implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSala;
 
+    @Column(length = 45, nullable = false)
     private String nombre;
 
     @ManyToOne
@@ -30,4 +31,9 @@ public class Sala implements Serializable {
     @OneToMany(mappedBy = "sala")
     private List<DistribuccionSilla> listaDistribuccionSillas;
 
+    @Builder
+    public Sala(String nombre, Teatro teatro) {
+        this.nombre = nombre;
+        this.teatro = teatro;
+    }
 }

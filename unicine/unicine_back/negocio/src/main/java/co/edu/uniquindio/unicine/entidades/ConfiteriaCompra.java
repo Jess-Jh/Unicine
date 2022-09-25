@@ -18,6 +18,7 @@ public class ConfiteriaCompra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idConfiteriaCompra;
 
+    @Column(nullable = false)
     private Double precio;
 
     @ManyToOne
@@ -26,4 +27,10 @@ public class ConfiteriaCompra implements Serializable {
     @ManyToOne
     private Confiteria confiteria;
 
+    @Builder
+    public ConfiteriaCompra(Double precio, Compra compra, Confiteria confiteria) {
+        this.precio = precio;
+        this.compra = compra;
+        this.confiteria = confiteria;
+    }
 }

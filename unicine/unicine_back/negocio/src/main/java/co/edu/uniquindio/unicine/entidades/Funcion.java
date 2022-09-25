@@ -19,13 +19,19 @@ public class Funcion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idFuncion;
 
+    @Column(length = 45, nullable = false)
     private String horario;
 
+    @Column(nullable = false)
     private Double precio;
 
     @OneToMany(mappedBy = "funcion")
     private List<FuncionSala> listaFuncionSala;
 
 
-
+    @Builder
+    public Funcion(String horario, Double precio) {
+        this.horario = horario;
+        this.precio = precio;
+    }
 }

@@ -31,4 +31,10 @@ public class FuncionSala implements Serializable {
     @OneToMany(mappedBy = "funcionSala")
     private List<Compra> listaCompras;
 
+    @Builder
+    public FuncionSala(Sala sala, Pelicula pelicula, Funcion funcion) {
+        this.sala = sala;
+        this.pelicula = pelicula;
+        this.funcion = funcion;
+    }
 }
