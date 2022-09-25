@@ -9,7 +9,7 @@ import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_movie/manage_movie_view.dart';
-import 'package:uni_cine/ui/views/administrator/manage_theater_view.dart';
+import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_view.dart';
 
 class AdministratorHandlers {
 

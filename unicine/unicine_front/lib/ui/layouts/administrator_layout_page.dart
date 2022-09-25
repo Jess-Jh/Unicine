@@ -49,8 +49,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
                     // View
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         child: widget.child,
                       ),
                     ),

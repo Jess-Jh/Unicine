@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/datatables/movies_datasource.dart';
+import 'package:uni_cine/datatables/theaters_datasource.dart';
 import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
 
-class TableMovies extends StatelessWidget {
-  const TableMovies({super.key});
+class TableTheaters extends StatelessWidget {
+  const TableTheaters({super.key});
 
   @override
   Widget build(BuildContext context) {
     return PaginatedDataTable(
-      columnSpacing: 100,
-      source: MoviesDTS(),
+      columnSpacing: 200,
+      source: TheatersDTS(),
       header: const Text(
-        'Lista de películas',
+        'Lista de teatros',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       columns: const [
         DataColumn(label: Text('Nombre')),
-        DataColumn(label: Text('Género')),
-        DataColumn(label: Text('Estado')),
-        DataColumn(label: Text('Url imagen')),
+        DataColumn(label: Text('Dirección')),
       ],
       actions: [
         CustomOutlinedButton(
