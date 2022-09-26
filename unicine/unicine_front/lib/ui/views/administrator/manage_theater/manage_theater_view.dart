@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_cine/ui/views/administrator/manage_theater/form_theaters.dart';
 import 'package:uni_cine/ui/views/administrator/manage_theater/table_theaters.dart';
-import 'package:uni_cine/ui/views/administrator/manage_view.dart';
+import 'package:uni_cine/ui/views/manage_view.dart';
 
 class ManageTheaterView extends StatelessWidget {
   const ManageTheaterView({super.key});

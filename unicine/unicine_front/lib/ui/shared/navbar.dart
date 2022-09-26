@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
-
-import 'package:uni_cine/ui/shared/widgets/navbar_Avatar.dart';
-import 'package:uni_cine/ui/shared/widgets/search_text.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
@@ -25,13 +23,16 @@ class Navbar extends StatelessWidget {
           const SizedBox(width: 5),
 
           // Search input
-          if (size.width > 400)
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 250),
-              child: const SearchText(),
-            ),
+          // if (size.width > 400)
+          //   ConstrainedBox(
+          //     constraints: const BoxConstraints(maxWidth: 250),
+          //     child: const SearchText(),
+          //   ),
           const Spacer(),
-          const NavbarAvatar(),
+          CustomNavbarButton(
+            onPressed: () {},
+            text: 'Cerrar Sesión',
+          ),
           const SizedBox(width: 10)
         ],
       ),

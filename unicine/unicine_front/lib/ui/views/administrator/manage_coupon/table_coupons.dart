@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:uni_cine/datatables/coupons_datasource.dart';
-import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 
 class TableCoupons extends StatelessWidget {
   const TableCoupons({super.key});

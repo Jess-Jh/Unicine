@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
-import 'package:uni_cine/ui/shared/custom_flat_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 import '../../controllers/counter_controller.dart';
 import '../shared/custom_app_menu.dart';
 

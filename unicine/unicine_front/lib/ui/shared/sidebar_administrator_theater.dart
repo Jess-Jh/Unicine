@@ -11,8 +11,8 @@ import 'package:uni_cine/ui/shared/widgets/logo.dart';
 import 'package:uni_cine/ui/shared/widgets/text_separator.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
-class Sidebar extends ConsumerWidget {
-  const Sidebar({super.key});
+class SidebarAdministratorTheater extends ConsumerWidget {
+  const SidebarAdministratorTheater({super.key});
 
   void navigateTo(String routeName) {
     NavigationService.navigateTo(routeName);
@@ -31,30 +31,22 @@ class Sidebar extends ConsumerWidget {
         children: [
           const Logo(),
           const SizedBox(height: 50),
-          const TextSeparator(text: 'Administrador'),
+          const TextSeparator(text: 'Administrador Teatro'),
           CustomMenuItem(
-            text: 'Películas',
-            icon: Icons.movie_creation_outlined,
-            onPressed: () => navigateTo(Flurorouter.moviesRoute),
-            isActive: ctrl.currentPage == Flurorouter.moviesRoute,
+            text: 'Salas',
+            icon: Icons.personal_video_rounded,
+            onPressed: () => navigateTo(Flurorouter.roomRoute),
+            isActive: ctrl.currentPage == Flurorouter.roomRoute,
           ),
           CustomMenuItem(
-            text: 'Teatros',
-            icon: Icons.theaters_outlined,
-            onPressed: () => navigateTo(Flurorouter.theatersRoute),
-            isActive: ctrl.currentPage == Flurorouter.theatersRoute,
+            text: 'Horarios',
+            icon: Icons.history_toggle_off_rounded,
+            onPressed: () {},
           ),
           CustomMenuItem(
-            text: 'Confiterías',
-            icon: Icons.fastfood_outlined,
-            onPressed: () => navigateTo(Flurorouter.confectionariesRoute),
-            isActive: ctrl.currentPage == Flurorouter.confectionariesRoute,
-          ),
-          CustomMenuItem(
-            text: 'Cupones',
-            icon: Icons.turned_in_not_sharp,
-            onPressed: () => navigateTo(Flurorouter.couponsRoute),
-            isActive: ctrl.currentPage == Flurorouter.couponsRoute,
+            text: 'Funciones',
+            icon: Icons.slow_motion_video_rounded,
+            onPressed: () {},
           ),
         ],
       ),

@@ -8,7 +8,7 @@ import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/services/local_storage.dart';
 import 'package:uni_cine/services/navigation_service.dart';
 
-import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/layouts/administrator_theater_layout.dart';
 import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/layouts/splash/splash_layout.dart';
 
@@ -39,8 +39,11 @@ class MyApp extends StatelessWidget {
           if (ctrl.authStatus == AuthStatus.checking) {
             return const SplashLayout();
           }
+          // if (ctrl.authStatus == AuthStatus.authenticated) {
+          //   return AdministratorLayoutPage(child: child!);
+          // }
           if (ctrl.authStatus == AuthStatus.authenticated) {
-            return AdministratorLayoutPage(child: child!);
+            return AdministratorTheaterLayout(child: child!);
           } else {
             return UnicineLayoutPage(child: child!);
           }

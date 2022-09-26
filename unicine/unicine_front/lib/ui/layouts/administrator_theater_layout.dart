@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meedu/meedu.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/ui/shared/animated_builder_sidebar.dart';
 
 import 'package:uni_cine/ui/shared/navbar.dart';
-import 'package:uni_cine/ui/shared/sidebar.dart';
+import 'package:uni_cine/ui/shared/sidebar_administrator_theater.dart';
 
-final sideMenuProvider = SimpleProvider((ref) => SideMenuController());
-
-class AdministratorLayoutPage extends StatefulWidget {
+class AdministratorTheaterLayout extends StatefulWidget {
   final Widget child;
-  const AdministratorLayoutPage({super.key, required this.child});
+  const AdministratorTheaterLayout({super.key, required this.child});
 
   @override
-  State<AdministratorLayoutPage> createState() =>
-      _AdministratorLayoutPageState();
+  State<AdministratorTheaterLayout> createState() =>
+      _AdministratorTheaterLayoutState();
 }
 
-class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
+class _AdministratorTheaterLayoutState extends State<AdministratorTheaterLayout>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {
@@ -40,7 +37,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
         children: [
           Row(
             children: [
-              if (size.width >= 700) const Sidebar(),
+              if (size.width >= 700) const SidebarAdministratorTheater(),
               Expanded(
                 child: Column(
                   children: [
@@ -63,7 +60,8 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
             ],
           ),
           if (size.width < 700)
-            AnimatedBuilderSidebar(size: size, sidebar: const Sidebar())
+            AnimatedBuilderSidebar(
+                size: size, sidebar: const SidebarAdministratorTheater())
         ],
       ),
     );

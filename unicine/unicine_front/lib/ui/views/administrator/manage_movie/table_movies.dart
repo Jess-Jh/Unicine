@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/datatables/movies_datasource.dart';
-import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 
 class TableMovies extends StatelessWidget {
   const TableMovies({super.key});

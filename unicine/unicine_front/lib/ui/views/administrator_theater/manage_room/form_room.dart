@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 
-class FormTheaters extends StatelessWidget {
-  const FormTheaters({super.key});
+class FormRoom extends StatelessWidget {
+  const FormRoom({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: 160,
       child: Column(
         children: [
           Expanded(
@@ -18,9 +18,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese el nombre del teatro',
+                  hint: 'Ingresa el nombre de la sala',
                   label: 'Nombre',
-                  icon: Icons.theater_comedy_outlined,
+                  icon: Icons.meeting_room_outlined,
                 ),
               ),
             ),
@@ -33,24 +33,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese la dirección del teatro',
-                  label: 'Dirección',
-                  icon: Icons.location_on_outlined,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Expanded(
-            child: Container(
-              height: 40,
-              decoration: buildBoxDecoration(),
-              child: TextFormField(
-                style: const TextStyle(fontSize: 13),
-                decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Agrega las salas',
-                  label: 'Salas',
-                  icon: Icons.three_p_outlined,
+                  hint: 'Selecciona la districuión de las sillas',
+                  label: 'Sillas',
+                  icon: Icons.chair_alt_outlined,
                 ),
               ),
             ),

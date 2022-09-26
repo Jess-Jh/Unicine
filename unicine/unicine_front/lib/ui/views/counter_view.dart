@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/custom_flat_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 
 class CounterView extends StatefulWidget {
   final String base;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/custom_inputs.dart';
-import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 
 class FormCoupons extends StatelessWidget {
   const FormCoupons({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/services/navigation_service.dart';
-import 'package:uni_cine/ui/shared/custom_flat_button.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 
 class CustomAppMenu extends StatelessWidget {
   const CustomAppMenu({Key? key}) : super(key: key);
