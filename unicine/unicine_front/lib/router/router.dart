@@ -24,6 +24,13 @@ class Flurorouter {
   // Administrator Theater
   static String administratorTheaterRoute = '/administradorTeatro';
   static String roomRoute                 = '/administradorTeatro/salas';
+  static String hourRoute                 = '/administradorTeatro/horarios';
+  static String functionRoute             = '/administradorTeatro/funciones';
+
+  // User 
+  static String unicineRoute     = '/unicine';
+  static String billboardRoute   = '/unicine/cartelera';
+
 
 
   static void configureRoutes() {
@@ -32,6 +39,10 @@ class Flurorouter {
     router.define( rootRoute,     handler: UnicineHandlers.login,    transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( loginRoute,    handler: UnicineHandlers.login,    transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+
+    // User Routes
+    // router.define( billboardRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+
 
     // Administrator Routes
     router.define(administratorRoute,   handler: AdministratorHandlers.manageMovies,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
@@ -43,6 +54,8 @@ class Flurorouter {
     // Administrator Theater Routes
     router.define(administratorTheaterRoute, handler: AdministratorTheaterHandlers.manageRooms,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define(roomRoute,                 handler: AdministratorTheaterHandlers.manageRooms,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(hourRoute,                 handler: AdministratorTheaterHandlers.manageHours,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(functionRoute,             handler: AdministratorTheaterHandlers.manageFunctions,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Stateful Routes

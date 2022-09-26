@@ -10,8 +10,9 @@ import 'package:uni_cine/ui/views/unicine/register_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_view.dart';
 
 class UnicineHandlers {
-  static Handler login = Handler(handlerFunc: ((context, parameters) => ValidateView(LoginView())));
-  static Handler register = Handler(handlerFunc: ((context, parameters) => ValidateView(RegisterView())));
+  static Handler login     = Handler(handlerFunc: ((context, parameters) => ValidateView(LoginView())));
+  static Handler register  = Handler(handlerFunc: ((context, parameters) => ValidateView(RegisterView())));
+  // static Handler billboard = Handler(handlerFunc: ((context, parameters) => ValidateView(BillboardView())));
 }
 
 class ValidateView extends ConsumerWidget {

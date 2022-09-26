@@ -7,6 +7,8 @@ import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
 
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/views/administrator_theater/manage_function/manage_function_view.dart';
+import 'package:uni_cine/ui/views/administrator_theater/manage_hours/manage_hours_view.dart';
 import 'package:uni_cine/ui/views/administrator_theater/manage_room/manage_room_view.dart';
 
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
@@ -14,8 +16,8 @@ import 'package:uni_cine/ui/views/unicine/login_view.dart';
 class AdministratorTheaterHandlers {
 
   static Handler manageRooms     = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageRoomView(), Flurorouter.roomRoute)));
-  // static Handler manageHours     = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageMovieView(), Flurorouter.moviesRoute)));
-  // static Handler manageFunctions = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageConfectioneryView(), Flurorouter.confectionariesRoute)));
+  static Handler manageHours     = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageHoursView(), Flurorouter.hourRoute)));
+  static Handler manageFunctions = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageFunctionView(), Flurorouter.functionRoute)));
 
 }
 

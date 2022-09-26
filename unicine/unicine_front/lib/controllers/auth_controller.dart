@@ -6,6 +6,8 @@ import 'package:uni_cine/services/navigation_service.dart';
 enum AuthStatus {
   checking,
   authenticated,
+  administratorAuthenticated,
+  administratorTheaterAuthenticated,
   notAuthenticated,
 }
 

@@ -41,12 +41,14 @@ class SidebarAdministratorTheater extends ConsumerWidget {
           CustomMenuItem(
             text: 'Horarios',
             icon: Icons.history_toggle_off_rounded,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.hourRoute),
+            isActive: ctrl.currentPage == Flurorouter.hourRoute,
           ),
           CustomMenuItem(
             text: 'Funciones',
             icon: Icons.slow_motion_video_rounded,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.functionRoute),
+            isActive: ctrl.currentPage == Flurorouter.functionRoute,
           ),
         ],
       ),
