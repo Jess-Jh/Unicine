@@ -6,15 +6,19 @@ import 'package:uni_cine/main.dart';
 import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/views/administrator/manage_coupon/manage_coupon_view.dart';
 
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_movie/manage_movie_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_view.dart';
+import 'package:uni_cine/ui/views/administrator/manage_confectionery/manage_confectionery_view.dart';
 
 class AdministratorHandlers {
 
-  static Handler manageTheaters = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
-  static Handler manageMovies   = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageMovieView(), Flurorouter.moviesRoute)));
+  static Handler manageTheaters        = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
+  static Handler manageMovies          = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageMovieView(), Flurorouter.moviesRoute)));
+  static Handler manageConfectionaries = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageConfectioneryView(), Flurorouter.confectionariesRoute)));
+  static Handler manageCoupons         = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageCouponView(), Flurorouter.couponsRoute)));
 
 }
 

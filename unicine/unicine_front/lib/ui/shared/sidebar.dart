@@ -49,12 +49,15 @@ class Sidebar extends ConsumerWidget {
           CustomMenuItem(
             text: 'Confiterías',
             icon: Icons.fastfood_outlined,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.confectionariesRoute),
+            isActive: ctrl.currentPage == Flurorouter.confectionariesRoute,
           ),
+
           CustomMenuItem(
             text: 'Cupones',
             icon: Icons.turned_in_not_sharp,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.couponsRoute),
+            isActive: ctrl.currentPage == Flurorouter.couponsRoute,
           ),
         ],
       ),

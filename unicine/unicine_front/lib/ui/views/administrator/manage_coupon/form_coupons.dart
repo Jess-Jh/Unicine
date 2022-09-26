@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
 
-class FormTheaters extends StatelessWidget {
-  const FormTheaters({super.key});
+class FormCoupons extends StatelessWidget {
+  const FormCoupons({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: 270,
       child: Column(
         children: [
           Expanded(
@@ -18,9 +18,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese el nombre del teatro',
-                  label: 'Nombre',
-                  icon: Icons.theater_comedy_outlined,
+                  hint: 'Ingrese el valor de descuento',
+                  label: 'Descuento',
+                  icon: Icons.money_off_csred,
                 ),
               ),
             ),
@@ -33,9 +33,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese la dirección del teatro',
-                  label: 'Dirección',
-                  icon: Icons.location_on_outlined,
+                  hint: 'Ingrese la fecha de vencimiento',
+                  label: 'Fecha de vencimiento',
+                  icon: Icons.date_range_outlined,
                 ),
               ),
             ),
@@ -48,9 +48,24 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Agrega las salas',
-                  label: 'Salas',
-                  icon: Icons.three_p_outlined,
+                  hint: 'Ingrese la descripción',
+                  label: 'Descripción',
+                  icon: Icons.library_books_outlined,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Expanded(
+            child: Container(
+              height: 40,
+              decoration: buildBoxDecoration(),
+              child: TextFormField(
+                style: const TextStyle(fontSize: 13),
+                decoration: CustomInputs.loginInputDecoration(
+                  hint: 'Ingrese el criterio',
+                  label: 'Criterio',
+                  icon: Icons.credit_score_sharp,
                 ),
               ),
             ),

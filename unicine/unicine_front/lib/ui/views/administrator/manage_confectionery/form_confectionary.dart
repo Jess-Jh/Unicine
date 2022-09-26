@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/custom_outlined_button.dart';
 
-class FormTheaters extends StatelessWidget {
-  const FormTheaters({super.key});
+class FormConfectionary extends StatelessWidget {
+  const FormConfectionary({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese el nombre del teatro',
+                  hint: 'Ingrese el nombre del producto',
                   label: 'Nombre',
-                  icon: Icons.theater_comedy_outlined,
+                  icon: Icons.fastfood_outlined,
                 ),
               ),
             ),
@@ -33,9 +33,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese la dirección del teatro',
-                  label: 'Dirección',
-                  icon: Icons.location_on_outlined,
+                  hint: 'Ingrese el precio del producto',
+                  label: 'Precio',
+                  icon: Icons.attach_money_rounded,
                 ),
               ),
             ),
@@ -48,9 +48,9 @@ class FormTheaters extends StatelessWidget {
               child: TextFormField(
                 style: const TextStyle(fontSize: 13),
                 decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Agrega las salas',
-                  label: 'Salas',
-                  icon: Icons.three_p_outlined,
+                  hint: 'Agrega la Url de la image',
+                  label: 'Url imagen',
+                  icon: Icons.image_outlined,
                 ),
               ),
             ),

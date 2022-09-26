@@ -14,9 +14,11 @@ class Flurorouter {
   static String registerRoute = '/auth/register';
   
   // Administrator 
-  static String administratorRoute = '/administrador';
-  static String moviesRoute        = '/administrador/peliculas';
-  static String theatersRoute      = '/administrador/teatros';
+  static String administratorRoute    = '/administrador';
+  static String moviesRoute           = '/administrador/peliculas';
+  static String theatersRoute         = '/administrador/teatros';
+  static String confectionariesRoute  = '/administrador/confiterias';
+  static String couponsRoute          = '/administrador/cupones';
 
 
   static void configureRoutes() {
@@ -27,9 +29,11 @@ class Flurorouter {
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // Administrator Router
-    router.define(administratorRoute, handler: AdministratorHandlers.manageMovies,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define(moviesRoute,        handler: AdministratorHandlers.manageMovies,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define(theatersRoute,      handler: AdministratorHandlers.manageTheaters, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(administratorRoute,   handler: AdministratorHandlers.manageMovies,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(moviesRoute,          handler: AdministratorHandlers.manageMovies,  transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(theatersRoute,        handler: AdministratorHandlers.manageTheaters, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(confectionariesRoute, handler: AdministratorHandlers.manageConfectionaries, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define(couponsRoute,         handler: AdministratorHandlers.manageCoupons, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Stateful Routes
