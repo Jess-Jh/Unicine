@@ -5,7 +5,6 @@ import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/main.dart';
 import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
-import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/views/administrator/manage_coupon/manage_coupon_view.dart';
 
 import 'package:uni_cine/ui/views/unicine/login_view.dart';

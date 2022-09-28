@@ -41,7 +41,7 @@ class Flurorouter {
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // User Routes
-    // router.define( billboardRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( billboardRoute, handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes

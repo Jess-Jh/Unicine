@@ -4,28 +4,34 @@ import 'package:flutter_meedu/ui.dart';
 
 import 'package:uni_cine/main.dart';
 import 'package:uni_cine/controllers/auth_controller.dart';
+import 'package:uni_cine/router/router.dart';
 
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
 import 'package:uni_cine/ui/views/unicine/register_view.dart';
-import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_view.dart';
+import 'package:uni_cine/ui/views/unicine/billboard_view.dart';
 
 class UnicineHandlers {
-  static Handler login     = Handler(handlerFunc: ((context, parameters) => ValidateView(LoginView())));
-  static Handler register  = Handler(handlerFunc: ((context, parameters) => ValidateView(RegisterView())));
-  // static Handler billboard = Handler(handlerFunc: ((context, parameters) => ValidateView(BillboardView())));
+  static Handler login     = Handler(handlerFunc: ((context, parameters) => ValidateView(view: LoginView(), view2: const BillboardView(), routeName: Flurorouter.loginRoute )));
+  static Handler register  = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: const BillboardView(), routeName: Flurorouter.registerRoute )));
+  static Handler billboard = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const BillboardView(), routeName: Flurorouter.billboardRoute )));
 }
 
 class ValidateView extends ConsumerWidget {
-  final Widget view;
-  const ValidateView(this.view, {Key? key}) : super(key: key);
+  final Widget? view;
+  final Widget view2;
+  final String routeName;
+  const ValidateView({Key? key, this.view, required this.view2, required this.routeName}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
+
     final ctrl = ref.watch(authProvider);
+    sideMenuProvider.read.setCurrentPageUrl(routeName);
+
     if (ctrl.authStatus == AuthStatus.notAuthenticated) {
-      return view;
+      return view ?? LoginView();
     } else {
-      return const ManageTheaterView();
+      return view2;
     }
   }
 }

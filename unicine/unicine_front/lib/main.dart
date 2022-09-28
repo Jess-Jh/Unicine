@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/controllers/sidemenu_controller.dart';
 
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/controllers/auth_controller.dart';
@@ -14,6 +15,7 @@ import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/layouts/splash/splash_layout.dart';
 
 final authProvider = SimpleProvider((ref) => AuthController());
+final sideMenuProvider = SimpleProvider((ref) => SideMenuController());
 
 void main() async {
   // setupLocator();

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
+import 'package:uni_cine/main.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/services/navigation_service.dart';
-import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 
 import 'package:uni_cine/ui/shared/widgets/custom_menu_item.dart';
 import 'package:uni_cine/ui/shared/widgets/logo.dart';

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/controllers/sidemenu_controller.dart';
+import 'package:uni_cine/main.dart';
+import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/services/navigation_service.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 import 'package:uni_cine/ui/shared/widgets/logoUnicine.dart';
@@ -10,13 +14,23 @@ class CustomAppMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return (size.width >= 700) ? _TabletDesktopMenu() : _MobileMenu();
+    return (size.width >= 700)
+        ? const _TabletDesktopMenu()
+        : const _MobileMenu();
   }
 }
 
-class _TabletDesktopMenu extends StatelessWidget {
+void navigateTo(String routeName) {
+  NavigationService.navigateTo(routeName);
+  SideMenuController.closeMenu();
+}
+
+class _TabletDesktopMenu extends ConsumerWidget {
+  const _TabletDesktopMenu({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(sideMenuProvider);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: double.infinity,
@@ -27,33 +41,33 @@ class _TabletDesktopMenu extends StatelessWidget {
           const Spacer(),
           CustomFlatButton(
             text: 'CARTELERA',
-            // onPressed: () => Navigator.pushNamed(context, '/stateful'),
-            onPressed: () => NavigationService.navigateTo('/stateful'),
             color: Colors.white,
+            onPressed: () => navigateTo(Flurorouter.billboardRoute),
+            isActive: ctrl.currentPage == Flurorouter.billboardRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'TEATROS',
-            onPressed: () => NavigationService.navigateTo('/meedu'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'CONFITERÍA',
-            onPressed: () => NavigationService.navigateTo('/abc123'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'MEMBRESÍA',
-            onPressed: () => NavigationService.navigateTo('/stateful/100'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'PQRS',
-            onPressed: () => NavigationService.navigateTo('/meedu?q=200'),
             color: Colors.white,
+            onPressed: () {},
           ),
         ],
       ),
@@ -76,9 +90,12 @@ class _TabletDesktopMenu extends StatelessWidget {
       );
 }
 
-class _MobileMenu extends StatelessWidget {
+class _MobileMenu extends ConsumerWidget {
+  const _MobileMenu({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(sideMenuProvider);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       width: 200,
@@ -90,33 +107,33 @@ class _MobileMenu extends StatelessWidget {
           const SizedBox(height: 30),
           CustomFlatButton(
             text: 'CARTELERA',
-            // onPressed: () => Navigator.pushNamed(context, '/stateful'),
-            onPressed: () => NavigationService.navigateTo('/stateful'),
             color: Colors.white,
+            onPressed: () => navigateTo(Flurorouter.billboardRoute),
+            isActive: ctrl.currentPage == Flurorouter.billboardRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'TEATROS',
-            onPressed: () => NavigationService.navigateTo('/meedu'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'CONFITERÍA',
-            onPressed: () => NavigationService.navigateTo('/abc123'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'MEMBRESÍA',
-            onPressed: () => NavigationService.navigateTo('/stateful/100'),
             color: Colors.white,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'PQRS',
-            onPressed: () => NavigationService.navigateTo('/meedu?q=200'),
             color: Colors.white,
+            onPressed: () {},
           ),
         ],
       ),

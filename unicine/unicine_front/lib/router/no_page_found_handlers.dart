@@ -1,7 +1,7 @@
 import 'package:fluro/fluro.dart';
+import 'package:uni_cine/main.dart';
 
 import 'package:uni_cine/ui/views/no_page_found_view.dart';
-import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 
 class NoPageFoundHandlers {
   static Handler noPageFound = Handler(

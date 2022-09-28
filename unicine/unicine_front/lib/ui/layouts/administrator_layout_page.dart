@@ -6,9 +6,6 @@ import 'package:uni_cine/ui/shared/animated_builder_sidebar.dart';
 
 import 'package:uni_cine/ui/shared/navbar.dart';
 import 'package:uni_cine/ui/shared/sidebar.dart';
-
-final sideMenuProvider = SimpleProvider((ref) => SideMenuController());
-
 class AdministratorLayoutPage extends StatefulWidget {
   final Widget child;
   const AdministratorLayoutPage({super.key, required this.child});
