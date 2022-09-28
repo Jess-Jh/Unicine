@@ -3,7 +3,10 @@ import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
 
 class Navbar extends StatelessWidget {
-  const Navbar({super.key});
+  final String text;
+  final String? text2;
+
+  const Navbar({super.key, required this.text, this.text2});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +32,16 @@ class Navbar extends StatelessWidget {
           //     child: const SearchText(),
           //   ),
           const Spacer(),
+          if (text2 != null)
+            CustomNavbarButton(
+              onPressed: () {},
+              text: text2!,
+            ),
+
+          const SizedBox(width: 10),
           CustomNavbarButton(
             onPressed: () {},
-            text: 'Cerrar Sesión',
+            text: text,
           ),
           const SizedBox(width: 10)
         ],

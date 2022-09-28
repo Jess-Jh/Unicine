@@ -13,7 +13,7 @@ class CustomNavbarButton extends StatelessWidget {
       style: ButtonStyle(
         fixedSize: MaterialStateProperty.all(const Size.fromWidth(110)),
         shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         ),
         backgroundColor: MaterialStateProperty.all(
           const Color(0xffD5C6E0).withOpacity(0.9),
@@ -25,7 +25,7 @@ class CustomNavbarButton extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-              fontSize: 9, color: Colors.black, fontWeight: FontWeight.bold),
+              fontSize: 9, color: Colors.black, fontWeight: FontWeight.w700),
         ),
       ),
     );

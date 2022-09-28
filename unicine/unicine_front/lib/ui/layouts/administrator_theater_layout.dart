@@ -42,7 +42,7 @@ class _AdministratorTheaterLayoutState extends State<AdministratorTheaterLayout>
                 child: Column(
                   children: [
                     // Navbar
-                    const Navbar(),
+                    const Navbar(text: 'Cerrar sesión'),
 
                     // View
                     Expanded(

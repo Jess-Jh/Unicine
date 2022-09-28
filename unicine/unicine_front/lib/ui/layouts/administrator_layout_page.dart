@@ -45,7 +45,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
                 child: Column(
                   children: [
                     // Navbar
-                    const Navbar(),
+                    const Navbar(text: 'Cerrar sesión'),
 
                     // View
                     Expanded(
