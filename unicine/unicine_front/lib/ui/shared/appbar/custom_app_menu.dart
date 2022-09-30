@@ -15,8 +15,8 @@ class CustomAppMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return (size.width >= 700)
-        ? const _TabletDesktopMenu()
-        : const _MobileMenu();
+        ? _TabletDesktopMenu()
+        : _MobileMenu();
   }
 }
 
@@ -26,7 +26,6 @@ void navigateTo(String routeName) {
 }
 
 class _TabletDesktopMenu extends ConsumerWidget {
-  const _TabletDesktopMenu({super.key});
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(sideMenuProvider);
@@ -91,7 +90,6 @@ class _TabletDesktopMenu extends ConsumerWidget {
 }
 
 class _MobileMenu extends ConsumerWidget {
-  const _MobileMenu({super.key});
 
   @override
   Widget build(BuildContext context, ref) {

@@ -6,7 +6,6 @@ import 'package:uni_cine/main.dart';
 import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
 
-import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/views/administrator_theater/manage_function/manage_function_view.dart';
 import 'package:uni_cine/ui/views/administrator_theater/manage_hours/manage_hours_view.dart';
 import 'package:uni_cine/ui/views/administrator_theater/manage_room/manage_room_view.dart';

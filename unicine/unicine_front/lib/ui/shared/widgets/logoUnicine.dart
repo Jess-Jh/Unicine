@@ -23,7 +23,7 @@ class LogoUnicine extends StatelessWidget {
             Text(
               'Uni',
               style: GoogleFonts.nunito(
-                fontSize: 20,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -31,7 +31,7 @@ class LogoUnicine extends StatelessWidget {
             Text(
               'CINE',
               style: GoogleFonts.ptSans(
-                fontSize: 20,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),

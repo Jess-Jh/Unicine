@@ -77,8 +77,7 @@ class LoginView extends StatelessWidget {
                       // Email
                       TextFormField(
                         validator: (value) {
-                          if (!EmailValidator.validate(value ?? ''))
-                            return 'Email no válido';
+                          if (!EmailValidator.validate(value ?? '')) return 'Email no válido';
                           return null;
                         },
                         onChanged: (value) => ctrl.email = value,
@@ -93,11 +92,9 @@ class LoginView extends StatelessWidget {
                       TextFormField(
                         onChanged: (value) => ctrl.password = value,
                         validator: (value) {
-                          if (value == null || value.isEmpty)
-                            return 'Ingrese su contraseña';
+                          if (value == null || value.isEmpty) return 'Ingrese su contraseña';
 
-                          if (value.length < 6)
-                            return 'La contraseña debe tener más de 6 caracteres';
+                          if (value.length < 6) return 'La contraseña debe tener más de 6 caracteres';
                           return null;
                         },
                         obscureText: true,
@@ -121,8 +118,7 @@ class LoginView extends StatelessWidget {
                       CustomOutlinedButton(
                         onPressed: () {
                           final isValid = ctrl.validateForm(formKey);
-                          if (isValid)
-                            authProvider.read.login(ctrl.email, ctrl.password);
+                          if (isValid) authProvider.read.login(ctrl.email, ctrl.password);
                         },
                         text: 'Iniciar Sesión',
                       ),

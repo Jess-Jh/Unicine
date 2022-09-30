@@ -9,13 +9,12 @@ class FormMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (_, constraints) => (constraints.maxWidth > 520)
-            ? const _TabletDesktopForm()
-            : const _MobileForm());
+            ? _TabletDesktopForm()
+            : _MobileForm());
   }
 }
 
 class _TabletDesktopForm extends StatelessWidget {
-  const _TabletDesktopForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +164,6 @@ class _TabletDesktopForm extends StatelessWidget {
 }
 
 class _MobileForm extends StatelessWidget {
-  const _MobileForm({super.key});
 
   @override
   Widget build(BuildContext context) {
