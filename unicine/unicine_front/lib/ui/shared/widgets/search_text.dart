@@ -7,7 +7,7 @@ class SearchText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 30,
       decoration: buildBoxDecoration(),
       child: TextField(
         decoration: CustomInputs.searchInputDecoration(
@@ -19,6 +19,7 @@ class SearchText extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() => BoxDecoration(
+        border: Border.all(color: Colors.grey, width: 2),
         borderRadius: BorderRadius.circular(10),
         color: Colors.grey.withOpacity(0.1),
       );

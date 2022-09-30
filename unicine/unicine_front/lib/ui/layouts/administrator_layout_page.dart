@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meedu/meedu.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
-import 'package:uni_cine/ui/shared/animated_builder_sidebar.dart';
+import 'package:uni_cine/ui/shared/appbar/animated_builder_sidebar.dart';
+import 'package:uni_cine/ui/shared/appbar/navbar.dart';
+import 'package:uni_cine/ui/shared/appbar/sidebar.dart';
 
-import 'package:uni_cine/ui/shared/navbar.dart';
-import 'package:uni_cine/ui/shared/sidebar.dart';
 class AdministratorLayoutPage extends StatefulWidget {
   final Widget child;
   const AdministratorLayoutPage({super.key, required this.child});
@@ -60,7 +59,10 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
             ],
           ),
           if (size.width < 700)
-            AnimatedBuilderSidebar(size: size, sidebar: const Sidebar())
+            AnimatedBuilderSidebar(
+              size: size,
+              sidebar: const Sidebar(),
+            )
         ],
       ),
     );

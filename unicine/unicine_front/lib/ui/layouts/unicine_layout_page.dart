@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
-import 'package:uni_cine/ui/shared/animated_builder_sidebar.dart';
-import 'package:uni_cine/ui/shared/custom_app_menu.dart';
-import 'package:uni_cine/ui/shared/navbar.dart';
+import 'package:uni_cine/ui/shared/appbar/animated_builder_sidebar.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
+import 'package:uni_cine/ui/shared/appbar/navbar.dart';
 
 class UnicineLayoutPage extends StatefulWidget {
   final Widget child;
@@ -29,6 +30,7 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color(0xffEDF1F2),
       body: size.width > 700
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +38,13 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                 const Navbar(text: 'Iniciar sesión', text2: 'Registrarse'),
                 const CustomAppMenu(),
                 // const Spacer(),
-                Expanded(child: widget.child),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: widget.child,
+                  ),
+                ),
 
                 // const Spacer()
               ],
@@ -52,7 +60,13 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // const Spacer(),
-                          Expanded(child: widget.child),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: widget.child,
+                            ),
+                          ),
 
                           // const Spacer()
                         ],
@@ -62,7 +76,9 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                 ),
                 if (size.width < 700)
                   AnimatedBuilderSidebar(
-                      size: size, sidebar: const CustomAppMenu())
+                    size: size,
+                    sidebar: const CustomAppMenu(),
+                  )
               ],
             ),
     );

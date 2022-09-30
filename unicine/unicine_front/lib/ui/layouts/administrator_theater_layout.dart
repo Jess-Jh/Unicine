@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
-import 'package:uni_cine/ui/shared/animated_builder_sidebar.dart';
-
-import 'package:uni_cine/ui/shared/navbar.dart';
-import 'package:uni_cine/ui/shared/sidebar_administrator_theater.dart';
+import 'package:uni_cine/ui/shared/appbar/animated_builder_sidebar.dart';
+import 'package:uni_cine/ui/shared/appbar/navbar.dart';
+import 'package:uni_cine/ui/shared/appbar/sidebar_administrator_theater.dart';
 
 class AdministratorTheaterLayout extends StatefulWidget {
   final Widget child;
@@ -61,7 +60,9 @@ class _AdministratorTheaterLayoutState extends State<AdministratorTheaterLayout>
           ),
           if (size.width < 700)
             AnimatedBuilderSidebar(
-                size: size, sidebar: const SidebarAdministratorTheater())
+              size: size,
+              sidebar: const SidebarAdministratorTheater(),
+            )
         ],
       ),
     );
