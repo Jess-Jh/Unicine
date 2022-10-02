@@ -21,6 +21,11 @@ public class EstadoPelicula implements Serializable {
 
     private Integer tipoEstado;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "estadoPelicula")
     private List<Pelicula> listaPeliculas;
+
+    public EstadoPelicula(Integer tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
 }

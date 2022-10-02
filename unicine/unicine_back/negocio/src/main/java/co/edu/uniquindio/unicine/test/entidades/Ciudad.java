@@ -22,16 +22,21 @@ public class Ciudad implements Serializable {
     @Column(length = 45, nullable = false)
     private String nombre;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Cliente> clientes;
 
     //editado
+    @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Administrador> administradores;
     //aqui
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Teatro> listaTeatros;
 
-
+    public Ciudad(String nombre) {
+        this.nombre = nombre;
+    }
 }

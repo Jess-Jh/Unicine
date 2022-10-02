@@ -27,7 +27,6 @@ public class Entrada implements Serializable {
     @ManyToOne
     private Compra compra;
 
-    @Builder
     public Entrada(String filaSilla, String columnaSilla, Compra compra) {
         this.filaSilla = filaSilla;
         this.columnaSilla = columnaSilla;

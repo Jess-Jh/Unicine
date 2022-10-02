@@ -21,10 +21,10 @@ public class PQRS implements Serializable {
     @Column(nullable = false)
     private String mensaje;
 
+    @ToString.Exclude
     @ManyToOne
     private Cliente cliente;
 
-    @Builder
     public PQRS(String mensaje, Cliente cliente) {
         this.mensaje = mensaje;
         this.cliente = cliente;

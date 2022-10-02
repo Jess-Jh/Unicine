@@ -28,11 +28,12 @@ public class Confiteria implements Serializable {
     @Column(length = 45, nullable = false)
     private String nombre;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "confiteria")
     private List<ConfiteriaCompra> listaConfiteriaCompra;
 
-    @Builder
-    public Confiteria(Double precio, String nombre) {
+    public Confiteria(String imagen, Double precio, String nombre) {
+        this.imagen = imagen;
         this.precio = precio;
         this.nombre = nombre;
     }

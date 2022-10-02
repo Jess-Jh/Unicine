@@ -37,13 +37,14 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String reparto;
 
+    @ToString.Exclude
     @ManyToOne
     private EstadoPelicula estadoPelicula;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<FuncionSala> listaFuncionSala;
 
-    @Builder
     public Pelicula(String nombre, String imagen, String trailer, String genero, String sinopsis, String reparto, EstadoPelicula estadoPelicula) {
         this.nombre = nombre;
         this.imagen = imagen;

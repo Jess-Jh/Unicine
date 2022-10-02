@@ -25,7 +25,6 @@ public class CuponCliente implements Serializable {
     @ManyToOne
     private Cliente cliente;
 
-    @Builder
     public CuponCliente(Integer isDisponible, Cupon cupon, Cliente cliente) {
         this.isDisponible = isDisponible;
         this.cupon = cupon;

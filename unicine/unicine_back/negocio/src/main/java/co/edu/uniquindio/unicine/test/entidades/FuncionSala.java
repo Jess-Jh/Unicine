@@ -19,6 +19,7 @@ public class FuncionSala implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idFuncionSala;
 
+
     @ManyToOne
     private Sala sala;
 
@@ -28,10 +29,10 @@ public class FuncionSala implements Serializable {
     @ManyToOne
     private Funcion funcion;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "funcionSala")
     private List<Compra> listaCompras;
 
-    @Builder
     public FuncionSala(Sala sala, Pelicula pelicula, Funcion funcion) {
         this.sala = sala;
         this.pelicula = pelicula;

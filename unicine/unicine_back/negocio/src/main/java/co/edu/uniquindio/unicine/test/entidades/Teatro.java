@@ -25,13 +25,14 @@ public class Teatro implements Serializable {
     @Column(length = 100, nullable = false)
     private String direccion;
 
+    @ToString.Exclude
     @ManyToOne
     private Ciudad ciudad;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "teatro")
     private List<Sala> listaSalas;
 
-    @Builder
     public Teatro(String nombre, String direccion, Ciudad ciudad) {
         this.nombre = nombre;
         this.direccion = direccion;

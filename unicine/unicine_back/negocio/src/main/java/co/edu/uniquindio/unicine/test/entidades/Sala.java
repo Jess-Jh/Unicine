@@ -22,12 +22,15 @@ public class Sala implements Serializable {
     @Column(length = 45, nullable = false)
     private String nombre;
 
+    @ToString.Exclude
     @ManyToOne
     private Teatro teatro;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "sala")
     private List<FuncionSala> listaFuncionSala;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "sala")
     private List<DistribuccionSilla> listaDistribuccionSillas;
 

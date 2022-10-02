@@ -1,7 +1,10 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.entidades.Administrador;
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
-import co.edu.uniquindio.unicine.test.repositorios.ClienteRepo;
+import co.edu.uniquindio.unicine.test.entidades.Cupon;
+import co.edu.uniquindio.unicine.test.entidades.CuponCliente;
+import co.edu.uniquindio.unicine.test.repositorios.CuponClienteRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,56 +20,58 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ClienteTest {
+public class CuponClienteTest {
 
     @Autowired
-    private ClienteRepo clienteRepo;
+    private CuponClienteRepo cuponClienteRepo;
 
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
+        LocalDate tiempo = LocalDate.now();
+        Cupon cupon = new Cupon(20000.0, tiempo, "descripcion pru", "criterio");
+
         Map<String, String> telefonos = new HashMap<>();
         telefonos.put("movil","313447");
         Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",telefonos);
 
-        Cliente guardado = clienteRepo.save(cliente);
 
-        Assertions.assertEquals("juan jose",cliente.getNombreCompleto());
+        CuponCliente cuponCliente = new CuponCliente(1, cupon, cliente);
+        CuponCliente guardado = cuponClienteRepo.save(cuponCliente);
+
+        Assertions.assertEquals("juan jose",cuponCliente.getCliente().getNombreCompleto());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
+        CuponCliente buscado = cuponClienteRepo.findById(1).orElse(null);
+        cuponClienteRepo.delete(buscado);
 
-        Cliente buscado = clienteRepo.findById("12345").orElse(null);
-        clienteRepo.delete(buscado);
-
-        Assertions.assertNull( clienteRepo.findById("12345").orElse(null) );
+        Assertions.assertNull( cuponClienteRepo.findById(1).orElse(null) );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
+        CuponCliente guardado = cuponClienteRepo.findById(1).orElse(null);
+        guardado.setIsDisponible(0);
 
-        Cliente guardado = clienteRepo.findById("12345").orElse(null);
-        guardado.setEmail("correoNuevo2@gmail.com");
-
-        Cliente nuevo = clienteRepo.save(guardado);
-        Assertions.assertEquals("correoNuevo2@gmail.com", nuevo.getEmail());
+        CuponCliente nuevo = cuponClienteRepo.save(guardado);
+        Assertions.assertEquals(0, nuevo.getIsDisponible());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void obtener(){
-        Optional<Cliente> buscado = clienteRepo.findById("12345");
+        Optional<CuponCliente> buscado = cuponClienteRepo.findById(1);
         Assertions.assertNotNull( buscado.orElse(null) );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void listar(){
-        List<Cliente> lista = clienteRepo.findAll();
+        List<CuponCliente> lista = cuponClienteRepo.findAll();
         lista.forEach(System.out::println);
     }
-
 }

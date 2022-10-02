@@ -32,25 +32,29 @@ public class Compra implements Serializable {
     @Column(nullable = false)
     private Double total;
 
+    @ToString.Exclude
     @ManyToOne
     private Cliente cliente;
 
+    @ToString.Exclude
     @ManyToOne
     private FuncionSala funcionSala;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "compra")
     private List<Entrada> listaEntradas;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "compra")
     private List<ConfiteriaCompra> listaConfiteriaCompra;
-    @Builder
-    public Compra(String metodoPago, Cliente cliente, FuncionSala funcionSala, List<Entrada> listaEntradas,
-                  List<ConfiteriaCompra> listaConfiteriaCompra) {
-        this.fechaCompra = LocalDateTime.now();
+
+
+    public Compra(String metodoPago, Double subtotal, Double total, Cliente cliente, FuncionSala funcionSala) {
+        this.fechaCompra = LocalDateTime.now();;
         this.metodoPago = metodoPago;
+        this.subtotal = subtotal;
+        this.total = total;
         this.cliente = cliente;
         this.funcionSala = funcionSala;
-        this.listaEntradas = listaEntradas;
-        this.listaConfiteriaCompra = listaConfiteriaCompra;
     }
 }

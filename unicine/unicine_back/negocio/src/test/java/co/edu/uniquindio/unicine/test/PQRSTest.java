@@ -1,7 +1,9 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
-import co.edu.uniquindio.unicine.test.repositorios.ClienteRepo;
+import co.edu.uniquindio.unicine.test.entidades.Confiteria;
+import co.edu.uniquindio.unicine.test.entidades.PQRS;
+import co.edu.uniquindio.unicine.test.repositorios.PQRSRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,56 +18,54 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ClienteTest {
+public class PQRSTest {
 
     @Autowired
-    private ClienteRepo clienteRepo;
+    private PQRSRepo pqrsRepo;
 
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
         Map<String, String> telefonos = new HashMap<>();
         telefonos.put("movil","313447");
-        Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",telefonos);
+        Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos);
 
-        Cliente guardado = clienteRepo.save(cliente);
+        PQRS pqrs = new PQRS("Mensaje de prueba para el usuario", cliente);
+        PQRS guardado = pqrsRepo.save(pqrs);
 
-        Assertions.assertEquals("juan jose",cliente.getNombreCompleto());
+        Assertions.assertEquals("1094973943",pqrs.getCliente().getCedula());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void eliminar(){
+        PQRS buscado = pqrsRepo.findById(1).orElse(null);
+        pqrsRepo.delete(buscado);
 
-        Cliente buscado = clienteRepo.findById("12345").orElse(null);
-        clienteRepo.delete(buscado);
-
-        Assertions.assertNull( clienteRepo.findById("12345").orElse(null) );
+        Assertions.assertNull( pqrsRepo.findById(1).orElse(null) );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
+        PQRS guardado = pqrsRepo.findById(1).orElse(null);
+        guardado.setMensaje("Se cambia el mensaje de pqrs");
 
-        Cliente guardado = clienteRepo.findById("12345").orElse(null);
-        guardado.setEmail("correoNuevo2@gmail.com");
-
-        Cliente nuevo = clienteRepo.save(guardado);
-        Assertions.assertEquals("correoNuevo2@gmail.com", nuevo.getEmail());
+        PQRS nuevo = pqrsRepo.save(guardado);
+        Assertions.assertEquals("Se cambia el mensaje de pqrs", nuevo.getMensaje());
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void obtener(){
-        Optional<Cliente> buscado = clienteRepo.findById("12345");
+        Optional<PQRS> buscado = pqrsRepo.findById(1);
         Assertions.assertNotNull( buscado.orElse(null) );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void listar(){
-        List<Cliente> lista = clienteRepo.findAll();
+        List<PQRS> lista = pqrsRepo.findAll();
         lista.forEach(System.out::println);
     }
-
 }

@@ -25,11 +25,11 @@ public class Funcion implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "funcion")
     private List<FuncionSala> listaFuncionSala;
 
 
-    @Builder
     public Funcion(String horario, Double precio) {
         this.horario = horario;
         this.precio = precio;
