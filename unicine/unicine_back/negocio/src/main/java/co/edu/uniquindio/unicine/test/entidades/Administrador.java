@@ -14,9 +14,11 @@ import java.util.List;
 public class Administrador extends Persona implements Serializable {
 
     @OneToMany(mappedBy = "administrador")
-    private List<Ciudad> ciudades;
-
-    @OneToMany(mappedBy = "administrador")
     private List<TipoAdministrador> tipoAdministradores;
+
+    //editado
+    @ManyToOne
+    private Ciudad ciudad;
+    //aqui
 
 }

@@ -25,8 +25,10 @@ public class Ciudad implements Serializable {
     @OneToMany(mappedBy = "ciudad")
     private List<Cliente> clientes;
 
-    @ManyToOne
-    private Administrador administrador;
+    //editado
+    @OneToMany(mappedBy = "ciudad")
+    private List<Administrador> administradores;
+    //aqui
 
     @OneToMany(mappedBy = "ciudad")
     private List<Teatro> listaTeatros;
