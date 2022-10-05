@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
 
-import 'package:uni_cine/ui/shared/custom_labels.dart';
+import 'package:uni_cine/utils/custom_labels.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/list_movies_scroll.dart';
 
 // ignore: must_be_immutable

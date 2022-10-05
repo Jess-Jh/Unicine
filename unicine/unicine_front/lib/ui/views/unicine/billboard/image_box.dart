@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/custom_labels.dart';
+import 'package:uni_cine/utils/custom_labels.dart';
 
 class ImageBox extends StatelessWidget {
   final String img;

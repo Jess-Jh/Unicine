@@ -9,11 +9,13 @@ import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
 import 'package:uni_cine/ui/views/unicine/register_view.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/billboard_view.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/room_unicine_view.dart';
 
 class UnicineHandlers {
-  static Handler login     = Handler(handlerFunc: ((context, parameters) => ValidateView(view: LoginView(), view2: BillboardView(), routeName: Flurorouter.loginRoute )));
-  static Handler register  = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: BillboardView(), routeName: Flurorouter.registerRoute )));
-  static Handler billboard = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: BillboardView(), routeName: Flurorouter.billboardRoute )));
+  static Handler login       = Handler(handlerFunc: ((context, parameters) => ValidateView(view: LoginView(), view2: BillboardView(), routeName: Flurorouter.loginRoute )));
+  static Handler register    = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: BillboardView(), routeName: Flurorouter.registerRoute )));
+  static Handler billboard   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: BillboardView(), routeName: Flurorouter.billboardRoute )));
+  static Handler roomUnicine = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const RoomUnicineView(), routeName: Flurorouter.roomUnicineRoute )));
 }
 
 class ValidateView extends ConsumerWidget {
