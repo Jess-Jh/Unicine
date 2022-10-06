@@ -39,10 +39,13 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                 const CustomAppMenu(),
                 // const Spacer(),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: widget.child,
+                  child: Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: widget.child,
+                    ),
                   ),
                 ),
 
@@ -61,10 +64,13 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                         children: [
                           // const Spacer(),
                           Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: widget.child,
+                            child: Container(
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: widget.child,
+                              ),
                             ),
                           ),
 

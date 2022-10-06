@@ -1,10 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
-import 'package:uni_cine/ui/views/unicine/billboard/image_box.dart';
 
-import 'package:uni_cine/ui/shared/custom_labels.dart';
+import 'package:uni_cine/utils/custom_labels.dart';
+import 'package:uni_cine/ui/views/unicine/billboard/list_movies_scroll.dart';
 
 // ignore: must_be_immutable
 class BillboardView extends StatelessWidget {
@@ -31,7 +30,6 @@ class BillboardView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
       child: SingleChildScrollView(
         child: Column(
@@ -48,22 +46,17 @@ class BillboardView extends StatelessWidget {
             const SizedBox(height: 20),
             Text('Cartelera', style: CustomLabels.h1),
             const SizedBox(height: 10),
-            SizedBox(
-              height: 400,
-              child: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.mouse,
-                  },
-                ),
-                child: ListView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: movies,
-                    itemBuilder: (context, movies) => const ImageBox()),
-              ),
+            const ListMoviesScroll(
+              movies: movies,
+              img: 'assets/images/placeholder_movie.jpg',
+              duration: 'duration',
+            ),
+            Text('Preventa', style: CustomLabels.h2),
+            const SizedBox(height: 10),
+            const ListMoviesScroll(
+              movies: movies,
+              width: 170,
+              img: 'assets/images/placeholder_movie2.png',
             ),
           ],
         ),
