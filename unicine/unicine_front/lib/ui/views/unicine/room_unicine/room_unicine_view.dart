@@ -1,64 +1,119 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
+import 'package:uni_cine/ui/shared/type_init_chairs.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_count.dart';
 
-class RoomUnicineView extends StatefulWidget {
-  const RoomUnicineView({super.key});
-
-  @override
-  State<RoomUnicineView> createState() => _RoomUnicineViewState();
-}
-
-class _RoomUnicineViewState extends State<RoomUnicineView> {
-  List<List<dynamic>> chairs = [];
-  List<String> letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+class RoomUnicineView extends StatelessWidget {
+  List<dynamic> chairs = TypeInitChars.initChairs();
+  RoomUnicineView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String? selectedTickets = '1';
+    int cantChairs = enabledChairs(chairs);
 
-    return Column(
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: ChairsLocation(chairs: chairs)),
+                    const SizedBox(height: 35),
+                    typeChair(),
+                    const SizedBox(height: 55),
+                    Row(
+                      children: [
+                        CustomOutlinedButton(
+                          width: 400,
+                          text: '+ Agregar Confitería',
+                          onPressed: () {},
+                        ),
+                        const SizedBox(width: 15),
+                        CustomOutlinedButton(
+                          width: 400,
+                          text: 'Realizar Pago',
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 60),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/placeholder_movie2.png',
+                          image: 'assets/images/placeholder_movie2.png',
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              const Icon(
+                            Icons.error,
+                            size: 64,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    MovieAndTicketsCount(
+                      selectedTickets: selectedTickets,
+                      cantTickets: cantChairs,
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Row typeChair() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(child: const Text('Room unicine')),
-        Container(
-          color: Colors.green,
-          height: 320,
-          width: 700,
-          child: GridView.count(
-            crossAxisCount: 20,
-            children: chairs.asMap().entries.map((e) {
-              int index = e.key;
-              dynamic value = e.value.toString();
-              print(value.toString());
-              return Column(
-                children: [
-                  // if (value == 0) const Text(' '),
-                  // if (value == 1) const Icon(Icons.chair_outlined),
-                  // if (value != 0 && value != 1) Text(value.toString()),
-
-                ],
-              );
-            }).toList(),
-          ),
-        )
+        const Icon(Icons.chair, color: Colors.blue),
+        const SizedBox(width: 5),
+        const Text(
+          'Seleccionada',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(width: 30),
+        const Icon(Icons.chair_outlined),
+        const SizedBox(width: 5),
+        const Text(
+          'Disponible',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(width: 30),
+        Icon(Icons.chair, color: Colors.red[600]),
+        const SizedBox(width: 5),
+        const Text(
+          'Vendida',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    chairs = [
-      [0, 0, 1, 1, 'A', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'A', 1, 1, 0, 0],
-      [1, 1, 1, 1, 'B', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'B', 1, 1, 0, 0],
-      [1, 1, 1, 1, 'C', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'C', 1, 1, 0, 0],
-      [1, 1, 1, 1, 'D', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'D', 1, 1, 0, 0],
-      [1, 1, 1, 1, 'E', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'E', 1, 1, 0, 0],
-      [1, 1, 1, 1, 'F', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'F', 1, 1, 0, 0],
-      [1, 2, 3, 4,   0, 5, 6, 7, 8, 9, 10,0,11,12,13,14,15,16,   0,17,18,19,20]
-    ];
+  int enabledChairs(List chairs) {
+    int cantChairs = 0;
+    for (var chair in chairs) {
+      if (chair == 1) cantChairs++;
+    }
+    return cantChairs;
   }
-
-  // void initChairs() {
-  //   for (int i = 1; i <= 120 + 35; i++) {
-  //     chairs.add(const Icon(Icons.chair_outlined));
-  //   }
-  // }
 }
