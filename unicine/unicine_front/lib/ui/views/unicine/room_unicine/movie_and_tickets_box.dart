@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/combo_box/combo_box_filter.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
-class MovieAndTicketsCount extends StatelessWidget {
+class MovieAndTicketsBox extends StatelessWidget {
   final String selectedTickets;
   final int cantTickets;
 
-  const MovieAndTicketsCount(
+  const MovieAndTicketsBox(
       {super.key, required this.selectedTickets, required this.cantTickets});
 
   @override
@@ -49,12 +49,16 @@ class MovieAndTicketsCount extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  fontSize: 12,
                 ),
               ),
               SizedBox(width: 15),
               Text(
                 'Fecha y hora',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),
@@ -64,10 +68,17 @@ class MovieAndTicketsCount extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Cine', style: TextStyle(color: Colors.grey[400])),
+                  Text('Cine',
+                      style: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 12,
+                      )),
                   const Text(
                     'Nombre teatro',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   )
                 ],
               ),
@@ -77,11 +88,17 @@ class MovieAndTicketsCount extends StatelessWidget {
                 children: [
                   Text(
                     'Compra',
-                    style: TextStyle(color: Colors.grey[400]),
+                    style: TextStyle(
+                      color: Colors.grey[400],
+                      fontSize: 12,
+                    ),
                   ),
                   const Text(
                     'Código compra',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
                   )
                 ],
               ),
@@ -90,11 +107,17 @@ class MovieAndTicketsCount extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             'Sillas',
-            style: TextStyle(color: Colors.grey[400]),
+            style: TextStyle(
+              color: Colors.grey[400],
+              fontSize: 12,
+            ),
           ),
           const Text(
             'Lista Sillas',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
           )
         ],
       ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
 import 'package:uni_cine/ui/shared/type_init_chairs.dart';
-import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_count.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_box.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/screen_room.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/total_purchase_box.dart';
 
 class RoomUnicineView extends StatelessWidget {
   List<dynamic> chairs = TypeInitChars.initChairs();
@@ -11,6 +13,7 @@ class RoomUnicineView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? selectedTickets = '1';
+
     int cantChairs = enabledChairs(chairs);
 
     return Container(
@@ -27,6 +30,8 @@ class RoomUnicineView extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const ScreenRoom(),
+                    const SizedBox(height: 20),
                     Center(child: ChairsLocation(chairs: chairs)),
                     const SizedBox(height: 35),
                     typeChair(),
@@ -52,7 +57,7 @@ class RoomUnicineView extends StatelessWidget {
                 Column(
                   children: [
                     SizedBox(
-                      height: 150,
+                      height: 200,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: FadeInImage.assetNetwork(
@@ -67,10 +72,12 @@ class RoomUnicineView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-                    MovieAndTicketsCount(
+                    MovieAndTicketsBox(
                       selectedTickets: selectedTickets,
                       cantTickets: cantChairs,
                     ),
+                    const SizedBox(height: 20),
+                    const TotalPurchaseBox(),
                   ],
                 )
               ],
