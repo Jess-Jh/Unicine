@@ -4,8 +4,17 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 class ComboBoxFilter extends StatefulWidget {
   final List<String> listItems;
   String itemSelected;
-  ComboBoxFilter(
-      {super.key, required this.listItems, required this.itemSelected});
+  final Color? colorBox;
+  final Color? colorBorder;
+  final double? buttonHeight;
+  ComboBoxFilter({
+    super.key,
+    required this.listItems,
+    required this.itemSelected,
+    this.colorBox,
+    this.colorBorder,
+    this.buttonHeight,
+  });
 
   @override
   State<ComboBoxFilter> createState() => _ComboBoxFilterState();
@@ -36,13 +45,18 @@ class _ComboBoxFilterState extends State<ComboBoxFilter> {
           icon: const Icon(
             Icons.arrow_drop_down_sharp,
           ),
-          buttonHeight: 30,
+          buttonHeight: widget.buttonHeight ?? 30,
           buttonWidth: 150,
           buttonPadding: const EdgeInsets.symmetric(horizontal: 6),
           buttonDecoration: BoxDecoration(
+            color: widget.colorBox,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.grey, width: 2),
+            border: widget.colorBorder != null
+                ? Border.all(color: widget.colorBorder!, width: 2)
+                : Border.all(color: Colors.transparent),
           ),
+          dropdownMaxHeight: 200,
+          scrollbarRadius: const Radius.circular(10),
         ),
       ),
     );

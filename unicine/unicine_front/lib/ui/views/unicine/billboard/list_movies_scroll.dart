@@ -29,12 +29,13 @@ class ListMoviesScroll extends StatelessWidget {
           },
         ),
         child: ListView.builder(
-            physics: const AlwaysScrollableScrollPhysics(),
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: movies,
-            itemBuilder: (context, movies) =>
-                ImageBox(img: img, width: width, duration: duration)),
+          physics: const AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: movies,
+          itemBuilder: (context, movies) =>
+              ImageBox(img: img, width: width, duration: duration),
+        ),
       ),
     );
   }
