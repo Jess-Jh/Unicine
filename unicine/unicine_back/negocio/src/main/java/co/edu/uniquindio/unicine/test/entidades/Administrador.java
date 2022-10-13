@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
 
 @Entity
 @Getter
@@ -12,10 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Administrador extends Persona implements Serializable {
-
-    @ToString.Exclude
-    @OneToMany(mappedBy = "administrador")
-    private List<TipoAdministrador> tipoAdministradores;
 
     //editado
     @ToString.Exclude
@@ -27,5 +23,7 @@ public class Administrador extends Persona implements Serializable {
     public Administrador(String cedula, String nombreCompleto, String email, String contrasena, Ciudad ciudad) {
         super(cedula, nombreCompleto, email, contrasena);
         this.ciudad = ciudad;
+        this.id = 2;
+        this.label = "Administrador";
     }
 }

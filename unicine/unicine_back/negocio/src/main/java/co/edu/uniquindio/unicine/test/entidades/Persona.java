@@ -27,8 +27,19 @@ public class Persona implements Serializable {
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
+    @ToString.Exclude
     @Column(length = 45, nullable = false)
     private String contrasena;
+
+    //Los dos datos referencia el tipo de usuario
+    // 1 - Cliente , 2 - Administrador, 3 - Administrador_Teatro
+    @ToString.Exclude
+    @Column(length = 1, nullable = false)
+    protected Integer id;
+
+    @ToString.Exclude
+    @Column(length = 45, nullable = false)
+    protected String label;
 
     @Builder
     public Persona(String cedula, String nombreCompleto, String email, String contrasena) {

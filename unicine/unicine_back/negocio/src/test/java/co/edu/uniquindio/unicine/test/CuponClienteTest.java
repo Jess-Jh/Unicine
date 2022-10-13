@@ -74,4 +74,11 @@ public class CuponClienteTest {
         List<CuponCliente> lista = cuponClienteRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerCuponCliente(){
+        List<CuponCliente> lista = cuponClienteRepo.listar("correo@gmail.com");
+        lista.forEach(System.out::println);
+    }
 }

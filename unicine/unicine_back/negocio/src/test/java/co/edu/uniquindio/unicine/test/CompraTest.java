@@ -71,4 +71,22 @@ public class CompraTest {
         List<Compra> lista = compraRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerEntradasCompra(){
+        List<Entrada> lista = compraRepo.obtenerEntradas(1);
+        //lista.forEach(System.out::println);
+        Assertions.assertEquals(2, lista.size());
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerComprasPorCliente(){
+        List<Object[]> lista = compraRepo.obtenerComprasTodos();
+        lista.forEach(o ->
+                System.out.println(o[0] + ", " + o[1])
+        );
+        //Assertions.assertEquals(2, lista.size());
+    }
 }

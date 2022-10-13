@@ -32,11 +32,9 @@ public class Compra implements Serializable {
     @Column(nullable = false)
     private Double total;
 
-    @ToString.Exclude
     @ManyToOne
     private Cliente cliente;
 
-    @ToString.Exclude
     @ManyToOne
     private FuncionSala funcionSala;
 
@@ -50,7 +48,7 @@ public class Compra implements Serializable {
 
 
     public Compra(String metodoPago, Double subtotal, Double total, Cliente cliente, FuncionSala funcionSala) {
-        this.fechaCompra = LocalDateTime.now();;
+        this.fechaCompra = LocalDateTime.now();
         this.metodoPago = metodoPago;
         this.subtotal = subtotal;
         this.total = total;

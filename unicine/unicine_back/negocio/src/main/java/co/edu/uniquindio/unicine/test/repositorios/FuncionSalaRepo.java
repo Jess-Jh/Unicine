@@ -1,9 +1,21 @@
 package co.edu.uniquindio.unicine.test.repositorios;
 
+import co.edu.uniquindio.unicine.test.dto.FuncionSalaDTO;
 import co.edu.uniquindio.unicine.test.entidades.FuncionSala;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface FuncionSalaRepo  extends JpaRepository<FuncionSala, Integer> {
+
+    @Query("select fs.pelicula.nombre from FuncionSala fs where fs.idFuncionSala = :idFuncionSala")
+    String obtenerNombrePelicula(Integer idFuncionSala);
+
+    @Query("select new co.edu.uniquindio.unicine.test.dto.FuncionSalaDTO(f.pelicula.nombre, f.pelicula.estadoPelicula, f.pelicula.imagen," +
+            " f.sala.idSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombre, " +
+            "f.funcion.horario) from FuncionSala f where f.pelicula.idPelicula = :idPelicula")
+    List<FuncionSalaDTO> listarFunciones(Integer idPelicula);
 }

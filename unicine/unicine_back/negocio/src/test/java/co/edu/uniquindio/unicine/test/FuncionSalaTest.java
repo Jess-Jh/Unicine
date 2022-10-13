@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.FuncionSalaDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 import co.edu.uniquindio.unicine.test.repositorios.FuncionSalaRepo;
 import org.junit.jupiter.api.Assertions;
@@ -64,6 +65,21 @@ public class FuncionSalaTest {
     @Sql("classpath:dataset.sql")
     public void listar(){
         List<FuncionSala> lista = funcionSalaRepo.findAll();
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculaFuncionSala(){
+        String nombre = funcionSalaRepo.obtenerNombrePelicula(1);
+        //System.out.println(nombre);
+        Assertions.assertEquals("pelicula prueba2", nombre);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerFuncionSala(){
+        List<FuncionSalaDTO> lista = funcionSalaRepo.listarFunciones(2);
         lista.forEach(System.out::println);
     }
 }

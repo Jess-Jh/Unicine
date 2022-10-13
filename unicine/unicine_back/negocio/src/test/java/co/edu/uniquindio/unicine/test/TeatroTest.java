@@ -60,4 +60,11 @@ public class TeatroTest {
         lista.forEach(System.out::println);
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarTeatrosPorCiudad(){
+        List<Teatro> lista = teatroRepo.listar("armenia");
+        lista.forEach(System.out::println);
+    }
+
 }
