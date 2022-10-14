@@ -60,4 +60,11 @@ public class PeliculaTest {
         List<Pelicula> lista = peliculaRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void buscarPelicula(){
+        List<Pelicula> lista = peliculaRepo.buscarPelicula("thri",2);
+        lista.forEach(System.out::println);
+    }
 }

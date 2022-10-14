@@ -45,7 +45,7 @@ insert into estado_pelicula values (2, 0);
 
 insert into pelicula values (1, "thriller", "ruta/img", "pelicula prueba", "jhon doe - jana doe", "sinopsis prueba", "ruta/url", 1);
 insert into pelicula values (2, "thriller2", "ruta/img2", "pelicula prueba2", "jhon doe2 - jana doe2", "sinopsis prueba2", "ruta/url2", 1);
-insert into pelicula values (3, "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3", 1);
+insert into pelicula values (3, "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3", 2);
 insert into pelicula values (4, "thriller4", "ruta/img4", "pelicula prueba4", "jhon doe4 - jana doe4", "sinopsis prueba4", "ruta/url4", 1);
 insert into pelicula values (5, "thriller5", "ruta/img5", "pelicula prueba5", "jhon doe5 - jana doe5", "sinopsis prueba5", "ruta/url5", 1);
 

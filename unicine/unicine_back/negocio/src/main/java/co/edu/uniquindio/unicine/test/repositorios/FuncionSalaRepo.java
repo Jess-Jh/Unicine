@@ -18,4 +18,7 @@ public interface FuncionSalaRepo  extends JpaRepository<FuncionSala, Integer> {
             " f.sala.idSala, f.sala.teatro.direccion, f.sala.teatro.ciudad.nombre, " +
             "f.funcion.horario) from FuncionSala f where f.pelicula.idPelicula = :idPelicula")
     List<FuncionSalaDTO> listarFunciones(Integer idPelicula);
+
+    @Query("select f from FuncionSala f where f.sala.teatro.idTeatro = :idTeatro and f.listaCompras is empty")
+    List<FuncionSala> obtenerFuncionesSalaSinCompra(Integer idTeatro);
 }
