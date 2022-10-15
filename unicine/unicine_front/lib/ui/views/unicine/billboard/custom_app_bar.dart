@@ -21,44 +21,51 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
+      children: [
+        Row(
+          children: [
+            const Text(
+              'Ciudad',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 5),
+            ComboBoxFilter(
+              itemSelected: selectCity!,
+              listItems: ciudades,
+              colorBorder: Colors.grey,
+            ),
+            const Spacer(),
+            if (size.width >= 700) ...[
+              const Text(
+                'Filtrar búsqueda por ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              ComboBoxFilter(
+                listItems: filtroBusqueda,
+                itemSelected: selectFilter!,
+                colorBorder: Colors.grey,
+              ),
+              const SizedBox(width: 5),
+              const Expanded(child: SearchText()),
+            ],
+          ],
+        ),
+        const SizedBox(height: 5),
+        if (size.width < 700) ...[
           Row(
             children: [
               const Text(
-                'Ciudad',
+                'Filtrar ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(width: 5),
-              ComboBoxFilter(itemSelected: selectCity!, listItems: ciudades),
-              const Spacer(),
-              if (size.width >= 700) ...[
-                const Text(
-                  'Filtrar búsqueda por ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                ComboBoxFilter(
-                    listItems: filtroBusqueda, itemSelected: selectFilter!),
-                const SizedBox(width: 5),
-                const Expanded(child: SearchText()),
-              ],
+              ComboBoxFilter(
+                  listItems: filtroBusqueda, itemSelected: selectFilter!),
             ],
           ),
           const SizedBox(height: 5),
-          if (size.width < 700) ...[
-            Row(
-              children: [
-                const Text(
-                  'Filtrar ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                ComboBoxFilter(
-                    listItems: filtroBusqueda, itemSelected: selectFilter!),
-              ],
-            ),
-            const SizedBox(height: 5),
-            const SearchText(),
-          ],
+          const SearchText(),
         ],
+      ],
     );
   }
 }

@@ -36,7 +36,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
         children: [
           Row(
             children: [
-              if (size.width >= 700) const Sidebar(),
+              if (size.width >= 720) const Sidebar(),
               Expanded(
                 child: Column(
                   children: [
@@ -58,7 +58,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
               // Contenedor de la view
             ],
           ),
-          if (size.width < 700)
+          if (size.width < 720)
             AnimatedBuilderSidebar(
               size: size,
               sidebar: const Sidebar(),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
 class TotalPurchaseBox extends StatelessWidget {
-  const TotalPurchaseBox({super.key});
+  final double? width;
+  final double? height;
+  const TotalPurchaseBox({super.key, this.width, this.height});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 250,
+      width: width ?? 250,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,8 +21,8 @@ class TotalPurchaseBox extends StatelessWidget {
           const SizedBox(height: 5),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: 250,
-            height: 50,
+            width: width ?? 250,
+            height: height ?? 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: CustomColors.principal,

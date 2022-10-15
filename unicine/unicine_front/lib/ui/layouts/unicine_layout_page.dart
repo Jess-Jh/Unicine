@@ -31,7 +31,7 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xffEDF1F2),
-      body: size.width > 700
+      body: size.width >= 720
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -80,7 +80,7 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                     ),
                   ],
                 ),
-                if (size.width < 700)
+                if (size.width < 720)
                   AnimatedBuilderSidebar(
                     size: size,
                     sidebar: const CustomAppMenu(),

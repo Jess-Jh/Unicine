@@ -36,7 +36,7 @@ class _AdministratorTheaterLayoutState extends State<AdministratorTheaterLayout>
         children: [
           Row(
             children: [
-              if (size.width >= 700) const SidebarAdministratorTheater(),
+              if (size.width >= 720) const SidebarAdministratorTheater(),
               Expanded(
                 child: Column(
                   children: [
@@ -58,7 +58,7 @@ class _AdministratorTheaterLayoutState extends State<AdministratorTheaterLayout>
               // Contenedor de la view
             ],
           ),
-          if (size.width < 700)
+          if (size.width < 720)
             AnimatedBuilderSidebar(
               size: size,
               sidebar: const SidebarAdministratorTheater(),

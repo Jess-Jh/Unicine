@@ -18,7 +18,7 @@ class Navbar extends StatelessWidget {
       decoration: buildBoxDecoration(),
       child: Row(
         children: [
-          if (size.width <= 700)
+          if (size.width < 720)
             IconButton(
               icon: const Icon(Icons.menu_outlined),
               onPressed: () => SideMenuController.openMenu(),

@@ -14,7 +14,7 @@ class CustomAppMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return (size.width >= 700) ? _TabletDesktopMenu() : _MobileMenu();
+    return (size.width >= 720) ? _TabletDesktopMenu() : _MobileMenu();
   }
 }
 
