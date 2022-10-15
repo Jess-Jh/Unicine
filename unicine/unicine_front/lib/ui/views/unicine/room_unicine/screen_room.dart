@@ -6,12 +6,15 @@ class ScreenRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SizedBox(
-      // color: Colors.grey,
-      height: 10,
-      width: size.width / 1.6,
-      child: CustomPaint(
-        painter: _ScreenDesignPainter(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 28.0),
+      child: SizedBox(
+        // color: Colors.grey,
+        height: 10,
+        width: size.width / 1.6,
+        child: CustomPaint(
+          painter: _ScreenDesignPainter(),
+        ),
       ),
     );
   }
@@ -21,7 +24,7 @@ class _ScreenDesignPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey
+      ..color = const Color.fromARGB(255, 3, 26, 110)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3;
     final path = Path();
@@ -30,7 +33,7 @@ class _ScreenDesignPainter extends CustomPainter {
     canvas.drawPath(path, paint);
 
     final paint1 = Paint()
-      ..color = Colors.grey.withOpacity(.09)
+      ..color = const Color.fromARGB(255, 0, 132, 255).withOpacity(.08)
       ..style = PaintingStyle.fill;
     final path1 = Path();
     path1.moveTo(0, size.height);
@@ -38,7 +41,7 @@ class _ScreenDesignPainter extends CustomPainter {
     canvas.drawPath(path1, paint1);
 
     final paint2 = Paint()
-      ..color = Colors.grey.withOpacity(.09)
+      ..color = const Color.fromARGB(255, 0, 132, 255).withOpacity(.09)
       ..style = PaintingStyle.fill;
     final path2 = Path();
     path2.moveTo(0, size.height);
@@ -48,7 +51,7 @@ class _ScreenDesignPainter extends CustomPainter {
     canvas.drawPath(path2, paint2);
 
     final paint3 = Paint()
-      ..color = Colors.grey.withOpacity(.09)
+      ..color = const Color.fromARGB(255, 0, 132, 255).withOpacity(.07)
       ..style = PaintingStyle.fill;
     final path3 = Path();
     path3.moveTo(0, size.height);
@@ -59,7 +62,7 @@ class _ScreenDesignPainter extends CustomPainter {
     canvas.drawPath(path3, paint3);
 
     final paint4 = Paint()
-      ..color = Colors.grey.withOpacity(.09)
+      ..color = const Color.fromARGB(255, 0, 132, 255).withOpacity(.09)
       ..style = PaintingStyle.fill;
     final path4 = Path();
     path4.moveTo(size.width, size.height);
