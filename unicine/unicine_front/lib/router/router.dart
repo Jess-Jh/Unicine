@@ -8,18 +8,18 @@ import 'package:uni_cine/router/route_handlers.dart';
 class Flurorouter {
   static final FluroRouter router = FluroRouter();
 
-  static String rootRoute     = '/';
+  static String rootRoute                 = '/';
 
   // Auth Router
-  static String loginRoute    = '/auth/login';
-  static String registerRoute = '/auth/register';
+  static String loginRoute                = '/auth/login';
+  static String registerRoute             = '/auth/register';
   
-  static String administratorRoute    = '/administradorTeatro';
+  static String administratorRoute        = '/administradorTeatro';
   // Administrator 
-  static String moviesRoute           = '/administrador/peliculas';
-  static String theatersRoute         = '/administrador/teatros';
-  static String confectionariesRoute  = '/administrador/confiterias';
-  static String couponsRoute          = '/administrador/cupones';
+  static String moviesRoute               = '/administrador/peliculas';
+  static String theatersRoute             = '/administrador/teatros';
+  static String confectionariesRoute      = '/administrador/confiterias';
+  static String couponsRoute              = '/administrador/cupones';
 
   // Administrator Theater
   static String administratorTheaterRoute = '/administradorTeatro';
@@ -28,9 +28,10 @@ class Flurorouter {
   static String functionRoute             = '/administradorTeatro/funciones';
 
   // User 
-  static String unicineRoute     = '/unicine';
-  static String billboardRoute   = '/unicine/cartelera';
-  static String roomUnicineRoute = '/unicine/sala';
+  static String unicineRoute              = '/unicine';
+  static String billboardRoute            = '/unicine/cartelera';
+  static String roomUnicineRoute          = '/unicine/sala';
+  static String confectioneryRoute        = '/unicine/confiteria';
 
 
 
@@ -42,8 +43,9 @@ class Flurorouter {
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // User Routes
-    router.define( billboardRoute,   handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( roomUnicineRoute, handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( billboardRoute,     handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( roomUnicineRoute,   handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( confectioneryRoute, handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes
