@@ -20,6 +20,7 @@ class ConfectioneryView extends StatelessWidget {
         children: [
           Row(
             children: [
+              const SizedBox(width: 20),
               Text('Confitería', style: CustomLabels.h1),
               const Spacer(),
               _iconShopping(),

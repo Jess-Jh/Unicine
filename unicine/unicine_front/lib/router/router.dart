@@ -32,6 +32,7 @@ class Flurorouter {
   static String billboardRoute            = '/unicine/cartelera';
   static String roomUnicineRoute          = '/unicine/sala';
   static String confectioneryRoute        = '/unicine/confiteria';
+  static String movieDescriptionRoute     = '/unicine/descripcion-pelicula';
 
 
 
@@ -43,9 +44,10 @@ class Flurorouter {
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // User Routes
-    router.define( billboardRoute,     handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( roomUnicineRoute,   handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( confectioneryRoute, handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( billboardRoute,        handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( roomUnicineRoute,      handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( confectioneryRoute,    handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( movieDescriptionRoute, handler: UnicineHandlers.movieDescription, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes
