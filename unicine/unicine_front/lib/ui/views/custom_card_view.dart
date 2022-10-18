@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_cine/ui/shared/cards/white_card.dart';
 
-class ManageView extends StatelessWidget {
+class CustomCardView extends StatelessWidget {
   final String title;
   final Widget formView;
-  final Widget tableView;
+  final Widget? tableView;
 
-  const ManageView(
-      {super.key,
-      required this.title,
-      required this.formView,
-      required this.tableView});
+  const CustomCardView(
+      {super.key, required this.title, required this.formView, this.tableView});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +24,7 @@ class ManageView extends StatelessWidget {
               title: title,
               child: formView,
             ),
-            tableView,
+            if (tableView != null) tableView!,
           ],
         )
       ],
