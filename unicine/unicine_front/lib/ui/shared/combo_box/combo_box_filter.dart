@@ -7,6 +7,8 @@ class ComboBoxFilter extends StatefulWidget {
   final Color? colorBox;
   final Color? colorBorder;
   final double? buttonHeight;
+  final double? buttonWidth;
+
   ComboBoxFilter({
     super.key,
     required this.listItems,
@@ -14,6 +16,7 @@ class ComboBoxFilter extends StatefulWidget {
     this.colorBox,
     this.colorBorder,
     this.buttonHeight,
+    this.buttonWidth,
   });
 
   @override
@@ -46,7 +49,7 @@ class _ComboBoxFilterState extends State<ComboBoxFilter> {
             Icons.arrow_drop_down_sharp,
           ),
           buttonHeight: widget.buttonHeight ?? 30,
-          buttonWidth: 150,
+          buttonWidth: widget.buttonWidth ?? 150,
           buttonPadding: const EdgeInsets.symmetric(horizontal: 6),
           buttonDecoration: BoxDecoration(
             color: widget.colorBox,

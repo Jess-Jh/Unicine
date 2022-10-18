@@ -6,9 +6,15 @@ class CustomCardView extends StatelessWidget {
   final String title;
   final Widget formView;
   final Widget? tableView;
+  final double? sizeLetter;
 
-  const CustomCardView(
-      {super.key, required this.title, required this.formView, this.tableView});
+  const CustomCardView({
+    super.key,
+    required this.title,
+    required this.formView,
+    this.tableView,
+    this.sizeLetter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,7 @@ class CustomCardView extends StatelessWidget {
           children: [
             WhiteCard(
               title: title,
+              sizeLetter: sizeLetter,
               child: formView,
             ),
             if (tableView != null) tableView!,

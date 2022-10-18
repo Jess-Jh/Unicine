@@ -21,7 +21,7 @@ class UnicineHandlers {
   static Handler roomUnicine      = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: RoomUnicineView(), routeName: Flurorouter.roomUnicineRoute )));
   static Handler confectionery    = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const ConfectioneryView(), routeName: Flurorouter.confectioneryRoute )));
   static Handler movieDescription = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MovieDescriptionView(), routeName: Flurorouter.movieDescriptionRoute )));
-  static Handler purchaseDetail   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
+  static Handler purchaseDetail   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
 }
 
 class ValidateView extends ConsumerWidget {

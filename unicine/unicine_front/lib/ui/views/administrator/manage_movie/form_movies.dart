@@ -10,7 +10,8 @@ class FormMovies extends StatelessWidget {
     return LayoutBuilder(
         builder: (_, constraints) => (constraints.maxWidth > 520)
             ? _TabletDesktopForm()
-            : _MobileForm());
+            : _MobileForm(),
+        );
   }
 }
 

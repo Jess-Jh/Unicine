@@ -5,8 +5,14 @@ class WhiteCard extends StatelessWidget {
   final String? title;
   final Widget child;
   final double? width;
+  final double? sizeLetter;
 
-  const WhiteCard({super.key, this.title, required this.child, this.width});
+  const WhiteCard(
+      {super.key,
+      this.title,
+      required this.child,
+      this.width,
+      this.sizeLetter});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class WhiteCard extends StatelessWidget {
               child: Text(
                 title!,
                 style: GoogleFonts.roboto(
-                  fontSize: 18,
+                  fontSize: sizeLetter ?? 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
