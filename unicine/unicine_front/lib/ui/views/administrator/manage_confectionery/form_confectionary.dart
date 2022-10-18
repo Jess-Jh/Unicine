@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/custom_inputs.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 
 class FormConfectionary extends StatelessWidget {
@@ -11,49 +11,22 @@ class FormConfectionary extends StatelessWidget {
       height: 220,
       child: Column(
         children: [
-          Expanded(
-            child: Container(
-              height: 40,
-              decoration: buildBoxDecoration(),
-              child: TextFormField(
-                style: const TextStyle(fontSize: 13),
-                decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese el nombre del producto',
-                  label: 'Nombre',
-                  icon: Icons.fastfood_outlined,
-                ),
-              ),
-            ),
+          const CustomFormInput(
+            hint: 'Ingrese el nombre del producto',
+            label: 'Nombre',
+            icon: Icons.fastfood_outlined,
           ),
           const SizedBox(height: 10),
-          Expanded(
-            child: Container(
-              height: 40,
-              decoration: buildBoxDecoration(),
-              child: TextFormField(
-                style: const TextStyle(fontSize: 13),
-                decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Ingrese el precio del producto',
-                  label: 'Precio',
-                  icon: Icons.attach_money_rounded,
-                ),
-              ),
-            ),
+          const CustomFormInput(
+            hint: 'Ingrese el precio del producto',
+            label: 'Precio',
+            icon: Icons.attach_money_rounded,
           ),
           const SizedBox(height: 10),
-          Expanded(
-            child: Container(
-              height: 40,
-              decoration: buildBoxDecoration(),
-              child: TextFormField(
-                style: const TextStyle(fontSize: 13),
-                decoration: CustomInputs.loginInputDecoration(
-                  hint: 'Agrega la Url de la image',
-                  label: 'Url imagen',
-                  icon: Icons.image_outlined,
-                ),
-              ),
-            ),
+          const CustomFormInput(
+            hint: 'Agregue la Url de la imagen',
+            label: 'Url imagen',
+            icon: Icons.image_outlined,
           ),
           const SizedBox(height: 20),
           Row(
@@ -84,9 +57,4 @@ class FormConfectionary extends StatelessWidget {
       ),
     );
   }
-
-  BoxDecoration buildBoxDecoration() => BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.grey.withOpacity(0.1),
-      );
 }

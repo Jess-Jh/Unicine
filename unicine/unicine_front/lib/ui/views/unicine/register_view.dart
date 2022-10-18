@@ -6,7 +6,7 @@ import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/controllers/register_form_controller.dart';
 
-import 'package:uni_cine/ui/shared/custom_inputs.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/link_text.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/custom_inputs.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class SearchText extends StatelessWidget {
   const SearchText({super.key});
