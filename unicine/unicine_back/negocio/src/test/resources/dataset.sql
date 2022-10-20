@@ -45,7 +45,7 @@ insert into estado_pelicula values (2, 0);
 
 insert into pelicula values (1, "thriller", "ruta/img", "pelicula prueba", "jhon doe - jana doe", "sinopsis prueba", "ruta/url", 1);
 insert into pelicula values (2, "thriller2", "ruta/img2", "pelicula prueba2", "jhon doe2 - jana doe2", "sinopsis prueba2", "ruta/url2", 1);
-insert into pelicula values (3, "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3", 1);
+insert into pelicula values (3, "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3", 2);
 insert into pelicula values (4, "thriller4", "ruta/img4", "pelicula prueba4", "jhon doe4 - jana doe4", "sinopsis prueba4", "ruta/url4", 1);
 insert into pelicula values (5, "thriller5", "ruta/img5", "pelicula prueba5", "jhon doe5 - jana doe5", "sinopsis prueba5", "ruta/url5", 1);
 
@@ -79,29 +79,29 @@ insert into funcion_sala values (3, 1, 2, 1);
 insert into funcion_sala values (4, 2, 1, 1);
 insert into funcion_sala values (5, 3, 2, 1);
 
-insert into compra values (1, "2022-10-02 12:30:59", "Efectivo", 30000.0, 30000.0, "12345", 1);
-insert into compra values (2, "2022-10-03 12:30:59", "Efectivo", 40000.0, 40000.0, "12345", 1);
-insert into compra values (3, "2022-10-04 12:30:59", "Tarjeta", 50000.0, 50000.0, "12346", 2);
-insert into compra values (4, "2022-10-05 12:30:59", "Efectivo", 70000.0, 70000.0, "12347", 3);
-insert into compra values (5, "2022-10-05 12:30:59", "Efectivo", 20000.0, 20000.0, "12347", 2);
-
 insert into cupon_cliente values (1, 1, "12345", 1);
 insert into cupon_cliente values (2, 1, "12346", 2);
 insert into cupon_cliente values (3, 1, "12345", 2);
-insert into cupon_cliente values (4, 1, "12348", 4);
+insert into cupon_cliente values (4, 1, "12347", 4);
 insert into cupon_cliente values (5, 1, "12349", 5);
 
-insert into confiteria_compra values (1, 50000.0, 3, 1);
-insert into confiteria_compra values (2, 30000.0, 1, 2);
-insert into confiteria_compra values (3, 40000.0, 2, 3);
-insert into confiteria_compra values (4, 70000.0, 5, 4);
-insert into confiteria_compra values (5, 60000.0, 4, 5);
+insert into compra values (1, "2022-10-02 12:30:59", "Efectivo", 30000.0, 30000.0, "12345", 1, 1);
+insert into compra values (2, "2022-10-03 12:30:59", "Efectivo", 40000.0, 40000.0, "12346", 2, 1);
+insert into compra values (3, "2022-10-04 12:30:59", "Tarjeta", 50000.0, 50000.0, "12346", 2, 2);
+insert into compra values (4, "2022-10-05 12:30:59", "Efectivo", 70000.0, 70000.0, "12347", 4, 3);
+insert into compra values (5, "2022-10-05 12:30:59", "Efectivo", 20000.0, 20000.0, "12347", 4, 2);
 
-insert into entrada values (1, "Columna A1", "Fila C3", 1);
-insert into entrada values (2, "Columna A2", "Fila J3", 1);
-insert into entrada values (3, "Columna A1", "Fila C4", 2);
-insert into entrada values (4, "Columna A1", "Fila B3", 3);
-insert into entrada values (5, "Columna A3", "Fila B4", 3);
+insert into confiteria_compra values (1, 50000.0, 1, 3, 1);
+insert into confiteria_compra values (2, 30000.0, 1, 1, 2);
+insert into confiteria_compra values (3, 40000.0, 1, 2, 3);
+insert into confiteria_compra values (4, 70000.0, 1, 5, 4);
+insert into confiteria_compra values (5, 60000.0, 1, 4, 5);
+
+insert into entrada values (1, "Columna A1", "Fila C3", 20000.0, 1);
+insert into entrada values (2, "Columna A2", "Fila J3", 20000.0, 1);
+insert into entrada values (3, "Columna A1", "Fila C4", 20000.0, 2);
+insert into entrada values (4, "Columna A1", "Fila B3", 20000.0, 3);
+insert into entrada values (5, "Columna A3", "Fila B4", 20000.0, 3);
 
 insert into distribuccion_silla values (1, 7, "Distribuccion 1", 7, 49, 1);
 insert into distribuccion_silla values (2, 8, "Distribuccion 2", 8, 64, 1);

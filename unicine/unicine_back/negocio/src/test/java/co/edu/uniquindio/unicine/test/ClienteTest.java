@@ -123,4 +123,10 @@ public class ClienteTest {
         Assertions.assertEquals(2, lista.size());
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerCliente(){
+        Cliente cliente = clienteRepo.obtenerCliente("correo@gmail.com");
+        Assertions.assertNotNull(cliente);
+    }
 }

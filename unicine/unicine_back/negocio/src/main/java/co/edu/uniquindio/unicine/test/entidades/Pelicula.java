@@ -37,7 +37,6 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String reparto;
 
-    @ToString.Exclude
     @ManyToOne
     private EstadoPelicula estadoPelicula;
 

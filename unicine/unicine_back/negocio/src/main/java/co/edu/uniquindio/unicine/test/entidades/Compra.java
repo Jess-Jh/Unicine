@@ -46,6 +46,9 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compra")
     private List<ConfiteriaCompra> listaConfiteriaCompra;
 
+    @ManyToOne
+    private CuponCliente cuponCliente;
+
 
     public Compra(String metodoPago, Double subtotal, Double total, Cliente cliente, FuncionSala funcionSala) {
         this.fechaCompra = LocalDateTime.now();

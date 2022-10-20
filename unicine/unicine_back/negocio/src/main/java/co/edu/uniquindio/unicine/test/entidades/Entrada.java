@@ -24,6 +24,9 @@ public class Entrada implements Serializable {
     @Column(length = 45, nullable = false)
     private String columnaSilla;
 
+    @Column(nullable = false)
+    private Double precio;
+
     @ManyToOne
     private Compra compra;
 
