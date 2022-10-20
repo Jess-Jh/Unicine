@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,6 +25,10 @@ public class CuponCliente implements Serializable {
 
     @ManyToOne
     private Cliente cliente;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "cuponCliente")
+    private List<Compra> listaCompras;
 
     public CuponCliente(Integer isDisponible, Cupon cupon, Cliente cliente) {
         this.isDisponible = isDisponible;

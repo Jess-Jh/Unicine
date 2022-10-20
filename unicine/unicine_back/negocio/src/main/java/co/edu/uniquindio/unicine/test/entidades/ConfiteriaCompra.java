@@ -21,6 +21,9 @@ public class ConfiteriaCompra implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
+    @Column(nullable = false)
+    private Integer unidades;
+
     @ManyToOne
     private Compra compra;
 

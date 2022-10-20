@@ -22,11 +22,11 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
 
     @Query("select c.cliente, c from Compra c order by c.total desc")
     List<Object[]> obtenerCompraMasCostosa();
-
+/**
     @Query("select c1.cliente, c1 from Compra c1 where c1.total = (select max(c.total) from Compra)")
     List<Object[]> obtenerCompraMasCostosa2();
 
     @Query("select new co.edu.uniquindio.unicine.test.dto.InformacionCompraDTO(c.total, c.fechaCompra, c.funcionSala, (select sum(cc.precio) from ConfiteriaCompra cc where cc.compra.idCompra = c.idCompra) )from Compra c where c.cliente.cedula = :cedulaCliente")
     List<Object[]> obtenerInformacionCompras(String cedulaCliente);
-
+**/
 }
