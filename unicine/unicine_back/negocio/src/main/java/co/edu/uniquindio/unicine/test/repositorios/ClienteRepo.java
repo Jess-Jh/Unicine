@@ -23,7 +23,9 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
 
     Cliente findByEmailAndContrasena(String email, String contrasena);
 
-    @Query("select c from Cliente c where c.estado = :estado")
+    @Query("select c " +
+            "from Cliente c " +
+            "where c.estado = :estado")
     List<Cliente> obtenerPorEstado(int estado, PageRequest paginador);
 
     @Query("select comp from Cliente cli, in(cli.compras) comp where cli.email = :email")

@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test.repositorios;
 
 import co.edu.uniquindio.unicine.test.dto.FuncionSalaDTO;
 import co.edu.uniquindio.unicine.test.entidades.FuncionSala;
+import co.edu.uniquindio.unicine.test.entidades.Sala;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,5 @@ public interface FuncionSalaRepo  extends JpaRepository<FuncionSala, Integer> {
 
     @Query("select f from FuncionSala f where f.sala.teatro.idTeatro = :idTeatro and f.listaCompras is empty")
     List<FuncionSala> obtenerFuncionesSalaSinCompra(Integer idTeatro);
+
 }

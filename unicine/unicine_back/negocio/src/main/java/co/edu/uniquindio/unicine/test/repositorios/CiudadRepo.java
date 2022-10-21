@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface CiudadRepo extends JpaRepository<Ciudad, Integer> {
 
-    @Query("select c.idCiudad, c.nombre, count(t) from Ciudad c join c.listaTeatros t group by c.idCiudad")
+    @Query("select c.idCiudad, c.nombre, count(t) " +
+            "from Ciudad c join c.listaTeatros t " +
+            "group by c.idCiudad")
     List<Object[]> contarTeatros();
 
 }

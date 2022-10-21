@@ -63,4 +63,7 @@ public class DistribucionSillaTest {
         List<DistribucionSilla> lista = distribuccionSillaRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+
+
 }
