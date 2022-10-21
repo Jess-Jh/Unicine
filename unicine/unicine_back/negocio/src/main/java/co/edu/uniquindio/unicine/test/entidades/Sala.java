@@ -32,7 +32,7 @@ public class Sala implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "sala")
-    private List<DistribuccionSilla> listaDistribuccionSillas;
+    private List<DistribucionSilla> listaDistribuccionSillas;
 
     @Builder
     public Sala(String nombre, Teatro teatro) {

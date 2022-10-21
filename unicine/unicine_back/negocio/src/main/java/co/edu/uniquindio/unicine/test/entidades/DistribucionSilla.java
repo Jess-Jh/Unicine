@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class DistribuccionSilla implements Serializable {
+public class DistribucionSilla implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
@@ -31,7 +31,7 @@ public class DistribuccionSilla implements Serializable {
     private Sala sala;
 
     @Builder
-    public DistribuccionSilla(String distribuccionSillas, Integer totalSillas, Integer filas, Integer columnas, Sala sala) {
+    public DistribucionSilla(String distribuccionSillas, Integer totalSillas, Integer filas, Integer columnas, Sala sala) {
         this.distribuccionSillas = distribuccionSillas;
         this.totalSillas = totalSillas;
         this.filas = filas;

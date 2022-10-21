@@ -103,8 +103,8 @@ insert into entrada values (3, "Columna A1", "Fila C4", 20000.0, 2);
 insert into entrada values (4, "Columna A1", "Fila B3", 20000.0, 3);
 insert into entrada values (5, "Columna A3", "Fila B4", 20000.0, 3);
 
-insert into distribuccion_silla values (1, 7, "Distribuccion 1", 7, 49, 1);
-insert into distribuccion_silla values (2, 8, "Distribuccion 2", 8, 64, 1);
-insert into distribuccion_silla values (3, 9, "Distribuccion 3", 9, 81, 1);
-insert into distribuccion_silla values (4, 6, "Distribuccion 4", 6, 36, 1);
-insert into distribuccion_silla values (5, 5, "Distribuccion 5", 5, 25, 1);
+insert into distribucion_silla values (3, 9, "Distribuccion 3", 9, 81, 1);
+insert into distribucion_silla values (1, 7, "Distribuccion 1", 7, 49, 1);
+insert into distribucion_silla values (2, 8, "Distribuccion 2", 8, 64, 1);
+insert into distribucion_silla values (4, 6, "Distribuccion 4", 6, 36, 1);
+insert into distribucion_silla values (5, 5, "Distribuccion 5", 5, 25, 1);
