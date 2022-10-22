@@ -34,6 +34,7 @@ class Flurorouter {
   static String confectioneryRoute        = '/unicine/confiteria';
   static String movieDescriptionRoute     = '/unicine/descripcion-pelicula';
   static String purchaseDetailRoute       = '/unicine/detalle-compra';
+  static String membershipRoute           = '/unicine/membresia';
 
 
 
@@ -50,6 +51,7 @@ class Flurorouter {
     router.define( confectioneryRoute,    handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( movieDescriptionRoute, handler: UnicineHandlers.movieDescription, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( purchaseDetailRoute,   handler: UnicineHandlers.purchaseDetail, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( membershipRoute,       handler: UnicineHandlers.membership, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes

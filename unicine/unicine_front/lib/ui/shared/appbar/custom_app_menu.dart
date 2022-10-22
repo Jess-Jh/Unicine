@@ -52,13 +52,15 @@ class _TabletDesktopMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'CONFITERÍA',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.confectioneryRoute),
+            isActive: ctrl.currentPage == Flurorouter.confectioneryRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'MEMBRESÍA',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.membershipRoute),
+            isActive: ctrl.currentPage == Flurorouter.membershipRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
@@ -110,7 +112,8 @@ class _MobileMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'TEATROS',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.confectioneryRoute),
+            isActive: ctrl.currentPage == Flurorouter.confectioneryRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
@@ -122,7 +125,8 @@ class _MobileMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'MEMBRESÍA',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.membershipRoute),
+            isActive: ctrl.currentPage == Flurorouter.membershipRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
