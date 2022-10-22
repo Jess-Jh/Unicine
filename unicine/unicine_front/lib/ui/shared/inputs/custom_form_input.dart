@@ -11,7 +11,7 @@ class CustomFormInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: Container(
         height: 40,
         decoration: buildBoxDecoration(),
