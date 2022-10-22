@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.CuponDTO;
 import co.edu.uniquindio.unicine.test.entidades.Cupon;
 import co.edu.uniquindio.unicine.test.repositorios.CuponRepo;
 import org.junit.jupiter.api.Assertions;
@@ -62,4 +63,12 @@ public class CuponTest {
         List<Cupon> lista = cuponRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerCupones(){
+        List<CuponDTO> lista = cuponRepo.obtenerCupones();
+        lista.forEach(System.out::println);
+    }
+
 }

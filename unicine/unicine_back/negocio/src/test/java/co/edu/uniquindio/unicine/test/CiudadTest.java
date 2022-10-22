@@ -62,4 +62,12 @@ public class CiudadTest {
         List<Ciudad> lista = ciudadRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarNombreCiudades(){
+        List<String> lista = ciudadRepo.listarCiudades();
+        lista.forEach(System.out::println);
+    }
 }

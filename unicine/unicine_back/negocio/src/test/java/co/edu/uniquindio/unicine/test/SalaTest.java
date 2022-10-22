@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.SalaDTO;
 import co.edu.uniquindio.unicine.test.entidades.Sala;
 import co.edu.uniquindio.unicine.test.entidades.Teatro;
 import co.edu.uniquindio.unicine.test.repositorios.SalaRepo;
@@ -62,4 +63,13 @@ public class SalaTest {
         List<Sala> lista = salaRepo.findAll();
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerSalas(){
+        List<SalaDTO> lista = salaRepo.obtenerSalas();
+        lista.forEach(System.out::println);
+    }
+
+
 }

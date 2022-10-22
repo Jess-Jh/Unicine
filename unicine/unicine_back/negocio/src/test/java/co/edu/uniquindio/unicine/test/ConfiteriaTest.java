@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.ConfiteriaDTO;
 import co.edu.uniquindio.unicine.test.entidades.Confiteria;
 import co.edu.uniquindio.unicine.test.repositorios.ConfiteriaRepo;
 import org.junit.jupiter.api.Assertions;
@@ -57,6 +58,20 @@ public class ConfiteriaTest {
     @Sql("classpath:dataset.sql")
     public void listar(){
         List<Confiteria> lista = confiteriaRepo.findAll();
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerConfiteria(){
+        List<Confiteria> lista = confiteriaRepo.obtenerConfiteria();
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerConfiteria2(){
+        List<ConfiteriaDTO> lista = confiteriaRepo.obtenerConfiteria2();
         lista.forEach(System.out::println);
     }
 }

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.CarteleraDTO;
 import co.edu.uniquindio.unicine.test.dto.FuncionSalaDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 import co.edu.uniquindio.unicine.test.repositorios.FuncionSalaRepo;
@@ -82,4 +83,13 @@ public class FuncionSalaTest {
         List<FuncionSalaDTO> lista = funcionSalaRepo.listarFunciones(2);
         lista.forEach(System.out::println);
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerCartelera(){
+        List<CarteleraDTO> lista = funcionSalaRepo.obtenerCartelera(1);
+        //System.out.println(lista.toString());
+        lista.forEach(System.out::println);
+    }
+
 }
