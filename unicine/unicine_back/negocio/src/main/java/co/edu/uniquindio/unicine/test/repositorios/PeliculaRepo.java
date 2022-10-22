@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test.repositorios;
 
 import co.edu.uniquindio.unicine.test.dto.HorarioSalaDTO;
 import co.edu.uniquindio.unicine.test.dto.PeliculaDTO;
+import co.edu.uniquindio.unicine.test.dto.PeliculaPreventaDTO;
 import co.edu.uniquindio.unicine.test.entidades.Entrada;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,5 +40,9 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
 
     @Query("select new co.edu.uniquindio.unicine.test.dto.PeliculaDTO( p.nombre, p.genero, p.estadoPelicula.tipoEstado, p.imagen ) from Pelicula p")
     List<PeliculaDTO> obtenerPeliculas();
+
+    @Query("select new co.edu.uniquindio.unicine.test.dto.PeliculaPreventaDTO( p.nombre, p.genero ) " +
+            "from Pelicula p where p.estadoPelicula.tipoEstado = :preventa")
+    List<PeliculaPreventaDTO> obtenerPeliculaPreventa(Integer preventa);
 
 }
