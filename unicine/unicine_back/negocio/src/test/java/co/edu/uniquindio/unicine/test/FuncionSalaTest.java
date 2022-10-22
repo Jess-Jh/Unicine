@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,13 @@ public class FuncionSalaTest {
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
         Sala sala = new Sala("Sala prueba", teatro);
         Pelicula pelicula = new Pelicula("pelicula prueba", "ruta/img", "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
-        Funcion funcion = new Funcion("Lunes-Viernes", 20000.0);
+        //nuevo
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.now();
+
+        Horario horario = new Horario(date,time);
+
+        Funcion funcion = new Funcion(horario, 20000.0);
 
         FuncionSala funcionSala = new FuncionSala(sala, pelicula, funcion);
         FuncionSala guardado = funcionSalaRepo.save(funcionSala);
@@ -47,7 +55,12 @@ public class FuncionSalaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void actualizar(){
-        Funcion funcionNueva = new Funcion("Lunes-Viernes", 20000.0);
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.now();
+
+        Horario horario = new Horario(date,time);
+
+        Funcion funcionNueva = new Funcion(horario, 20000.0);
         FuncionSala guardado = funcionSalaRepo.findById(2).orElse(null);
         guardado.setFuncion(funcionNueva);
 

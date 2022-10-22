@@ -55,11 +55,17 @@ insert into cupon values (3, "criterio prueba3", "descripcion prueba3", "2022-10
 insert into cupon values (4, "criterio prueba4", "descripcion prueba4", "2022-10-02", 23000.0);
 insert into cupon values (5, "criterio prueba5", "descripcion prueba5", "2022-10-05", 24000.0);
 
-insert into funcion values (1, "Lunes-Viernes", 20000.0);
-insert into funcion values (2, "Sabado", 22000.0);
-insert into funcion values (3, "Domingo", 23000.0);
-insert into funcion values (4, "Festivo", 24000.0);
-insert into funcion values (5, "Eventos", 27000.0);
+insert into horario values (1, "2022-10-20", "12:30:59");
+insert into horario values (2, "2022-10-21", "11:30:59");
+insert into horario values (3, "2022-10-22", "10:30:59");
+insert into horario values (4, "2022-10-23", "09:30:59");
+insert into horario values (5, "2022-10-24", "08:30:59");
+
+insert into funcion values (1, 20000.0, 1);
+insert into funcion values (2, 22000.0, 2);
+insert into funcion values (3, 23000.0, 3);
+insert into funcion values (4, 24000.0, 4);
+insert into funcion values (5, 27000.0, 5);
 
 insert into teatro values (1, "Cra. 14 #6-02", "Teatro 1 prueba", 1);
 insert into teatro values (2, "Cra. 14 #7-02", "Teatro 2 prueba", 1);

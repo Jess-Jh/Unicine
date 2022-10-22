@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.test.dto;
 
 import co.edu.uniquindio.unicine.test.entidades.EstadoPelicula;
+import co.edu.uniquindio.unicine.test.entidades.Horario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class FuncionSalaDTO {
     private Integer idSala;
     private String direccion;
     private String nombreCiudad;
-    private String horario;
+    private Horario horario;
 
 
 }

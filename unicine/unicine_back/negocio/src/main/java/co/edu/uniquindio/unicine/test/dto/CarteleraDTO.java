@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.dto;
 
+import co.edu.uniquindio.unicine.test.entidades.Horario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,6 @@ public class CarteleraDTO {
     private String sinopsis;
     private String trailer;
     private String imagen;
-    private String horario;
+    private Horario horario;
     private String nombreSala;
 }

@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,13 @@ public class ConfiteriaCompraTest {
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
         Sala sala = new Sala("Sala prueba", teatro);
         Pelicula pelicula = new Pelicula("pelicula prueba", "ruta/img", "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
-        Funcion funcion = new Funcion("Lunes-Viernes", 20000.0);
+        //nuevo
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.now();
+
+        Horario horario = new Horario(date,time);
+
+        Funcion funcion = new Funcion(horario, 20000.0);
         FuncionSala funcionSala = new FuncionSala(sala, pelicula, funcion);
 
         Compra compra = new Compra("Efectivo", 20000.0, 20000.0, cliente, funcionSala);

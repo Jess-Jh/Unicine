@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.dto;
 
+import co.edu.uniquindio.unicine.test.entidades.Horario;
 import co.edu.uniquindio.unicine.test.entidades.Sala;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class HorarioSalaDTO {
 
-    private String horario;
+    private Horario horario;
 
     private Sala sala;
 }

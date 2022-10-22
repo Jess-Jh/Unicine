@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.test.entidades.Funcion;
+import co.edu.uniquindio.unicine.test.entidades.Horario;
 import co.edu.uniquindio.unicine.test.repositorios.FuncionRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +25,12 @@ public class FuncionTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
-        Funcion funcion = new Funcion("Lunes-Viernes", 20000.0);
+        LocalTime time = LocalTime.now();
+        LocalDate date = LocalDate.now();
+
+        Horario horario = new Horario(date,time);
+
+        Funcion funcion = new Funcion(horario, 20000.0);
         Funcion guardado = funcionRepo.save(funcion);
 
         Assertions.assertEquals("Lunes-Viernes",funcion.getHorario());
