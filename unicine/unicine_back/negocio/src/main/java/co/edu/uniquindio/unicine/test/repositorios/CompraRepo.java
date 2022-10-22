@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.repositorios;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.Compra;
 import co.edu.uniquindio.unicine.test.entidades.Entrada;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,4 +30,9 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
     @Query("select new co.edu.uniquindio.unicine.test.dto.InformacionCompraDTO(c.total, c.fechaCompra, c.funcionSala, (select sum(cc.precio) from ConfiteriaCompra cc where cc.compra.idCompra = c.idCompra) )from Compra c where c.cliente.cedula = :cedulaCliente")
     List<Object[]> obtenerInformacionCompras(String cedulaCliente);
 **/
+
+    @Query("select new co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO( e.columnaSilla, e.filaSilla )" +
+            " from Compra comp join comp.listaEntradas e join comp.funcionSala fs join fs.funcion f " +
+            " where f.idFuncion = :funcion")
+    List<SillasOcupadasDTO> obtenerSillasOcupadas(Integer funcion);
 }
