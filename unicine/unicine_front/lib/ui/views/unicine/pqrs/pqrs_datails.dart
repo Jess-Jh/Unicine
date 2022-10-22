@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
@@ -79,7 +80,16 @@ class _TabletDesktopMenu extends StatelessWidget {
                 icon: Icons.message_outlined,
               ),
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: CustomOutlinedButton(
+              fontSize: 18,
+              width: size.width / 2,
+              text: 'Enviar',
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );
@@ -142,7 +152,17 @@ class _MobileMenu extends StatelessWidget {
                 icon: Icons.message_outlined,
               ),
             ),
-          )
+          ),
+          const SizedBox(height: 20),
+          Align(
+            alignment: Alignment.center,
+            child: CustomOutlinedButton(
+              fontSize: 18,
+              width: size.width / 2,
+              text: 'Comprar',
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );
