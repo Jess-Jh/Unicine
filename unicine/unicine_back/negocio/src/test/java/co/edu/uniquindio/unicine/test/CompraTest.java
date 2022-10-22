@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 import co.edu.uniquindio.unicine.test.repositorios.CompraRepo;
 import org.junit.jupiter.api.Assertions;
@@ -98,4 +99,13 @@ public class CompraTest {
         );
         //Assertions.assertEquals(2, lista.size());
     }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerSillasOcupadas(){
+        List<SillasOcupadasDTO> lista = compraRepo.obtenerSillasOcupadas(1);
+        lista.forEach(System.out::println);
+        //Assertions.assertEquals(2, lista.size());
+    }
+
 }
