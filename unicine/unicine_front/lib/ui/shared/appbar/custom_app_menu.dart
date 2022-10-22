@@ -66,7 +66,8 @@ class _TabletDesktopMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'PQRS',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.pqrsRoute),
+            isActive: ctrl.currentPage == Flurorouter.pqrsRoute,
           ),
         ],
       ),
@@ -112,14 +113,14 @@ class _MobileMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'TEATROS',
             color: Colors.white,
-            onPressed: () => navigateTo(Flurorouter.confectioneryRoute),
-            isActive: ctrl.currentPage == Flurorouter.confectioneryRoute,
+            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
             text: 'CONFITERÍA',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.confectioneryRoute),
+            isActive: ctrl.currentPage == Flurorouter.confectioneryRoute,
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
@@ -132,7 +133,8 @@ class _MobileMenu extends ConsumerWidget {
           CustomFlatButton(
             text: 'PQRS',
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => navigateTo(Flurorouter.pqrsRoute),
+            isActive: ctrl.currentPage == Flurorouter.pqrsRoute,
           ),
         ],
       ),

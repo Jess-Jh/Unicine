@@ -10,6 +10,7 @@ import 'package:uni_cine/ui/views/unicine/confectionery/confectionery_view.dart'
 import 'package:uni_cine/ui/views/unicine/login_view.dart';
 import 'package:uni_cine/ui/views/unicine/membership/membership_view.dart';
 import 'package:uni_cine/ui/views/unicine/movie_description/movie_description_view.dart';
+import 'package:uni_cine/ui/views/unicine/pqrs/pqrs_view.dart';
 import 'package:uni_cine/ui/views/unicine/purchase_detail/purchase_detail_view.dart';
 import 'package:uni_cine/ui/views/unicine/register_view.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/billboard_view.dart';
@@ -24,6 +25,7 @@ class UnicineHandlers {
   static Handler movieDescription = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MovieDescriptionView(), routeName: Flurorouter.movieDescriptionRoute )));
   static Handler purchaseDetail   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
   static Handler membership       = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MembershipView(), routeName: Flurorouter.membershipRoute )));
+  static Handler pqrs             = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const PQRSView(), routeName: Flurorouter.pqrsRoute )));
 }
 
 class ValidateView extends ConsumerWidget {
