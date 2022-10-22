@@ -81,6 +81,7 @@ class _TabletDesktopMenu extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 20),
           Align(
             alignment: Alignment.center,
             child: CustomOutlinedButton(
