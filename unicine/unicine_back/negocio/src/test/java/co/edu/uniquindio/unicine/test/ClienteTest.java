@@ -76,7 +76,7 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void obtenerPorEmail(){
-        Cliente cliente = clienteRepo.findByEmail("correo@gmail.com");
+        Cliente cliente = clienteRepo.findByEmail("correo@gmail.com").orElse(null);
         Assertions.assertNotNull(cliente);
     }
 
