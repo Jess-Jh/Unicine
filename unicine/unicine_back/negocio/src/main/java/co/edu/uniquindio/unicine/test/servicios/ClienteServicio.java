@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test.servicios;
 
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
 import co.edu.uniquindio.unicine.test.entidades.Compra;
+import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 
 import java.util.List;
 
@@ -21,5 +22,11 @@ public interface ClienteServicio {
     List<Cliente> listarHistorialCompra(String cedula);
 
     Compra registrarCompra(Compra compra);
+
+    List<Pelicula> buscarPelicula(String nombre);
+
+    boolean redimirCupon(Integer idCupon);
+
+    boolean cambiarContrasena(Integer idCodigo);
 
 }
