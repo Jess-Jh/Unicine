@@ -75,6 +75,6 @@ public class ClienteServicioTest {
 
     @Test
     public void enviarEmailTest(){
-        emailServicio.enviarEmail("Prueba de envio", "Este es un mensaje", "jose.12-ortiz@hotmail.com");
+        emailServicio.enviarEmail("Prueba de envio", "Este es un mensaje", "imanork13@gmail.com");
     }
 }
