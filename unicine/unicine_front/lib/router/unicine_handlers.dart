@@ -7,12 +7,12 @@ import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/views/unicine/confectionery/confectionery_view.dart';
 
-import 'package:uni_cine/ui/views/unicine/login_view.dart';
+import 'package:uni_cine/ui/views/unicine/login/login_view.dart';
 import 'package:uni_cine/ui/views/unicine/membership/membership_view.dart';
 import 'package:uni_cine/ui/views/unicine/movie_description/movie_description_view.dart';
 import 'package:uni_cine/ui/views/unicine/pqrs/pqrs_view.dart';
 import 'package:uni_cine/ui/views/unicine/purchase_detail/purchase_detail_view.dart';
-import 'package:uni_cine/ui/views/unicine/register_view.dart';
+import 'package:uni_cine/ui/views/unicine/login/register_view.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/billboard_view.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/room_unicine_view.dart';
 import 'package:uni_cine/ui/views/unicine/user/user_details_view.dart';

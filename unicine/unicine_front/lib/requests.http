@@ -1,0 +1,48 @@
+@api = https://jsonplaceholder.typicode.com 
+
+### Obteniendo todas las publicaciones
+{{api}}/posts
+
+### Obteniendo una sola publicación
+GET {{api}}/posts/1
+
+### Creando una nueva publicación
+POST {{api}}/posts
+Content-Type: application/json
+
+{
+    "title": "vs code",
+    "body": "Cuerpo del mensaje"
+}
+
+### Eliminando publicación
+DELETE {{api}}/posts/1
+
+### Actualizar publicación por id
+PUT {{api}}/posts/1
+Content-Type: application/json
+
+{
+    "title": "Actualización",
+    "body": "Actualizando bloque de código"
+}
+
+// ----------------------------------------- Rest User ---------------------------------------------->>
+@apiRest = http://localhost:3306
+
+### Creando cliente
+POST {{apiRest}}/registrarCliente
+Content-Type: application/json
+
+{
+    "cedula" : "12345",
+    "imagenPerfil" : "urlImagen",
+    "nombreCompleto" : "Juan Carlos",
+    "email": "Juan@gmail.com",
+    "contrasena" : "1234567"
+}
+
+
+
+
+// --------------------------------------------------------------------------------------------------\\

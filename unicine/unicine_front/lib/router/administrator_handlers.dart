@@ -7,7 +7,7 @@ import 'package:uni_cine/controllers/auth_controller.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/views/administrator/manage_coupon/manage_coupon_view.dart';
 
-import 'package:uni_cine/ui/views/unicine/login_view.dart';
+import 'package:uni_cine/ui/views/unicine/login/login_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_movie/manage_movie_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_view.dart';
 import 'package:uni_cine/ui/views/administrator/manage_confectionery/manage_confectionery_view.dart';

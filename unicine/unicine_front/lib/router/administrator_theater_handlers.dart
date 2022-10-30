@@ -10,7 +10,7 @@ import 'package:uni_cine/ui/views/administrator_theater/manage_function/manage_f
 import 'package:uni_cine/ui/views/administrator_theater/manage_hours/manage_hours_view.dart';
 import 'package:uni_cine/ui/views/administrator_theater/manage_room/manage_room_view.dart';
 
-import 'package:uni_cine/ui/views/unicine/login_view.dart';
+import 'package:uni_cine/ui/views/unicine/login/login_view.dart';
 
 class AdministratorTheaterHandlers {
 
