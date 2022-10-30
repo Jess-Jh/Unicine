@@ -12,9 +12,11 @@ import java.util.Optional;
 public class ClienteServicioImpl implements ClienteServicio{
 
     private final ClienteRepo clienteRepo;
+    private final EmailServicio emailServicio;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio) {
         this.clienteRepo = clienteRepo;
+        this.emailServicio = emailServicio;
     }
 
     @Override
@@ -44,6 +46,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         if (correoExiste){
             throw new Exception("El correo ya se encuentra registrado");
         }
+        emailServicio.enviarEmail("Registro en unicine", "Hola debe ir al siguiente enlace para activar la cueenta", cliente.getEmail());
+
         return clienteRepo.save(cliente);
     }
 
@@ -87,6 +91,11 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Compra registrarCompra(Compra compra) {
+        /**
+         * Realizar metodo compra
+         */
+
+        emailServicio.enviarEmail("Se ha realizado una compra", "Hola ha comprado", compra.getCliente().getEmail());
         return null;
     }
 
