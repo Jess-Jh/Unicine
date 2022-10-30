@@ -13,37 +13,37 @@ public interface AdminTeatroServicio {
 
     List<Horario> listarHorarios();
 
-    Horario obtenerHorario(Integer idHorario);
+    Horario obtenerHorario(Integer idHorario) throws Exception;
 
-    void eliminarHorario(Integer idHorario);
+    void eliminarHorario(Integer idHorario) throws Exception;
 
     Funcion crearFuncion(Funcion funcion);
 
-    Funcion actualizarFuncion(Funcion funcion);
+    Funcion actualizarFuncion(Funcion funcion) throws Exception;
 
-    void eliminarFuncion(Integer idFuncion);
+    void eliminarFuncion(Integer idFuncion) throws Exception;
 
     List<Funcion> listarFunciones();
 
-    Funcion obtenerFuncion(Integer idFuncion);
+    Funcion obtenerFuncion(Integer idFuncion) throws Exception;
 
     Sala crearSala(Sala sala);
 
-    Sala actualizarSala(Sala sala);
+    Sala actualizarSala(Sala sala) throws Exception;
 
-    void eliminarSala(Integer idSala);
+    void eliminarSala(Integer idSala) throws Exception;
 
     List<Sala> listarSalas();
 
-    Sala obtenerSala(Integer idSala);
+    Sala obtenerSala(Integer idSala) throws Exception;
 
     Teatro crearTeatro(Teatro teatro);
 
-    Teatro actualizarTeatro(Teatro teatro);
+    Teatro actualizarTeatro(Teatro teatro) throws Exception;
 
-    void eliminarTeatro(Integer idTeatro);
+    void eliminarTeatro(Integer idTeatro) throws Exception;
 
     List<Teatro> listarTeatros();
 
-    Teatro obtenerTeatro(Integer idTeatro);
+    Teatro obtenerTeatro(Integer idTeatro) throws Exception;
 }
