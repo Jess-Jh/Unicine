@@ -45,11 +45,17 @@ public class AdminServicioImpl implements AdminServicio{
 
     @Override
     public Pelicula crearPelicula(Pelicula pelicula) {
-        return null;
+
+        return peliculaRepo.save(pelicula);
     }
 
     @Override
     public Pelicula actualizarPelicula(Pelicula pelicula) {
+
+        Pelicula guardado = peliculaRepo.findById(pelicula.getIdPelicula()).orElse(null);
+        guardado.setGenero(pelicula.getGenero());
+        guardado.setEstadoPelicula(pelicula.getEstadoPelicula());
+
         return null;
     }
 

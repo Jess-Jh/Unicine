@@ -19,7 +19,7 @@ public interface ClienteServicio {
 
     List<Cliente> listarClientes();
 
-    List<Cliente> listarHistorialCompra(String cedula);
+    List<Compra> listarHistorialCompra(String email);
 
     Compra registrarCompra(Compra compra);
 

@@ -4,6 +4,7 @@ import co.edu.uniquindio.unicine.test.entidades.Cliente;
 import co.edu.uniquindio.unicine.test.entidades.Compra;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.repositorios.ClienteRepo;
+import co.edu.uniquindio.unicine.test.repositorios.PeliculaRepo;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +14,12 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     private final ClienteRepo clienteRepo;
     private final EmailServicio emailServicio;
+    private final PeliculaRepo peliculaRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo) {
         this.clienteRepo = clienteRepo;
         this.emailServicio = emailServicio;
+        this.peliculaRepo = peliculaRepo;
     }
 
     @Override
@@ -85,8 +88,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public List<Cliente> listarHistorialCompra(String cedula) {
-        return null;
+    public List<Compra> listarHistorialCompra(String email) {
+
+        List<Compra> historial = clienteRepo.obtenerCompras(email);
+
+        return historial;
     }
 
     @Override
@@ -101,7 +107,10 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public List<Pelicula> buscarPelicula(String nombre) {
-        return null;
+
+        List<Pelicula> peliculas = peliculaRepo.buscarPelicula(nombre, 1);
+
+        return peliculas;
     }
 
     @Override
