@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ClienteRepo extends JpaRepository<Cliente, String> {
@@ -16,7 +17,7 @@ public interface ClienteRepo extends JpaRepository<Cliente, String> {
     @Query("select c from Cliente c where c.email = ?1")
     Cliente obtener(String email);
 
-    Cliente findByEmail(String email);
+    Optional<Cliente> findByEmail(String email);
 
     @Query("select c from Cliente c where c.email = :email and c.contrasena = :contrasena")
     Cliente comprobarAutenticacion(String email, String contrasena);
