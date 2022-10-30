@@ -17,6 +17,7 @@ class PurchaseDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return PurchaseDetailCard(coupons: coupons, selectCoupon: selectCoupon);
     return Padding(
       padding: const EdgeInsets.only(top: 45.0),
       child: CustomCardView(
