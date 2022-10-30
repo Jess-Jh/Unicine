@@ -5,36 +5,40 @@ import 'package:uni_cine/router/unicine_handlers.dart';
 import 'package:uni_cine/router/no_page_found_handlers.dart';
 
 class Flurorouter {
+
+  static const _domain = '/unicine';
+
   static final FluroRouter router = FluroRouter();
 
   static String rootRoute                 = '/';
 
   // Auth Router
-  static String loginRoute                = '/auth/login';
-  static String registerRoute             = '/auth/register';
+  static String loginRoute                = '$_domain/auth/login';
+  static String registerRoute             = '$_domain/auth/register';
   
-  static String administratorRoute        = '/administradorTeatro';
+  static String administratorRoute        = '$_domain/administradorTeatro';
   // Administrator 
-  static String moviesRoute               = '/administrador/peliculas';
-  static String theatersRoute             = '/administrador/teatros';
-  static String confectionariesRoute      = '/administrador/confiterias';
-  static String couponsRoute              = '/administrador/cupones';
+  static String moviesRoute               = '$_domain/administrador/peliculas';
+  static String theatersRoute             = '$_domain/administrador/teatros';
+  static String confectionariesRoute      = '$_domain/administrador/confiterias';
+  static String couponsRoute              = '$_domain/administrador/cupones';
 
   // Administrator Theater
-  static String administratorTheaterRoute = '/administradorTeatro';
-  static String roomRoute                 = '/administradorTeatro/salas';
-  static String hourRoute                 = '/administradorTeatro/horarios';
-  static String functionRoute             = '/administradorTeatro/funciones';
+  static String administratorTheaterRoute = '$_domain/administradorTeatro';
+  static String roomRoute                 = '$_domain/administradorTeatro/salas';
+  static String hourRoute                 = '$_domain/administradorTeatro/horarios';
+  static String functionRoute             = '$_domain/administradorTeatro/funciones';
 
   // User 
-  static String unicineRoute              = '/unicine';
-  static String billboardRoute            = '/unicine/cartelera';
-  static String roomUnicineRoute          = '/unicine/sala';
-  static String confectioneryRoute        = '/unicine/confiteria';
-  static String movieDescriptionRoute     = '/unicine/descripcion-pelicula';
-  static String purchaseDetailRoute       = '/unicine/detalle-compra';
-  static String membershipRoute           = '/unicine/membresia';
-  static String pqrsRoute                 = '/unicine/pqrs';
+  static String unicineRoute              = '$_domain/';
+  static String billboardRoute            = '$_domain/cartelera';
+  static String roomUnicineRoute          = '$_domain/sala';
+  static String confectioneryRoute        = '$_domain/confiteria';
+  static String movieDescriptionRoute     = '$_domain/descripcion-pelicula';
+  static String purchaseDetailRoute       = '$_domain/detalle-compra';
+  static String membershipRoute           = '$_domain/membresia';
+  static String pqrsRoute                 = '$_domain/pqrs';
+  static String userDetailsRoute          = '$_domain/detalle-usuario';
 
 
   static void configureRoutes() {
@@ -52,6 +56,7 @@ class Flurorouter {
     router.define( purchaseDetailRoute,   handler: UnicineHandlers.purchaseDetail, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( membershipRoute,       handler: UnicineHandlers.membership, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define( pqrsRoute,             handler: UnicineHandlers.pqrs, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( userDetailsRoute,      handler: UnicineHandlers.userDetails, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes
