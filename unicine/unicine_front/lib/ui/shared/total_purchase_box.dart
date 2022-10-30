@@ -4,7 +4,17 @@ import 'package:uni_cine/utils/custom_colors.dart';
 class TotalPurchaseBox extends StatelessWidget {
   final double? width;
   final double? height;
-  const TotalPurchaseBox({super.key, this.width, this.height});
+  final bool? showText;
+  final String? text;
+  final Color? colorText;
+  const TotalPurchaseBox({
+    super.key,
+    this.width,
+    this.height,
+    this.showText = true,
+    this.colorText,
+    this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +23,12 @@ class TotalPurchaseBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            textAlign: TextAlign.left,
-            '   Total Compra',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          if (showText!)
+            const Text(
+              '   Total Compra',
+              textAlign: TextAlign.left,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           const SizedBox(height: 5),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -28,15 +39,15 @@ class TotalPurchaseBox extends StatelessWidget {
               color: CustomColors.principal,
             ),
             child: Row(
-              children: const [
+              children: [
                 Text(
-                  'Compra',
-                  style: TextStyle(color: Colors.white),
+                  text ?? 'Compra',
+                  style: TextStyle(color: colorText ?? Colors.white),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   r'$00.000',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: colorText ?? Colors.white),
                 )
               ],
             ),

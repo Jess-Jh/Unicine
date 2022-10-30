@@ -3,7 +3,6 @@ import 'package:uni_cine/router/administrator_handlers.dart';
 import 'package:uni_cine/router/administrator_theater_handlers.dart';
 import 'package:uni_cine/router/unicine_handlers.dart';
 import 'package:uni_cine/router/no_page_found_handlers.dart';
-import 'package:uni_cine/router/route_handlers.dart';
 
 class Flurorouter {
   static final FluroRouter router = FluroRouter();
@@ -38,7 +37,6 @@ class Flurorouter {
   static String pqrsRoute                 = '/unicine/pqrs';
 
 
-
   static void configureRoutes() {
 
     // Auth Routes
@@ -68,15 +66,6 @@ class Flurorouter {
     router.define(roomRoute,                 handler: AdministratorTheaterHandlers.manageRooms,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define(hourRoute,                 handler: AdministratorTheaterHandlers.manageHours,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
     router.define(functionRoute,             handler: AdministratorTheaterHandlers.manageFunctions,   transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-
-
-    // Stateful Routes
-    // router.define('/',  handler: counterHandler, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define('/stateful', handler: counterHandler, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-
-    // Meedu Routes
-    router.define('/stateful/:base', handler: counterHandler, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define('/meedu', handler: counterMeeduHandler, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // 404 - Not Page Found
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

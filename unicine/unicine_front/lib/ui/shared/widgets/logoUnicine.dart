@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LogoUnicine extends StatelessWidget {
-  const LogoUnicine({super.key});
+  final Color? uniColor;
+  final Color? cineColor;
+  final double? letterSize;
+  final bool? showIcon;
+  const LogoUnicine({
+    super.key,
+    this.uniColor,
+    this.cineColor,
+    this.letterSize,
+    this.showIcon = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +26,26 @@ class LogoUnicine extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Icon(Icons.camera_roll_outlined, color: Color(0xffD5C6E0)),
-            const SizedBox(width: 10),
+            if (showIcon!) ...[
+              const Icon(Icons.camera_roll_outlined, color: Color(0xffD5C6E0)),
+              const SizedBox(width: 10)
+            ],
             Text(
               'Uni',
               style: GoogleFonts.nunito(
-                fontSize: 25,
+                fontSize: letterSize ?? 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: uniColor ?? Colors.white,
               ),
             ),
             Text(
               'CINE',
               style: GoogleFonts.ptSans(
-                fontSize: 25,
+                fontSize: letterSize ?? 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: cineColor ?? Colors.black,
               ),
             ),
           ],

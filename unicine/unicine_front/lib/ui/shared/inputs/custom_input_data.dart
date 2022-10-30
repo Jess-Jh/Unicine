@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CustomInputData extends StatelessWidget {
   final String nameColumn;
   final String data;
-  const CustomInputData(
-      {super.key, required this.data, required this.nameColumn});
+  final double? height;
+  const CustomInputData({
+    super.key,
+    required this.data,
+    required this.nameColumn,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,7 @@ class CustomInputData extends StatelessWidget {
       child: Container(
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.all(10),
-        height: 50,
+        height: height ?? 50,
         decoration: buildBoxDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
