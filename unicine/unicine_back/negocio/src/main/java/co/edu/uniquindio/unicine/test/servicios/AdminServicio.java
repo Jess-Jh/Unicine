@@ -12,33 +12,33 @@ public interface AdminServicio {
 
     Pelicula crearPelicula(Pelicula pelicula);
 
-    Pelicula actualizarPelicula(Pelicula pelicula);
+    Pelicula actualizarPelicula(Pelicula pelicula) throws Exception;
 
-    void eliminarPelicula(Integer idPelicula);
+    void eliminarPelicula(Integer idPelicula) throws Exception;
 
     List<Pelicula> listarPeliculas();
 
-    Pelicula obtenerPelicula(Integer idPelicula);
+    Pelicula obtenerPelicula(Integer idPelicula) throws Exception;
 
     Cupon crearCupon(Cupon cupon);
 
-    Cupon actualizarCupon(Cupon cupon);
+    Cupon actualizarCupon(Cupon cupon) throws Exception;
 
-    Cupon eliminarCupon(Integer idCupon);
+    void eliminarCupon(Integer idCupon) throws Exception;
 
     List<Cupon> listarCupones();
 
-    Cupon obtenerCupon(Integer idCupon);
+    Cupon obtenerCupon(Integer idCupon) throws Exception;
 
     Confiteria crearConfiteria(Confiteria confiteria);
 
-    Confiteria actualizarConfiteria(Confiteria confiteria);
+    Confiteria actualizarConfiteria(Confiteria confiteria) throws Exception;
 
-    void eliminarConfiteria(Integer idConfiteria);
+    void eliminarConfiteria(Integer idConfiteria) throws Exception;
 
     List<Confiteria> listarConfiteria();
 
-    Confiteria obtenerConfiteria(Integer idConfiteria);
+    Confiteria obtenerConfiteria(Integer idConfiteria) throws Exception;
 
 
 }
