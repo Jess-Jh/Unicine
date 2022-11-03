@@ -2,6 +2,7 @@ package co.edu.uniquindio.unicine.test.servicios;
 
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
 import co.edu.uniquindio.unicine.test.entidades.Compra;
+import co.edu.uniquindio.unicine.test.entidades.CuponCliente;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public interface ClienteServicio {
 
     List<Compra> listarHistorialCompra(String email);
 
-    Compra registrarCompra(Compra compra);
+    Compra registrarCompra(Compra compra) throws Exception;
 
     List<Pelicula> buscarPelicula(String nombre);
 
-    boolean redimirCupon(Integer idCupon);
+    CuponCliente redimirCupon(CuponCliente cuponCliente);
 
-    boolean cambiarContrasena(Integer idCodigo);
+    boolean cambiarContrasena(String email, String contrasena) throws Exception;
 
 }

@@ -1,11 +1,17 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
 import co.edu.uniquindio.unicine.test.entidades.Compra;
+import co.edu.uniquindio.unicine.test.entidades.CuponCliente;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.repositorios.ClienteRepo;
+import co.edu.uniquindio.unicine.test.repositorios.CompraRepo;
+import co.edu.uniquindio.unicine.test.repositorios.CuponClienteRepo;
 import co.edu.uniquindio.unicine.test.repositorios.PeliculaRepo;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,11 +21,15 @@ public class ClienteServicioImpl implements ClienteServicio{
     private final ClienteRepo clienteRepo;
     private final EmailServicio emailServicio;
     private final PeliculaRepo peliculaRepo;
+    private final CompraRepo compraRepo;
+    private final CuponClienteRepo cuponClienteRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo, CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo) {
         this.clienteRepo = clienteRepo;
         this.emailServicio = emailServicio;
         this.peliculaRepo = peliculaRepo;
+        this.compraRepo = compraRepo;
+        this.cuponClienteRepo = cuponClienteRepo;
     }
 
     @Override
@@ -96,13 +106,32 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public Compra registrarCompra(Compra compra) {
-        /**
-         * Realizar metodo compra
-         */
+    public Compra registrarCompra(Compra compra) throws Exception {
 
-        emailServicio.enviarEmail("Se ha realizado una compra", "Hola ha comprado", compra.getCliente().getEmail());
-        return null;
+        String columnaO = ""; String filaO = "";
+        LocalDate ahora = LocalDate.now();
+        List<SillasOcupadasDTO> listaSillas = compraRepo.obtenerSillasOcupadas(compra.getFuncionSala().getFuncion().getIdFuncion());
+
+        for(int i=0; i < listaSillas.size(); i++){
+            for(int z = 0; z < compra.getListaEntradas().size(); z++){
+                columnaO = listaSillas.get(i).getColumna(); filaO = listaSillas.get(i).getFila();
+                if(columnaO.equals(compra.getListaEntradas().get(z).getColumnaSilla()) &&
+                        filaO.equals(compra.getListaEntradas().get(z).getFilaSilla())){
+                    throw new Exception("La silla " + columnaO + " , " + filaO + " ya ha sido seleccionada");
+                }
+            }
+        }
+        if(compra.getCuponCliente().getCupon().getFechaVencimiento().compareTo(ahora) < 0 ){
+            throw new Exception("El cupon se encuentra vencido");
+            // se validaria si se encuentra en estado 2 que seria no disponible
+        }else if (compra.getCuponCliente().getIsDisponible() == 2){
+            throw new Exception("El cupon no esta disponible");
+        }
+
+        emailServicio.enviarEmail("Se ha realizado una compra " + compra.getFechaCompra(),
+                "Hola ha comprado por un total " + compra.getTotal(), compra.getCliente().getEmail());
+
+        return compraRepo.save(compra);
     }
 
     @Override
@@ -114,12 +143,23 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public boolean redimirCupon(Integer idCupon) {
-        return false;
+    public CuponCliente redimirCupon(CuponCliente cuponCliente) {
+        return cuponClienteRepo.save(cuponCliente);
     }
 
     @Override
-    public boolean cambiarContrasena(Integer idCodigo) {
-        return false;
+    public boolean cambiarContrasena(String email, String contrasena) throws Exception {
+        boolean cambio = false;
+        Optional<Cliente> cliente = clienteRepo.findByEmail(email);
+
+        if (cliente.isEmpty()){
+            throw new Exception("El correo no se encuentra registrado");
+        } else {
+            cliente.get().setContrasena(contrasena);
+            clienteRepo.save(cliente.get());
+            emailServicio.enviarEmail("Se cambio contraseña", "Hola se acaba de actualizar la contraseña de su cuenta", cliente.get().getEmail());
+            cambio = true;
+        }
+        return cambio;
     }
 }

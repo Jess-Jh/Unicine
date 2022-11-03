@@ -48,23 +48,12 @@ public class AdminServicioImpl implements AdminServicio{
 
     @Override
     public Pelicula actualizarPelicula(Pelicula pelicula) throws Exception {
+        Optional<Pelicula> guardado = peliculaRepo.findById(pelicula.getIdPelicula());
 
-        Pelicula guardado = peliculaRepo.findById(pelicula.getIdPelicula()).orElse(null);
-
-        if (guardado == null){
+        if (guardado.isEmpty()){
             throw new Exception("No se encontro la pelicula para actualizar");
-        } else {
-            guardado.setGenero(pelicula.getGenero());
-            guardado.setEstadoPelicula(pelicula.getEstadoPelicula());
-            guardado.setNombre(pelicula.getNombre());
-            guardado.setReparto(pelicula.getReparto());
-            guardado.setImagen(pelicula.getImagen());
-            guardado.setEstadoPelicula(pelicula.getEstadoPelicula());
-            guardado.setSinopsis(pelicula.getSinopsis());
-            guardado.setTrailer(pelicula.getTrailer());
         }
-
-        return guardado;
+        return peliculaRepo.save(pelicula);
     }
 
     @Override
@@ -101,17 +90,13 @@ public class AdminServicioImpl implements AdminServicio{
     @Override
     public Cupon actualizarCupon(Cupon cupon) throws Exception {
 
-        Cupon guardado = cuponRepo.findById(cupon.getIdCupon()).orElse(null);
+        Optional<Cupon> guardado = cuponRepo.findById(cupon.getIdCupon());
 
-        if (guardado == null){
+        if (guardado.isEmpty()){
             throw new Exception("No existe el cupon");
-        }else {
-            guardado.setDescripcion(cupon.getDescripcion());
-            guardado.setCriterio(cupon.getCriterio());
-            guardado.setFechaVencimiento(cupon.getFechaVencimiento());
-            guardado.setValorDescuento(cupon.getValorDescuento());
         }
-        return guardado;
+
+        return cuponRepo.save(cupon);
     }
 
     @Override
@@ -147,16 +132,12 @@ public class AdminServicioImpl implements AdminServicio{
 
     @Override
     public Confiteria actualizarConfiteria(Confiteria confiteria) throws Exception {
-        Confiteria guardado = confiteriaRepo.findById(confiteria.getIdConfiteria()).orElse(null);
+        Optional<Confiteria> guardado = confiteriaRepo.findById(confiteria.getIdConfiteria());
 
-        if (guardado == null){
+        if (guardado.isEmpty()){
             throw new Exception("No existe la confiteria");
-        }else {
-            guardado.setNombre(confiteria.getNombre());
-            guardado.setImagen(confiteria.getImagen());
-            guardado.setPrecio(confiteria.getPrecio());
         }
-        return guardado;
+        return confiteriaRepo.save(confiteria);
     }
 
     @Override

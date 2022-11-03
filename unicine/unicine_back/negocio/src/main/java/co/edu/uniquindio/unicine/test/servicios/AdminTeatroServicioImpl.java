@@ -63,14 +63,11 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
 
     @Override
     public Funcion actualizarFuncion(Funcion funcion) throws Exception {
-        Funcion guardado = funcionRepo.findById(funcion.getIdFuncion()).orElse(null);
-        if (guardado == null){
+        Optional<Funcion> guardado = funcionRepo.findById(funcion.getIdFuncion());
+        if (guardado.isEmpty()){
             throw new Exception("No existe la funcion");
-        }else {
-            guardado.setPrecio(funcion.getPrecio());
-            guardado.setHorario(funcion.getHorario());
         }
-        return guardado;
+        return funcionRepo.save(funcion);
     }
 
     @Override
@@ -106,14 +103,11 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
 
     @Override
     public Sala actualizarSala(Sala sala) throws Exception {
-        Sala guardado = salaRepo.findById(sala.getIdSala()).orElse(null);
-        if (guardado == null){
+        Optional<Sala> guardado = salaRepo.findById(sala.getIdSala());
+        if (guardado.isEmpty()){
             throw new Exception("No existe la funcion");
-        }else {
-            guardado.setNombre(sala.getNombre());
-            guardado.setTeatro(sala.getTeatro());
         }
-        return guardado;
+        return salaRepo.save(sala);
     }
 
     @Override
@@ -150,15 +144,11 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     @Override
     public Teatro actualizarTeatro(Teatro teatro) throws Exception {
 
-        Teatro guardado = teatroRepo.findById(teatro.getIdTeatro()).orElse(null);
-        if (guardado == null){
+        Optional<Teatro> guardado = teatroRepo.findById(teatro.getIdTeatro());
+        if (guardado.isEmpty()){
             throw new Exception("No existe la funcion");
-        }else {
-            guardado.setNombre(teatro.getNombre());
-            guardado.setDireccion(teatro.getDireccion());
-            guardado.setCiudad(teatro.getCiudad());
         }
-        return guardado;
+        return teatroRepo.save(teatro);
     }
 
     @Override
