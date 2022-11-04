@@ -12,10 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -27,8 +24,8 @@ public class EntradaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
-        Map<String, String> telefonos = new HashMap<>();
-        telefonos.put("movil","313447");
+        List<String> telefonos = new ArrayList<>();
+        telefonos.add("313447");
         Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos);
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
         Sala sala = new Sala("Sala prueba", teatro);

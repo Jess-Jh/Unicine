@@ -11,10 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -26,8 +23,8 @@ public class PQRSTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
-        Map<String, String> telefonos = new HashMap<>();
-        telefonos.put("movil","313447");
+        List<String> telefonos = new ArrayList<>();
+        telefonos.add("313447");
         Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos);
 
         PQRS pqrs = new PQRS("Mensaje de prueba para el usuario", cliente);

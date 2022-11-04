@@ -13,10 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -31,8 +28,8 @@ public class CuponClienteTest {
         LocalDate tiempo = LocalDate.now();
         Cupon cupon = new Cupon(20000.0, tiempo, "descripcion pru", "criterio");
 
-        Map<String, String> telefonos = new HashMap<>();
-        telefonos.put("movil","313447");
+        List<String> telefonos = new ArrayList<>();
+        telefonos.add("313447");
         Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",telefonos);
 
 

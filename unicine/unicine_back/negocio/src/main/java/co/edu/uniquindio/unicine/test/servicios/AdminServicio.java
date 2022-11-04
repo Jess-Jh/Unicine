@@ -14,7 +14,7 @@ public interface AdminServicio {
 
     Pelicula actualizarPelicula(Pelicula pelicula) throws Exception;
 
-    void eliminarPelicula(Integer idPelicula) throws Exception;
+    boolean eliminarPelicula(Integer idPelicula) throws Exception;
 
     List<Pelicula> listarPeliculas();
 
@@ -24,7 +24,7 @@ public interface AdminServicio {
 
     Cupon actualizarCupon(Cupon cupon) throws Exception;
 
-    void eliminarCupon(Integer idCupon) throws Exception;
+    boolean eliminarCupon(Integer idCupon) throws Exception;
 
     List<Cupon> listarCupones();
 
@@ -34,7 +34,7 @@ public interface AdminServicio {
 
     Confiteria actualizarConfiteria(Confiteria confiteria) throws Exception;
 
-    void eliminarConfiteria(Integer idConfiteria) throws Exception;
+    boolean eliminarConfiteria(Integer idConfiteria) throws Exception;
 
     List<Confiteria> listarConfiteria();
 

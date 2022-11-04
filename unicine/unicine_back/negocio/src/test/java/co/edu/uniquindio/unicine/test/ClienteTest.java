@@ -14,10 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.awt.print.Pageable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -29,8 +26,8 @@ public class ClienteTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
-        Map<String, String> telefonos = new HashMap<>();
-        telefonos.put("movil","313447");
+        List<String> telefonos = new ArrayList<>();
+        telefonos.add("313447");
         Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",telefonos);
 
         Cliente guardado = clienteRepo.save(cliente);

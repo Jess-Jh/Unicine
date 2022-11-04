@@ -11,13 +11,13 @@ insert into cliente values ("12348", "123", "correo4@gmail.com", 1, "Cliente", "
 insert into cliente values ("12349", "123", "correo5@gmail.com", 1, "Cliente", "alison lopez", 1, "ruta/img", 1, 1);
 insert into cliente values ("12353", "123", "correo6@gmail.com", 1, "Cliente", "jose daniel", 1, "ruta/img", 1, 1);
 
-insert into cliente_telefonos values ("12345", "3137705899", "personal");
-insert into cliente_telefonos values ("12345", "3137705800", "trabajo");
-insert into cliente_telefonos values ("12346", "3108896632", "personal");
-insert into cliente_telefonos values ("12347", "3128676692", "personal");
-insert into cliente_telefonos values ("12348", "3117895588", "personal");
-insert into cliente_telefonos values ("12349", "3789988564", "personal");
-insert into cliente_telefonos values ("12353", "3889745523", "trabajo");
+insert into cliente_telefonos values ("12345", "3137705899");
+insert into cliente_telefonos values ("12345", "3137705800");
+insert into cliente_telefonos values ("12346", "3108896632");
+insert into cliente_telefonos values ("12347", "3128676692");
+insert into cliente_telefonos values ("12348", "3117895588");
+insert into cliente_telefonos values ("12349", "3789988564");
+insert into cliente_telefonos values ("12353", "3889745523");
 
 insert into administrador values ("12350", "123", "admin1@gmail.com", 2, "Administrador", "administrador 1", 1);
 insert into administrador values ("12351", "123", "admin2@gmail.com", 2, "Administrador", "administrador 2", 1);

@@ -22,7 +22,7 @@ public class Cliente extends Persona implements Serializable {
     private Integer estado;
 
     @ElementCollection
-    private Map<String, String> telefonos;
+    private List<String> telefonos;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
@@ -40,7 +40,7 @@ public class Cliente extends Persona implements Serializable {
     private List<CuponCliente> listaCuponClientes;
 
 
-    public Cliente(String cedula, String nombreCompleto, String email, String contrasena, Map<String, String> telefonos) {
+    public Cliente(String cedula, String nombreCompleto, String email, String contrasena, List<String> telefonos) {
         super(cedula, nombreCompleto, email, contrasena);
         this.telefonos = telefonos;
         this.id = 1;

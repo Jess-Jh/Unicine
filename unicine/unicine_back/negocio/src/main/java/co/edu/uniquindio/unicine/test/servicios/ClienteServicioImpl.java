@@ -1,14 +1,8 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
 import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
-import co.edu.uniquindio.unicine.test.entidades.Cliente;
-import co.edu.uniquindio.unicine.test.entidades.Compra;
-import co.edu.uniquindio.unicine.test.entidades.CuponCliente;
-import co.edu.uniquindio.unicine.test.entidades.Pelicula;
-import co.edu.uniquindio.unicine.test.repositorios.ClienteRepo;
-import co.edu.uniquindio.unicine.test.repositorios.CompraRepo;
-import co.edu.uniquindio.unicine.test.repositorios.CuponClienteRepo;
-import co.edu.uniquindio.unicine.test.repositorios.PeliculaRepo;
+import co.edu.uniquindio.unicine.test.entidades.*;
+import co.edu.uniquindio.unicine.test.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,13 +17,16 @@ public class ClienteServicioImpl implements ClienteServicio{
     private final PeliculaRepo peliculaRepo;
     private final CompraRepo compraRepo;
     private final CuponClienteRepo cuponClienteRepo;
+    private final AdministradorRepo administradorRepo;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo, CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo) {
+    public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo,
+                               CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo, AdministradorRepo administradorRepo) {
         this.clienteRepo = clienteRepo;
         this.emailServicio = emailServicio;
         this.peliculaRepo = peliculaRepo;
         this.compraRepo = compraRepo;
         this.cuponClienteRepo = cuponClienteRepo;
+        this.administradorRepo = administradorRepo;
     }
 
     @Override
@@ -53,6 +50,21 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
+    public Object login2(String email, String contrasena) throws Exception {
+        Cliente cliente = clienteRepo.comprobarAutenticacion(email, contrasena);
+        if(cliente != null){
+            return cliente;
+        } else {
+           Administrador administrador = administradorRepo.comprobarAutenticacionAdmin(email, contrasena);
+           if (administrador != null){
+               return administrador;
+           } else {
+               throw new Exception("No existe ningun usuario con el email y contrasena");
+           }
+        }
+    }
+
+    @Override
     public Cliente registrarCliente(Cliente cliente) throws Exception {
         boolean correoExiste = esRepetido(cliente.getEmail());
 
@@ -64,7 +76,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         return clienteRepo.save(cliente);
     }
 
-    private boolean esRepetido(String email){
+    public boolean esRepetido(String email){
         //si da un valor diferente de null significa que esta repetido
         //pero si devuelve un null no esta repetido
         return clienteRepo.findByEmail(email).orElse(null) != null;
@@ -82,14 +94,15 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public void eliminarCliente(String cedula) throws Exception {
+    public boolean eliminarCliente(String cedula) throws Exception {
         Optional<Cliente> guardado = clienteRepo.findById(cedula);
 
         if (guardado.isEmpty()){
             throw new Exception("el cliente no existe");
+        } else {
+            clienteRepo.delete(guardado.get());
+            return true;
         }
-
-        clienteRepo.delete(guardado.get());
     }
 
     @Override

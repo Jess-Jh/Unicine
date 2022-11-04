@@ -57,13 +57,14 @@ public class AdminServicioImpl implements AdminServicio{
     }
 
     @Override
-    public void eliminarPelicula(Integer idPelicula) throws Exception {
+    public boolean eliminarPelicula(Integer idPelicula) throws Exception {
         Pelicula buscado = peliculaRepo.findById(idPelicula).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro pelicula para eliminar");
         }else {
             peliculaRepo.delete(buscado);
+            return true;
         }
     }
 
@@ -100,14 +101,14 @@ public class AdminServicioImpl implements AdminServicio{
     }
 
     @Override
-    public void eliminarCupon(Integer idCupon) throws Exception {
-
+    public boolean eliminarCupon(Integer idCupon) throws Exception {
         Cupon buscado = cuponRepo.findById(idCupon).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro pelicula para eliminar");
         }else {
             cuponRepo.delete(buscado);
+            return true;
         }
     }
 
@@ -141,13 +142,14 @@ public class AdminServicioImpl implements AdminServicio{
     }
 
     @Override
-    public void eliminarConfiteria(Integer idConfiteria) throws Exception {
+    public boolean eliminarConfiteria(Integer idConfiteria) throws Exception {
         Confiteria buscado = confiteriaRepo.findById(idConfiteria).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro la confiteria para eliminar");
         }else {
             confiteriaRepo.delete(buscado);
+            return true;
         }
     }
 
