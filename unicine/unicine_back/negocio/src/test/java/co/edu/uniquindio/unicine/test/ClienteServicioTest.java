@@ -27,7 +27,7 @@ public class ClienteServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrarClienteTest(){
-        Cliente cliente = new Cliente("1094973943", "juan jose", "correoPrueba@gmail.com", "4444",null);
+        Cliente cliente = new Cliente("1094973943", "juan jose", "correoPrueba@gmail.com", "4444",null, null);
         try {
             Cliente nuevo = clienteServicio.registrarCliente(cliente);
             Assertions.assertNotNull(nuevo);

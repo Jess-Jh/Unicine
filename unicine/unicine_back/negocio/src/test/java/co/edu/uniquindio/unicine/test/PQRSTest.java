@@ -25,7 +25,7 @@ public class PQRSTest {
     public void registrar(){
         List<String> telefonos = new ArrayList<>();
         telefonos.add("313447");
-        Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos);
+        Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos, null);
 
         PQRS pqrs = new PQRS("Mensaje de prueba para el usuario", cliente);
         PQRS guardado = pqrsRepo.save(pqrs);
