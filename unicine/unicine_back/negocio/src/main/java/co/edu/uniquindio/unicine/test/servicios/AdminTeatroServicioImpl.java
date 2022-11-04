@@ -45,13 +45,14 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public void eliminarHorario(Integer idHorario) throws Exception {
+    public boolean eliminarHorario(Integer idHorario) throws Exception {
         Horario buscado = horarioRepo.findById(idHorario).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro la confiteria para eliminar");
         }else {
             horarioRepo.delete(buscado);
+            return true;
         }
     }
 
@@ -71,13 +72,14 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public void eliminarFuncion(Integer idFuncion) throws Exception {
+    public boolean eliminarFuncion(Integer idFuncion) throws Exception {
         Funcion buscado = funcionRepo.findById(idFuncion).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro la funcion para eliminar");
         }else {
             funcionRepo.delete(buscado);
+            return true;
         }
     }
 
@@ -111,13 +113,14 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public void eliminarSala(Integer idSala) throws Exception {
+    public boolean eliminarSala(Integer idSala) throws Exception {
         Sala buscado = salaRepo.findById(idSala).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro la sala para eliminar");
         }else {
             salaRepo.delete(buscado);
+            return true;
         }
     }
 
@@ -152,13 +155,14 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public void eliminarTeatro(Integer idTeatro) throws Exception {
+    public boolean eliminarTeatro(Integer idTeatro) throws Exception {
         Teatro buscado = teatroRepo.findById(idTeatro).orElse(null);
 
         if (buscado == null){
             throw new Exception("No se encontro la sala para eliminar");
         }else {
             teatroRepo.delete(buscado);
+            return true;
         }
     }
 

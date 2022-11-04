@@ -15,13 +15,13 @@ public interface AdminTeatroServicio {
 
     Horario obtenerHorario(Integer idHorario) throws Exception;
 
-    void eliminarHorario(Integer idHorario) throws Exception;
+    boolean eliminarHorario(Integer idHorario) throws Exception;
 
     Funcion crearFuncion(Funcion funcion);
 
     Funcion actualizarFuncion(Funcion funcion) throws Exception;
 
-    void eliminarFuncion(Integer idFuncion) throws Exception;
+    boolean eliminarFuncion(Integer idFuncion) throws Exception;
 
     List<Funcion> listarFunciones();
 
@@ -31,7 +31,7 @@ public interface AdminTeatroServicio {
 
     Sala actualizarSala(Sala sala) throws Exception;
 
-    void eliminarSala(Integer idSala) throws Exception;
+    boolean eliminarSala(Integer idSala) throws Exception;
 
     List<Sala> listarSalas();
 
@@ -41,7 +41,7 @@ public interface AdminTeatroServicio {
 
     Teatro actualizarTeatro(Teatro teatro) throws Exception;
 
-    void eliminarTeatro(Integer idTeatro) throws Exception;
+    boolean eliminarTeatro(Integer idTeatro) throws Exception;
 
     List<Teatro> listarTeatros();
 
