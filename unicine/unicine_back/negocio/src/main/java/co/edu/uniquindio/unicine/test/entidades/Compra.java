@@ -50,12 +50,13 @@ public class Compra implements Serializable {
     private CuponCliente cuponCliente;
 
 
-    public Compra(String metodoPago, Double subtotal, Double total, Cliente cliente, FuncionSala funcionSala) {
+    public Compra(String metodoPago, Double subtotal, Double total, Cliente cliente, FuncionSala funcionSala, CuponCliente cuponCliente) {
         this.fechaCompra = LocalDateTime.now();
         this.metodoPago = metodoPago;
         this.subtotal = subtotal;
         this.total = total;
         this.cliente = cliente;
         this.funcionSala = funcionSala;
+        this.cuponCliente = cuponCliente;
     }
 }

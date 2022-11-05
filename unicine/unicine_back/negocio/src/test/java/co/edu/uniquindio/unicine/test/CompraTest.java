@@ -40,7 +40,7 @@ public class CompraTest {
         Funcion funcion = new Funcion(horario, 20000.0);
         FuncionSala funcionSala = new FuncionSala(sala, pelicula, funcion);
 
-        Compra compra = new Compra("Efectivo", 20000.0, 20000.0, cliente, funcionSala);
+        Compra compra = new Compra("Efectivo", 20000.0, 20000.0, cliente, funcionSala, null);
         Compra guardado = compraRepo.save(compra);
 
         Assertions.assertEquals("juan jose",compra.getCliente().getNombreCompleto());

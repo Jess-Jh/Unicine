@@ -39,7 +39,7 @@ public class EntradaTest {
         Funcion funcion = new Funcion(horario, 20000.0);
         FuncionSala funcionSala = new FuncionSala(sala, pelicula, funcion);
 
-        Compra compra = new Compra("Efectivo", 20000.0, 21000.0, cliente, funcionSala);
+        Compra compra = new Compra("Efectivo", 20000.0, 21000.0, cliente, funcionSala, null);
 
         Entrada entrada = new Entrada("Fila C3", "Columna A1", compra);
         Entrada guardado = entradaRepo.save(entrada);

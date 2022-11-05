@@ -39,10 +39,10 @@ public class ConfiteriaCompraTest {
         Funcion funcion = new Funcion(horario, 20000.0);
         FuncionSala funcionSala = new FuncionSala(sala, pelicula, funcion);
 
-        Compra compra = new Compra("Efectivo", 20000.0, 20000.0, cliente, funcionSala);
+        Compra compra = new Compra("Efectivo", 20000.0, 20000.0, cliente, funcionSala, null);
         Confiteria confiteria = new Confiteria("ruta/img",13000.0 , "confiteria 1");
 
-        ConfiteriaCompra confiteriaCompra = new ConfiteriaCompra(30000.0, compra, confiteria);
+        ConfiteriaCompra confiteriaCompra = new ConfiteriaCompra(30000.0, compra, confiteria,1);
         ConfiteriaCompra guardado = confiteriaCompraRepo.save(confiteriaCompra);
 
         Assertions.assertEquals("confiteria 1",confiteriaCompra.getConfiteria().getNombre());

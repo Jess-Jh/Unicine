@@ -17,9 +17,9 @@ public class Cliente extends Persona implements Serializable {
     @Column(length = 150)
     private String imagenPerfil;
 
-    private Integer membresia;
+    private Boolean membresia;
 
-    private Integer estado;
+    private Boolean estado;
 
     @ElementCollection
     private List<String> telefonos;
@@ -46,5 +46,7 @@ public class Cliente extends Persona implements Serializable {
         this.id = 1;
         this.label = "Cliente";
         this.imagenPerfil = imagenPerfil;
+        this.membresia = false;
+        this.estado = false;
     }
 }

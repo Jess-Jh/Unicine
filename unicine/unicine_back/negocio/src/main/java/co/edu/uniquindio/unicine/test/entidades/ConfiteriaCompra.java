@@ -30,9 +30,10 @@ public class ConfiteriaCompra implements Serializable {
     @ManyToOne
     private Confiteria confiteria;
 
-    public ConfiteriaCompra(Double precio, Compra compra, Confiteria confiteria) {
+    public ConfiteriaCompra(Double precio, Compra compra, Confiteria confiteria, Integer unidades) {
         this.precio = precio;
         this.compra = compra;
         this.confiteria = confiteria;
+        this.unidades = unidades;
     }
 }
