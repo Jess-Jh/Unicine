@@ -27,6 +27,10 @@ class ServerException extends CustomException {
   ServerException([String? message]) : super(message, "Server Error: ");
 }
 
+class ValidationException extends CustomException {
+  ValidationException([String? message]) : super(message, 'Validation Error: ');
+}
+
 class FetchDataException extends CustomException {
   FetchDataException([String? message])
       : super(message, "Error During Communication: ");

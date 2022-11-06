@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
-import 'package:uni_cine/controllers/login_form_controller.dart';
+import 'package:uni_cine/controllers/login/login_form_controller.dart';
 import 'package:uni_cine/main.dart';
 
 import 'package:uni_cine/router/router.dart';
@@ -94,7 +94,7 @@ class LoginView extends StatelessWidget {
                         validator: (value) {
                           if (value == null || value.isEmpty) return 'Ingrese su contraseña';
 
-                          if (value.length < 6) return 'La contraseña debe tener más de 6 caracteres';
+                          if (value.length < 2) return 'La contraseña debe tener más de 6 caracteres';
                           return null;
                         },
                         obscureText: true,

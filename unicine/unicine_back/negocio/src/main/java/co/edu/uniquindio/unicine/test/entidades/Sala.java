@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Sala implements Serializable {
     @Column(length = 45, nullable = false)
     private String nombre;
 
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Teatro teatro;

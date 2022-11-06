@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Cliente extends Persona implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<PQRS> pqrs;
 
+    @JsonIgnore
     @ManyToOne
     private Ciudad ciudad;
 

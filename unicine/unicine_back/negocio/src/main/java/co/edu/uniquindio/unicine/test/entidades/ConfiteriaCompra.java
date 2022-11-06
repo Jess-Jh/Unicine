@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,9 +25,11 @@ public class ConfiteriaCompra implements Serializable {
     @Column(nullable = false)
     private Integer unidades;
 
+    @JsonIgnore
     @ManyToOne
     private Compra compra;
 
+    @JsonIgnore
     @ManyToOne
     private Confiteria confiteria;
 

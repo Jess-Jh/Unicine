@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class DistribucionSilla implements Serializable {
 
     private Integer columnas;
 
+    @JsonIgnore
     @ManyToOne
     private Sala sala;
 

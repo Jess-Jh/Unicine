@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,6 +38,7 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String reparto;
 
+    @JsonIgnore
     @ManyToOne
     private EstadoPelicula estadoPelicula;
 

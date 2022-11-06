@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class Administrador extends Persona implements Serializable {
 
     //editado
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Ciudad ciudad;

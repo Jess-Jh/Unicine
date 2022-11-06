@@ -27,22 +27,108 @@ Content-Type: application/json
     "body": "Actualizando bloque de código"
 }
 
-// ----------------------------------------- Rest User ---------------------------------------------->>
-@apiRest = http://localhost:3306
+// ----------------------------------------- Rest Client ---------------------------------------------->>
+@apiRest = http://localhost:8080
 
 ### Creando cliente
-POST {{apiRest}}/registrarCliente
+POST {{apiRest}}/auth/register
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "label" : "Cliente",
+    "cedula" : "567567",
+    "imagenPerfil" : "urlImagen",
+    "nombreCompleto" : "Felipe Hernandez",
+    "email": "Felipe@gmail.com",
+    "contrasena" : "1234567",
+    "membresia" : 1,
+    "estado" : 1
+}
+
+### Autenticación
+GET {{apiRest}}/auth/login/felipe@gmail.com/1234567
+Content-Type: application/json
+
+{
+    "email": "felipe@gmail.com",
+    "contrasena" : "1234567",
+}
+
+### Autenticación administrador
+GET {{apiRest}}/auth/login/admin1@gmail.com/123
+Content-Type: application/json
+
+{
+    "email": "admin1@gmail.com",
+    "contrasena" : "123",
+}
+
+### Autenticación administrador teatro
+GET {{apiRest}}/auth/login/admin2@gmail.com/123
+Content-Type: application/json
+
+{
+    "email": "admin2@gmail.com",
+    "contrasena" : "123",
+}
+
+### Autenticación
+GET {{apiRest}}/auth
+Content-Type: application/json
+
+{
+    "email": "asfas@sdfasf.com",
+    "contrasena" : "sfdasfdasf",
+}
+
+### Obtener ciudad
+GET {{apiRest}}/obtener-ciudad/1
+
+###
+GET {{apiRest}}/detalle-usuarios
+
+### Obtener usuario por cédula
+GET {{apiRest}}/detalle-usuario/2432343425
+
+### Eliminar usuario
+DELETE {{apiRest}}/delete/kjhlkjhlkhlk
+
+### Actualizar usuario
+PUT {{apiRest}}/update
 Content-Type: application/json
 
 {
     "cedula" : "12345",
+    "id" : 1,
+    "label" : "Cliente",
     "imagenPerfil" : "urlImagen",
-    "nombreCompleto" : "Juan Carlos",
-    "email": "Juan@gmail.com",
+    "nombreCompleto" : "Juan Sebastian",
+    "email": "JuanS@gmail.com",
     "contrasena" : "1234567"
+}
+
+###
+PUT {{apiRest}}/update
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "label" : "Cliente",
+    "cedula" : "12347",
+    "imagenPerfil" : "urlImagen",
+    "nombreCompleto" : "Sara Hernandez",
+    "email": "Sarha@gmail.com",
+    "contrasena" : "1234567",
+    "membresia" : false,
+    "estado" : false
 }
 
 
 
+// --------------------------------------------------------------------------------------------------\\
 
+// ----------------------------------------- Rest Administrator ---------------------------------------------->>
+### Obtener la lista de la confiteria
+GET {{apiRest}}/lista-confiteria
 // --------------------------------------------------------------------------------------------------\\

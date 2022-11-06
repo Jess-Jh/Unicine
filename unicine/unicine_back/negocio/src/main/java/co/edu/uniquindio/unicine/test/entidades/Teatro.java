@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Teatro implements Serializable {
     @Column(length = 100, nullable = false)
     private String direccion;
 
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Ciudad ciudad;

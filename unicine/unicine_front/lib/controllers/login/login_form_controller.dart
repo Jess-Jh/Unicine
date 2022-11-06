@@ -10,7 +10,6 @@ class LoginFormController extends SimpleNotifier {
     if (formKey.currentState!.validate()) {
       // print('Form valid... Login');
       // print('$email ==== $password');
-
       return true;
     } else {
       // print('Form not valid');

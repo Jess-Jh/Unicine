@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Entrada implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
+    @JsonIgnore
     @ManyToOne
     private Compra compra;
 

@@ -4,14 +4,14 @@ import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
 
 import 'package:uni_cine/router/router.dart';
-import 'package:uni_cine/controllers/register_form_controller.dart';
+import 'package:uni_cine/controllers/login/auth_controller.dart';
 
 import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/link_text.dart';
 
 final registerFormProvider = SimpleProvider(
-  (ref) => RegisterFormController(),
+  (ref) => AuthController(),
 );
 
 class RegisterView extends ConsumerWidget {
@@ -65,7 +65,9 @@ class RegisterView extends ConsumerWidget {
                           text: 'Inicia sesión',
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, Flurorouter.loginRoute);
+                              context,
+                              Flurorouter.loginRoute,
+                            );
                           },
                         ),
                       ],
@@ -178,7 +180,9 @@ class RegisterView extends ConsumerWidget {
                     const SizedBox(height: 25),
                     CustomOutlinedButton(
                       onPressed: () {
-                        ctrl.validateForm(formKey);
+                        final validForm = ctrl.validateForm(formKey);
+                        if (!validForm) return;
+                        ctrl.register();
                       },
                       text: 'Crear Cuenta',
                     )

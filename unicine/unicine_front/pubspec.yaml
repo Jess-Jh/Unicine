@@ -31,14 +31,17 @@ dependencies:
   dio: ^4.0.6
   dropdown_button2: ^1.8.2
   email_validator: ^2.1.17
+  encrypt: ^5.0.1
   fluro: ^2.0.3
   flutter:
     sdk: flutter
   flutter_meedu: ^7.2.0
+  flutter_secure_storage: ^6.0.0
   get_it: ^7.2.0
   google_fonts: ^3.0.1
   logger: ^1.1.0
   shared_preferences: ^2.0.15
+  top_snackbar_flutter: ^2.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

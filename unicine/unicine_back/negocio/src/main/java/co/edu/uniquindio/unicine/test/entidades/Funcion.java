@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Funcion implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Horario horario;

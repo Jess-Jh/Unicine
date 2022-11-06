@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class PQRS implements Serializable {
     @Column(nullable = false)
     private String mensaje;
 
+    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Cliente cliente;

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 
 bool isValidEmail({required String email}) {
@@ -22,3 +23,21 @@ log(dynamic runtimeType, dynamic message) {
     }
   } catch (_) {}
 }
+
+Future<void> saveData({required String key, required String data}) async {
+  const storage = FlutterSecureStorage();
+  await storage.write(key: key, value: data);
+}
+
+Future<String?> loadData(String key) async {
+  try {
+    const storage = FlutterSecureStorage();
+    final res = await storage.read(key: key);
+    return res;
+  } catch (e) {
+    log(_runtimeType, e.toString());
+    return null;
+  }
+}
+
+String get _runtimeType => 'util';
