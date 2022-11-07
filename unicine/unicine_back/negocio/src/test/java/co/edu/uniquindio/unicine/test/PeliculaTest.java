@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.test.dto.PeliculaDTO;
+import co.edu.uniquindio.unicine.test.entidades.EstadoPelicula;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.repositorios.PeliculaRepo;
 import org.junit.jupiter.api.Assertions;
@@ -65,7 +66,7 @@ public class PeliculaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void buscarPelicula(){
-        List<Pelicula> lista = peliculaRepo.buscarPelicula("thri",2);
+        List<Pelicula> lista = peliculaRepo.buscarPelicula("thri", EstadoPelicula.CARTELERA);
         lista.forEach(System.out::println);
     }
 

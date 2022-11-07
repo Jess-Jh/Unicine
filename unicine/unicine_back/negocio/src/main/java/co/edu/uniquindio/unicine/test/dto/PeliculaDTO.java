@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.dto;
 
+import co.edu.uniquindio.unicine.test.entidades.EstadoPelicula;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class PeliculaDTO {
 
     private String nombre;
     private String genero;
-    private Integer estado;
+    private EstadoPelicula estado;
     private String imagen;
 
 }
