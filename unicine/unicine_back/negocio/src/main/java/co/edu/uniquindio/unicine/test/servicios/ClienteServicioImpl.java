@@ -150,7 +150,8 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public List<Pelicula> buscarPelicula(String nombre) {
 
-        List<Pelicula> peliculas = peliculaRepo.buscarPelicula(nombre, 1);
+
+        List<Pelicula> peliculas = peliculaRepo.buscarPelicula(nombre, EstadoPelicula.CARTELERA);
 
         return peliculas;
     }

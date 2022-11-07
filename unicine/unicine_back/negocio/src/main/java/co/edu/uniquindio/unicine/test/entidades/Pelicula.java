@@ -38,8 +38,11 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String reparto;
 
+    /*@ManyToOne
+    private EstadoPelicula estadoPelicula;*/
     @JsonIgnore
-    @ManyToOne
+    @Column(nullable=false)
+    @Enumerated(EnumType.STRING)
     private EstadoPelicula estadoPelicula;
 
     @ToString.Exclude
