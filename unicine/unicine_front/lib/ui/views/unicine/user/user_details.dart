@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class UserDetails extends StatelessWidget {
   const UserDetails({super.key});
@@ -32,28 +33,80 @@ class UserDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const CustomFormInput(
-                        hint: 'cédula',
-                        label: 'Cédula',
-                        icon: Icons.credit_card,
+                      CustomFormInput(
+                        inputForm: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Cédula';
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(fontSize: 13),
+                          decoration: CustomInputs.loginInputDecoration(
+                            hint: 'Cédula',
+                            label: 'Cédula',
+                            icon: Icons.credit_card,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
-                      const CustomFormInput(
-                        hint: 'Nombre',
-                        label: 'Nombre Completo',
-                        icon: Icons.person,
+                      CustomFormInput(
+                        inputForm: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Nombre';
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(fontSize: 13),
+                          decoration: CustomInputs.loginInputDecoration(
+                            hint: 'Nombre',
+                            label: 'Nombre Completo',
+                            icon: Icons.credit_card,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
-                      const CustomFormInput(
-                        hint: 'teléfono',
-                        label: 'Teléfono',
-                        icon: Icons.settings_cell_outlined,
+                      CustomFormInput(
+                        inputForm: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'teléfono';
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(fontSize: 13),
+                          decoration: CustomInputs.loginInputDecoration(
+                            hint: 'teléfono',
+                            label: 'Teléfono',
+                            icon: Icons.settings_cell_outlined,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
-                      const CustomFormInput(
-                        hint: 'correo',
-                        label: 'Correo electrónico',
-                        icon: Icons.email_outlined,
+                      CustomFormInput(
+                        inputForm: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'correo';
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          keyboardType: TextInputType.name,
+                          style: const TextStyle(fontSize: 13),
+                          decoration: CustomInputs.loginInputDecoration(
+                            hint: 'correo',
+                            label: 'Correo electrónico',
+                            icon: Icons.email_outlined,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       CustomFlatButton(text: 'Mis Compras', onPressed: () {}),
@@ -77,28 +130,80 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const CustomFormInput(
-                    hint: 'cédula',
-                    label: 'Cédula',
-                    icon: Icons.credit_card,
+                  CustomFormInput(
+                    inputForm: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Cédula';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(fontSize: 13),
+                      decoration: CustomInputs.loginInputDecoration(
+                        hint: 'Cédula',
+                        label: 'Cédula',
+                        icon: Icons.credit_card,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
-                  const CustomFormInput(
-                    hint: 'Nombre',
-                    label: 'Nombre Completo',
-                    icon: Icons.person,
+                  CustomFormInput(
+                    inputForm: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Nombre';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(fontSize: 13),
+                      decoration: CustomInputs.loginInputDecoration(
+                        hint: 'Nombre',
+                        label: 'Nombre Completo',
+                        icon: Icons.credit_card,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
-                  const CustomFormInput(
-                    hint: 'teléfono',
-                    label: 'Teléfono',
-                    icon: Icons.settings_cell_outlined,
+                  CustomFormInput(
+                    inputForm: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'teléfono';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(fontSize: 13),
+                      decoration: CustomInputs.loginInputDecoration(
+                        hint: 'teléfono',
+                        label: 'Teléfono',
+                        icon: Icons.settings_cell_outlined,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
-                  const CustomFormInput(
-                    hint: 'correo',
-                    label: 'Correo electrónico',
-                    icon: Icons.email_outlined,
+                  CustomFormInput(
+                    inputForm: TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'correo';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(fontSize: 13),
+                      decoration: CustomInputs.loginInputDecoration(
+                        hint: 'correo',
+                        label: 'Correo electrónico',
+                        icon: Icons.email_outlined,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   CustomFlatButton(text: 'Mis Compras', onPressed: () {}),

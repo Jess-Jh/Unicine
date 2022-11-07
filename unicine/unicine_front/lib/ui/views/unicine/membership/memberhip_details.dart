@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'dart:math' as math;
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class MembershipDetails extends StatelessWidget {
   const MembershipDetails({super.key});
@@ -21,21 +22,47 @@ class MembershipDetails extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Column(
-                        children: const [
-                          Spacer(),
+                        children: [
+                          const Spacer(),
                           CustomFormInput(
-                            hint: 'Ingrese su correo electrónico',
-                            label: 'Correo Electrónico',
-                            icon: Icons.email_outlined,
+                            inputForm: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Ingrese su correo electrónico';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(fontSize: 13),
+                              decoration: CustomInputs.loginInputDecoration(
+                                hint: 'Ingrese su correo electrónico',
+                                label: 'Correo Electrónico',
+                                icon: Icons.email_outlined,
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           CustomFormInput(
-                            hint: 'Ingrese la contraseña',
-                            label: 'Contraseña',
-                            icon: Icons.password_rounded,
+                            inputForm: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Ingrese la contraseña';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(fontSize: 13),
+                              decoration: CustomInputs.loginInputDecoration(
+                                hint: 'Ingrese la contraseña',
+                                label: 'Contraseña',
+                                icon: Icons.password_rounded,
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 10),
-                          Spacer()
+                          const SizedBox(height: 10),
+                          const Spacer()
                         ],
                       ),
                     ),
@@ -50,21 +77,47 @@ class MembershipDetails extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Column(
-                        children: const [
-                          Spacer(),
+                        children: [
+                          const Spacer(),
                           CustomFormInput(
-                            hint: 'Ingrese su correo electrónico',
-                            label: 'Correo Electrónico',
-                            icon: Icons.email_outlined,
+                            inputForm: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Ingrese su correo electrónico';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(fontSize: 13),
+                              decoration: CustomInputs.loginInputDecoration(
+                                hint: 'Ingrese su correo electrónico',
+                                label: 'Correo Electrónico',
+                                icon: Icons.email_outlined,
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           CustomFormInput(
-                            hint: 'Ingrese la contraseña',
-                            label: 'Contraseña',
-                            icon: Icons.password_rounded,
+                            inputForm: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Ingrese la contraseña';
+                                }
+                                return null;
+                              },
+                              obscureText: true,
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(fontSize: 13),
+                              decoration: CustomInputs.loginInputDecoration(
+                                hint: 'Ingrese la contraseña',
+                                label: 'Contraseña',
+                                icon: Icons.password_rounded,
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 10),
-                          Spacer()
+                          const SizedBox(height: 10),
+                          const Spacer()
                         ],
                       ),
                     ),

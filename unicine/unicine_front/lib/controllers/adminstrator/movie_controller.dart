@@ -6,6 +6,23 @@ class MovieController extends SimpleNotifier {
   List<Movie> movies = [];
   bool loading = true;
 
+  // Inputs
+  String nombre = '';
+  String urlImagen = '';
+  String trailer = '';
+  String genero = '';
+  String reparto = '';
+  String estado = '';
+  String sinopsis = '';
+
+  bool validateForm(formMovieKey) {
+    if (formMovieKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void getMovies() async {
     final res = await UnicineApi.httpGet('/lista-peliculas');
     for (final i in res) {

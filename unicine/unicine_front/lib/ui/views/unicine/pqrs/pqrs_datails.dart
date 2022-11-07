@@ -37,33 +37,85 @@ class _TabletDesktopMenu extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Row(
-            children: const [
+            children: [
               CustomFormInput(
-                hint: 'Nombre cliente',
-                label: 'Nombre',
-                icon: Icons.people_alt_outlined,
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Nombre cliente';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Nombre cliente',
+                    label: 'Nombre',
+                    icon: Icons.people_alt_outlined,
+                  ),
+                ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               CustomFormInput(
-                hint: 'Ciudad',
-                label: 'Ciudad',
-                icon: Icons.location_city_rounded,
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ciudad';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ciudad',
+                    label: 'Ciudad',
+                    icon: Icons.location_city_rounded,
+                  ),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 20),
           Row(
-            children: const [
+            children: [
               CustomFormInput(
-                hint: 'Ingrese su correo electrónico',
-                label: 'Correo Electrónico',
-                icon: Icons.email_outlined,
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese su correo electrónico';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese su correo electrónico',
+                    label: 'Correo Electrónico',
+                    icon: Icons.email_outlined,
+                  ),
+                ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               CustomFormInput(
-                hint: 'Ingrese su número de teléfono',
-                label: 'Teléfono',
-                icon: Icons.phone_android_outlined,
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese su número de teléfono';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese su número de teléfono',
+                    label: 'Teléfono',
+                    icon: Icons.phone_android_outlined,
+                  ),
+                ),
               ),
             ],
           ),
@@ -117,28 +169,80 @@ class _MobileMenu extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const CustomFormInput(
-            hint: 'Nombre cliente',
-            label: 'Nombre',
-            icon: Icons.people_alt_outlined,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Nombre cliente';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Nombre cliente',
+                label: 'Nombre',
+                icon: Icons.people_alt_outlined,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
-          const CustomFormInput(
-            hint: 'Ciudad',
-            label: 'Ciudad',
-            icon: Icons.location_city_rounded,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ciudad';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ciudad',
+                label: 'Ciudad',
+                icon: Icons.location_city_rounded,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
-          const CustomFormInput(
-            hint: 'Ingrese su correo electrónico',
-            label: 'Correo Electrónico',
-            icon: Icons.email_outlined,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese su correo electrónico';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese su correo electrónico',
+                label: 'Correo Electrónico',
+                icon: Icons.email_outlined,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
-          const CustomFormInput(
-            hint: 'Ingrese su número de teléfono',
-            label: 'Teléfono',
-            icon: Icons.phone_android_outlined,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese su número de teléfono';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese su número de teléfono',
+                label: 'Teléfono',
+                icon: Icons.phone_android_outlined,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
           Expanded(

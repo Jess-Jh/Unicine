@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class FormCoupons extends StatelessWidget {
   const FormCoupons({super.key});
@@ -11,13 +12,81 @@ class FormCoupons extends StatelessWidget {
       height: 270,
       child: Column(
         children: [
-          const CustomFormInput(hint: 'Ingrese el valor de descuento', label: 'Descuento', icon: Icons.money_off_csred),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el valor de descuento';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el valor de descuento',
+                label: 'Descuento',
+                icon: Icons.money_off_csred,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese la fecha de vencimiento', label: 'Fecha de vencimiento', icon: Icons.date_range_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la fecha de vencimiento';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la fecha de vencimiento',
+                label: 'Fecha de vencimiento',
+                icon: Icons.date_range_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese la descripción', label: 'Descripción', icon: Icons.library_books_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la descripción';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la descripción',
+                label: 'Descripción',
+                icon: Icons.library_books_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese el criterio', label: 'Criterio', icon: Icons.credit_score_sharp),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el criterio';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el criterio',
+                label: 'Criterio',
+                icon: Icons.credit_score_sharp,
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

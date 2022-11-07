@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class FormConfectionary extends StatelessWidget {
   const FormConfectionary({super.key});
@@ -11,22 +12,61 @@ class FormConfectionary extends StatelessWidget {
       height: 220,
       child: Column(
         children: [
-          const CustomFormInput(
-            hint: 'Ingrese el nombre del producto',
-            label: 'Nombre',
-            icon: Icons.fastfood_outlined,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el nombre del producto';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el nombre del producto',
+                label: 'Producto',
+                icon: Icons.fastfood_outlined,
+              ),
+            ),
           ),
           const SizedBox(height: 10),
-          const CustomFormInput(
-            hint: 'Ingrese el precio del producto',
-            label: 'Precio',
-            icon: Icons.attach_money_rounded,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el precio del producto';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el precio del producto',
+                label: 'Precio',
+                icon: Icons.attach_money_rounded,
+              ),
+            ),
           ),
           const SizedBox(height: 10),
-          const CustomFormInput(
-            hint: 'Agregue la Url de la imagen',
-            label: 'Url imagen',
-            icon: Icons.image_outlined,
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Agregue la Url de la imagen';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Agregue la Url de la imagen',
+                label: 'Url Imagen',
+                icon: Icons.image_outlined,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
           Row(

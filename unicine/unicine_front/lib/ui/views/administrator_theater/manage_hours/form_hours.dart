@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class FormHours extends StatelessWidget {
   const FormHours({super.key});
@@ -11,9 +12,43 @@ class FormHours extends StatelessWidget {
       height: 160,
       child: Column(
         children: [
-          const CustomFormInput(hint: 'Ingresa la fecha', label: 'Fecha', icon: Icons.date_range),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingresa la fecha';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingresa la fecha',
+                label: 'Fecha',
+                icon: Icons.date_range,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Selecciona la hora', label: 'Hora', icon: Icons.date_range),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Selecciona la hora';
+                }
+                return null;
+              },
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Selecciona la hora',
+                label: 'Hora',
+                icon: Icons.date_range,
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

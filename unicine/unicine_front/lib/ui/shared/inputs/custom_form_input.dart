@@ -1,37 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
+import 'package:flutter_meedu/ui.dart';
 
-class CustomFormInput extends StatelessWidget {
-  final String hint;
-  final String label;
-  final IconData icon;
-  final TextInputType? keyboardType;
+class CustomFormInput extends ConsumerWidget {
   final double? heigth;
+  final TextFormField inputForm;
 
   const CustomFormInput({
     super.key,
-    required this.hint,
-    required this.label,
-    required this.icon,
-    this.keyboardType,
     this.heigth,
+    required this.inputForm,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Flexible(
       child: Container(
         height: heigth ?? 40,
         decoration: buildBoxDecoration(),
-        child: TextFormField(
-          keyboardType: keyboardType,
-          style: const TextStyle(fontSize: 13),
-          decoration: CustomInputs.loginInputDecoration(
-            hint: hint,
-            label: label,
-            icon: icon,
-          ),
-        ),
+        child: inputForm,
       ),
     );
   }
@@ -41,3 +27,24 @@ class CustomFormInput extends StatelessWidget {
         color: Colors.grey.withOpacity(0.1),
       );
 }
+
+/*
+TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Ingrese $label';
+            }
+            return null;
+          },
+          onChanged: (value) => providerCtrl = value,
+          obscureText: true,
+          keyboardType: keyboardType,
+          style: const TextStyle(fontSize: 13),
+          decoration: CustomInputs.loginInputDecoration(
+            hint: hint,
+            label: label,
+            icon: icon,
+          ),
+        ),
+
+        */

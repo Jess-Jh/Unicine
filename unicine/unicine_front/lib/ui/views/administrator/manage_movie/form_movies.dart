@@ -1,49 +1,183 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/models/administrator/movie.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class FormMovies extends StatelessWidget {
-  const FormMovies({super.key});
+  final Movie? movie;
+
+  const FormMovies({super.key, this.movie});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-        builder: (_, constraints) => (constraints.maxWidth > 520)
-            ? _TabletDesktopForm()
-            : _MobileForm(),
-        );
+      builder: (_, constraints) =>
+          (constraints.maxWidth > 520) ? _TabletDesktopForm() : _MobileForm(),
+    );
   }
 }
 
-class _TabletDesktopForm extends StatelessWidget {
+class _TabletDesktopForm extends ConsumerWidget {
+  final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
+
     return SizedBox(
       height: 210,
       child: Column(
         children: [
           Row(
-            children: const [
-              CustomFormInput(hint: 'Ingrese el nombre de la película', label: 'Nombre', icon: Icons.movie_creation_outlined),
-              SizedBox(width: 10),
-              CustomFormInput(hint: 'Ingrese la url de la imagen', label: 'Imagen', icon: Icons.image_outlined),
-              SizedBox(width: 10),
-              CustomFormInput(hint: 'Ingrese la url del tráiler', label: 'Tráiler', icon: Icons.video_call_outlined),
+            children: [
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese el nombre de la película';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.nombre = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese el nombre de la película',
+                    label: 'Nombre',
+                    icon: Icons.movie_creation_outlined,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese la url de la imagen';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.urlImagen = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese la url de la imagen',
+                    label: 'Imagen',
+                    icon: Icons.image_outlined,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese la url del tráiler';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.trailer = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese la url del tráiler',
+                    label: 'Tráiler',
+                    icon: Icons.video_call_outlined,
+                  ),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 15),
           Row(
-            children: const [
-              CustomFormInput(hint: 'Ingrese el género', label: 'Género', icon: Icons.person_outline_rounded),
-              SizedBox(width: 10),
-              CustomFormInput(hint: 'Ingrese el reparto', label: 'Reparto', icon: Icons.people),
-              SizedBox(width: 10),
-              CustomFormInput(hint: 'Seleccione el estado', label: 'Estado', icon: Icons.not_started_outlined),
+            children: [
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese el género';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.genero = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese el género',
+                    label: 'Género',
+                    icon: Icons.person_outline_rounded,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese el reparto';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.reparto = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese el reparto',
+                    label: 'Reparto',
+                    icon: Icons.people,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Seleccione el estado';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.estado = value,
+                  obscureText: true,
+                  keyboardType: TextInputType.name,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Seleccione el estado',
+                    label: 'Estado',
+                    icon: Icons.not_started_outlined,
+                  ),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 15),
-          const CustomFormInput(hint: 'Ingrese la sinopsis', label: 'Sinopsis', icon: Icons.text_snippet_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la sinopsis';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.sinopsis = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la sinopsis',
+                label: 'Sinopsis',
+                icon: Icons.not_started_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +194,9 @@ class _TabletDesktopForm extends StatelessWidget {
               const SizedBox(width: 20),
               Expanded(
                 child: CustomOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final validForm = ctrl.validateForm(formMovieKey);
+                  },
                   text: 'Actualizar',
                   width: 300,
                   height: 8,
@@ -75,27 +211,155 @@ class _TabletDesktopForm extends StatelessWidget {
   }
 }
 
-class _MobileForm extends StatelessWidget {
+class _MobileForm extends ConsumerWidget {
+  final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
     return SizedBox(
       height: 400,
       child: Column(
         children: [
-          const CustomFormInput(hint: 'Ingrese el nombre de la película', label: 'Nombre', icon: Icons.movie_creation_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el nombre de la película';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.nombre = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el nombre de la película',
+                label: 'Nombre',
+                icon: Icons.movie_creation_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese la url de la imagen', label: 'Imagen', icon: Icons.image_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la url de la imagen';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.urlImagen = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la url de la imagen',
+                label: 'Imagen',
+                icon: Icons.image_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese la url del tráiler', label: 'Tráiler', icon: Icons.video_call_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la url del tráiler';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.trailer = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la url del tráiler',
+                label: 'Tráiler',
+                icon: Icons.video_call_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 15),
-          const CustomFormInput(hint: 'Ingrese el género', label: 'Género', icon: Icons.person_outline_rounded),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el género';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.genero = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el género',
+                label: 'Género',
+                icon: Icons.person_outline_rounded,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Ingrese el reparto', label: 'Reparto', icon: Icons.people),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese el reparto';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.reparto = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese el reparto',
+                label: 'Reparto',
+                icon: Icons.people,
+              ),
+            ),
+          ),
           const SizedBox(height: 10),
-          const CustomFormInput(hint: 'Seleccione el estado', label: 'Estado', icon: Icons.not_started_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Seleccione el estado';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.estado = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Seleccione el estado',
+                label: 'Estado',
+                icon: Icons.not_started_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 15),
-          const CustomFormInput(hint: 'Ingrese la sinopsis', label: 'Sinopsis', icon: Icons.text_snippet_outlined),
+          CustomFormInput(
+            inputForm: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Ingrese la sinopsis';
+                }
+                return null;
+              },
+              onChanged: (value) => ctrl.sinopsis = value,
+              obscureText: true,
+              keyboardType: TextInputType.name,
+              style: const TextStyle(fontSize: 13),
+              decoration: CustomInputs.loginInputDecoration(
+                hint: 'Ingrese la sinopsis',
+                label: 'Sinopsis',
+                icon: Icons.not_started_outlined,
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
