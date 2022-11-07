@@ -9,10 +9,13 @@ class ManageHoursView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomCardView(
-      title: 'Detalle Sala',
-      formView: FormHours(),
-      tableView: TableHours(),
+    return const Padding(
+      padding: EdgeInsets.all(20.0),
+      child: CustomCardView(
+        title: 'Detalle Sala',
+        formView: FormHours(),
+        tableView: TableHours(),
+      ),
     );
   }
 }

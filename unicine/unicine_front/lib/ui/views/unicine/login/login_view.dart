@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_meedu/ui.dart';
-import 'package:uni_cine/controllers/login/login_form_controller.dart';
+import 'package:uni_cine/controllers/login/auth_controller.dart';
 import 'package:uni_cine/main.dart';
 
 import 'package:uni_cine/router/router.dart';
@@ -11,7 +11,7 @@ import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/link_text.dart';
 
 final loginFormProvider = SimpleProvider(
-  (ref) => LoginFormController(),
+  (ref) => AuthController(),
 );
 
 class LoginView extends StatelessWidget {
@@ -76,8 +76,12 @@ class LoginView extends StatelessWidget {
                       const SizedBox(height: 25),
                       // Email
                       TextFormField(
+                        onFieldSubmitted: (value) =>
+                            onFormSubmit(ctrl, context),
                         validator: (value) {
-                          if (!EmailValidator.validate(value ?? '')) return 'Email no válido';
+                          if (!EmailValidator.validate(value ?? '')) {
+                            return 'Email no válido';
+                          }
                           return null;
                         },
                         onChanged: (value) => ctrl.email = value,
@@ -90,11 +94,17 @@ class LoginView extends StatelessWidget {
                       const SizedBox(height: 20),
                       // Password
                       TextFormField(
+                        onFieldSubmitted: (value) =>
+                            onFormSubmit(ctrl, context),
                         onChanged: (value) => ctrl.password = value,
                         validator: (value) {
-                          if (value == null || value.isEmpty) return 'Ingrese su contraseña';
+                          if (value == null || value.isEmpty) {
+                            return 'Ingrese su contraseña';
+                          }
 
-                          if (value.length < 2) return 'La contraseña debe tener más de 6 caracteres';
+                          if (value.length < 2) {
+                            return 'La contraseña debe tener más de 6 caracteres';
+                          }
                           return null;
                         },
                         obscureText: true,
@@ -117,8 +127,7 @@ class LoginView extends StatelessWidget {
                       const SizedBox(height: 25),
                       CustomOutlinedButton(
                         onPressed: () {
-                          final isValid = ctrl.validateForm(formKey);
-                          if (isValid) authProvider.read.login(ctrl.email, ctrl.password);
+                          onFormSubmit(ctrl, context);
                         },
                         text: 'Iniciar Sesión',
                       ),
@@ -131,5 +140,10 @@ class LoginView extends StatelessWidget {
         ),
       );
     });
+  }
+
+  void onFormSubmit(AuthController ctrl, BuildContext context) {
+    final isValid = ctrl.validateForm(formKey);
+    if (isValid) authProvider.read.login(ctrl.email, ctrl.password, context);
   }
 }

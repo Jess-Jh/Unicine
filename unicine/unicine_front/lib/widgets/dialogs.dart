@@ -57,13 +57,16 @@ class Dialogs {
       context,
       curve: Curves.decelerate,
       animationDuration: const Duration(milliseconds: 300),
+
       // CustomSnackBar.error(message: message),
       Material(
         child: Container(
           constraints: const BoxConstraints(minHeight: 50),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           decoration: BoxDecoration(
-            color: backgroundColor ?? CustomColors.principal,
+            color: (isError
+                ? const Color.fromARGB(255, 176, 44, 44).withOpacity(0.8)
+                : const Color(0xFF2CB03A).withOpacity(0.8)),
             borderRadius: BorderRadius.circular(6),
             boxShadow: const [
               BoxShadow(
@@ -82,13 +85,12 @@ class Dialogs {
                         : Icons.check_circle_outline_rounded),
                 color: iconColor ??
                     (isError
-                        ? const Color(0xFFEC3737)
-                        : const Color(0xFF2CB03A)),
+                        ? const Color.fromARGB(255, 255, 255, 255)
+                        : const Color.fromARGB(255, 255, 255, 255)),
                 size: 23,
               ),
               const SizedBox(width: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.71,
+              Expanded(
                 child: Text(
                   message,
                   maxLines: 5,
@@ -96,8 +98,8 @@ class Dialogs {
                   style: TextStyle(
                     color: textColor ??
                         (isError
-                            ? const Color(0xFFEC3737)
-                            : const Color(0xFF2CB03A)),
+                            ? const Color.fromARGB(255, 255, 255, 255)
+                            : const Color.fromARGB(255, 255, 255, 255)),
                   ),
                 ),
               ),
@@ -107,6 +109,40 @@ class Dialogs {
       ),
     );
   }
+}
+
+AlertDialog showMessageAlert(
+    BuildContext context, String title, String content) {
+  return AlertDialog(
+    alignment: Alignment.center,
+    icon: Icon(
+      Icons.error_outline,
+      color: Colors.red.withOpacity(0.8),
+      size: 80,
+    ),
+    title: Text(title),
+    content: Text('¿Borrar definitivamente $content?'),
+    actions: [
+      TextButton(
+        child: const Text('No'),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      TextButton(
+        child: const Text('Si, borrar'),
+        onPressed: () {
+          Navigator.of(context).pop();
+          Dialogs.showSnackbarTop(
+            context,
+            'Ha eliminado $content con éxito',
+            isError: false,
+            backgroundColor: Colors.white,
+          );
+        },
+      ),
+    ],
+  );
 }
 
 class LoadingDialog extends StatelessWidget {

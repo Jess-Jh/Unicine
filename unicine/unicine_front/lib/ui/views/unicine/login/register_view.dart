@@ -182,7 +182,7 @@ class RegisterView extends ConsumerWidget {
                       onPressed: () {
                         final validForm = ctrl.validateForm(formKey);
                         if (!validForm) return;
-                        ctrl.register();
+                        ctrl.register(context);
                       },
                       text: 'Crear Cuenta',
                     )

@@ -9,10 +9,13 @@ class ManageConfectioneryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomCardView(
-      title: 'Detalle Teatro',
-      formView: FormConfectionary(),
-      tableView: TableConfectionaries(),
+    return const Padding(
+      padding: EdgeInsets.all(20.0),
+      child: CustomCardView(
+        title: 'Detalle Teatro',
+        formView: FormConfectionary(),
+        tableView: TableConfectionaries(),
+      ),
     );
   }
 }

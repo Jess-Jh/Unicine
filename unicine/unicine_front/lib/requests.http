@@ -131,4 +131,7 @@ Content-Type: application/json
 // ----------------------------------------- Rest Administrator ---------------------------------------------->>
 ### Obtener la lista de la confiteria
 GET {{apiRest}}/lista-confiteria
+
+### Lista Peliculas
+GET {{apiRest}}/lista-peliculas
 // --------------------------------------------------------------------------------------------------\\

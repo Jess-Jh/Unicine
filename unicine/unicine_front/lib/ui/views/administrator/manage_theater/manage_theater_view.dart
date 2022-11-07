@@ -9,10 +9,13 @@ class ManageTheaterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomCardView(
-      title: 'Detalle Teatro',
-      formView: FormTheaters(),
-      tableView: TableTheaters(),
+    return const Padding(
+      padding: EdgeInsets.all(20.0),
+      child: CustomCardView(
+        title: 'Detalle Teatro',
+        formView: FormTheaters(),
+        tableView: TableTheaters(),
+      ),
     );
   }
 }

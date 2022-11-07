@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/account/user.dart';
 import 'package:uni_cine/models/client/client.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/services/local_storage.dart';
 import 'package:uni_cine/services/navigation_service.dart';
-import 'package:uni_cine/services/notifications_service.dart';
+import 'package:uni_cine/widgets/dialogs.dart';
 
 enum AuthStatus {
   checking,
@@ -15,13 +17,16 @@ enum AuthStatus {
 }
 
 class AuthController extends SimpleNotifier {
+  String? _token;
   Client? client;
-  User user = User();
+  User? user = User(
+      id: 2,
+      label: 'Administrador',
+      idUser: '2321',
+      email: 'admin98@gmail.com',
+      password: '345353');
   AuthStatus authStatus = AuthStatus.checking;
-
-  AuthController() {
-    isAuthenticated(user);
-  }
+  bool? buttonAuthenticated = false;
 
   // inputs
   String urlImagen = '';
@@ -39,49 +44,74 @@ class AuthController extends SimpleNotifier {
     }
   }
 
-  login(String email, String password) {
-    final data = {'email': email, 'password': password};
+  AuthController() {
+    User userAuth;
+    if (user == null) {
+      authStatus = AuthStatus.notAuthenticated;
+    } else {
+      userAuth = user!;
+      isAuthenticated(userAuth);
+    }
+  }
 
+  login(String email, String password, BuildContext context) {
     UnicineApi.httpGet('/auth/login/$email/$password').then((json) {
       final user = User.fromJson(json);
-      isAuthenticated(user);
+      if (user == null) {
+        this.user;
+        isAuthenticated(this.user!);
+      }
+      Dialogs.showSnackbarTop(
+        context,
+        'Ha iniciado sesión con éxito',
+        isError: false,
+        backgroundColor: Colors.white,
+      );
       notify();
     }).catchError((e) {
-      print('Error en $e');
-      NotificationsService.showSnackbarError(e);
+      Dialogs.showSnackbarTop(
+        context,
+        'Error en $e',
+        isError: true,
+      );
     });
   }
 
   Future<bool> isAuthenticated(User user) async {
-    if (user.id == null) {
-      authStatus = AuthStatus.notAuthenticated;
-      NavigationService.replaceTo(Flurorouter.loginRoute);
-      notify();
-      return false;
-    }
+    final token = LocalStorage.prefs.getString('token');
+
     if (user.id == 1) {
       authStatus = AuthStatus.authenticated;
+      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
       NavigationService.replaceTo(Flurorouter.billboardRoute);
+
+      UnicineApi.configureDio();
+      buttonAuthenticated = true;
       notify();
       return true;
     }
     if (user.id == 2) {
       authStatus = AuthStatus.administratorAuthenticated;
+      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
       NavigationService.replaceTo(Flurorouter.administratorRoute);
+      UnicineApi.configureDio();
       notify();
       return true;
     }
     if (user.id == 3) {
       authStatus = AuthStatus.administratorTheaterAuthenticated;
+      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
       NavigationService.replaceTo(Flurorouter.administratorTheaterRoute);
+      UnicineApi.configureDio();
       notify();
       return true;
     }
+
     await Future.delayed(const Duration(milliseconds: 2000));
     return true;
   }
 
-  register() {
+  register(BuildContext context) {
     final client = Client(
       id: 1,
       label: "Cliente",
@@ -98,13 +128,31 @@ class AuthController extends SimpleNotifier {
       final client = Client.fromJson(json);
 
       authStatus = AuthStatus.authenticated;
+      LocalStorage.prefs
+          .setString('token', '${client.email}+${client.password}');
       NavigationService.replaceTo(Flurorouter.billboardRoute);
+      UnicineApi.configureDio();
+
+      Dialogs.showSnackbarTop(
+        context,
+        'El cliente ha quedado registrado con éxito',
+        isError: false,
+      );
 
       notify();
     }).catchError((e) {
-      print('Error en $e');
-      NotificationsService.showSnackbarError(e);
+      Dialogs.showSnackbarTop(
+        context,
+        'Error en $e',
+        isError: true,
+      );
     });
+  }
+
+  logout() {
+    LocalStorage.prefs.remove('token');
+    authStatus = AuthStatus.notAuthenticated;
+    notify();
   }
 }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
+import 'package:uni_cine/main.dart';
+import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
 
 class Navbar extends StatelessWidget {
@@ -32,17 +34,23 @@ class Navbar extends StatelessWidget {
           //     child: const SearchText(),
           //   ),
           const Spacer(),
-          if (text2 != null)
+          if (text2 != null && (!authProvider.read.buttonAuthenticated!)) ...[
             CustomNavbarButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.pushNamed(context, Flurorouter.registerRoute),
               text: text2!,
             ),
-
-          const SizedBox(width: 10),
-          CustomNavbarButton(
-            onPressed: () {},
-            text: text,
-          ),
+            const SizedBox(width: 10),
+            CustomNavbarButton(
+              onPressed: () => authProvider.read.logout(),
+              text: text,
+            ),
+          ],
+          if (text2 == null)
+            CustomNavbarButton(
+              onPressed: () => authProvider.read.logout(),
+              text: text,
+            ),
           const SizedBox(width: 10)
         ],
       ),

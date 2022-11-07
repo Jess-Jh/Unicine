@@ -10,13 +10,13 @@ class Flurorouter {
 
   static final FluroRouter router = FluroRouter();
 
-  static String rootRoute                 = '/';
+  static String rootRoute                 = '/unicine';
 
   // Auth Router
   static String loginRoute                = '$_domain/auth/login';
   static String registerRoute             = '$_domain/auth/register';
   
-  static String administratorRoute        = '$_domain/administradorTeatro';
+  static String administratorRoute        = '$_domain/administrador';
   // Administrator 
   static String moviesRoute               = '$_domain/administrador/peliculas';
   static String theatersRoute             = '$_domain/administrador/teatros';

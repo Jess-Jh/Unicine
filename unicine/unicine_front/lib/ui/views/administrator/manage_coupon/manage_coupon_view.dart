@@ -9,10 +9,13 @@ class ManageCouponView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomCardView(
-      title: 'Detalle Cupón',
-      formView: FormCoupons(),
-      tableView: TableCoupons(),
+    return const Padding(
+      padding: EdgeInsets.all(20.0),
+      child: CustomCardView(
+        title: 'Detalle Cupón',
+        formView: FormCoupons(),
+        tableView: TableCoupons(),
+      ),
     );
   }
 }

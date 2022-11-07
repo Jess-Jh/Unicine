@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/meedu.dart';
+import 'package:uni_cine/controllers/adminstrator/movie_controller.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/ui/shared/appbar/animated_builder_sidebar.dart';
 import 'package:uni_cine/ui/shared/appbar/navbar.dart';
 import 'package:uni_cine/ui/shared/appbar/sidebar.dart';
+
+final movieProvider = SimpleProvider((ref) => MovieController());
 
 class AdministratorLayoutPage extends StatefulWidget {
   final Widget child;
@@ -45,11 +49,7 @@ class _AdministratorLayoutPageState extends State<AdministratorLayoutPage>
 
                     // View
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: widget.child,
-                      ),
+                      child: widget.child,
                     ),
                   ],
                 ),
