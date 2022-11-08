@@ -51,8 +51,12 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         if (buscado == null){
             throw new Exception("No se encontro la confiteria para eliminar");
         }else {
-            horarioRepo.delete(buscado);
-            return true;
+            if (buscado.getListaFunciones().size() <= 0){
+                horarioRepo.delete(buscado);
+                return true;
+            } else {
+                throw new Exception("El horario se encuentra relacionado en unas funciones");
+            }
         }
     }
 
@@ -78,8 +82,12 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         if (buscado == null){
             throw new Exception("No se encontro la funcion para eliminar");
         }else {
-            funcionRepo.delete(buscado);
-            return true;
+            if(buscado.getListaFuncionSala().size() <= 0){
+                funcionRepo.delete(buscado);
+                return true;
+            }else {
+                throw new Exception("No se puede eliminar funcion ya que se encuentra relacionado a una funcion sala");
+            }
         }
     }
 
@@ -119,8 +127,16 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         if (buscado == null){
             throw new Exception("No se encontro la sala para eliminar");
         }else {
-            salaRepo.delete(buscado);
-            return true;
+            if (buscado.getListaFuncionSala().size() <= 0){
+                if (buscado.getListaDistribuccionSillas().size() <= 0){
+                    salaRepo.delete(buscado);
+                    return true;
+                }else {
+                    throw new Exception("No se puede eliminar ya que tiene relacionado distribucion sillas");
+                }
+            }else {
+                throw new Exception("No se puede eliminar ya que tiene relacionado funcion sala");
+            }
         }
     }
 
@@ -161,8 +177,12 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         if (buscado == null){
             throw new Exception("No se encontro la sala para eliminar");
         }else {
-            teatroRepo.delete(buscado);
-            return true;
+            if (buscado.getListaSalas().size()<=0){
+                teatroRepo.delete(buscado);
+                return true;
+            }else {
+                throw new Exception("No se puede eliminar teatro ya que tiene sala relacionada");
+            }
         }
     }
 

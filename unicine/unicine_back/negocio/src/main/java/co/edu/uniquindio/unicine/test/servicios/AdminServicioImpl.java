@@ -63,8 +63,13 @@ public class AdminServicioImpl implements AdminServicio{
         if (buscado == null){
             throw new Exception("No se encontro pelicula para eliminar");
         }else {
-            peliculaRepo.delete(buscado);
-            return true;
+            if (buscado.getListaFuncionSala().size() <= 0){
+                peliculaRepo.delete(buscado);
+                return true;
+            }
+            else {
+                throw new Exception("No se puede eliminar porque tiene una funcion asociada");
+            }
         }
     }
 
@@ -107,8 +112,13 @@ public class AdminServicioImpl implements AdminServicio{
         if (buscado == null){
             throw new Exception("No se encontro pelicula para eliminar");
         }else {
-            cuponRepo.delete(buscado);
-            return true;
+            if (buscado.getListaCuponClientes().size() <= 0) {
+                cuponRepo.delete(buscado);
+                return true;
+            }
+            else {
+                throw new Exception("Tiene asociado el cupon a clientes");
+            }
         }
     }
 
@@ -148,8 +158,12 @@ public class AdminServicioImpl implements AdminServicio{
         if (buscado == null){
             throw new Exception("No se encontro la confiteria para eliminar");
         }else {
-            confiteriaRepo.delete(buscado);
-            return true;
+            if(buscado.getListaConfiteriaCompra().size() <= 0){
+                confiteriaRepo.delete(buscado);
+                return true;
+            }else {
+                throw new Exception("La confiteria se encuentra relacionado algunas compras");
+            }
         }
     }
 
