@@ -40,9 +40,6 @@ insert into PQRS values (3, "Mensaje prueba pqrs ccc", "12347");
 insert into PQRS values (4, "Mensaje prueba pqrs ccc", "12348");
 insert into PQRS values (5, "Mensaje prueba pqrs ccc", "12349");
 
-insert into estado_pelicula values (1, 1);
-insert into estado_pelicula values (2, 0);
-
 insert into pelicula values (1, "thriller", "ruta/img", "pelicula prueba", "jhon doe - jana doe", "sinopsis prueba", "ruta/url", 1);
 insert into pelicula values (2, "thriller2", "ruta/img2", "pelicula prueba2", "jhon doe2 - jana doe2", "sinopsis prueba2", "ruta/url2", 1);
 insert into pelicula values (3, "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3", 2);
