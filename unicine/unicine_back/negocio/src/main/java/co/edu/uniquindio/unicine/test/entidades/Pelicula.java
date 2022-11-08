@@ -39,8 +39,8 @@ public class Pelicula implements Serializable {
     private String reparto;
 
     /*@ManyToOne
-    private EstadoPelicula estadoPelicula;*/
-    @JsonIgnore
+ private EstadoPelicula estadoPelicula;*/
+
     @Column(nullable=false)
     @Enumerated(EnumType.STRING)
     private EstadoPelicula estadoPelicula;
@@ -49,13 +49,14 @@ public class Pelicula implements Serializable {
     @OneToMany(mappedBy = "pelicula")
     private List<FuncionSala> listaFuncionSala;
 
-    public Pelicula(String nombre, String imagen, String trailer, String genero, String sinopsis, String reparto, EstadoPelicula estadoPelicula) {
+    public Pelicula(String nombre, EstadoPelicula estadoPelicula, String imagen, String trailer, String genero, String sinopsis, String reparto) {
         this.nombre = nombre;
+        this.estadoPelicula = estadoPelicula;
         this.imagen = imagen;
         this.trailer = trailer;
         this.genero = genero;
         this.sinopsis = sinopsis;
         this.reparto = reparto;
-        this.estadoPelicula = estadoPelicula;
+
     }
 }

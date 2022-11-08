@@ -134,4 +134,28 @@ GET {{apiRest}}/lista-confiteria
 
 ### Lista Peliculas
 GET {{apiRest}}/lista-peliculas
+
+### Creando pelicula
+POST {{apiRest}}/crear-pelicula
+Content-Type: application/json
+
+{
+    "idPelicula": 0,
+    "nombre" : "Titanic",
+    "imagen" : "UrlImgen",
+    "trailer" : "Trailer",
+    "genero" : "Comedia",
+    "sinopsis" : "BALABAL",
+    "reparto" : "dos",
+    "estadoPelicula" : "CARTELERA"
+}
+
+
+
+### Obtener pelicula
+GET {{apiRest}}/detalle-pelicula/1
+
+### Lista Teatros
+GET {{apiRest}}/lista-teatros
+
 // --------------------------------------------------------------------------------------------------\\

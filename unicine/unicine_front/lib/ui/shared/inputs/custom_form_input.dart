@@ -15,7 +15,7 @@ class CustomFormInput extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     return Flexible(
       child: Container(
-        height: heigth ?? 40,
+        height: heigth ?? 60,
         decoration: buildBoxDecoration(),
         child: inputForm,
       ),
@@ -24,7 +24,7 @@ class CustomFormInput extends ConsumerWidget {
 
   BoxDecoration buildBoxDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.grey.withOpacity(0.1),
+        color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
       );
 }
 

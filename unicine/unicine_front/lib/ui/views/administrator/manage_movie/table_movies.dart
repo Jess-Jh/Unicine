@@ -21,7 +21,7 @@ class TableMovies extends ConsumerWidget {
         DataColumn(label: Text('Id Película')),
         DataColumn(label: Text('Nombre')),
         DataColumn(label: Text('Género')),
-        DataColumn(label: Text('Url imagen')),
+        DataColumn(label: Text('Estado')),
         DataColumn(label: Text('Acciones')),
       ],
       // actions: [

@@ -1,60 +1,108 @@
 // To parse this JSON data, do
 //
-//     final movie = movieFromMap(jsonString);
+//     final theater = theaterFromMap(jsonString);
 
 import 'dart:convert';
 
-class Movie {
-  Movie({
-    this.idPelicula,
+class Theater {
+  Theater({
+    this.idTeatro,
     this.nombre,
-    this.imagen,
-    this.trailer,
-    this.genero,
-    this.sinopsis,
-    this.reparto,
-    this.estadoPelicula,
-    // this.listaFuncionSala,
+    this.direccion,
+    // this.listaSalas,
   });
 
-  int? idPelicula;
+  int? idTeatro;
   String? nombre;
-  String? imagen;
-  String? trailer;
-  String? genero;
-  String? sinopsis;
-  String? reparto;
-  String? estadoPelicula;
-  // List<ListaFuncionSala>? listaFuncionSala;
+  String? direccion;
+  // List<ListaSala> listaSalas;
 
-  factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
+  factory Theater.fromJson(String str) => Theater.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Movie.fromMap(Map<String, dynamic> json) => Movie(
-        idPelicula: json["idPelicula"],
+  factory Theater.fromMap(Map<String, dynamic> json) => Theater(
+        idTeatro: json["idTeatro"],
         nombre: json["nombre"],
-        imagen: json["imagen"],
-        trailer: json["trailer"],
-        genero: json["genero"],
-        sinopsis: json["sinopsis"],
-        reparto: json["reparto"],
-        estadoPelicula: json["estadoPelicula"],
-        // listaFuncionSala: List<ListaFuncionSala>.from(json["listaFuncionSala"].map((x) => ListaFuncionSala.fromMap(x))),
+        direccion: json["direccion"],
+        // listaSalas: List<ListaSala>.from(json["listaSalas"].map((x) => ListaSala.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "idPelicula": idPelicula,
+        "idTeatro": idTeatro,
         "nombre": nombre,
-        "imagen": imagen,
-        "trailer": trailer,
-        "genero": genero,
-        "sinopsis": sinopsis,
-        "reparto": reparto,
-        "estadoPelicula": estadoPelicula,
-        // "listaFuncionSala": List<dynamic>.from(listaFuncionSala.map((x) => x.toMap())),
+        "direccion": direccion,
+        // "listaSalas": List<dynamic>.from(listaSalas.map((x) => x.toMap())),
       };
 }
+
+// class ListaSala {
+//     ListaSala({
+//         this.idSala,
+//         this.nombre,
+//         this.listaFuncionSala,
+//         this.listaDistribuccionSillas,
+//     });
+
+//     int idSala;
+//     String nombre;
+//     List<ListaFuncionSala> listaFuncionSala;
+//     List<ListaDistribuccionSilla> listaDistribuccionSillas;
+
+//     factory ListaSala.fromJson(String str) => ListaSala.fromMap(json.decode(str));
+
+//     String toJson() => json.encode(toMap());
+
+//     factory ListaSala.fromMap(Map<String, dynamic> json) => ListaSala(
+//         idSala: json["idSala"],
+//         nombre: json["nombre"],
+//         listaFuncionSala: List<ListaFuncionSala>.from(json["listaFuncionSala"].map((x) => ListaFuncionSala.fromMap(x))),
+//         listaDistribuccionSillas: List<ListaDistribuccionSilla>.from(json["listaDistribuccionSillas"].map((x) => ListaDistribuccionSilla.fromMap(x))),
+//     );
+
+//     Map<String, dynamic> toMap() => {
+//         "idSala": idSala,
+//         "nombre": nombre,
+//         "listaFuncionSala": List<dynamic>.from(listaFuncionSala.map((x) => x.toMap())),
+//         "listaDistribuccionSillas": List<dynamic>.from(listaDistribuccionSillas.map((x) => x.toMap())),
+//     };
+// }
+
+// class ListaDistribuccionSilla {
+//     ListaDistribuccionSilla({
+//         this.idDistribuccionSilla,
+//         this.distribuccionSillas,
+//         this.totalSillas,
+//         this.filas,
+//         this.columnas,
+//     });
+
+//     int idDistribuccionSilla;
+//     String distribuccionSillas;
+//     int totalSillas;
+//     int filas;
+//     int columnas;
+
+//     factory ListaDistribuccionSilla.fromJson(String str) => ListaDistribuccionSilla.fromMap(json.decode(str));
+
+//     String toJson() => json.encode(toMap());
+
+//     factory ListaDistribuccionSilla.fromMap(Map<String, dynamic> json) => ListaDistribuccionSilla(
+//         idDistribuccionSilla: json["idDistribuccionSilla"],
+//         distribuccionSillas: json["distribuccionSillas"],
+//         totalSillas: json["totalSillas"],
+//         filas: json["filas"],
+//         columnas: json["columnas"],
+//     );
+
+//     Map<String, dynamic> toMap() => {
+//         "idDistribuccionSilla": idDistribuccionSilla,
+//         "distribuccionSillas": distribuccionSillas,
+//         "totalSillas": totalSillas,
+//         "filas": filas,
+//         "columnas": columnas,
+//     };
+// }
 
 // class ListaFuncionSala {
 //     ListaFuncionSala({
@@ -62,8 +110,8 @@ class Movie {
 //         this.listaCompras,
 //     });
 
-//     int? idFuncionSala;
-//     List<ListaCompra>? listaCompras;
+//     int idFuncionSala;
+//     List<ListaCompra> listaCompras;
 
 //     factory ListaFuncionSala.fromJson(String str) => ListaFuncionSala.fromMap(json.decode(str));
 
@@ -82,13 +130,13 @@ class Movie {
 
 // class ListaCompra {
 //     ListaCompra({
-//         @required this.idCompra,
-//         @required this.fechaCompra,
-//         @required this.metodoPago,
-//         @required this.subtotal,
-//         @required this.total,
-//         @required this.listaEntradas,
-//         @required this.listaConfiteriaCompra,
+//         this.idCompra,
+//         this.fechaCompra,
+//         this.metodoPago,
+//         this.subtotal,
+//         this.total,
+//         this.listaEntradas,
+//         this.listaConfiteriaCompra,
 //     });
 
 //     int idCompra;
@@ -126,9 +174,9 @@ class Movie {
 
 // class ListaConfiteriaCompra {
 //     ListaConfiteriaCompra({
-//         @required this.idConfiteriaCompra,
-//         @required this.precio,
-//         @required this.unidades,
+//         this.idConfiteriaCompra,
+//         this.precio,
+//         this.unidades,
 //     });
 
 //     int idConfiteriaCompra;
@@ -154,10 +202,10 @@ class Movie {
 
 // class ListaEntrada {
 //     ListaEntrada({
-//         @required this.idEntrada,
-//         @required this.filaSilla,
-//         @required this.columnaSilla,
-//         @required this.precio,
+//         this.idEntrada,
+//         this.filaSilla,
+//         this.columnaSilla,
+//         this.precio,
 //     });
 
 //     int idEntrada;

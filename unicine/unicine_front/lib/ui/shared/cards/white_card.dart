@@ -6,13 +6,15 @@ class WhiteCard extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? sizeLetter;
+  final bool isEdit = false;
 
-  const WhiteCard(
-      {super.key,
-      this.title,
-      required this.child,
-      this.width,
-      this.sizeLetter});
+  const WhiteCard({
+    super.key,
+    this.title,
+    required this.child,
+    this.width,
+    this.sizeLetter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class WhiteCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: isEdit
+                  ? Colors.green.withOpacity(0.9)
+                  : Colors.grey.withOpacity(0.05),
               blurRadius: 5,
             )
           ]);

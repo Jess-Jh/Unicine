@@ -18,7 +18,7 @@ class MoviesDTS extends DataTableSource {
         DataCell(Text(movie.idPelicula.toString())),
         DataCell(Text(movie.nombre!)),
         DataCell(Text(movie.genero!)),
-        DataCell(Text(movie.imagen!)),
+        DataCell(Text(movie.estadoPelicula!)),
         DataCell(Row(
           children: [
             IconButton(
