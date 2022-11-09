@@ -100,8 +100,17 @@ public class ClienteServicioImpl implements ClienteServicio{
         if (guardado.isEmpty()){
             throw new Exception("el cliente no existe");
         } else {
-            clienteRepo.delete(guardado.get());
-            return true;
+            if (guardado.get().getCompras().size() <= 0){
+                if (guardado.get().getPqrs().size() <= 0){
+                    clienteRepo.delete(guardado.get());
+                    return true;
+                }else{
+                    throw new Exception("No se puede eliminar cliente ya que tiene relacionado pqrs");
+                }
+            }else {
+                throw new Exception("No se puede eliminar ya que el cliente tiene relacionado compras");
+            }
+
         }
     }
 
