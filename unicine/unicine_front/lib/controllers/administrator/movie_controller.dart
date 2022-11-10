@@ -94,7 +94,7 @@ class MovieController extends SimpleNotifier {
   Future<void> updateMovie(BuildContext context) async {
     try {
       if (editMovie == null && editMovie!.idPelicula == null) return;
-
+      isUpdateMovie();
       for (int i = 0; i < movies.length; i++) {
         if (movies[i].idPelicula == editMovie!.idPelicula) {
           editMovie = Movie(
@@ -112,7 +112,7 @@ class MovieController extends SimpleNotifier {
       }
       await UnicineApi.put('/actualizar-pelicula', editMovie!.toJson())
           .then((json) {
-        isUpdateMovie();
+        // isUpdateMovie();
         loading = false;
         Dialogs.showSnackbarTop(
           context,
@@ -127,6 +127,30 @@ class MovieController extends SimpleNotifier {
       Dialogs.showSnackbarTop(
         context,
         'Error en $e',
+        isError: true,
+      );
+      log(runtimeType, 'Error en newMovie MovieController $e');
+    }
+  }
+
+  Future<void> deleteMovie(BuildContext context, int id) async {
+    try {
+      await UnicineApi.delete('/eliminar-pelicula/$id', {}).then((json) {
+        movies.removeWhere((movie) => movie.idPelicula == id);
+        loading = false;
+        Dialogs.showSnackbarTop(
+          context,
+          'La película ha sido eliminada con éxito',
+          isError: false,
+        );
+
+        _cleanInputs();
+        notify();
+      }).catchError((e) => throw e);
+    } catch (e) {
+      Dialogs.showSnackbarTop(
+        context,
+        '$e',
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');

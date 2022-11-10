@@ -1,17 +1,26 @@
 package co.edu.uniquindio.unicine.test.controladores;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import co.edu.uniquindio.unicine.test.entidades.Ciudad;
 import co.edu.uniquindio.unicine.test.entidades.Confiteria;
 import co.edu.uniquindio.unicine.test.entidades.Cupon;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.servicios.AdminServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 public class AdminController {
+
 
     @Autowired
     private AdminServicio adminServicio;
@@ -27,23 +36,68 @@ public class AdminController {
     }
 
     @PostMapping("/crear-pelicula")
-    public Pelicula crearPelicula(@RequestBody Pelicula pelicula) {
-        return adminServicio.crearPelicula(pelicula);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearPelicula(@RequestBody Pelicula pelicula) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Pelicula nuevaPelicula = adminServicio.crearPelicula(pelicula);
+            res.put("pelicula", nuevaPelicula);
+            res.put("mensaje", "Se ha creado la pelicula con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear la película");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar-pelicula")
-    public Pelicula actualizarPelicula(@RequestBody Pelicula pelicula) throws Exception {
-        return adminServicio.actualizarPelicula(pelicula);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> actualizarPelicula(@RequestBody Pelicula pelicula) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Pelicula peliculaActualizada = adminServicio.actualizarPelicula(pelicula);
+            res.put("pelicula", peliculaActualizada);
+            res.put("mensaje", "La película ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la película");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/eliminar-pelicula/{idPelicula}")
-    public boolean eliminarPelicula(@PathVariable Integer idPelicula) throws Exception {
-        return adminServicio.eliminarPelicula(idPelicula);
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarPelicula(@PathVariable Integer idPelicula) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminServicio.eliminarPelicula(idPelicula);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar la película ");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        res.put("mensaje", "Se ha eliminado la película con éxito");
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/lista-peliculas")
-    public List<Pelicula> listarPeliculas() {
-        return adminServicio.listarPeliculas();
+    public ResponseEntity<?> listarPeliculas() {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            List<Pelicula> listaPeliculas = adminServicio.listarPeliculas();
+            res.put("Peliculas", listaPeliculas);
+        } catch (Exception e) {
+            res.put("mensaje", "Hubo un error al momento de enviar las películas");
+            res.put("Error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/detalle-pelicula/{idPelicula}")

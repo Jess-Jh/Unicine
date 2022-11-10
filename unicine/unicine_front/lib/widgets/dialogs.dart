@@ -111,40 +111,6 @@ class Dialogs {
   }
 }
 
-AlertDialog showMessageAlert(
-    BuildContext context, String title, String content) {
-  return AlertDialog(
-    alignment: Alignment.center,
-    icon: Icon(
-      Icons.error_outline,
-      color: Colors.red.withOpacity(0.8),
-      size: 80,
-    ),
-    title: Text(title),
-    content: Text('¿Borrar definitivamente $content?'),
-    actions: [
-      TextButton(
-        child: const Text('No'),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-      TextButton(
-        child: const Text('Si, borrar'),
-        onPressed: () {
-          Navigator.of(context).pop();
-          Dialogs.showSnackbarTop(
-            context,
-            'Ha eliminado $content con éxito',
-            isError: false,
-            backgroundColor: Colors.white,
-          );
-        },
-      ),
-    ],
-  );
-}
-
 class LoadingDialog extends StatelessWidget {
   const LoadingDialog({Key? key}) : super(key: key);
 

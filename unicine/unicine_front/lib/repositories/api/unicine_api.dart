@@ -20,8 +20,8 @@ class UnicineApi {
       final resp = await _dio.get(path);
       return resp.data;
     } catch (e) {
-      log('error', e);
-      throw ('Error en el GET');
+      log('Error en GET', e);
+      rethrow;
     }
   }
 
@@ -30,8 +30,8 @@ class UnicineApi {
       final resp = await _dio.post(path, data: data);
       return resp.data;
     } catch (e) {
-      log('error', e);
-      throw ('Error en el POST');
+      log('Error en el POST', e);
+      rethrow;
     }
   }
 
@@ -40,8 +40,18 @@ class UnicineApi {
       final resp = await _dio.put(path, data: data);
       return resp.data;
     } catch (e) {
-      log('error', e);
-      throw ('Error en el POST');
+      log('Error en el POST', e);
+      rethrow;
+    }
+  }
+
+  static Future delete(String path, dynamic data) async {
+    try {
+      final response = await _dio.delete(path, data: data);
+      return response.data;
+    } catch (e) {
+      log('Error en el DELETE', e);
+      throw ('No se puede eliminar, ya que tiene una entidad asociada');
     }
   }
 }

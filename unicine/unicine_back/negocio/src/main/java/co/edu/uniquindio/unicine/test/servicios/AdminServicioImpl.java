@@ -61,14 +61,14 @@ public class AdminServicioImpl implements AdminServicio{
         Pelicula buscado = peliculaRepo.findById(idPelicula).orElse(null);
 
         if (buscado == null){
-            throw new Exception("No se encontro pelicula para eliminar");
+            throw new Exception("No se encontró la película que desea eliminar");
         }else {
             if (buscado.getListaFuncionSala().size() <= 0){
                 peliculaRepo.delete(buscado);
                 return true;
             }
             else {
-                throw new Exception("No se puede eliminar porque tiene una funcion asociada");
+                throw new Exception("No se puede eliminar la película porque tiene una función asociada");
             }
         }
     }
