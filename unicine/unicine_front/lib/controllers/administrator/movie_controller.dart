@@ -95,8 +95,8 @@ class MovieController extends SimpleNotifier {
     try {
       if (editMovie == null && editMovie!.idPelicula == null) return;
 
-      for (Movie movie in movies) {
-        if (movie.idPelicula == editMovie!.idPelicula) {
+      for (int i = 0; i < movies.length; i++) {
+        if (movies[i].idPelicula == editMovie!.idPelicula) {
           editMovie = Movie(
             idPelicula: editMovie?.idPelicula,
             nombre: nombre == '' ? editMovie?.nombre : nombre,
@@ -107,7 +107,7 @@ class MovieController extends SimpleNotifier {
             reparto: reparto == '' ? editMovie?.reparto : reparto,
             estadoPelicula: estado == '' ? editMovie?.estadoPelicula : estado,
           );
-          movie = editMovie!;
+          movies[i] = editMovie!;
         }
       }
       await UnicineApi.put('/actualizar-pelicula', editMovie!.toJson())

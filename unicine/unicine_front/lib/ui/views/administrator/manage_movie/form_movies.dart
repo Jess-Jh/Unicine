@@ -188,7 +188,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                       if (ctrl.editMovie == null) {
                         await ctrl.newMovie(context);
                       } else {
-                        ctrl.updateMovie(context);
+                        await ctrl.updateMovie(context);
                       }
                     },
                     text: 'Guardar',
