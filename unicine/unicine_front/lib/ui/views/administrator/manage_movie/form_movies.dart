@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
-import 'package:uni_cine/models/administrator/movie.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
 class FormMovies extends StatelessWidget {
-  final Movie? movie;
+  final int? id;
 
-  const FormMovies({super.key, this.movie});
+  const FormMovies({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constraints) => (constraints.maxWidth > 520)
-          ? _TabletDesktopForm(movie)
-          : _MobileForm(movie),
+          ? _TabletDesktopForm(id)
+          : _MobileForm(id),
     );
   }
 }
 
 class _TabletDesktopForm extends ConsumerWidget {
-  final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
-  final Movie? movie;
+  final int? id;
 
-  _TabletDesktopForm(this.movie);
+  const _TabletDesktopForm(this.id);
 
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(movieProvider);
-
     return SizedBox(
       height: 260,
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formMovieKey,
+        key: ctrl.formMovieKey,
         child: Column(
           children: [
             Row(
               children: [
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.nombre ?? '',
+                    initialValue: ctrl.editMovie?.nombre ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Ingrese el nombre de la película';
@@ -62,7 +59,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                 const SizedBox(width: 10),
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.imagen ?? '',
+                    initialValue: ctrl.editMovie?.imagen ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Ingrese la url de la imagen';
@@ -81,7 +78,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                 const SizedBox(width: 10),
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.trailer ?? '',
+                    initialValue: ctrl.editMovie?.trailer ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Ingrese la url del tráiler';
@@ -104,7 +101,7 @@ class _TabletDesktopForm extends ConsumerWidget {
               children: [
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.genero ?? '',
+                    initialValue: ctrl.editMovie?.genero ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Ingrese el género';
@@ -123,7 +120,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                 const SizedBox(width: 10),
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.reparto ?? '',
+                    initialValue: ctrl.editMovie?.reparto ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Ingrese el reparto';
@@ -142,7 +139,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                 const SizedBox(width: 10),
                 CustomFormInput(
                   inputForm: TextFormField(
-                    initialValue: movie?.estadoPelicula ?? '',
+                    initialValue: ctrl.editMovie?.estadoPelicula ?? '',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Seleccione el estado';
@@ -163,7 +160,7 @@ class _TabletDesktopForm extends ConsumerWidget {
             const SizedBox(height: 10),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.sinopsis ?? '',
+                initialValue: ctrl.editMovie?.sinopsis ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese la sinopsis';
@@ -186,36 +183,15 @@ class _TabletDesktopForm extends ConsumerWidget {
                 Expanded(
                   child: CustomOutlinedButton(
                     onPressed: () async {
-                      final validForm = ctrl.validateForm(formMovieKey);
+                      final validForm = ctrl.validateForm(ctrl.formMovieKey);
                       if (!validForm) return;
-
-                      if (movie == null) {
-                        // crear
+                      if (ctrl.editMovie == null) {
                         await ctrl.newMovie(context);
-                        if (ctrl.loading == false) {
-                          // ignore: use_build_context_synchronously
-                          // Dialogs.showSnackbarTop(
-                          //   context,
-                          //   'Se registró la película con éxito',
-                          //   isError: false,
-                          // );
-                        }
                       } else {
-                        // Actualizar
+                        ctrl.updateMovie(context);
                       }
                     },
                     text: 'Guardar',
-                    width: 300,
-                    height: 8,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: CustomOutlinedButton(
-                    onPressed: () {},
-                    text: 'Actualizar',
-                    width: 300,
                     height: 8,
                     fontSize: 14,
                   ),
@@ -230,10 +206,9 @@ class _TabletDesktopForm extends ConsumerWidget {
 }
 
 class _MobileForm extends ConsumerWidget {
-  final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
-  final Movie? movie;
+  final int? id;
 
-  _MobileForm(this.movie);
+  const _MobileForm(this.id);
 
   @override
   Widget build(BuildContext context, ref) {
@@ -242,12 +217,12 @@ class _MobileForm extends ConsumerWidget {
       height: 520,
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formMovieKey,
+        key: ctrl.formMovieKey,
         child: Column(
           children: [
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.nombre ?? '',
+                initialValue: ctrl.editMovie?.nombre ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese el nombre de la película';
@@ -267,7 +242,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 10),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.imagen ?? '',
+                initialValue: ctrl.editMovie?.imagen ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese la url de la imagen';
@@ -286,7 +261,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 10),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.trailer ?? '',
+                initialValue: ctrl.editMovie?.trailer ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese la url del tráiler';
@@ -305,7 +280,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 15),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.genero ?? '',
+                initialValue: ctrl.editMovie?.genero ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese el género';
@@ -324,7 +299,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 10),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.reparto ?? '',
+                initialValue: ctrl.editMovie?.reparto ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese el reparto';
@@ -343,7 +318,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 10),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.estadoPelicula ?? '',
+                initialValue: ctrl.editMovie?.estadoPelicula ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Seleccione el estado';
@@ -362,7 +337,7 @@ class _MobileForm extends ConsumerWidget {
             const SizedBox(height: 15),
             CustomFormInput(
               inputForm: TextFormField(
-                initialValue: movie?.sinopsis ?? '',
+                initialValue: ctrl.editMovie?.sinopsis ?? '',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Ingrese la sinopsis';
@@ -384,22 +359,16 @@ class _MobileForm extends ConsumerWidget {
               children: [
                 Expanded(
                   child: CustomOutlinedButton(
-                    onPressed: () {
-                      final validForm = ctrl.validateForm(formMovieKey);
+                    onPressed: () async {
+                      final validForm = ctrl.validateForm(ctrl.formMovieKey);
                       if (!validForm) return;
+                      if (ctrl.editMovie == null) {
+                        await ctrl.newMovie(context);
+                      } else {
+                        await ctrl.updateMovie(context);
+                      }
                     },
                     text: 'Guardar',
-                    width: 300,
-                    height: 8,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: CustomOutlinedButton(
-                    onPressed: () {},
-                    text: 'Actualizar',
-                    width: 300,
                     height: 8,
                     fontSize: 14,
                   ),

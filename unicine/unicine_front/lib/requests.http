@@ -150,7 +150,20 @@ Content-Type: application/json
     "estadoPelicula" : "CARTELERA"
 }
 
+### Actualizar película
+PUT {{apiRest}}/actualizar-pelicula
+Content-Type: application/json
 
+{
+    "idPelicula": 1,
+    "nombre" : "Titanic",
+    "imagen" : "UrlImgen",
+    "trailer" : "Trailer",
+    "genero" : "Comedia",
+    "sinopsis" : "Barco",
+    "reparto" : "dos",
+    "estadoPelicula" : "PREVENTA"
+}
 
 ### Obtener pelicula
 GET {{apiRest}}/detalle-pelicula/1

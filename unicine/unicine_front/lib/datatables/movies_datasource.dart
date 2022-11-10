@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/models/administrator/movie.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/views/administrator/manage_movie/form_movies.dart';
 import 'package:uni_cine/widgets/dialogs.dart';
 
 class MoviesDTS extends DataTableSource {
@@ -26,7 +28,9 @@ class MoviesDTS extends DataTableSource {
                 Icons.edit_outlined,
               ),
               onPressed: () {
-                print('Editanto ${movie.idPelicula}');
+                FormMovies(id: movie.idPelicula);
+                movieProvider.read.editSelectMovie(movie);
+                movieProvider.read.isUpdateMovie();
               },
             ),
             IconButton(
@@ -36,7 +40,7 @@ class MoviesDTS extends DataTableSource {
               ),
               onPressed: () {
                 final dialog = showMessageAlert(
-                    context, '¿Está seguro de eliminarla?', '${movie.nombre}');
+                    context, '¿Está seguro de eliminar?', '${movie.nombre}');
 
                 showDialog(context: context, builder: (_) => dialog);
               },
