@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:uni_cine/services/local_storage.dart';
-import 'package:uni_cine/utils/util.dart';
 
 class UnicineApi {
   static final Dio _dio = Dio();
@@ -19,9 +18,8 @@ class UnicineApi {
     try {
       final resp = await _dio.get(path);
       return resp.data;
-    } catch (e) {
-      log('Error en GET', e);
-      rethrow;
+    } on DioError catch (e) {
+      throw (e.response?.data['error']);
     }
   }
 
@@ -29,9 +27,8 @@ class UnicineApi {
     try {
       final resp = await _dio.post(path, data: data);
       return resp.data;
-    } catch (e) {
-      log('Error en el POST', e);
-      rethrow;
+    } on DioError catch (e) {
+      throw (e.response?.data['error']);
     }
   }
 
@@ -39,9 +36,8 @@ class UnicineApi {
     try {
       final resp = await _dio.put(path, data: data);
       return resp.data;
-    } catch (e) {
-      log('Error en el POST', e);
-      rethrow;
+    } on DioError catch (e) {
+      throw (e.response?.data['error']);
     }
   }
 
@@ -49,9 +45,8 @@ class UnicineApi {
     try {
       final response = await _dio.delete(path, data: data);
       return response.data;
-    } catch (e) {
-      log('Error en el DELETE', e);
-      throw ('No se puede eliminar, ya que tiene una entidad asociada');
+    } on DioError catch (e) {
+      throw (e.response?.data['error']);
     }
   }
 }

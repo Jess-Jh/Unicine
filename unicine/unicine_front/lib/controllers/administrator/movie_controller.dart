@@ -48,9 +48,11 @@ class MovieController extends SimpleNotifier {
   }
 
   void getMovies() async {
-    final res = await UnicineApi.httpGet('/lista-peliculas');
-    for (final i in res) {
+    var res = await UnicineApi.httpGet('/lista-peliculas');
+
+    for (final i in res['Peliculas']) {
       movies.add(Movie.fromMap(i));
+      movies.toList();
     }
     loading = false;
     notify();
@@ -68,14 +70,16 @@ class MovieController extends SimpleNotifier {
       estadoPelicula: estado,
     );
 
+    Map jsonResponse = {};
     try {
       await UnicineApi.post('/crear-pelicula', movie.toJson()).then((json) {
-        final newMovie = Movie.fromMap(json);
+        final newMovie = Movie.fromMap(json['pelicula']);
+        jsonResponse = json;
         movies.add(newMovie);
         loading = false;
         Dialogs.showSnackbarTop(
           context,
-          'La película ha quedado guardada con éxito',
+          json['mensaje'],
           isError: false,
         );
         _cleanInputs();
@@ -84,7 +88,7 @@ class MovieController extends SimpleNotifier {
     } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        'Error en $e',
+        jsonResponse['mensaje'],
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');
@@ -92,6 +96,7 @@ class MovieController extends SimpleNotifier {
   }
 
   Future<void> updateMovie(BuildContext context) async {
+    Map jsonResponse = {};
     try {
       if (editMovie == null && editMovie!.idPelicula == null) return;
       isUpdateMovie();
@@ -110,13 +115,14 @@ class MovieController extends SimpleNotifier {
           movies[i] = editMovie!;
         }
       }
+
       await UnicineApi.put('/actualizar-pelicula', editMovie!.toJson())
           .then((json) {
-        // isUpdateMovie();
+        jsonResponse = json;
         loading = false;
         Dialogs.showSnackbarTop(
           context,
-          'La película ha sido actualizada con éxito',
+          json['mensaje'],
           isError: false,
         );
 
@@ -126,7 +132,7 @@ class MovieController extends SimpleNotifier {
     } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        'Error en $e',
+        jsonResponse['mensaje'],
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');
@@ -140,7 +146,7 @@ class MovieController extends SimpleNotifier {
         loading = false;
         Dialogs.showSnackbarTop(
           context,
-          'La película ha sido eliminada con éxito',
+          json['mensaje'],
           isError: false,
         );
 
@@ -150,7 +156,7 @@ class MovieController extends SimpleNotifier {
     } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        '$e',
+        e.toString(),
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');

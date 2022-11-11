@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class AdminController {
 
-
     @Autowired
     private AdminServicio adminServicio;
 
@@ -43,7 +42,7 @@ public class AdminController {
         try {
             Pelicula nuevaPelicula = adminServicio.crearPelicula(pelicula);
             res.put("pelicula", nuevaPelicula);
-            res.put("mensaje", "Se ha creado la pelicula con éxito!");
+            res.put("mensaje", "¡Se ha creado la pelicula con éxito!");
         } catch (Exception e) {
             res.put("mensaje", "Error al crear la película");
             res.put("error", e.getMessage());
@@ -60,7 +59,7 @@ public class AdminController {
         try {
             Pelicula peliculaActualizada = adminServicio.actualizarPelicula(pelicula);
             res.put("pelicula", peliculaActualizada);
-            res.put("mensaje", "La película ha sido actualizada con éxito!");
+            res.put("mensaje", "¡La película ha sido actualizada con éxito!");
         } catch (Exception e) {
             res.put("mensaje", "Error al actualizar la película");
             res.put("error", e.getMessage());
@@ -76,13 +75,15 @@ public class AdminController {
 
         try {
             adminServicio.eliminarPelicula(idPelicula);
+            res.put("mensaje", "¡Se ha eliminado la película con éxito!");
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
         } catch (Exception e) {
-            res.put("mensaje", "Error al eliminar la película ");
+            res.put("mensaje", "Error al eliminar la película con el id " + idPelicula);
+
             res.put("error", e.getMessage());
+          
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
-        res.put("mensaje", "Se ha eliminado la película con éxito");
-        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/lista-peliculas")
@@ -101,61 +102,176 @@ public class AdminController {
     }
 
     @GetMapping("/detalle-pelicula/{idPelicula}")
-    public Pelicula obtenerPelicula(@PathVariable Integer idPelicula) throws Exception {
-        return adminServicio.obtenerPelicula(idPelicula);
+    public ResponseEntity<?> obtenerPelicula(@PathVariable Integer idPelicula) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Pelicula pelicula = adminServicio.obtenerPelicula(idPelicula);
+            res.put("pelicula", pelicula);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar la película");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @PostMapping("/crear-cupon")
-    public Cupon crearCupon(@RequestBody Cupon cupon) {
-        return adminServicio.crearCupon(cupon);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearCupon(@RequestBody Cupon cupon) {
+        Map<String, Object> res = new HashMap<>();
+
+        try{
+            Cupon nuevoCupon = adminServicio.crearCupon(cupon);
+            res.put("cupon", nuevoCupon);
+            res.put("mensaje", "¡El cupón ha sido creado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear el cupón");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar-cupon")
-    public Cupon actualizarCupon(@RequestBody Cupon cupon) throws Exception {
-        return adminServicio.actualizarCupon(cupon);
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarCupon(@RequestBody Cupon cupon) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Cupon cuponActualizado = adminServicio.actualizarCupon(cupon);
+            res.put("cupon", cuponActualizado);
+            res.put("mensaje", "El cupón ha sido actualizado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar el cupón");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/obtener-cupon/{idCupon}")
-    public Cupon obtenerCupon(@PathVariable Integer idCupon) throws Exception {
-        return adminServicio.obtenerCupon(idCupon);
+    public ResponseEntity<?> obtenerCupon(@PathVariable Integer idCupon) {
+        Map<String, Object> res = new HashMap<>();
+        try {
+            Cupon cupon = adminServicio.obtenerCupon(idCupon);
+            res.put("cupon", cupon);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar el cupón");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @DeleteMapping("/eliminar-cupon/{idCupon}")
-    public boolean eliminarCupon(@PathVariable Integer idCupon) throws Exception {
-        return adminServicio.eliminarCupon(idCupon);
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarCupon(@PathVariable Integer idCupon) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminServicio.eliminarCupon(idCupon);
+            res.put("mensaje", "¡El cupón ha sido eliminado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar el cupón con el id " + idCupon);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        res.put("mensaje", "¡El cupón ha sido eliminado con éxito!");
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/lista-cupones")
-    public List<Cupon> listaCupones() {
-        return adminServicio.listarCupones();
+    public ResponseEntity<?> listaCupones() {
+        Map<String, Object> res = new HashMap<>();
+        try {
+           List<Cupon> listaCupones = adminServicio.listarCupones();
+           res.put("cupones", listaCupones);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al cargar los cupones");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @PostMapping("/crear-confiteria")
-    public Confiteria crearConfiteria(@RequestBody Confiteria confiteria) {
-        return adminServicio.crearConfiteria(confiteria);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearConfiteria(@RequestBody Confiteria confiteria) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Confiteria nuevaConfiteria = adminServicio.crearConfiteria(confiteria);
+            res.put("confiteria", nuevaConfiteria);
+            res.put("mensaje", "¡Se ha creado la confitería con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear la confitería");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar-confiteria")
-    public Confiteria actualizarConfiteria(@RequestBody Confiteria confiteria) throws Exception {
-        return adminServicio.actualizarConfiteria(confiteria);
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarConfiteria(@RequestBody Confiteria confiteria) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Confiteria confiteriaActualizada = adminServicio.actualizarConfiteria(confiteria);
+            res.put("confiteria", confiteriaActualizada);
+            res.put("mensaje", "¡Se ha actualizado la confitería con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la confitería");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/obtener-confiteria/{idConfiteria}")
-    public Confiteria obtenerConfiteria( @PathVariable Integer idConfiteria ) throws Exception {
-        return adminServicio.obtenerConfiteria(idConfiteria);
+    public ResponseEntity<?> obtenerConfiteria( @PathVariable Integer idConfiteria ) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Confiteria confiteria = adminServicio.obtenerConfiteria(idConfiteria);
+            res.put("confiteria", confiteria);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar la confitería");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @DeleteMapping("/eliminar-confiteria/{idConfiteria}")
-    public boolean eliminarConfiteria(@PathVariable Integer idConfiteria) throws Exception {
-        return adminServicio.eliminarConfiteria(idConfiteria);
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarConfiteria(@PathVariable Integer idConfiteria) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminServicio.eliminarConfiteria(idConfiteria);
+            res.put("mensaje", "¡La confitería ha sido eliminada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar la confitería " + idConfiteria);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/lista-confiteria")
-    public List<Confiteria> listaConfiterias() {
-        return adminServicio.listarConfiteria();
+    public ResponseEntity<?> listaConfiterias() {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            List<Confiteria> listaConfiterias = adminServicio.listarConfiteria();
+            response.put("confiterias", listaConfiterias);
+        } catch (Exception e) {
+            response.put("mensaje", "Error al buscar las confiterías");
+            response.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
-
-
-
 
 }
