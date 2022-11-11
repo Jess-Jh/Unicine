@@ -64,7 +64,7 @@ class RegisterView extends ConsumerWidget {
                         LinkText(
                           text: 'Inicia sesión',
                           onPressed: () {
-                            Navigator.pushNamed(
+                            Navigator.pushReplacementNamed(
                               context,
                               Flurorouter.loginRoute,
                             );

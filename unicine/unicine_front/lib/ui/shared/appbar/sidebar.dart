@@ -15,7 +15,7 @@ class Sidebar extends ConsumerWidget {
   const Sidebar({super.key});
 
   void navigateTo(String routeName) {
-    NavigationService.navigateTo(routeName);
+    NavigationService.replaceTo(routeName);
     SideMenuController.closeMenu();
   }
 

@@ -81,7 +81,7 @@ public class AdminController {
             res.put("mensaje", "Error al eliminar la película con el id " + idPelicula);
 
             res.put("error", e.getMessage());
-          
+
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
     }
