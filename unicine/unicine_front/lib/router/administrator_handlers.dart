@@ -16,7 +16,7 @@ class AdministratorHandlers {
   static Handler manageTheaters        = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
   static Handler manageMovies          = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageMovieView(), Flurorouter.moviesRoute)));
   static Handler manageConfectionaries = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageConfectioneryView(), Flurorouter.confectionariesRoute)));
-  static Handler manageCoupons         = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageCouponView(), Flurorouter.couponsRoute)));
+  static Handler manageCoupons         = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageCouponView(), Flurorouter.couponsRoute)));
 }
 
 class ValidateView extends ConsumerWidget {

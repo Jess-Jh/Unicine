@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/administrator/coupon.dart';
+import 'package:uni_cine/repositories/api/unicine_api.dart';
+import 'package:uni_cine/utils/util.dart';
+import 'package:uni_cine/widgets/dialogs.dart';
 
 class CouponController extends SimpleNotifier {
   final GlobalKey<FormState> formCouponKey = GlobalKey<FormState>();
@@ -12,7 +17,7 @@ class CouponController extends SimpleNotifier {
 
   // Inputs
   int idCoupon = 0;
-  double valorDescuento = 0;
+  String valorDescuento = '0';
   DateTime fechaVencimiento = DateTime(
     DateTime.now().year,
     DateTime.now().month,
@@ -21,148 +26,145 @@ class CouponController extends SimpleNotifier {
   String descripcion = '';
   String criterio = '';
 
-  // bool validateForm(formConfectioneryKey) {
-  //   if (formConfectioneryKey.currentState!.validate()) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  bool validateForm(formCouponKey) {
+    if (formCouponKey.currentState!.validate()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  // void editSelectConfectionery(Confectionery confectionery) {
-  //   editConfectionery = confectionery;
-  //   notify();
-  //   Timer(const Duration(milliseconds: 200),
-  //       () => formConfectioneryKey.currentState?.reset());
-  // }
+  void editSelectCoupon(Coupon coupon) {
+    editCoupon = coupon;
+    notify();
+    Timer(const Duration(milliseconds: 200),
+        () => formCouponKey.currentState?.reset());
+  }
 
-  // void _cleanInputs() {
-  //   if (loading == false) {
-  //     editConfectionery = null;
-  //     notify();
-  //     Timer(const Duration(milliseconds: 200),
-  //         () => formConfectioneryKey.currentState?.reset());
-  //   }
-  // }
+  void _cleanInputs() {
+    if (loading == false) {
+      editCoupon = null;
+      notify();
+      Timer(const Duration(milliseconds: 200),
+          () => formCouponKey.currentState?.reset());
+    }
+  }
 
-  // void isUpdateConfectionery() {
-  //   isEdit = !isEdit;
-  //   notify();
-  // }
+  void isUpdateCoupon() {
+    isEdit = !isEdit;
+    notify();
+  }
 
-  // void getConfectioneries() async {
-  //   var res = await UnicineApi.httpGet('/lista-confiteria');
+  void getCoupons() async {
+    var res = await UnicineApi.httpGet('/lista-cupones');
 
-  //   for (final i in res['confiterias']) {
-  //     confectioneries.add(Confectionery.fromMap(i));
-  //     confectioneries.toList();
-  //   }
-  //   loading = false;
-  //   notify();
-  // }
+    for (final i in res['cupones']) {
+      coupons.add(Coupon.fromMap(i));
+      coupons.toList();
+    }
+    loading = false;
+    notify();
+  }
 
-  // Future<void> newConfectionery(BuildContext context) async {
-  //   Confectionery confectionery = Confectionery(
-  //     idConfiteria: idConfectionery,
-  //     nombre: nombre,
-  //     precio: double.parse(precio),
-  //     imagen: urlImagen,
-  //   );
+  Future<void> newCoupon(BuildContext context) async {
+    Coupon coupon = Coupon(
+      idCupon: idCoupon,
+      valorDescuento: double.parse(valorDescuento),
+      fechaVencimiento: fechaVencimiento,
+      descripcion: descripcion,
+      criterio: criterio,
+    );
 
-  //   try {
-  //     await UnicineApi.post('/crear-confiteria', confectionery.toJson())
-  //         .then((json) {
-  //       final newConfectionery = Confectionery.fromMap(json['confiteria']);
-  //       confectioneries.add(newConfectionery);
-  //       loading = false;
-  //       Dialogs.showSnackbarTop(
-  //         context,
-  //         json['mensaje'],
-  //         isError: false,
-  //       );
-  //       _cleanInputs();
-  //       notify();
-  //       return;
-  //     }).catchError((e) => throw e);
-  //   } catch (e) {
-  //     Dialogs.showSnackbarTop(
-  //       context,
-  //       e.toString(),
-  //       isError: true,
-  //     );
-  //     log(runtimeType, 'Error en newConfectionery ConfectioneryController $e');
-  //   }
-  // }
+    try {
+      await UnicineApi.post('/crear-cupon', coupon.toJson()).then((json) {
+        final newCoupon = Coupon.fromMap(json['cupon']);
+        coupons.add(newCoupon);
+        loading = false;
+        Dialogs.showSnackbarTop(
+          context,
+          json['mensaje'],
+          isError: false,
+        );
+        _cleanInputs();
+        notify();
+        return;
+      }).catchError((e) => throw e);
+    } catch (e) {
+      Dialogs.showSnackbarTop(
+        context,
+        e.toString(),
+        isError: true,
+      );
+      log(runtimeType, 'Error en newCoupon CouponController $e');
+    }
+  }
 
-  // Future<void> updateConfectionery(BuildContext context) async {
-  //   try {
-  //     if (editConfectionery == null &&
-  //         editConfectionery!.idConfiteria == null) {
-  //       return;
-  //     }
-  //     isUpdateConfectionery();
-  //     for (int i = 0; i < confectioneries.length; i++) {
-  //       if (confectioneries[i].idConfiteria ==
-  //           editConfectionery!.idConfiteria) {
-  //         editConfectionery = Confectionery(
-  //           idConfiteria: editConfectionery?.idConfiteria,
-  //           nombre: nombre == '' ? editConfectionery?.nombre : nombre,
-  //           precio: double.parse(precio) == 0
-  //               ? editConfectionery?.precio
-  //               : double.parse(precio),
-  //           imagen: urlImagen == '' ? editConfectionery?.imagen : urlImagen,
-  //         );
-  //         confectioneries[i] = editConfectionery!;
-  //       }
-  //     }
+  Future<void> updateCoupon(BuildContext context) async {
+    try {
+      if (editCoupon == null && editCoupon!.idCupon == null) {
+        return;
+      }
+      isUpdateCoupon();
+      for (int i = 0; i < coupons.length; i++) {
+        if (coupons[i].idCupon == editCoupon!.idCupon) {
+          editCoupon = Coupon(
+            idCupon: editCoupon?.idCupon,
+            valorDescuento: double.parse(valorDescuento) == 0
+                ? editCoupon?.valorDescuento
+                : double.parse(valorDescuento),
+            fechaVencimiento: editCoupon?.fechaVencimiento ?? fechaVencimiento,
+            descripcion:
+                descripcion == '' ? editCoupon?.descripcion : descripcion,
+            criterio: criterio == '' ? editCoupon?.criterio : criterio,
+          );
+          coupons[i] = editCoupon!;
+        }
+      }
 
-  //     await UnicineApi.put(
-  //             '/actualizar-confiteria', editConfectionery!.toJson())
-  //         .then((json) {
-  //       loading = false;
-  //       Dialogs.showSnackbarTop(
-  //         context,
-  //         json['mensaje'],
-  //         isError: false,
-  //       );
+      await UnicineApi.put('/actualizar-cupon', editCoupon!.toJson())
+          .then((json) {
+        loading = false;
+        Dialogs.showSnackbarTop(
+          context,
+          json['mensaje'],
+          isError: false,
+        );
+        _cleanInputs();
+        notify();
+      }).catchError((e) => throw e);
+    } catch (e) {
+      Dialogs.showSnackbarTop(
+        context,
+        e.toString(),
+        isError: true,
+      );
+      log(runtimeType, 'Error en updateCoupon CouponController $e');
+    }
+  }
 
-  //       _cleanInputs();
-  //       notify();
-  //     }).catchError((e) => throw e);
-  //   } catch (e) {
-  //     Dialogs.showSnackbarTop(
-  //       context,
-  //       e.toString(),
-  //       isError: true,
-  //     );
-  //     log(runtimeType, 'Error en newConfectionery ConfectioneryController $e');
-  //   }
-  // }
+  Future<void> deleteCoupon(BuildContext context, int id) async {
+    try {
+      await UnicineApi.delete('/eliminar-cupon/$id', {}).then((json) {
+        coupons.removeWhere((coupon) => coupon.idCupon == id);
+        loading = false;
+        Dialogs.showSnackbarTop(
+          context,
+          json['mensaje'],
+          isError: false,
+        );
 
-  // Future<void> deleteConfectionery(BuildContext context, int id) async {
-  //   try {
-  //     await UnicineApi.delete('/eliminar-confiteria/$id', {}).then((json) {
-  //       confectioneries
-  //           .removeWhere((confectionery) => confectionery.idConfiteria == id);
-  //       loading = false;
-  //       Dialogs.showSnackbarTop(
-  //         context,
-  //         json['mensaje'],
-  //         isError: false,
-  //       );
-
-  //       _cleanInputs();
-  //       notify();
-  //     }).catchError((e) => throw e);
-  //   } catch (e) {
-  //     Dialogs.showSnackbarTop(
-  //       context,
-  //       e.toString(),
-  //       isError: true,
-  //     );
-  //     log(runtimeType, 'Error en newConfectionery ConfectioneryController $e');
-  //   }
-  // }
+        _cleanInputs();
+        notify();
+      }).catchError((e) => throw e);
+    } catch (e) {
+      Dialogs.showSnackbarTop(
+        context,
+        e.toString(),
+        isError: true,
+      );
+      log(runtimeType, 'Error en deleteCoupon CouponController $e');
+    }
+  }
 
   void onChangeDate(DateTime date) {
     fechaVencimiento = date;
