@@ -30,15 +30,15 @@ class Flurorouter {
   static String functionRoute             = '$_domain/administradorTeatro/funciones';
 
   // User 
-  static String unicineRoute              = '$_domain/';
-  static String billboardRoute            = '$_domain/cartelera';
-  static String roomUnicineRoute          = '$_domain/sala';
-  static String confectioneryRoute        = '$_domain/confiteria';
-  static String movieDescriptionRoute     = '$_domain/descripcion-pelicula';
-  static String purchaseDetailRoute       = '$_domain/detalle-compra';
-  static String membershipRoute           = '$_domain/membresia';
-  static String pqrsRoute                 = '$_domain/pqrs';
-  static String userDetailsRoute          = '$_domain/detalle-usuario';
+  static String unicineRoute              = '$_domain/usuario/';
+  static String billboardRoute            = '$_domain/usuario/cartelera';
+  static String roomUnicineRoute          = '$_domain/usuario/sala';
+  static String confectioneryRoute        = '$_domain/usuario/confiteria';
+  static String movieDescriptionRoute     = '$_domain/usuario/descripcion-pelicula';
+  static String purchaseDetailRoute       = '$_domain/usuario/detalle-compra';
+  static String membershipRoute           = '$_domain/usuario/membresia';
+  static String pqrsRoute                 = '$_domain/usuario/pqrs';
+  static String userDetailsRoute          = '$_domain/usuario/detalle-usuario';
 
 
   static void configureRoutes() {

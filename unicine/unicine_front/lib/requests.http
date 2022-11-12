@@ -174,5 +174,9 @@ DELETE {{apiRest}}/eliminar-pelicula/2
 ### Lista Teatros
 GET {{apiRest}}/lista-teatros
 
+### Lista Confiterías
+GET {{apiRest}}/lista-confiteria
+
+
 
 // --------------------------------------------------------------------------------------------------\\

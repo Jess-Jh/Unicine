@@ -11,8 +11,9 @@ class MovieController extends SimpleNotifier {
   final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
   List<Movie> movies = [];
   Movie? editMovie;
-  bool isUpdate = false;
   bool loading = true;
+  bool isEdit = false;
+  bool notSelected = false;
 
   // Inputs
   String nombre = '';
@@ -33,6 +34,7 @@ class MovieController extends SimpleNotifier {
 
   void editSelectMovie(Movie movie) {
     editMovie = movie;
+    estado = editMovie!.estadoPelicula!;
     notify();
     Timer(const Duration(milliseconds: 200),
         () => formMovieKey.currentState?.reset());
@@ -41,6 +43,7 @@ class MovieController extends SimpleNotifier {
   void _cleanInputs() {
     if (loading == false) {
       editMovie = null;
+      estado = '';
       notify();
       Timer(const Duration(milliseconds: 200),
           () => formMovieKey.currentState?.reset());
@@ -70,11 +73,9 @@ class MovieController extends SimpleNotifier {
       estadoPelicula: estado,
     );
 
-    Map jsonResponse = {};
     try {
       await UnicineApi.post('/crear-pelicula', movie.toJson()).then((json) {
         final newMovie = Movie.fromMap(json['pelicula']);
-        jsonResponse = json;
         movies.add(newMovie);
         loading = false;
         Dialogs.showSnackbarTop(
@@ -88,7 +89,7 @@ class MovieController extends SimpleNotifier {
     } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        jsonResponse['mensaje'],
+        e.toString(),
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');
@@ -96,7 +97,7 @@ class MovieController extends SimpleNotifier {
   }
 
   Future<void> updateMovie(BuildContext context) async {
-    Map jsonResponse = {};
+    log(runtimeType, estado);
     try {
       if (editMovie == null && editMovie!.idPelicula == null) return;
       isUpdateMovie();
@@ -118,7 +119,6 @@ class MovieController extends SimpleNotifier {
 
       await UnicineApi.put('/actualizar-pelicula', editMovie!.toJson())
           .then((json) {
-        jsonResponse = json;
         loading = false;
         Dialogs.showSnackbarTop(
           context,
@@ -132,7 +132,7 @@ class MovieController extends SimpleNotifier {
     } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        jsonResponse['mensaje'],
+        e.toString(),
         isError: true,
       );
       log(runtimeType, 'Error en newMovie MovieController $e');
@@ -164,7 +164,21 @@ class MovieController extends SimpleNotifier {
   }
 
   void isUpdateMovie() {
-    isUpdate = !isUpdate;
+    isEdit = !isEdit;
+    notify();
+  }
+
+  void stateMovie(String estadoPelicula) {
+    estado = estadoPelicula;
+    notify();
+  }
+
+  void isSelectedComboBox() {
+    if (estado == '') {
+      notSelected = true;
+    } else {
+      notSelected = false;
+    }
     notify();
   }
 }

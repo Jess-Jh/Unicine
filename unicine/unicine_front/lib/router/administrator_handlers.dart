@@ -18,7 +18,7 @@ class AdministratorHandlers {
           ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
   static Handler manageMovies = Handler(
       handlerFunc: ((context, parameters) =>
-          ValidateView(const ManageMovieView(), Flurorouter.moviesRoute)));
+          ValidateView(ManageMovieView(), Flurorouter.moviesRoute)));
   static Handler manageConfectionaries = Handler(
       handlerFunc: ((context, parameters) => ValidateView(
           const ManageConfectioneryView(), Flurorouter.confectionariesRoute)));

@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 
 import 'package:uni_cine/datatables/confectionaries_datasource.dart';
-import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 
-class TableConfectionaries extends StatelessWidget {
+class TableConfectionaries extends ConsumerWidget {
   const TableConfectionaries({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(confectioneryProvider);
+    final size = MediaQuery.of(context).size;
+
     return PaginatedDataTable(
-      columnSpacing: 200,
-      source: ConfectionariesDTS(),
+      columnSpacing: size.width / 5,
+      source:
+          ConfectionariesDTS(ctrl.loading ? [] : ctrl.confectioneries, context),
       header: const Text(
         'Lista de productos',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       columns: const [
+        DataColumn(label: Text('Id Confitería')),
         DataColumn(label: Text('Nombre')),
         DataColumn(label: Text('Precio')),
-      ],
-      actions: [
-        CustomOutlinedButton(
-          onPressed: () {},
-          text: 'Eliminar',
-          width: 200,
-          height: 6,
-          fontSize: 12,
-        ),
+        DataColumn(label: Text('Acciones')),
       ],
     );
   }

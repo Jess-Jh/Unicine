@@ -20,36 +20,38 @@ class MoviesDTS extends DataTableSource {
         DataCell(Text(movie.nombre!)),
         DataCell(Text(movie.genero!)),
         DataCell(Text(movie.estadoPelicula!)),
-        DataCell(Row(
-          children: [
-            IconButton(
-              icon: const Icon(
-                Icons.edit_outlined,
+        DataCell(
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.edit_outlined,
+                ),
+                onPressed: () {
+                  FormMovies(id: movie.idPelicula);
+                  movieProvider.read.editSelectMovie(movie);
+                  movieProvider.read.isUpdateMovie();
+                },
               ),
-              onPressed: () {
-                FormMovies(id: movie.idPelicula);
-                movieProvider.read.editSelectMovie(movie);
-                movieProvider.read.isUpdateMovie();
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.delete_outline,
-                color: Colors.red.withOpacity(0.8),
-              ),
-              onPressed: () {
-                final dialog = showMessageAlert(
-                  context,
-                  '¿Está seguro de eliminar?',
-                  '${movie.nombre}',
-                  movie.idPelicula!,
-                );
+              IconButton(
+                icon: Icon(
+                  Icons.delete_outline,
+                  color: Colors.red.withOpacity(0.8),
+                ),
+                onPressed: () {
+                  final dialog = showMessageAlert(
+                    context,
+                    '¿Está seguro de eliminar?',
+                    '${movie.nombre}',
+                    movie.idPelicula!,
+                  );
 
-                showDialog(context: context, builder: (_) => dialog);
-              },
-            )
-          ],
-        )),
+                  showDialog(context: context, builder: (_) => dialog);
+                },
+              )
+            ],
+          ),
+        ),
       ],
     );
   }

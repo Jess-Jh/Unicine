@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-class ComboBoxFilter extends StatefulWidget {
+class ComboBoxFilter extends StatelessWidget {
   final List<String> listItems;
-  String itemSelected;
+  final String? itemSelected;
   final Color? colorBox;
   final Color? colorBorder;
   final double? buttonHeight;
   final double? buttonWidth;
+  final String? hint;
+  final double? borderRadius;
+  final Color? colorText;
+  final void Function(String? item)? onChange;
 
-  ComboBoxFilter({
+  const ComboBoxFilter({
     super.key,
     required this.listItems,
     required this.itemSelected,
@@ -17,21 +21,44 @@ class ComboBoxFilter extends StatefulWidget {
     this.colorBorder,
     this.buttonHeight,
     this.buttonWidth,
+    this.hint,
+    this.borderRadius,
+    this.onChange,
+    this.colorText,
   });
 
-  @override
-  State<ComboBoxFilter> createState() => _ComboBoxFilterState();
-}
-
-class _ComboBoxFilterState extends State<ComboBoxFilter> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
-          value: widget.itemSelected,
-          items: widget.listItems
+          hint: Row(
+            children: [
+              Icon(
+                Icons.list,
+                size: 20,
+                color: Theme.of(context).hintColor,
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              Expanded(
+                child: Text(
+                  hint ?? '',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: colorText ?? Theme.of(context).hintColor,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          iconOnClick: const Icon(Icons.arrow_drop_up_outlined),
+          value: itemSelected,
+          items: listItems
               .map((item) => DropdownMenuItem<String>(
                     value: item,
                     child: Text(
@@ -40,22 +67,21 @@ class _ComboBoxFilterState extends State<ComboBoxFilter> {
                     ),
                   ))
               .toList(),
-          onChanged: (String? value) {
-            setState(() {
-              widget.itemSelected = value!;
-            });
-          },
+          onChanged: ((value) {
+            onChange?.call(value);
+            // itemSelected = value;
+          }),
           icon: const Icon(
             Icons.arrow_drop_down_sharp,
           ),
-          buttonHeight: widget.buttonHeight ?? 30,
-          buttonWidth: widget.buttonWidth ?? 150,
+          buttonHeight: buttonHeight ?? 30,
+          buttonWidth: buttonWidth ?? 150,
           buttonPadding: const EdgeInsets.symmetric(horizontal: 6),
           buttonDecoration: BoxDecoration(
-            color: widget.colorBox,
-            borderRadius: BorderRadius.circular(10),
-            border: widget.colorBorder != null
-                ? Border.all(color: widget.colorBorder!, width: 2)
+            color: colorBox,
+            borderRadius: BorderRadius.circular(borderRadius ?? 10),
+            border: colorBorder != null
+                ? Border.all(color: colorBorder!, width: 1)
                 : Border.all(color: Colors.transparent),
           ),
           dropdownMaxHeight: 200,

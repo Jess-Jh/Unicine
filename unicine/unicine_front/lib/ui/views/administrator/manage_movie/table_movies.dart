@@ -9,9 +9,10 @@ class TableMovies extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(movieProvider);
+    final size = MediaQuery.of(context).size;
 
     return PaginatedDataTable(
-      columnSpacing: 100,
+      columnSpacing: size.width / 8,
       source: MoviesDTS(ctrl.loading ? [] : ctrl.movies, context),
       header: const Text(
         'Lista de películas',
@@ -24,17 +25,6 @@ class TableMovies extends ConsumerWidget {
         DataColumn(label: Text('Estado')),
         DataColumn(label: Text('Acciones')),
       ],
-      // actions: [
-      //   CustomOutlinedButton(
-      //     onPressed: () {
-
-      //     },
-      //     text: 'Eliminar',
-      //     width: 200,
-      //     height: 6,
-      //     fontSize: 12,
-      //   ),
-      // ],
     );
   }
 }

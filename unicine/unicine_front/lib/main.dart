@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         title: 'UniCine',
-        initialRoute: '/',
+        initialRoute: Flurorouter.rootRoute,
         onGenerateRoute: Flurorouter.router.generator,
         navigatorKey: NavigationService.navigatorKey,
         scaffoldMessengerKey: NotificationsService.messengerKey,

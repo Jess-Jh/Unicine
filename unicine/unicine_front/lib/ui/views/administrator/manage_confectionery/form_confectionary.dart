@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
-class FormConfectionary extends StatelessWidget {
-  const FormConfectionary({super.key});
+class FormConfectionary extends ConsumerWidget {
+  final int? id;
+  const FormConfectionary({super.key, this.id});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(confectioneryProvider);
+
     return SizedBox(
-      height: 220,
-      child: Column(
-        children: [
-          CustomFormInput(
-            inputForm: TextFormField(
+      child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: ctrl.formConfectioneryKey,
+        child: Column(
+          children: [
+            TextFormField(
+              initialValue: ctrl.editConfectionery?.nombre ?? '',
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Ingrese el nombre del producto';
                 }
                 return null;
               },
-              obscureText: true,
+              onChanged: (value) => ctrl.nombre = value,
               keyboardType: TextInputType.name,
               style: const TextStyle(fontSize: 13),
               decoration: CustomInputs.loginInputDecoration(
@@ -29,18 +35,21 @@ class FormConfectionary extends StatelessWidget {
                 icon: Icons.fastfood_outlined,
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          CustomFormInput(
-            inputForm: TextFormField(
+            const SizedBox(height: 10),
+            TextFormField(
+              initialValue: ctrl.editConfectionery?.precio.toString() ?? '',
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                var intValue = double.tryParse(value!);
+                if (value.isEmpty) {
                   return 'Ingrese el precio del producto';
+                }
+                if (intValue == null) {
+                  return 'El precio debe ser de tipo numérico';
                 }
                 return null;
               },
-              obscureText: true,
-              keyboardType: TextInputType.name,
+              onChanged: (value) => ctrl.precio = value,
+              keyboardType: TextInputType.number,
               style: const TextStyle(fontSize: 13),
               decoration: CustomInputs.loginInputDecoration(
                 hint: 'Ingrese el precio del producto',
@@ -48,18 +57,16 @@ class FormConfectionary extends StatelessWidget {
                 icon: Icons.attach_money_rounded,
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          CustomFormInput(
-            inputForm: TextFormField(
+            const SizedBox(height: 10),
+            TextFormField(
+              initialValue: ctrl.editConfectionery?.imagen ?? '',
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Agregue la Url de la imagen';
                 }
                 return null;
               },
-              obscureText: true,
-              keyboardType: TextInputType.name,
+              onChanged: (value) => ctrl.urlImagen = value,
               style: const TextStyle(fontSize: 13),
               decoration: CustomInputs.loginInputDecoration(
                 hint: 'Agregue la Url de la imagen',
@@ -67,33 +74,32 @@ class FormConfectionary extends StatelessWidget {
                 icon: Icons.image_outlined,
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: CustomOutlinedButton(
-                  onPressed: () {},
-                  text: 'Guardar',
-                  width: 300,
-                  height: 8,
-                  fontSize: 14,
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: CustomOutlinedButton(
+                    onPressed: () async {
+                      final validForm = ctrl.validateForm(
+                        ctrl.formConfectioneryKey,
+                      );
+                      if (!validForm) return;
+                      if (ctrl.editConfectionery == null) {
+                        await ctrl.newConfectionery(context);
+                      } else {
+                        await ctrl.updateConfectionery(context);
+                      }
+                    },
+                    text: 'Guardar',
+                    height: 8,
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: CustomOutlinedButton(
-                  onPressed: () {},
-                  text: 'Actualizar',
-                  width: 300,
-                  height: 8,
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
