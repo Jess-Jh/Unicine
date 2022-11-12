@@ -42,7 +42,6 @@ public class AdminServicioImpl implements AdminServicio{
 
     @Override
     public Pelicula crearPelicula(Pelicula pelicula) {
-
         return peliculaRepo.save(pelicula);
     }
 

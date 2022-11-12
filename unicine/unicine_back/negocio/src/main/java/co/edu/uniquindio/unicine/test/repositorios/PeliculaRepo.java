@@ -48,5 +48,4 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
 
     @Query("select p from Pelicula p where p.estadoPelicula = :preventa")
     List<Pelicula> obtenerPeliculaPreventaCompleta(EstadoPelicula preventa);
-
 }
