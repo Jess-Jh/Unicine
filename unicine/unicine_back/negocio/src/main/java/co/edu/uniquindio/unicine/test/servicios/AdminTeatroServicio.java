@@ -15,6 +15,8 @@ public interface AdminTeatroServicio {
 
     Horario obtenerHorario(Integer idHorario) throws Exception;
 
+    Horario actualizarHorario(Horario horario) throws Exception;
+
     boolean eliminarHorario(Integer idHorario) throws Exception;
 
     Funcion crearFuncion(Funcion funcion);

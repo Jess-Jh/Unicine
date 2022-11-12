@@ -10,7 +10,7 @@ public interface AdminServicio {
 
     Ciudad obtenerCiudad(Integer idCiudad) throws Exception;
 
-    Pelicula crearPelicula(Pelicula pelicula);
+    Pelicula crearPelicula(Pelicula pelicula) throws Exception;
 
     Pelicula actualizarPelicula(Pelicula pelicula) throws Exception;
 

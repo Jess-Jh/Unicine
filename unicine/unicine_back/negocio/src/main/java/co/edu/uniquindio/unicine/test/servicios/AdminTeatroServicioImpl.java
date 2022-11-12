@@ -45,6 +45,15 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
+    public Horario actualizarHorario(Horario horario) throws Exception {
+        Optional<Horario> guardado = horarioRepo.findById(horario.getIdHorario());
+        if (guardado.isEmpty()){
+            throw new Exception("No existe el horario");
+        }
+        return horarioRepo.save(horario);
+    }
+
+    @Override
     public boolean eliminarHorario(Integer idHorario) throws Exception {
         Horario buscado = horarioRepo.findById(idHorario).orElse(null);
 
