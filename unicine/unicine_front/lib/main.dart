@@ -20,6 +20,7 @@ final authProvider = SimpleProvider((ref) => AuthController());
 final sideMenuProvider = SimpleProvider((ref) => SideMenuController());
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // setupLocator();
   await LocalStorage.configurePrefs();
   UnicineApi.configureDio();

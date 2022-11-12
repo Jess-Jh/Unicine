@@ -223,6 +223,11 @@ class _MobileForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(movieProvider);
+
+    // Selección de estado de película
+    final List<String> estadoPelicula = ['CARTELERA', 'PREVENTA'];
+    // FILTRO
+    String? filtroEstado;
     return SizedBox(
       height: 520,
       child: Form(
@@ -316,21 +321,22 @@ class _MobileForm extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 10),
-            TextFormField(
-              initialValue: ctrl.editMovie?.estadoPelicula ?? '',
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Seleccione el estado';
-                }
-                return null;
+            ComboBoxFilter(
+              hint: 'Seleccione el estado',
+              colorText: ctrl.notSelected
+                  ? const Color(0xffD32F2F)
+                  : Theme.of(context).hintColor,
+              buttonHeight: 47,
+              itemSelected: ctrl.estado.isEmpty ? filtroEstado : ctrl.estado,
+              listItems: estadoPelicula,
+              colorBorder: ctrl.notSelected
+                  ? const Color(0xffD32F2F)
+                  : const Color(0xffBBBBBB),
+              borderRadius: 5,
+              onChange: (item) {
+                ctrl.estado = item ?? '';
+                ctrl.stateMovie(item ?? '');
               },
-              onChanged: (value) => ctrl.estado = value,
-              style: const TextStyle(fontSize: 13),
-              decoration: CustomInputs.loginInputDecoration(
-                hint: 'Seleccione el estado',
-                label: 'Estado',
-                icon: Icons.not_started_outlined,
-              ),
             ),
             const SizedBox(height: 15),
             TextFormField(
@@ -358,6 +364,12 @@ class _MobileForm extends ConsumerWidget {
                     onPressed: () async {
                       final validForm = ctrl.validateForm(ctrl.formMovieKey);
                       if (!validForm) return;
+                      if (ctrl.estado == '') {
+                        ctrl.isSelectedComboBox();
+                        return;
+                      } else {
+                        ctrl.isSelectedComboBox();
+                      }
                       if (ctrl.editMovie == null) {
                         await ctrl.newMovie(context);
                       } else {

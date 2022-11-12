@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/controllers/administrator/confectionery_controller.dart';
+import 'package:uni_cine/controllers/administrator/coupon_controller.dart';
 import 'package:uni_cine/controllers/administrator/movie_controller.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
@@ -9,7 +10,9 @@ import 'package:uni_cine/ui/shared/appbar/navbar.dart';
 import 'package:uni_cine/ui/shared/appbar/sidebar.dart';
 
 final movieProvider = SimpleProvider((ref) => MovieController());
-final confectioneryProvider = SimpleProvider((ref) => ConfectioneryController());
+final confectioneryProvider =
+    SimpleProvider((ref) => ConfectioneryController());
+final couponProvider = SimpleProvider((ref) => CouponController());
 
 class AdministratorLayoutPage extends StatefulWidget {
   final Widget child;

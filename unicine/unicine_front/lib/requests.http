@@ -178,5 +178,9 @@ GET {{apiRest}}/lista-teatros
 GET {{apiRest}}/lista-confiteria
 
 
+### Obtener la lista de los cupones
+GET {{apiRest}}/lista-cupones
+
+
 
 // --------------------------------------------------------------------------------------------------\\

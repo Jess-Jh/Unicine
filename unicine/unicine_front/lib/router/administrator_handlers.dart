@@ -13,18 +13,10 @@ import 'package:uni_cine/ui/views/administrator/manage_theater/manage_theater_vi
 import 'package:uni_cine/ui/views/administrator/manage_confectionery/manage_confectionery_view.dart';
 
 class AdministratorHandlers {
-  static Handler manageTheaters = Handler(
-      handlerFunc: ((context, parameters) =>
-          ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
-  static Handler manageMovies = Handler(
-      handlerFunc: ((context, parameters) =>
-          ValidateView(ManageMovieView(), Flurorouter.moviesRoute)));
-  static Handler manageConfectionaries = Handler(
-      handlerFunc: ((context, parameters) => ValidateView(
-          const ManageConfectioneryView(), Flurorouter.confectionariesRoute)));
-  static Handler manageCoupons = Handler(
-      handlerFunc: ((context, parameters) =>
-          ValidateView(const ManageCouponView(), Flurorouter.couponsRoute)));
+  static Handler manageTheaters        = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageTheaterView(), Flurorouter.theatersRoute)));
+  static Handler manageMovies          = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageMovieView(), Flurorouter.moviesRoute)));
+  static Handler manageConfectionaries = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageConfectioneryView(), Flurorouter.confectionariesRoute)));
+  static Handler manageCoupons         = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageCouponView(), Flurorouter.couponsRoute)));
 }
 
 class ValidateView extends ConsumerWidget {
