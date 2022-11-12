@@ -18,11 +18,7 @@ class CouponController extends SimpleNotifier {
   // Inputs
   int idCoupon = 0;
   String valorDescuento = '0';
-  DateTime fechaVencimiento = DateTime(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-  );
+  DateTime? fechaVencimiento;
   String descripcion = '';
   String criterio = '';
 
@@ -170,5 +166,8 @@ class CouponController extends SimpleNotifier {
     fechaVencimiento = date;
     chageDate = true;
     notify();
+
+    Timer(const Duration(milliseconds: 200),
+        () => formCouponKey.currentState?.reset());
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/models/administrator/coupon.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/views/administrator/manage_coupon/form_coupons.dart';
+import 'package:uni_cine/utils/util.dart';
 
 class CouponsDTS extends DataTableSource {
   final List<Coupon> coupons;
@@ -19,7 +20,7 @@ class CouponsDTS extends DataTableSource {
         DataCell(Text(coupon.idCupon.toString())),
         DataCell(Text(coupon.valorDescuento.toString())),
         DataCell(Text(coupon.descripcion!)),
-        DataCell(Text(coupon.fechaVencimiento.toString())),
+        DataCell(Text(getStringDateFromDateTime(coupon.fechaVencimiento!))),
         DataCell(
           Row(
             children: [
