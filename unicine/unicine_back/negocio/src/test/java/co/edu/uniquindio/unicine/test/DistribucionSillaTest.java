@@ -24,8 +24,7 @@ public class DistribucionSillaTest {
     @Sql("classpath:dataset.sql")
     public void registrar(){
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
-        Sala sala = new Sala("Sala prueba 1", teatro);
-        DistribucionSilla distribuccionSilla = new DistribucionSilla("Distribuccion 1", 49, 7, 7, sala);
+        DistribucionSilla distribuccionSilla = new DistribucionSilla("Distribuccion 1", 49, 7, 7);
         DistribucionSilla guardado = distribuccionSillaRepo.save(distribuccionSilla);
 
         Assertions.assertEquals("Distribuccion 1",distribuccionSilla.getDistribuccionSillas());

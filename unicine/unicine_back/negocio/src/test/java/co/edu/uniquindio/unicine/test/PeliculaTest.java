@@ -24,7 +24,7 @@ public class PeliculaTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
-        Pelicula pelicula = new Pelicula("pelicula prueba", "ruta/img", "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
+        Pelicula pelicula = new Pelicula("pelicula prueba", EstadoPelicula.CARTELERA, "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
         Pelicula guardado = peliculaRepo.save(pelicula);
 
         Assertions.assertEquals("pelicula prueba",pelicula.getNombre());

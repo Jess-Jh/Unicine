@@ -32,13 +32,18 @@ public class Sala implements Serializable {
     @OneToMany(mappedBy = "sala")
     private List<FuncionSala> listaFuncionSala;
 
+    /**
     @ToString.Exclude
     @OneToMany(mappedBy = "sala")
     private List<DistribucionSilla> listaDistribuccionSillas;
+**/
+    @ManyToOne
+    private DistribucionSilla distribucionSilla;
 
     @Builder
-    public Sala(String nombre, Teatro teatro) {
+    public Sala(String nombre, Teatro teatro, DistribucionSilla distribucionSilla) {
         this.nombre = nombre;
         this.teatro = teatro;
+        this.distribucionSilla = distribucionSilla;
     }
 }

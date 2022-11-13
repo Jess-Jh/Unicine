@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface SalaRepo extends JpaRepository<Sala, Integer> {
 
-    @Query("select s.nombre, s.listaDistribuccionSillas from Sala s")
+    @Query("select s.nombre, s.distribucionSilla from Sala s")
     List<SalaDTO> obtenerSalas();
 
 }

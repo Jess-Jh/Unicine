@@ -137,12 +137,8 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
             throw new Exception("No se encontro la sala para eliminar");
         }else {
             if (buscado.getListaFuncionSala().size() <= 0){
-                if (buscado.getListaDistribuccionSillas().size() <= 0){
-                    salaRepo.delete(buscado);
-                    return true;
-                }else {
-                    throw new Exception("No se puede eliminar ya que tiene relacionado distribucion sillas");
-                }
+                salaRepo.delete(buscado);
+                return true;
             }else {
                 throw new Exception("No se puede eliminar ya que tiene relacionado funcion sala");
             }

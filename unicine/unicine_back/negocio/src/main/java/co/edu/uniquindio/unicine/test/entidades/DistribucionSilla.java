@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,16 +29,20 @@ public class DistribucionSilla implements Serializable {
 
     private Integer columnas;
 
+    /**
     @JsonIgnore
     @ManyToOne
     private Sala sala;
+**/
+
+    @OneToMany(mappedBy = "distribucionSilla")
+    private List<Sala> listaSalas;
 
     @Builder
-    public DistribucionSilla(String distribuccionSillas, Integer totalSillas, Integer filas, Integer columnas, Sala sala) {
+    public DistribucionSilla(String distribuccionSillas, Integer totalSillas, Integer filas, Integer columnas) {
         this.distribuccionSillas = distribuccionSillas;
         this.totalSillas = totalSillas;
         this.filas = filas;
         this.columnas = columnas;
-        this.sala = sala;
     }
 }
