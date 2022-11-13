@@ -27,8 +27,9 @@ public class FuncionSalaTest {
     @Sql("classpath:dataset.sql")
     public void registrar(){
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
-        Sala sala = new Sala("Sala prueba", teatro);
-        Pelicula pelicula = new Pelicula("pelicula prueba", "ruta/img", "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
+        DistribucionSilla distribuccionSilla = new DistribucionSilla("Distribuccion 1", 49, 7, 7);
+        Sala sala = new Sala("Sala prueba", teatro, distribuccionSilla);
+        Pelicula pelicula = new Pelicula("pelicula prueba", EstadoPelicula.CARTELERA, "ruta/url", "thriller", "sinopsis prueba", "jhon doe - jana doe", null);
         //nuevo
         LocalTime time = LocalTime.now();
         LocalDate date = LocalDate.now();

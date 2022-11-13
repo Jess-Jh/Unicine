@@ -13,6 +13,6 @@ import lombok.ToString;
 public class SalaDTO {
 
     private String nombre;
-    private DistribucionSilla listaDistribuccionSilla;
+    private DistribucionSilla distribucionSilla;
 
 }

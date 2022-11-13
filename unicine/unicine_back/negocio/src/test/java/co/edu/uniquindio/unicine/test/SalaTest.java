@@ -1,6 +1,7 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.test.dto.SalaDTO;
+import co.edu.uniquindio.unicine.test.entidades.DistribucionSilla;
 import co.edu.uniquindio.unicine.test.entidades.Sala;
 import co.edu.uniquindio.unicine.test.entidades.Teatro;
 import co.edu.uniquindio.unicine.test.repositorios.SalaRepo;
@@ -25,7 +26,8 @@ public class SalaTest {
     @Sql("classpath:dataset.sql")
     public void registrar(){
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
-        Sala sala = new Sala("Sala prueba 1", teatro);
+        DistribucionSilla distribuccionSilla = new DistribucionSilla("Distribuccion 1", 49, 7, 7);
+        Sala sala = new Sala("Sala prueba 1", teatro, distribuccionSilla);
         Sala guardado = salaRepo.save(sala);
 
         Assertions.assertEquals("Teatro prueba",teatro.getNombre());
