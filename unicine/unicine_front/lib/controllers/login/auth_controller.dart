@@ -20,7 +20,7 @@ class AuthController extends SimpleNotifier {
   String? _token;
   Client? client;
   User? user = User(
-      id: 3,
+      id: 2,
       label: 'Administrador',
       idUser: '2321',
       email: 'admin98@gmail.com',

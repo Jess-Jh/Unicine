@@ -188,4 +188,11 @@ GET {{apiRest}}/lista-cupones
 // ----------------------------------------- Rest Administrator Teatro ---------------------------------------------->>
 ### Obtener la lista de los horarios
 GET {{apiRest}}/lista-horarios
+
+### Obtener la lista de las salas
+GET {{apiRest}}/lista-salas
+
+
+
+
 // ------------------------------------------------------------------------------------------------------------------\\
