@@ -7,6 +7,7 @@ import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public interface ClienteServicio {
 
@@ -14,6 +15,8 @@ public interface ClienteServicio {
     Cliente login(String email, String contrasena) throws Exception;
 
     Object login2(String email, String contrasena) throws Exception;
+
+    Optional<Cliente> findByEmail(String email);
 
     Cliente registrarCliente(Cliente cliente) throws Exception;
 
@@ -32,5 +35,6 @@ public interface ClienteServicio {
     CuponCliente redimirCupon(CuponCliente cuponCliente);
 
     boolean cambiarContrasena(String email, String contrasena) throws Exception;
+
 
 }

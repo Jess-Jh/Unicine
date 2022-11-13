@@ -1,7 +1,10 @@
 package co.edu.uniquindio.unicine.test.controladores;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -21,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class AdminController {
 
+    protected final Log logger = LogFactory.getLog(this.getClass());
+
     @Autowired
     private AdminServicio adminServicio;
 
@@ -34,6 +39,7 @@ public class AdminController {
         return adminServicio.obtenerCiudad(idCiudad);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear-pelicula")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> crearPelicula(@RequestBody Pelicula pelicula) {
@@ -51,6 +57,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/actualizar-pelicula")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> actualizarPelicula(@RequestBody Pelicula pelicula) {
@@ -68,6 +75,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/eliminar-pelicula/{idPelicula}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarPelicula(@PathVariable Integer idPelicula) {
@@ -116,6 +124,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear-cupon")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> crearCupon(@RequestBody Cupon cupon) {
@@ -133,6 +142,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/actualizar-cupon")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> actualizarCupon(@RequestBody Cupon cupon) {
@@ -150,6 +160,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/obtener-cupon/{idCupon}")
     public ResponseEntity<?> obtenerCupon(@PathVariable Integer idCupon) {
         Map<String, Object> res = new HashMap<>();
@@ -164,6 +175,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/eliminar-cupon/{idCupon}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarCupon(@PathVariable Integer idCupon) {
@@ -195,6 +207,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear-confiteria")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> crearConfiteria(@RequestBody Confiteria confiteria) {
@@ -212,6 +225,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/actualizar-confiteria")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> actualizarConfiteria(@RequestBody Confiteria confiteria) {
@@ -229,6 +243,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/obtener-confiteria/{idConfiteria}")
     public ResponseEntity<?> obtenerConfiteria( @PathVariable Integer idConfiteria ) {
         Map<String, Object> res = new HashMap<>();
@@ -244,6 +259,7 @@ public class AdminController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/eliminar-confiteria/{idConfiteria}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarConfiteria(@PathVariable Integer idConfiteria) {

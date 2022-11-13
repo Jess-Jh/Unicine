@@ -42,8 +42,8 @@ public class Cliente extends Persona implements Serializable {
     private List<CuponCliente> listaCuponClientes;
 
 
-    public Cliente(String cedula, String nombreCompleto, String email, String contrasena, List<String> telefonos, String imagenPerfil) {
-        super(cedula, nombreCompleto, email, contrasena);
+    public Cliente(String cedula, String nombreCompleto, String email, String contrasena, Rol rol, List<String> telefonos, String imagenPerfil) {
+        super(cedula, nombreCompleto, email, contrasena, rol);
         this.telefonos = telefonos;
         this.id = 1;
         this.label = "Cliente";

@@ -19,6 +19,7 @@ public class AdministradorTest {
     @Autowired
     private AdministradorRepo administradorRepo;
 
+    /*
     @Test
     @Sql("classpath:dataset.sql")
     public void registrar(){
@@ -27,6 +28,8 @@ public class AdministradorTest {
 
         Assertions.assertEquals("juan jose",administrador.getNombreCompleto());
     }
+
+     */
 
     @Test
     @Sql("classpath:dataset.sql")

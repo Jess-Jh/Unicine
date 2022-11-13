@@ -65,6 +65,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
+    public Optional<Cliente> findByEmail(String email) {
+        return Optional.empty();
+    }
+
+    @Override
     public Cliente registrarCliente(Cliente cliente) throws Exception {
         boolean correoExiste = esRepetido(cliente.getEmail());
 

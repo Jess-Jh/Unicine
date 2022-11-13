@@ -28,7 +28,7 @@ public class Persona implements Serializable {
     private String email;
 
     @ToString.Exclude
-    @Column(length = 45, nullable = false)
+    @Column(length = 100, nullable = false)
     private String contrasena;
 
     //Los dos datos referencia el tipo de usuario
@@ -41,11 +41,15 @@ public class Persona implements Serializable {
     @Column(length = 45, nullable = false)
     protected String label;
 
+    @OneToOne
+    private Rol rol;
+
     @Builder
-    public Persona(String cedula, String nombreCompleto, String email, String contrasena) {
+    public Persona(String cedula, String nombreCompleto, String email, String contrasena, Rol rol) {
         this.cedula = cedula;
         this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.contrasena = contrasena;
+        this.rol = rol;
     }
 }
