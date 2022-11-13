@@ -50,6 +50,23 @@ public class adminTeatroController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PutMapping("/actualizar-horario")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarHorario(@RequestBody Horario horario) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Horario horarioActualizado = adminTeatroServicio.actualizarHorario(horario);
+            res.put("horario", horarioActualizado);
+            res.put("mensaje", "El horario ha sido actualizado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar el horario");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
     @DeleteMapping("/eliminar-horario/{idHorario}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarHorario( @PathVariable Integer idHorario ) {
@@ -107,6 +124,23 @@ public class adminTeatroController {
             res.put("funcion", funcion);
         } catch (Exception e) {
             res.put("mensaje", "Error al buscar la función con el id " + idFuncion);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @PutMapping("/actualizar-funcion")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarFuncion(@RequestBody Funcion funcion) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Funcion funcionActualizada = adminTeatroServicio.actualizarFuncion(funcion);
+            res.put("funcion", funcionActualizada);
+            res.put("mensaje", "La función ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la función");
             res.put("error", e.getMessage());
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
@@ -176,6 +210,23 @@ public class adminTeatroController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PutMapping("/actualizar-sala")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarSala(@RequestBody Sala sala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Sala salaActualizada = adminTeatroServicio.actualizarSala(sala);
+            res.put("sala", salaActualizada);
+            res.put("mensaje", "La sala ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la sala");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
     @DeleteMapping("/eliminar-sala/{idSala}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarSala( @PathVariable Integer idSala ) {
@@ -222,6 +273,23 @@ public class adminTeatroController {
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/actualizar-teatro")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarTeatro(@RequestBody Teatro teatro) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Teatro teatroActualizado = adminTeatroServicio.actualizarTeatro(teatro);
+            res.put("teatro", teatroActualizado);
+            res.put("mensaje", "El teatro ha sido actualizado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar el teatro");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @GetMapping("/obtener-teatro/{idTeatro}")

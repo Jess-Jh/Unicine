@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/meedu.dart';
+import 'package:uni_cine/controllers/administrator_theater/hours_controller.dart';
 
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/ui/shared/appbar/animated_builder_sidebar.dart';
 import 'package:uni_cine/ui/shared/appbar/navbar.dart';
 import 'package:uni_cine/ui/shared/appbar/sidebar_administrator_theater.dart';
+
+final hourProvider = SimpleProvider((ref) => HoursController());
 
 class AdministratorTheaterLayout extends StatefulWidget {
   final Widget child;

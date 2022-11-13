@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/datatables/hours_datasource.dart';
-import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/layouts/administrator_theater_layout.dart';
 
-class TableHours extends StatelessWidget {
+class TableHours extends ConsumerWidget {
   const TableHours({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(hourProvider);
+    final size = MediaQuery.of(context).size;
+
     return PaginatedDataTable(
-      columnSpacing: 200,
-      source: HoursDTS(),
+      columnSpacing: size.width / 5.5,
+      source: HoursDTS(ctrl.loading ? [] : ctrl.hours, context),
       header: const Text(
         'Lista de horarios',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       columns: const [
+        DataColumn(label: Text('Id Horario')),
         DataColumn(label: Text('Fecha')),
         DataColumn(label: Text('Hora')),
-      ],
-      actions: [
-        CustomOutlinedButton(
-          onPressed: () {},
-          text: 'Eliminar',
-          width: 200,
-          height: 6,
-          fontSize: 12,
-        ),
+        DataColumn(label: Text('Acciones')),
       ],
     );
   }

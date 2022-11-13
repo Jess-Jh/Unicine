@@ -15,7 +15,7 @@ import 'package:uni_cine/ui/views/unicine/login/login_view.dart';
 class AdministratorTheaterHandlers {
 
   static Handler manageRooms     = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageRoomView(), Flurorouter.roomRoute)));
-  static Handler manageHours     = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageHoursView(), Flurorouter.hourRoute)));
+  static Handler manageHours     = Handler(handlerFunc: ((context, parameters) => ValidateView(ManageHoursView(), Flurorouter.hourRoute)));
   static Handler manageFunctions = Handler(handlerFunc: ((context, parameters) => ValidateView(const ManageFunctionView(), Flurorouter.functionRoute)));
 
 }

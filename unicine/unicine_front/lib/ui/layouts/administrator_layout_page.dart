@@ -10,8 +10,7 @@ import 'package:uni_cine/ui/shared/appbar/navbar.dart';
 import 'package:uni_cine/ui/shared/appbar/sidebar.dart';
 
 final movieProvider = SimpleProvider((ref) => MovieController());
-final confectioneryProvider =
-    SimpleProvider((ref) => ConfectioneryController());
+final confectioneryProvider = SimpleProvider((ref) => ConfectioneryController());
 final couponProvider = SimpleProvider((ref) => CouponController());
 
 class AdministratorLayoutPage extends StatefulWidget {
