@@ -1,10 +1,7 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
 import co.edu.uniquindio.unicine.test.entidades.*;
-import co.edu.uniquindio.unicine.test.repositorios.FuncionRepo;
-import co.edu.uniquindio.unicine.test.repositorios.HorarioRepo;
-import co.edu.uniquindio.unicine.test.repositorios.SalaRepo;
-import co.edu.uniquindio.unicine.test.repositorios.TeatroRepo;
+import co.edu.uniquindio.unicine.test.repositorios.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +14,15 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     private final FuncionRepo funcionRepo;
     private final SalaRepo salaRepo;
     private final TeatroRepo teatroRepo;
+    private final DistribucionSillaRepo distribucionSillaRepo;
 
-    public AdminTeatroServicioImpl(HorarioRepo horarioRepo, FuncionRepo funcionRepo, SalaRepo salaRepo, TeatroRepo teatroRepo) {
+    public AdminTeatroServicioImpl(HorarioRepo horarioRepo, FuncionRepo funcionRepo, SalaRepo salaRepo, TeatroRepo teatroRepo,
+                                   DistribucionSillaRepo distribucionSillaRepo) {
         this.horarioRepo = horarioRepo;
         this.funcionRepo = funcionRepo;
         this.salaRepo = salaRepo;
         this.teatroRepo = teatroRepo;
+        this.distribucionSillaRepo = distribucionSillaRepo;
     }
 
     @Override
@@ -201,6 +201,50 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         Optional<Teatro> guardado = teatroRepo.findById(idTeatro);
         if (guardado.isEmpty()){
             throw new Exception("No hay un horario con ese codigo");
+        }
+        return guardado.get();
+    }
+
+    @Override
+    public DistribucionSilla crearDistribuccionSilla(DistribucionSilla distribucionSilla) {
+        return distribucionSillaRepo.save(distribucionSilla);
+    }
+
+    @Override
+    public DistribucionSilla actualizarDistribuccionSilla(DistribucionSilla distribucionSilla) throws Exception {
+        Optional<DistribucionSilla> guardado = distribucionSillaRepo.findById(distribucionSilla.getIdDistribuccionSilla());
+        if (guardado.isEmpty()){
+            throw new Exception("No existe la distribuccion de la sillas");
+        }
+        return distribucionSillaRepo.save(distribucionSilla);
+    }
+
+    @Override
+    public boolean eliminarDistribuccionSilla(Integer idDistribucionSilla) throws Exception {
+        DistribucionSilla buscado = distribucionSillaRepo.findById(idDistribucionSilla).orElse(null);
+
+        if (buscado == null){
+            throw new Exception("No se encontro la distribuccion silla para eliminar");
+        }else {
+            if (buscado.getListaSalas().size()<=0){
+                distribucionSillaRepo.delete(buscado);
+                return true;
+            }else {
+                throw new Exception("No se puede eliminar distribuccion ya que tiene sala relacionada");
+            }
+        }
+    }
+
+    @Override
+    public List<DistribucionSilla> listarDistribuccionSillas() {
+        return distribucionSillaRepo.findAll();
+    }
+
+    @Override
+    public DistribucionSilla obtenerDistribuccionSilla(Integer idDistribucionSilla) throws Exception {
+        Optional<DistribucionSilla> guardado = distribucionSillaRepo.findById(idDistribucionSilla);
+        if (guardado.isEmpty()){
+            throw new Exception("No se encontro ninguna distribuccion silla");
         }
         return guardado.get();
     }
