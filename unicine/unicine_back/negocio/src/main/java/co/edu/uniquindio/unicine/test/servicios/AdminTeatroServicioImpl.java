@@ -268,7 +268,7 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
             throw new Exception("El id de la distribucion no existe");
         }else {
             guardado.get().getListaSalas().add(sala);
-            mensaje = "La sala quedo almacenada en la distribuccion con exito";
+            mensaje = "La sala quedo almacenada en la distribucion con exito";
             return mensaje;
         }
     }
