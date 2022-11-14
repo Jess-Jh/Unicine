@@ -61,6 +61,18 @@ Content-Type: application/json
 Accept: application/json
 Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
 
+### Autenticación cliente
+GET {{apiRest}}/auth/login/correo@gmail.com/123
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
+
+### Autenticación cliente
+GET {{apiRest}}/auth/login/correo2@gmail.com/123
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
+
 
 ### Autenticación administrador teatro
 GET {{apiRest}}/auth/login/admin2@gmail.com/123
@@ -80,14 +92,17 @@ Content-Type: application/json
     "contrasena" : "sfdasfdasf",
 }
 
-### Obtener ciudad
+### @Name Obtener ciudad
 GET {{apiRest}}/obtener-ciudad/1
 
 ###
 GET {{apiRest}}/detalle-usuarios
+Content-Type: application/json
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJ4rh8wCMREADC2oxzsRbPeLrs1pcoFdbZmx5d3VNyFBFJCUd58RCGmM6ODI7amoWZYTNobnz9uKV+VCRWPlPyIDHV5x2U97K7msyJXnKJIVmVmY/cNNOL+XXk2U+4YcM4hD6y2fKPYpReMlkoWb3yhJzE8a6eEfGUq+To4wMSMnvlURWI1Xm7pWWDuodr8hhD7Uo0bmSi1HoL8Qk6u3R4z
 
 ### Obtener usuario por cédula
 GET {{apiRest}}/detalle-usuario/2432343425
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJ4rh8wCMREADC2oxzsRbPeLrs1pcoFdbZmx5d3VNyFBFJCUd58RCGmM6ODI7amoWa5UkyGaNfJ75vaJujXxIZhWAgUIdfElzC3/w6H2qUSyD3dA0fsu1vfw4LcEQClA4f3CxNrLkOE73zhFuA13PUXiIokxlmhgG+NwUUVZj/L0prvZcBm+1L79UU/wKfctO9Ec7LNpBYAHzmQ3mVjrl8u
 
 ### Eliminar usuario
 DELETE {{apiRest}}/delete/kjhlkjhlkhlk

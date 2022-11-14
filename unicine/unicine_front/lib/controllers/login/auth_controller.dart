@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
+import 'package:uni_cine/models/account/auth_response.dart';
 import 'package:uni_cine/models/account/user.dart';
 import 'package:uni_cine/models/client/client.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
@@ -18,7 +19,7 @@ enum AuthStatus {
 
 class AuthController extends SimpleNotifier {
   String? _token;
-  Client? client;
+  AuthResponse? authResponse;
   User? user = User(
       id: 2,
       label: 'Administrador',
@@ -45,25 +46,21 @@ class AuthController extends SimpleNotifier {
   }
 
   AuthController() {
-    User userAuth;
-    if (user == null) {
-      authStatus = AuthStatus.notAuthenticated;
-    } else {
-      userAuth = user!;
-      isAuthenticated(userAuth);
-    }
+    isAuthenticated();
   }
 
-  login(String email, String password, BuildContext context) {
+  void login(String email, String password, BuildContext context) {
     UnicineApi.httpGet('/auth/login/$email/$password').then((json) {
-      final user = User.fromJson(json);
-      if (user == null) {
-        this.user;
-        isAuthenticated(this.user!);
-      }
+      authResponse = AuthResponse.fromMap(json['login']);
+
+      LocalStorage.prefs.setString('token', '${authResponse?.jwttoken}');
+      LocalStorage.prefs.setString('rol', '${authResponse?.rol}');
+      UnicineApi.configureDio();
+      isAuthenticated();
+
       Dialogs.showSnackbarTop(
         context,
-        'Ha iniciado sesión con éxito',
+        json['mensaje'],
         isError: false,
         backgroundColor: Colors.white,
       );
@@ -71,47 +68,48 @@ class AuthController extends SimpleNotifier {
     }).catchError((e) {
       Dialogs.showSnackbarTop(
         context,
-        'Error en $e',
+        e,
         isError: true,
       );
     });
   }
 
-  Future<bool> isAuthenticated(User user) async {
-    final token = LocalStorage.prefs.getString('token');
+  Future<bool> isAuthenticated() async {
+    _token = LocalStorage.prefs.getString('token');
+    String? rol = LocalStorage.prefs.getString('rol');
 
-    if (user.id == 1) {
-      authStatus = AuthStatus.authenticated;
-      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
-      NavigationService.replaceTo(Flurorouter.billboardRoute);
+    if (_token == null) {
+      authStatus = AuthStatus.notAuthenticated;
+      notify();
+      return false;
+    } else {
+      if (rol == 'CLIENTE') {
+        authStatus = AuthStatus.authenticated;
+        NavigationService.replaceTo(Flurorouter.billboardRoute);
+        buttonAuthenticated = true;
+        notify();
+        return true;
+      }
+      if (rol == 'ADMIN') {
+        authStatus = AuthStatus.administratorAuthenticated;
+        NavigationService.replaceTo(Flurorouter.administratorRoute);
 
-      UnicineApi.configureDio();
-      buttonAuthenticated = true;
-      notify();
-      return true;
-    }
-    if (user.id == 2) {
-      authStatus = AuthStatus.administratorAuthenticated;
-      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
-      NavigationService.replaceTo(Flurorouter.administratorRoute);
-      UnicineApi.configureDio();
-      notify();
-      return true;
-    }
-    if (user.id == 3) {
-      authStatus = AuthStatus.administratorTheaterAuthenticated;
-      LocalStorage.prefs.setString('token', '${user.email}+${user.password}');
-      NavigationService.replaceTo(Flurorouter.administratorTheaterRoute);
-      UnicineApi.configureDio();
-      notify();
-      return true;
+        notify();
+        return true;
+      }
+      if (rol == 'ADMIN_TEATRO') {
+        authStatus = AuthStatus.administratorTheaterAuthenticated;
+        NavigationService.replaceTo(Flurorouter.administratorTheaterRoute);
+        notify();
+        return true;
+      }
     }
 
     await Future.delayed(const Duration(milliseconds: 2000));
     return true;
   }
 
-  register(BuildContext context) {
+  void register(BuildContext context) {
     final client = Client(
       id: 1,
       label: "Cliente",
@@ -128,8 +126,7 @@ class AuthController extends SimpleNotifier {
       final client = Client.fromJson(json);
 
       authStatus = AuthStatus.authenticated;
-      LocalStorage.prefs
-          .setString('token', '${client.email}+${client.password}');
+      LocalStorage.prefs.setString('token', '${client.password}');
       NavigationService.replaceTo(Flurorouter.billboardRoute);
       UnicineApi.configureDio();
 
@@ -151,6 +148,7 @@ class AuthController extends SimpleNotifier {
 
   logout() {
     LocalStorage.prefs.remove('token');
+    LocalStorage.prefs.remove('rol');
     authStatus = AuthStatus.notAuthenticated;
     notify();
   }

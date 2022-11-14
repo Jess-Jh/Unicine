@@ -72,6 +72,7 @@ class HoursController extends SimpleNotifier {
     try {
       await UnicineApi.post('/crear-horario', hour.toJson()).then((json) {
         final newHour = Hour.fromMap(json['horario']);
+        print(json);
         hours.add(newHour);
         loading = false;
         Dialogs.showSnackbarTop(
@@ -166,7 +167,13 @@ class HoursController extends SimpleNotifier {
   }
 
   void onChangeTime(TimeOfDay time) {
-    hora = '${time.hour}:${time.minute}';
+    String hour =
+        time.hour.toString().length == 1 ? '${0}${time.hour}' : '${time.hour}';
+    String minutes = time.minute.toString().length == 1
+        ? '${0}${time.minute}'
+        : '${time.minute}';
+
+    hora = '$hour:$minutes';
     changeTime = true;
     notify();
 

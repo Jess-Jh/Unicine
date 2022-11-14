@@ -10,7 +10,13 @@ class UnicineApi {
 
     // Configurar Headers
     _dio.options.headers = {
-      'x-token': LocalStorage.prefs.getString('token') ?? ''
+      'jwttoken': LocalStorage.prefs.getString('token') ?? '',
+      'Authorization': 'Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=',
+      // 'Accept': 'application/json',
+      'content-type': 'application/json',
+      // "Access-Control_Allow_Origin": "*",
+      // "Access-Control-Allow-Credentials": true,
+      // 'Access-Control-Allow-Methods': 'GET , POST'
     };
   }
 

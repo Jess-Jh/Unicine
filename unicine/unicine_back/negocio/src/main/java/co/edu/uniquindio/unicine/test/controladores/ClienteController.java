@@ -84,6 +84,11 @@ public class ClienteController {
         return emailCliente;
     }
 
+    @GetMapping("/auth/login2/{email}/{contrasena}")
+    public Object loginUsuario2(@PathVariable String email, @PathVariable String contrasena) throws Exception {
+        return clienteServicio.login2(email, contrasena);
+    }
+
     @GetMapping("/auth/login/{email}/{contrasena}")
     public Object loginUsuario(@PathVariable String email, @PathVariable String contrasena) throws Exception {
         Map<String, Object> res = new HashMap<>();
