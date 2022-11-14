@@ -65,8 +65,13 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public Optional<Cliente> findByEmail(String email) {
-        return Optional.empty();
+    public Cliente findByEmail(String email) throws Exception {
+        Optional<Cliente> guardado = clienteRepo.findByEmail(email);
+
+        if (guardado.isEmpty()){
+            throw new Exception("El cliente no existe");
+        }
+        return guardado.get();
     }
 
     @Override

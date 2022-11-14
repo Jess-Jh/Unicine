@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ public class Respuesta implements Serializable {
     private String jwttoken;
     private String email;
     private String rol;
+
 
     public Respuesta(String email, String jwttoken, String rol) {
         this.email = email;

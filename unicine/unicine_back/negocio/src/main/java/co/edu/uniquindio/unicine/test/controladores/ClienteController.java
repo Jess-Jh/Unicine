@@ -66,11 +66,11 @@ public class ClienteController {
         Map<String, Object> response = new HashMap<>();
         try{
             String emailUsuario = JwtEncript.decrypt(email);
-            Optional<Cliente> cliente = this.clienteServicio.findByEmail(email);
-            cliente.get().setEstado(true);
-            this.clienteServicio.actualizarCliente(cliente.get());
+            Cliente cliente = this.clienteServicio.findByEmail(email);
+            cliente.setEstado(true);
+            this.clienteServicio.actualizarCliente(cliente);
             response.put("mensaje", "¡Su cuenta ha sido activada con éxito!");
-            response.put("estado", cliente.get().getEstado());
+            response.put("estado", cliente.getEstado());
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
         }catch(Exception e){
             response.put("mensaje", "Error en la activación de la cuenta");
@@ -92,12 +92,15 @@ public class ClienteController {
             autenticarUsuario(email, contrasena);
             final UserDetails userDetails = jwtDetalleUsuarioServicio.loadUserByUsername(email);
             String rol_user = "";
+
             for(GrantedAuthority e: userDetails.getAuthorities()){
                 rol_user = e.getAuthority();
             }
+
             if(rol_user.equals("CLIENTE")){
-                Optional<Cliente> cliente = this.clienteServicio.findByEmail(email);
-                if(!cliente.get().getEstado()){
+                Cliente cliente = clienteServicio.findByEmail(email);
+                if(!cliente.getEstado()){
+
                     res.put("mensaje", "Error al iniciar sesión");
                     res.put("error", "El cliente está inactivo. Active la cuenta abriendo el enlace enviado a su correo");
                     return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_ACCEPTABLE);
