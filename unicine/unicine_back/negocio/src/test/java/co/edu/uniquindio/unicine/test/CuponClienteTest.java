@@ -30,7 +30,7 @@ public class CuponClienteTest {
 
         List<String> telefonos = new ArrayList<>();
         telefonos.add("313447");
-        Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",telefonos, null);
+        Cliente cliente = new Cliente("1094973", "juan jose", "correo@gmail.com", "4444",null,telefonos, null);
 
 
         CuponCliente cuponCliente = new CuponCliente(1, cupon, cliente);

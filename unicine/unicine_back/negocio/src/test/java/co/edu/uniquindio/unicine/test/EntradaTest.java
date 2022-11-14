@@ -26,7 +26,7 @@ public class EntradaTest {
     public void registrar(){
         List<String> telefonos = new ArrayList<>();
         telefonos.add("313447");
-        Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",telefonos, null);
+        Cliente cliente = new Cliente("1094973943", "juan jose", "correo@gmail.com", "4444",null,telefonos, null);
         Teatro teatro = new Teatro("Teatro prueba", "Centro carrera 14 #21",null);
         DistribucionSilla distribuccionSilla = new DistribucionSilla("Distribuccion 1", 49, 7, 7);
         Sala sala = new Sala("Sala prueba", teatro, distribuccionSilla);

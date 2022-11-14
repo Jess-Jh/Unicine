@@ -55,4 +55,8 @@ public interface AdminTeatroServicio {
     List<DistribucionSilla> listarDistribuccionSillas();
 
     DistribucionSilla obtenerDistribuccionSilla(Integer idDistribucionSilla) throws Exception;
+
+    DistribucionSilla obtenerDistribucionSillaPorSala(Integer idSala) throws Exception;
+
+    String agregarSalaDistribucionSilla(Integer idDistribucionSilla, Sala sala) throws Exception;
 }
