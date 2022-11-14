@@ -114,7 +114,7 @@ public class ClienteController {
             final String token = jwtToken.generateToken(userDetails);
             Respuesta loginRespuesta = new Respuesta(userDetails.getUsername(), JwtEncript.encrypt(token), rol_user);
             res.put("login", loginRespuesta);
-            res.put("mensaje", "¡El usuario ha iniciado sesión con éxito¡");
+            res.put("mensaje", "¡El usuario ha iniciado sesión con éxito!");
         } catch (Exception e) {
             res.put("mensaje", "Error al iniciar sesión");
             res.put("error", e.getMessage());

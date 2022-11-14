@@ -41,8 +41,9 @@ public class Persona implements Serializable {
     @Column(length = 45, nullable = false)
     protected String label;
 
+    @ToString.Exclude
     @OneToOne
-    private Rol rol;
+    protected Rol rol;
 
     @Builder
     public Persona(String cedula, String nombreCompleto, String email, String contrasena, Rol rol) {

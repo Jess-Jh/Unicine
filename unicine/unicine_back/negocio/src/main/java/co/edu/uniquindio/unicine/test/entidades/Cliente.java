@@ -50,5 +50,6 @@ public class Cliente extends Persona implements Serializable {
         this.imagenPerfil = imagenPerfil;
         this.membresia = false;
         this.estado = false;
+        this.rol = rol;
     }
 }

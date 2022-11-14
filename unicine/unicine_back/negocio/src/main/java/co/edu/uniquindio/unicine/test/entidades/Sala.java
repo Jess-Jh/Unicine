@@ -37,6 +37,7 @@ public class Sala implements Serializable {
     @OneToMany(mappedBy = "sala")
     private List<DistribucionSilla> listaDistribuccionSillas;
 **/
+    @JsonIgnore
     @ManyToOne
     private DistribucionSilla distribucionSilla;
 

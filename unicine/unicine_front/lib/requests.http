@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### Autenticación administrador
-GET {{apiRest}}/auth/login/admin2@gmail.com/123
+GET {{apiRest}}/auth/login/admin6@gmail.com/123
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
@@ -202,9 +202,11 @@ GET {{apiRest}}/lista-cupones
 // ----------------------------------------- Rest Administrator Teatro ---------------------------------------------->>
 ### Obtener la lista de los horarios
 GET {{apiRest}}/lista-horarios
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh7YCWqZG2/+8U9YiaBgcq7l+hB358SHvT+mMyTjWAGFExgxFk3M2fWddAkZoEJiMjwM3/r8AEO+YbVNdKdYkmkXhqqaph/x9v2/UUqQvHW/tOcdVb17lTZidEOFECNEPiYZreYE1KnV2jBaIowo62hY
 
 ### Obtener la lista de las salas
 GET {{apiRest}}/lista-salas
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh6EufiU5sQTlvh8D83St7ZFtUSL0VS3YiHA4yQ22iSbP93M01N6C7nP2TARaofq7bwocQxYfLZrASjbua58PLGYfkV+NcAf9p72UAlZoe8f8D7QnNnbao8q22aDnqTyCjgPZljCCKwV1lb32ORD+537
 
 
 
