@@ -206,12 +206,12 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public DistribucionSilla crearDistribuccionSilla(DistribucionSilla distribucionSilla) {
+    public DistribucionSilla crearDistribucionSilla(DistribucionSilla distribucionSilla) {
         return distribucionSillaRepo.save(distribucionSilla);
     }
 
     @Override
-    public DistribucionSilla actualizarDistribuccionSilla(DistribucionSilla distribucionSilla) throws Exception {
+    public DistribucionSilla actualizarDistribucionSilla(DistribucionSilla distribucionSilla) throws Exception {
         Optional<DistribucionSilla> guardado = distribucionSillaRepo.findById(distribucionSilla.getIdDistribuccionSilla());
         if (guardado.isEmpty()){
             throw new Exception("No existe la distribuccion de la sillas");
@@ -220,7 +220,7 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public boolean eliminarDistribuccionSilla(Integer idDistribucionSilla) throws Exception {
+    public boolean eliminarDistribucionSilla(Integer idDistribucionSilla) throws Exception {
         DistribucionSilla buscado = distribucionSillaRepo.findById(idDistribucionSilla).orElse(null);
 
         if (buscado == null){
@@ -236,12 +236,12 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     }
 
     @Override
-    public List<DistribucionSilla> listarDistribuccionSillas() {
+    public List<DistribucionSilla> listarDistribucionSillas() {
         return distribucionSillaRepo.findAll();
     }
 
     @Override
-    public DistribucionSilla obtenerDistribuccionSilla(Integer idDistribucionSilla) throws Exception {
+    public DistribucionSilla obtenerDistribucionSilla(Integer idDistribucionSilla) throws Exception {
         Optional<DistribucionSilla> guardado = distribucionSillaRepo.findById(idDistribucionSilla);
         if (guardado.isEmpty()){
             throw new Exception("No se encontro ninguna distribuccion silla");

@@ -3,23 +3,30 @@ import 'package:flutter/gestures.dart';
 
 class ChairsLocation extends StatelessWidget {
   final List<dynamic> chairs;
+  final int cantColums;
 
-  const ChairsLocation({super.key, required this.chairs});
+  const ChairsLocation({
+    super.key,
+    required this.chairs,
+    required this.cantColums,
+  });
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return size.width >= 720
-        ? _TabletDesktopRoom(chairs: chairs, size: size)
-        : _MobileRoom(chairs: chairs, size: size);
+        ? _TabletDesktopRoom(chairs: chairs, size: size, cantColums: cantColums)
+        : _MobileRoom(chairs: chairs, size: size, cantColums: cantColums);
   }
 }
 
 class _TabletDesktopRoom extends StatelessWidget {
   final List<dynamic> chairs;
   final Size size;
+  final int cantColums;
 
-  const _TabletDesktopRoom({required this.chairs, required this.size});
+  const _TabletDesktopRoom(
+      {required this.chairs, required this.size, required this.cantColums});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +45,8 @@ class _TabletDesktopRoom extends StatelessWidget {
               width: size.width / 1.6,
               child: GridView.builder(
                 shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 23,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: cantColums,
                     mainAxisSpacing: 6,
                     crossAxisSpacing: 6),
                 itemCount: chairs.length,
@@ -69,7 +76,9 @@ class _TabletDesktopRoom extends StatelessWidget {
 class _MobileRoom extends StatelessWidget {
   final List<dynamic> chairs;
   final Size size;
-  const _MobileRoom({required this.chairs, required this.size});
+  final int cantColums;
+  const _MobileRoom(
+      {required this.chairs, required this.size, required this.cantColums});
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +99,8 @@ class _MobileRoom extends StatelessWidget {
                 width: size.width / 1.0,
                 child: GridView.builder(
                   shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 23,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: cantColums,
                       mainAxisSpacing: 6,
                       crossAxisSpacing: 6),
                   itemCount: chairs.length,

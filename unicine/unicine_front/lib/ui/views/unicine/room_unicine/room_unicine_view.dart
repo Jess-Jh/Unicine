@@ -58,7 +58,8 @@ class _TabletDesktopRoom extends StatelessWidget {
                   children: [
                     const ScreenRoom(),
                     const SizedBox(height: 80),
-                    Center(child: ChairsLocation(chairs: chairs)),
+                    Center(
+                        child: ChairsLocation(chairs: chairs, cantColums: 23)),
                     const SizedBox(height: 35),
                     _typeChair(context),
                     const SizedBox(height: 55),
@@ -141,7 +142,11 @@ class _MobileRoom extends StatelessWidget {
             children: [
               const ScreenRoom(),
               const SizedBox(height: 80),
-              Center(child: ChairsLocation(chairs: chairs)),
+              Center(
+                  child: ChairsLocation(
+                chairs: chairs,
+                cantColums: 23,
+              )),
               const SizedBox(height: 35),
               _typeChair(context),
               const SizedBox(height: 35),

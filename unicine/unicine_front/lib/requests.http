@@ -208,6 +208,10 @@ Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/
 GET {{apiRest}}/lista-salas
 Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh6EufiU5sQTlvh8D83St7ZFtUSL0VS3YiHA4yQ22iSbP93M01N6C7nP2TARaofq7bwocQxYfLZrASjbua58PLGYfkV+NcAf9p72UAlZoe8f8D7QnNnbao8q22aDnqTyCjgPZljCCKwV1lb32ORD+537
 
+### Obtener la lista de las sillas
+GET {{apiRest}}/lista-distribucion-sillas
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh42y6fzspVFV7V4qyXA8UcvO0amse1BQTjm2wz8emgf+h7Wt+yn9hBvTsRqnjXDR+J2vmzQ1YYMxX8fW3G0UcVkocI9NmFoxXVVqVIeC6DHOI6vaDD8v3hudwaGflmpdGqGxUZcIHTVDF3gspKPXrrr
+
 
 
 

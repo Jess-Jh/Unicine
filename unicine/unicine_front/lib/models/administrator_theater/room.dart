@@ -4,17 +4,19 @@
 
 import 'dart:convert';
 
+import 'package:uni_cine/models/administrator_theater/distribution_chairs.dart';
+
 class Room {
   Room({
     this.idSala,
     this.nombre,
-    this.listaDistribuccionSillas,
+    this.distributionChairs,
     // this.listaFuncionSala,
   });
 
   int? idSala;
   String? nombre;
-  List<ListaDistribuccionSilla>? listaDistribuccionSillas;
+  DistributionChairs? distributionChairs;
   // List<ListaFuncionSala> listaFuncionSala;
 
   factory Room.fromJson(String str) => Room.fromMap(json.decode(str));
@@ -24,56 +26,13 @@ class Room {
   factory Room.fromMap(Map<String, dynamic> json) => Room(
         idSala: json["idSala"],
         nombre: json["nombre"],
-        listaDistribuccionSillas: List<ListaDistribuccionSilla>.from(
-            json["listaDistribuccionSillas"]
-                .map((x) => ListaDistribuccionSilla.fromMap(x))),
         // listaFuncionSala: List<ListaFuncionSala>.from(json["listaFuncionSala"].map((x) => ListaFuncionSala.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "idSala": idSala,
         "nombre": nombre,
-        "listaDistribuccionSillas":
-            List<dynamic>.from(listaDistribuccionSillas!.map((x) => x.toMap())),
         // "listaFuncionSala": List<dynamic>.from(listaFuncionSala.map((x) => x.toMap())),
-      };
-}
-
-class ListaDistribuccionSilla {
-  ListaDistribuccionSilla({
-    this.idDistribuccionSilla,
-    this.distribuccionSillas,
-    this.totalSillas,
-    this.filas,
-    this.columnas,
-  });
-
-  int? idDistribuccionSilla;
-  String? distribuccionSillas;
-  int? totalSillas;
-  int? filas;
-  int? columnas;
-
-  factory ListaDistribuccionSilla.fromJson(String str) =>
-      ListaDistribuccionSilla.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ListaDistribuccionSilla.fromMap(Map<String, dynamic> json) =>
-      ListaDistribuccionSilla(
-        idDistribuccionSilla: json["idDistribuccionSilla"],
-        distribuccionSillas: json["distribuccionSillas"],
-        totalSillas: json["totalSillas"],
-        filas: json["filas"],
-        columnas: json["columnas"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "idDistribuccionSilla": idDistribuccionSilla,
-        "distribuccionSillas": distribuccionSillas,
-        "totalSillas": totalSillas,
-        "filas": filas,
-        "columnas": columnas,
       };
 }
 

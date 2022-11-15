@@ -46,17 +46,21 @@ public interface AdminTeatroServicio {
 
     Teatro obtenerTeatro(Integer idTeatro) throws Exception;
 
-    DistribucionSilla crearDistribuccionSilla(DistribucionSilla distribucionSilla);
+    DistribucionSilla crearDistribucionSilla(DistribucionSilla distribucionSilla);
 
-    DistribucionSilla actualizarDistribuccionSilla(DistribucionSilla distribucionSilla) throws Exception;
+    DistribucionSilla actualizarDistribucionSilla(DistribucionSilla distribucionSilla) throws Exception;
 
-    boolean eliminarDistribuccionSilla(Integer idDistribucionSilla) throws Exception;
+    boolean eliminarDistribucionSilla(Integer idDistribucionSilla) throws Exception;
 
-    List<DistribucionSilla> listarDistribuccionSillas();
+    List<DistribucionSilla> listarDistribucionSillas();
 
-    DistribucionSilla obtenerDistribuccionSilla(Integer idDistribucionSilla) throws Exception;
+<<<<<<< Updated upstream
+    DistribucionSilla obtenerDistribucionSilla(Integer idDistribucionSilla) throws Exception;
 
     DistribucionSilla obtenerDistribucionSillaPorSala(Integer idSala) throws Exception;
 
     String agregarSalaDistribucionSilla(Integer idDistribucionSilla, Sala sala) throws Exception;
+=======
+    DistribucionSilla obtenerDistribucionSilla(Integer idDistribucionSilla) throws Exception;
+>>>>>>> Stashed changes
 }

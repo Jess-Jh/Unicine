@@ -258,6 +258,87 @@ public class adminTeatroController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PostMapping("/crear-distribucion-sillas")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearDistribucionSillas(@RequestBody DistribucionSilla distribucionSilla) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            DistribucionSilla nuevaDistribucionSillas = adminTeatroServicio.crearDistribucionSilla(distribucionSilla);
+            res.put("distribucionSillas", nuevaDistribucionSillas);
+            res.put("mensaje", "¡Se ha creado la distribución de sillas con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear la distribución de sillas");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/actualizar-distribucion-sillas")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarDistribucionSillas(@RequestBody DistribucionSilla distribucionSilla) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            DistribucionSilla distribucionSillasActualizada = adminTeatroServicio.actualizarDistribucionSilla(distribucionSilla);
+            res.put("distribucionSillas", distribucionSillasActualizada);
+            res.put("mensaje", "La distribución de sillas ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la distribución de sillas");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtener-distribucion-sillas/{idDistribucionSillas}")
+    public ResponseEntity<?> obtenerDistribucionSillas(@PathVariable Integer idDistribucionSillas) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            DistribucionSilla distribucionSilla = adminTeatroServicio.obtenerDistribucionSilla(idDistribucionSillas);
+            res.put("distribucionSillas", distribucionSilla);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar la distribución de sillas");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar-distribucion-sillas/{idDistribucionSillas}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarDistribucionSillas( @PathVariable Integer idDistribucionSillas ) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminTeatroServicio.eliminarDistribucionSilla(idDistribucionSillas);
+            res.put("mensaje", "¡La distribución de sillas ha sido eliminada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar la distribución de sillas con el id " + idDistribucionSillas);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        res.put("mensaje", "¡La distribución de sillas ha sido eliminada con éxito!");
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/lista-distribucion-sillas")
+    public ResponseEntity<?> listaDistribuciónSillas() {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            List<DistribucionSilla> listaDistribucionSillas = adminTeatroServicio.listarDistribucionSillas();
+            res.put("listaDistribucionSillas", listaDistribucionSillas);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al cargar la distribución de las sillas");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
     @PostMapping("/crear-teatro")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> crearTeatro(@RequestBody Teatro teatro) {
