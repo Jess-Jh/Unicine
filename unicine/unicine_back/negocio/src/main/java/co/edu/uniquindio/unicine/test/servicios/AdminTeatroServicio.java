@@ -3,6 +3,7 @@ package co.edu.uniquindio.unicine.test.servicios;
 import co.edu.uniquindio.unicine.test.entidades.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AdminTeatroServicio {
 
@@ -59,4 +60,14 @@ public interface AdminTeatroServicio {
     DistribucionSilla obtenerDistribucionSillaPorSala(Integer idSala) throws Exception;
 
     String agregarSalaDistribucionSilla(Integer idDistribucionSilla, Sala sala) throws Exception;
+
+    FuncionSala crearFuncionSala(FuncionSala funcionSala) throws Exception;
+
+    FuncionSala actualizarFuncionSala(FuncionSala funcionSala) throws Exception;
+
+    boolean eliminarFuncionSala(Integer idFuncionSala) throws Exception;
+
+    List<FuncionSala> listarFuncionSala();
+
+    FuncionSala obtenerFuncionSala(Integer idFuncionSala) throws Exception;
 }

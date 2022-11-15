@@ -16,13 +16,16 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     private final TeatroRepo teatroRepo;
     private final DistribucionSillaRepo distribucionSillaRepo;
 
+    private final FuncionSalaRepo funcionSalaRepo;
+
     public AdminTeatroServicioImpl(HorarioRepo horarioRepo, FuncionRepo funcionRepo, SalaRepo salaRepo, TeatroRepo teatroRepo,
-                                   DistribucionSillaRepo distribucionSillaRepo) {
+                                   DistribucionSillaRepo distribucionSillaRepo, FuncionSalaRepo funcionSalaRepo) {
         this.horarioRepo = horarioRepo;
         this.funcionRepo = funcionRepo;
         this.salaRepo = salaRepo;
         this.teatroRepo = teatroRepo;
         this.distribucionSillaRepo = distribucionSillaRepo;
+        this.funcionSalaRepo = funcionSalaRepo;
     }
 
     @Override
@@ -271,6 +274,59 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
             mensaje = "La sala quedo almacenada en la distribucion con exito";
             return mensaje;
         }
+    }
+
+    @Override
+    public FuncionSala crearFuncionSala(FuncionSala funcionSala) throws Exception {
+        List<FuncionSala> funcionSalasGuardadas = funcionSalaRepo.findAll();
+
+        for(int i = 0; i < funcionSalasGuardadas.size(); i++){
+            if(funcionSala.getFuncion() == funcionSalasGuardadas.get(i).getFuncion()
+                    && funcionSala.getSala() ==  funcionSalasGuardadas.get(i).getSala()){
+                throw new Exception("Ya existe un registro con la funcion - sala relacionada.");
+            }
+        }
+
+        return funcionSalaRepo.save(funcionSala);
+    }
+
+    @Override
+    public FuncionSala actualizarFuncionSala(FuncionSala funcionSala) throws Exception {
+        Optional<FuncionSala> guardado = funcionSalaRepo.findById(funcionSala.getIdFuncionSala());
+        if (guardado.isEmpty()){
+            throw new Exception("No existe la funcion sala");
+        }
+        return funcionSalaRepo.save(funcionSala);
+    }
+
+    @Override
+    public boolean eliminarFuncionSala(Integer idFuncionSala) throws Exception {
+        FuncionSala buscado = funcionSalaRepo.findById(idFuncionSala).orElse(null);
+
+        if (buscado == null){
+            throw new Exception("No se encontro la funcion sala para eliminar");
+        }else {
+            if (buscado.getListaCompras().size() <=0 ){
+                funcionSalaRepo.delete(buscado);
+                return true;
+            }else {
+                throw new Exception("No se puede eliminar la funcion sala ya que tiene compras relacionadas");
+            }
+        }
+    }
+
+    @Override
+    public List<FuncionSala> listarFuncionSala() {
+        return funcionSalaRepo.findAll();
+    }
+
+    @Override
+    public FuncionSala obtenerFuncionSala(Integer idFuncionSala) throws Exception {
+        Optional<FuncionSala> guardado = funcionSalaRepo.findById(idFuncionSala);
+        if (guardado.isEmpty()){
+            throw new Exception("No se encontro ninguna funcion sala");
+        }
+        return guardado.get();
     }
 
 }

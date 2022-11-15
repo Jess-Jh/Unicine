@@ -1,9 +1,6 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
-import co.edu.uniquindio.unicine.test.entidades.Cliente;
-import co.edu.uniquindio.unicine.test.entidades.Compra;
-import co.edu.uniquindio.unicine.test.entidades.CuponCliente;
-import co.edu.uniquindio.unicine.test.entidades.Pelicula;
+import co.edu.uniquindio.unicine.test.entidades.*;
 
 import java.util.List;
 
@@ -34,5 +31,5 @@ public interface ClienteServicio {
 
     boolean cambiarContrasena(String email, String contrasena) throws Exception;
 
-
+    List<Funcion> obtenerFuncionesDisponiblesPelicula(Integer idPelicula);
 }
