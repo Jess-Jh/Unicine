@@ -15,17 +15,18 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     private final SalaRepo salaRepo;
     private final TeatroRepo teatroRepo;
     private final DistribucionSillaRepo distribucionSillaRepo;
-
     private final FuncionSalaRepo funcionSalaRepo;
+    private final PQRSRepo pqrsRepo;
 
     public AdminTeatroServicioImpl(HorarioRepo horarioRepo, FuncionRepo funcionRepo, SalaRepo salaRepo, TeatroRepo teatroRepo,
-                                   DistribucionSillaRepo distribucionSillaRepo, FuncionSalaRepo funcionSalaRepo) {
+                                   DistribucionSillaRepo distribucionSillaRepo, FuncionSalaRepo funcionSalaRepo, PQRSRepo pqrsRepo) {
         this.horarioRepo = horarioRepo;
         this.funcionRepo = funcionRepo;
         this.salaRepo = salaRepo;
         this.teatroRepo = teatroRepo;
         this.distribucionSillaRepo = distribucionSillaRepo;
         this.funcionSalaRepo = funcionSalaRepo;
+        this.pqrsRepo = pqrsRepo;
     }
 
     @Override
@@ -327,6 +328,16 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
             throw new Exception("No se encontro ninguna funcion sala");
         }
         return guardado.get();
+    }
+
+    @Override
+    public List<PQRS> listarPQRS() {
+        return pqrsRepo.findAll();
+    }
+
+    @Override
+    public List<PQRS> obtenerPQRSCliente(String emailCliente) {
+        return pqrsRepo.obtenerPQRSCliente(emailCliente);
     }
 
 }

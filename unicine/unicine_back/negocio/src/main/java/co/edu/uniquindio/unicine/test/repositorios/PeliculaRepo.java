@@ -52,4 +52,10 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
 
     @Query("select f from Funcion f join f.listaFuncionSala fs join fs.pelicula p where p.idPelicula = :idPelicula")
     List<Funcion> obtenerFuncionPorIdpelicula(Integer idPelicula);
+
+    @Query("select p from Pelicula p join p.listaFuncionSala fs join fs.sala s join s.teatro t join t.ciudad c where c.idCiudad = :idCiudad and p.estadoPelicula = :preventa")
+    List<Pelicula> obtenerPeliculaPreventaCiudad(Integer idCiudad, EstadoPelicula preventa);
+
+    @Query("select p from Pelicula p join p.listaFuncionSala fs join fs.sala s join s.teatro t join t.ciudad c where c.idCiudad = :idCiudad and p.estadoPelicula = :cartelera")
+    List<Pelicula> obtenerPeliculaCarteleraCiudad(Integer idCiudad, EstadoPelicula cartelera);
 }

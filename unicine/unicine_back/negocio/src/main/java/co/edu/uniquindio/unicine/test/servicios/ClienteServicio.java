@@ -36,4 +36,12 @@ public interface ClienteServicio {
     List<Pelicula> obtenerPeliculasPorCiudad(String nombreCiudad);
 
     List<Pelicula> obtenerPeliculasPorTeatro(String nombreTeatro);
+
+    List<Pelicula> obtenerPeliculaPreventa(Integer idCiudad);
+
+    List<Pelicula> obtenerPeliculaCartelera(Integer idCiudad);
+
+    PQRS registrarPQRS(PQRS pqrs);
+
+    boolean obtenerMembresiaCliente(String email, String contrasena);
 }

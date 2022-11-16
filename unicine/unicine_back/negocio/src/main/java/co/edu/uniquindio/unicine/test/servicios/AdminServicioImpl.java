@@ -1,12 +1,10 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
 import co.edu.uniquindio.unicine.test.entidades.*;
-import co.edu.uniquindio.unicine.test.repositorios.CiudadRepo;
-import co.edu.uniquindio.unicine.test.repositorios.ConfiteriaRepo;
-import co.edu.uniquindio.unicine.test.repositorios.CuponRepo;
-import co.edu.uniquindio.unicine.test.repositorios.PeliculaRepo;
+import co.edu.uniquindio.unicine.test.repositorios.*;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,12 +15,18 @@ public class AdminServicioImpl implements AdminServicio{
     private final PeliculaRepo peliculaRepo;
     private final CuponRepo cuponRepo;
     private final ConfiteriaRepo confiteriaRepo;
+    private final RolRepo rolRepo;
 
-    public AdminServicioImpl(CiudadRepo ciudadRepo, PeliculaRepo peliculaRepo, CuponRepo cuponRepo, ConfiteriaRepo confiteriaRepo) {
+    private final AdministradorRepo administradorRepo;
+
+    public AdminServicioImpl(CiudadRepo ciudadRepo, PeliculaRepo peliculaRepo, CuponRepo cuponRepo, ConfiteriaRepo confiteriaRepo,
+                             RolRepo rolRepo, AdministradorRepo administradorRepo) {
         this.ciudadRepo = ciudadRepo;
         this.peliculaRepo = peliculaRepo;
         this.cuponRepo = cuponRepo;
         this.confiteriaRepo = confiteriaRepo;
+        this.rolRepo = rolRepo;
+        this.administradorRepo = administradorRepo;
     }
 
     @Override
@@ -176,6 +180,50 @@ public class AdminServicioImpl implements AdminServicio{
         Optional<Confiteria> guardado = confiteriaRepo.findById(idConfiteria);
         if (guardado.isEmpty()){
             throw new Exception("La confiteria no existe");
+        }
+        return guardado.get();
+    }
+
+    @Override
+    public Administrador crearAdministradorTeatro(Administrador administradorTeatro) {
+        Rol rolGuardado = rolRepo.obtenerRolAdminTeatro(3);
+        administradorTeatro.setRol(rolGuardado);
+        return administradorRepo.save(administradorTeatro);
+    }
+
+    @Override
+    public Administrador actualizarAdministradorTeatro(Administrador administradorTeatro) throws Exception {
+        Optional<Administrador> guardado = administradorRepo.findById(administradorTeatro.getCedula());
+
+        if (guardado.isEmpty()){
+            throw new Exception("No existe el administrador");
+        }
+        return administradorRepo.save(administradorTeatro);
+    }
+
+    @Override
+    public boolean eliminarAdministradorTeatro(String cedula) throws Exception {
+        Optional<Administrador> guardado = administradorRepo.findById(cedula);
+
+        if (guardado.isEmpty()){
+            throw new Exception("el administrador teatro no existe");
+        } else {
+            administradorRepo.delete(guardado.get());
+            return true;
+        }
+    }
+
+    @Override
+    public List<Administrador> listarAdministradorTeatro() {
+        return administradorRepo.listarAdministradoresTeatro(3);
+    }
+
+    @Override
+    public Administrador obtenerAdministradorTeatro(String cedulaAdminTeatro) throws Exception {
+        Optional<Administrador> guardado = administradorRepo.findById(cedulaAdminTeatro);
+
+        if (guardado.isEmpty()){
+            throw new Exception("el administrador teatro no existe");
         }
         return guardado.get();
     }

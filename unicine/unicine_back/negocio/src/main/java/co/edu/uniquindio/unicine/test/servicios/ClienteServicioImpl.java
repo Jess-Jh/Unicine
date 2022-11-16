@@ -18,15 +18,18 @@ public class ClienteServicioImpl implements ClienteServicio{
     private final CompraRepo compraRepo;
     private final CuponClienteRepo cuponClienteRepo;
     private final AdministradorRepo administradorRepo;
+    private final PQRSRepo pqrsRepo;
 
     public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo,
-                               CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo, AdministradorRepo administradorRepo) {
+                               CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo, AdministradorRepo administradorRepo,
+                               PQRSRepo pqrsRepo) {
         this.clienteRepo = clienteRepo;
         this.emailServicio = emailServicio;
         this.peliculaRepo = peliculaRepo;
         this.compraRepo = compraRepo;
         this.cuponClienteRepo = cuponClienteRepo;
         this.administradorRepo = administradorRepo;
+        this.pqrsRepo = pqrsRepo;
     }
 
     @Override
@@ -209,6 +212,33 @@ public class ClienteServicioImpl implements ClienteServicio{
     @Override
     public List<Pelicula> obtenerPeliculasPorTeatro(String nombreTeatro) {
         return peliculaRepo.obtenerPeliculasTeatro(nombreTeatro);
+    }
+
+    @Override
+    public List<Pelicula> obtenerPeliculaPreventa(Integer idCiudad) {
+        return peliculaRepo.obtenerPeliculaPreventaCiudad(idCiudad, EstadoPelicula.PREVENTA);
+    }
+
+    @Override
+    public List<Pelicula> obtenerPeliculaCartelera(Integer idCiudad) {
+        return peliculaRepo.obtenerPeliculaCarteleraCiudad(idCiudad, EstadoPelicula.CARTELERA);
+    }
+
+    @Override
+    public PQRS registrarPQRS(PQRS pqrs) {
+        return pqrsRepo.save(pqrs);
+    }
+
+    @Override
+    public boolean obtenerMembresiaCliente(String email, String contrasena) {
+        Cliente cliente = clienteRepo.comprobarAutenticacion(email, contrasena);
+        if (cliente == null){
+            return false;
+        }else {
+            cliente.setMembresia(true);
+            clienteRepo.save(cliente);
+            return true;
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,4 +17,9 @@ public interface AdministradorRepo  extends JpaRepository<Administrador, String>
     Administrador comprobarAutenticacionAdmin(String email, String contrasena);
 
     Optional<Administrador> findByEmail(String email);
+
+    @Query("select at from Administrador at join at.rol r where r.codigo = :codigo")
+    List<Administrador> listarAdministradoresTeatro(Integer codigo);
+
+
 }

@@ -70,4 +70,8 @@ public interface AdminTeatroServicio {
     List<FuncionSala> listarFuncionSala();
 
     FuncionSala obtenerFuncionSala(Integer idFuncionSala) throws Exception;
+
+    List<PQRS> listarPQRS();
+
+    List<PQRS> obtenerPQRSCliente(String emailCliente);
 }

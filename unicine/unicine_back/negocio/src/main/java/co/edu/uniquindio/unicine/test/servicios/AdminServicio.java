@@ -40,5 +40,14 @@ public interface AdminServicio {
 
     Confiteria obtenerConfiteria(Integer idConfiteria) throws Exception;
 
+    Administrador crearAdministradorTeatro(Administrador administradorTeatro);
+
+    Administrador actualizarAdministradorTeatro(Administrador administradorTeatro) throws Exception;
+
+    boolean eliminarAdministradorTeatro(String cedula) throws Exception;
+
+    List<Administrador> listarAdministradorTeatro();
+
+    Administrador obtenerAdministradorTeatro(String cedulaAdminTeatro) throws Exception;
 
 }
