@@ -32,4 +32,8 @@ public interface ClienteServicio {
     boolean cambiarContrasena(String email, String contrasena) throws Exception;
 
     List<Funcion> obtenerFuncionesDisponiblesPelicula(Integer idPelicula);
+
+    List<Pelicula> obtenerPeliculasPorCiudad(String nombreCiudad);
+
+    List<Pelicula> obtenerPeliculasPorTeatro(String nombreTeatro);
 }
