@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:uni_cine/controllers/administrator_theater/room_manage_controller.dart';
 import 'package:uni_cine/ui/layouts/administrator_theater_layout.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_flat_button.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
@@ -18,7 +17,6 @@ class FormRoom extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(roomManageProvider);
-    final ctrlChairs = ref.watch(distributionChairsProvider);
 
     return SizedBox(
       child: Form(
@@ -74,8 +72,9 @@ class FormRoom extends ConsumerWidget {
                         const SizedBox(width: 8),
                         if (ctrl.changeDistributionChairs)
                           Text(
-                            ctrl.editRoom?.distributionChairs.toString() ??
-                                ctrl.distribucionSillas,
+                            ctrl.editRoom?.distribucionSilla != null
+                                ? 'Columnas ${ctrl.editRoom?.distribucionSilla!.columnas}, filas ${ctrl.editRoom?.distribucionSilla!.filas}, cantidad de sillas ${ctrl.editRoom?.distribucionSilla!.totalSillas}'
+                                : 'Columnas ${ctrl.distribucionSillas?.columnas}, filas ${ctrl.distribucionSillas?.filas}, cantidad de sillas ${ctrl.distribucionSillas?.totalSillas}',
                             style: const TextStyle(color: Color(0xff222222)),
                           ),
                         if (!ctrl.changeDistributionChairs)
@@ -90,7 +89,7 @@ class FormRoom extends ConsumerWidget {
 
                       if (distributionChairs == null) return;
                       // ctrl.onChangeDistributionChairs(distributionChairs);
-                      customModalRoom(context, ctrl);
+                      customModalRoom(context);
                     },
                   ),
                 ),
@@ -171,16 +170,6 @@ class FormRoom extends ConsumerWidget {
                     fontSize: 14,
                   ),
                 ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: CustomOutlinedButton(
-                    onPressed: () {},
-                    text: 'Actualizar',
-                    width: 300,
-                    height: 8,
-                    fontSize: 14,
-                  ),
-                ),
               ],
             ),
           ],
@@ -189,87 +178,88 @@ class FormRoom extends ConsumerWidget {
     );
   }
 
-  Future<void> customModalRoom(
-      BuildContext context, RoomManageController ctrl) {
-    final PageController controller = ctrl.formPageController;
+  Future<void> customModalRoom(BuildContext context) {
     final size = MediaQuery.of(context).size;
     int valuePg = 0;
     return showCupertinoModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-          height: 900,
-          width: size.width,
-          color: const Color.fromARGB(255, 255, 255, 255),
-          child: Column(
-            children: <Widget>[
-              Text(
-                'Tipos Distribución Sillas',
-                style: CustomLabels.h1,
-              ),
-              Expanded(
-                child: PageView(
-                  controller: controller,
-                  children: [
-                    Center(
-                        child: ChairsLocation(
-                      chairs: TypeInitChars.initChairs(),
-                      cantColums: 23,
-                    )),
-                    Center(
-                        child: ChairsLocation(
-                      chairs: TypeInitChars.type2(),
-                      cantColums: 33,
-                    )),
-                    Center(
-                        child: ChairsLocation(
-                      chairs: TypeInitChars.type3(),
-                      cantColums: 23,
-                    )),
-                  ],
-                  onPageChanged: (value) => valuePg = value,
+        return Consumer(builder: (context, ref, _) {
+          final ctrl = ref.watch(roomManageProvider);
+          return Container(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+            height: 900,
+            width: size.width,
+            color: const Color.fromARGB(255, 255, 255, 255),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Tipos Distribución Sillas',
+                  style: CustomLabels.h1,
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (ctrl.valuePage >= 0)
-                    CustomFlatButton(
-                      text: '<< Anterior ',
-                      onPressed: () {
-                        ctrl.previusPageTypeRoom();
-                      },
-                    ),
-                  const SizedBox(width: 30),
-                  SizedBox(
-                    height: 35,
-                    width: size.width / 2,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: CustomColors.principal,
-                      ),
-                      child: const Text('Seleccionar distribución'),
-                      onPressed: () {
-                        print('seleccionada $valuePg');
-                        ctrl.valuePage = valuePg++;
-                        Navigator.pop(context);
-                      },
-                    ),
+                Expanded(
+                  child: PageView(
+                    controller: ctrl.formPageController,
+                    children: [
+                      Center(
+                          child: ChairsLocation(
+                        chairs: TypeInitChars.initChairs(),
+                        cantColums: 23,
+                      )),
+                      Center(
+                          child: ChairsLocation(
+                        chairs: TypeInitChars.type2(),
+                        cantColums: 33,
+                      )),
+                      Center(
+                          child: ChairsLocation(
+                        chairs: TypeInitChars.type3(),
+                        cantColums: 23,
+                      )),
+                    ],
+                    onPageChanged: (value) => valuePg = value,
                   ),
-                  const SizedBox(width: 30),
-                  if (ctrl.valuePage < 2)
-                    CustomFlatButton(
-                      text: 'Siguiente >>',
-                      onPressed: () {
-                        ctrl.nextPageTypeRoom();
-                      },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (ctrl.valuePage != 0)
+                      CustomFlatButton(
+                        text: '<< Anterior ',
+                        onPressed: () {
+                          ctrl.previusPageTypeRoom();
+                        },
+                      ),
+                    const SizedBox(width: 30),
+                    SizedBox(
+                      height: 35,
+                      width: size.width / 2,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.principal,
+                        ),
+                        child: const Text('Seleccionar distribución'),
+                        onPressed: () {
+                          ctrl.idDistribucionSillas = valuePg++;
+
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                ],
-              )
-            ],
-          ),
-        );
+                    const SizedBox(width: 30),
+                    if (ctrl.valuePage < 2)
+                      CustomFlatButton(
+                        text: 'Siguiente >>',
+                        onPressed: () {
+                          ctrl.nextPageTypeRoom();
+                        },
+                      ),
+                  ],
+                )
+              ],
+            ),
+          );
+        });
       },
     );
   }

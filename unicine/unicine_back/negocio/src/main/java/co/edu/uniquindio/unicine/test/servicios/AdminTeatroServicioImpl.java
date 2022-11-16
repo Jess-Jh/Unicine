@@ -255,7 +255,7 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         if (guardado != null) {
             return guardado;
         }else {
-            throw new Exception("La sala no tienen ninguna distribuccion silla asignada");
+            throw new Exception("La sala no tienen ninguna distribución de sillas asignada");
         }
     }
 
@@ -265,10 +265,10 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         Optional<DistribucionSilla> guardado = distribucionSillaRepo.findById(idDistribucionSilla);
 
         if (guardado.isEmpty()){
-            throw new Exception("El id de la distribucion no existe");
+            throw new Exception("El id de la distribución no existe");
         }else {
             guardado.get().getListaSalas().add(sala);
-            mensaje = "La sala quedo almacenada en la distribucion con exito";
+            mensaje = "¡La sala ha quedado almacenada en la distribución con éxito!";
             return mensaje;
         }
     }

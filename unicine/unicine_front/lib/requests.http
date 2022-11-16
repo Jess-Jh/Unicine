@@ -210,9 +210,15 @@ Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/
 
 ### Obtener la lista de las sillas
 GET {{apiRest}}/lista-distribucion-sillas
-Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh42y6fzspVFV7V4qyXA8UcvO0amse1BQTjm2wz8emgf+h7Wt+yn9hBvTsRqnjXDR+J2vmzQ1YYMxX8fW3G0UcVkocI9NmFoxXVVqVIeC6DHOI6vaDD8v3hudwaGflmpdGqGxUZcIHTVDF3gspKPXrrr
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh5AeL55x8GZc9sgiwM5WcC7E542cA9DRY4JbaW8Cd4Rf0etW3SGvxap3IZ3o3br+lCyk1/rQjINl5fsoRrc4n70f5BZp53gzA8zCPKt+4G/JH6U73KwIm6vRy7OvmvGAEKuRrTi3fTlRAI/P4xn59dI
 
 
+### Distribución sillas sala
+GET {{apiRest}}/obtener-distribucion-sillas-sala/1
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh790RuNBzgaDPbrF5GXEZB6dH5l9jrkL+buDHzv1pUBWEQm3cTYYI5hIMWAOPtLuEZi9gOdvq+o4/x9ChQGMQhIhy69VNJ079artozrD+ZN36x/X50aYQ7qJlffTDr+y4Q+h8otoT1Y8HXlxFrS9+IA
 
+### Lista funciones
+GET {{apiRest}}/lista-funciones
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh790RuNBzgaDPbrF5GXEZB6dH5l9jrkL+buDHzv1pUBWEQm3cTYYI5hIMWAOPtLuEZi9gOdvq+o4/x9ChQGMQhIhy69VNJ079artozrD+ZN36x/X50aYQ7qJlffTDr+y4Q+h8otoT1Y8HXlxFrS9+IA
 
 // ------------------------------------------------------------------------------------------------------------------\\

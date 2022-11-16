@@ -9,7 +9,6 @@ import 'package:uni_cine/ui/views/custom_card_view.dart';
 class ManageRoomView extends ConsumerWidget {
   ManageRoomView({super.key}) {
     roomManageProvider.read.getRooms();
-    distributionChairsProvider.read.getDistributionChairs();
   }
 
   @override

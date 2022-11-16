@@ -54,13 +54,11 @@ public interface AdminTeatroServicio {
 
     List<DistribucionSilla> listarDistribucionSillas();
 
-<<<<<<< Updated upstream
     DistribucionSilla obtenerDistribucionSilla(Integer idDistribucionSilla) throws Exception;
 
     DistribucionSilla obtenerDistribucionSillaPorSala(Integer idSala) throws Exception;
 
     String agregarSalaDistribucionSilla(Integer idDistribucionSilla, Sala sala) throws Exception;
-=======
-    DistribucionSilla obtenerDistribucionSilla(Integer idDistribucionSilla) throws Exception;
->>>>>>> Stashed changes
+
+
 }

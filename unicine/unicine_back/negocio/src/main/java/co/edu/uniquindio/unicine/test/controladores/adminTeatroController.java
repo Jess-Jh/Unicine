@@ -227,6 +227,37 @@ public class adminTeatroController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @PutMapping("/agregar-sala-distribucion-sillas")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> agregarSalaDistribucionSilla(@PathVariable Integer idDistribucionSillas, @RequestBody Sala sala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminTeatroServicio.agregarSalaDistribucionSilla(idDistribucionSillas, sala);
+            res.put("mensaje", "La sala ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al almacenar la sala en la distribución de sillas");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtener-distribucion-sillas-sala/{idSala}")
+    public ResponseEntity<?> obtenerDistribucionSillaPorSala(@PathVariable Integer idSala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            DistribucionSilla distribucionSilla = adminTeatroServicio.obtenerDistribucionSillaPorSala(idSala);
+            res.put("DistribucionSillas", distribucionSilla);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar la distribución de sillas de la sala");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
     @DeleteMapping("/eliminar-sala/{idSala}")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<?> eliminarSala( @PathVariable Integer idSala ) {

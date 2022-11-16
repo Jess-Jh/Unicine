@@ -12,7 +12,7 @@ class TableRooms extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
 
     return PaginatedDataTable(
-      columnSpacing: size.width / 8,
+      columnSpacing: size.width / 7,
       source: RoomsDTS(ctrl.loading ? [] : ctrl.rooms, context),
       header: const Text(
         'Lista de salas',

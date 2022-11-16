@@ -18,7 +18,8 @@ class RoomsDTS extends DataTableSource {
       cells: [
         DataCell(Text(room.idSala.toString())),
         DataCell(Text(room.nombre!)),
-        DataCell(Text('Cell #2 index: $index')),
+        DataCell(Text(
+            'Columnas ${room.distribucionSilla!.columnas}, filas ${room.distribucionSilla!.filas}, cantidad de sillas ${room.distribucionSilla!.totalSillas}')),
         DataCell(
           Row(
             children: [

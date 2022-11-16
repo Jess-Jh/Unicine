@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
+import 'package:uni_cine/models/administrator_theater/distribution_chairs.dart';
 import 'package:uni_cine/models/administrator_theater/room.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/utils/util.dart';
@@ -20,7 +21,7 @@ class RoomManageController extends SimpleNotifier {
   // Inputs
   int idRoom = 0;
   String nombre = '';
-  String distribucionSillas = '';
+  DistributionChairs? distribucionSillas;
   int? idDistribucionSillas;
 
   bool validateForm(formManageRoomKey) {
@@ -155,7 +156,7 @@ class RoomManageController extends SimpleNotifier {
   }
 
   void onChangeDistributionChairs(String chairs) {
-    distribucionSillas = chairs;
+    // distribucionSillas = chairs;
     changeDistributionChairs = true;
     notify();
 
@@ -165,7 +166,7 @@ class RoomManageController extends SimpleNotifier {
 
   void nextPageTypeRoom() {
     formPageController.nextPage(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
     valuePage++;
@@ -174,7 +175,7 @@ class RoomManageController extends SimpleNotifier {
 
   void previusPageTypeRoom() {
     formPageController.previousPage(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
     valuePage--;
