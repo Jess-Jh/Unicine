@@ -450,4 +450,84 @@ public class adminTeatroController {
         }
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
+
+    @PostMapping("/crear-funcion-sala")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearFuncionSala(@RequestBody FuncionSala funcionSala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            FuncionSala nuevaFuncionSala = adminTeatroServicio.crearFuncionSala(funcionSala);
+            res.put("FuncionSala", nuevaFuncionSala);
+            res.put("mensaje", "¡Se ha creado la función sala con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear la función sala");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/obtener-funcion-sala/{idFuncionSala}")
+    public ResponseEntity<?> obtenerFuncionSala(@PathVariable Integer idFuncionSala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            FuncionSala funcionSala = adminTeatroServicio.obtenerFuncionSala(idFuncionSala);
+            res.put("funcionSala", funcionSala);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar la función sala con el id " + idFuncionSala);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @PutMapping("/actualizar-funcion-sala")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> actualizarFuncionSala(@RequestBody FuncionSala funcionSala) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            FuncionSala funcionSalaActualizada = adminTeatroServicio.actualizarFuncionSala(funcionSala);
+            res.put("funcionSala", funcionSalaActualizada);
+            res.put("mensaje", "La función sala ha sido actualizada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar la función sala");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar-funcion-sala/{idFuncion}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarFuncionSala( @PathVariable Integer idFuncionSala ) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminTeatroServicio.eliminarFuncionSala(idFuncionSala);
+            res.put("mensaje", "¡La función sala ha sido eliminada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar la función sala " + idFuncionSala);
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/lista-funciones-sala")
+    public ResponseEntity<?> listaFuncionesSala() {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            List<FuncionSala> listaFuncionesSala = adminTeatroServicio.listarFuncionSala();
+            res.put("funcionesSala", listaFuncionesSala);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar las funciones de las sala");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
 }

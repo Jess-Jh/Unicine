@@ -54,7 +54,12 @@ class _TabletDesktopRoom extends StatelessWidget {
                   return (chairs[i] == 0)
                       ? const Text('')
                       : (chairs[i] == 1)
-                          ? const Icon(Icons.chair_outlined)
+                          ? MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                  onTap: () {},
+                                  child: const Icon(Icons.chair_outlined)),
+                            )
                           : Center(
                               child: Text(
                                 chairs[i].toString(),

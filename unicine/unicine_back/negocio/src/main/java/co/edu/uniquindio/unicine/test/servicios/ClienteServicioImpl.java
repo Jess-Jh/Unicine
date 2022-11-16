@@ -195,4 +195,20 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
         return cambio;
     }
+
+    @Override
+    public List<Funcion> obtenerFuncionesDisponiblesPelicula(Integer idPelicula) {
+        return peliculaRepo.obtenerFuncionPorIdpelicula(idPelicula);
+    }
+
+    @Override
+    public List<Pelicula> obtenerPeliculasPorCiudad(String nombreCiudad) {
+        return peliculaRepo.obtenerPeliculasCiudad(nombreCiudad);
+    }
+
+    @Override
+    public List<Pelicula> obtenerPeliculasPorTeatro(String nombreTeatro) {
+        return peliculaRepo.obtenerPeliculasTeatro(nombreTeatro);
+    }
+
 }

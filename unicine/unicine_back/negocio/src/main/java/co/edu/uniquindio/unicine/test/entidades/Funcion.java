@@ -23,12 +23,11 @@ public class Funcion implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
-    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Horario horario;
 
-
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "funcion")
     private List<FuncionSala> listaFuncionSala;

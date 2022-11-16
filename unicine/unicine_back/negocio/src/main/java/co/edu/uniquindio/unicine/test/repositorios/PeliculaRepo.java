@@ -5,6 +5,7 @@ import co.edu.uniquindio.unicine.test.dto.PeliculaDTO;
 import co.edu.uniquindio.unicine.test.dto.PeliculaPreventaDTO;
 import co.edu.uniquindio.unicine.test.entidades.Entrada;
 import co.edu.uniquindio.unicine.test.entidades.EstadoPelicula;
+import co.edu.uniquindio.unicine.test.entidades.Funcion;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -48,4 +49,7 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
 
     @Query("select p from Pelicula p where p.estadoPelicula = :preventa")
     List<Pelicula> obtenerPeliculaPreventaCompleta(EstadoPelicula preventa);
+
+    @Query("select f from Funcion f join f.listaFuncionSala fs join fs.pelicula p where p.idPelicula = :idPelicula")
+    List<Funcion> obtenerFuncionPorIdpelicula(Integer idPelicula);
 }

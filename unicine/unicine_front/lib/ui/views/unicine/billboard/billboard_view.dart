@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
 
@@ -46,10 +48,16 @@ class BillboardView extends StatelessWidget {
             const SizedBox(height: 20),
             Text('Cartelera', style: CustomLabels.h1),
             const SizedBox(height: 10),
-            const ListMoviesScroll(
-              movies: movies,
-              img: 'assets/images/placeholder_movie.jpg',
-              duration: 'duration',
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => navigateTo(Flurorouter.movieDescriptionRoute),
+                child: const ListMoviesScroll(
+                  movies: movies,
+                  img: 'assets/images/placeholder_movie.jpg',
+                  duration: 'duration',
+                ),
+              ),
             ),
             Text('Preventa', style: CustomLabels.h2),
             const SizedBox(height: 10),
