@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
 import 'package:uni_cine/ui/views/unicine/confectionery/list_confectioneries.scroll.dart';
@@ -44,8 +46,8 @@ class ConfectioneryView extends StatelessWidget {
               children: [
                 CustomOutlinedButton(
                   width: size.width / 3.3,
-                  text: '+ Agregar Confitería',
-                  onPressed: () {},
+                  text: 'Realizar Pago',
+                  onPressed: () => navigateTo(Flurorouter.purchaseDetailRoute),
                 ),
                 SizedBox(width: size.width / 6),
                 TotalPurchaseBox(
@@ -60,8 +62,8 @@ class ConfectioneryView extends StatelessWidget {
               children: [
                 CustomOutlinedButton(
                   width: size.width / 3.3,
-                  text: '+ Agregar Confitería',
-                  onPressed: () {},
+                  text: 'Realizar Pago',
+                  onPressed: () => navigateTo(Flurorouter.purchaseDetailRoute),
                 ),
                 const SizedBox(height: 15),
                 TotalPurchaseBox(

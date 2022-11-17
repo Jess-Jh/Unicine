@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
 import 'package:uni_cine/ui/shared/type_init_chairs.dart';
@@ -58,7 +60,8 @@ class _TabletDesktopRoom extends StatelessWidget {
                   children: [
                     const ScreenRoom(),
                     const SizedBox(height: 80),
-                    Center(child: ChairsLocation(chairs: chairs)),
+                    Center(
+                        child: ChairsLocation(chairs: chairs, cantColums: 23)),
                     const SizedBox(height: 35),
                     _typeChair(context),
                     const SizedBox(height: 55),
@@ -67,16 +70,19 @@ class _TabletDesktopRoom extends StatelessWidget {
                         CustomOutlinedButton(
                           width: size.width / 3.3,
                           text: '+ Agregar Confitería',
-                          onPressed: () {},
+                          onPressed: () =>
+                              navigateTo(Flurorouter.confectioneryRoute),
                         ),
                         const SizedBox(width: 15),
                         CustomOutlinedButton(
                           width: size.width / 3.3,
                           text: 'Realizar Pago',
-                          onPressed: () {},
+                          onPressed: () =>
+                              navigateTo(Flurorouter.purchaseDetailRoute),
                         ),
                       ],
                     ),
+                    const SizedBox(height: 100)
                   ],
                 ),
                 const SizedBox(width: 60),
@@ -135,13 +141,17 @@ class _MobileRoom extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SizedBox(
-          height: size.width < 410 ? 710 : 800,
+          height: 900,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const ScreenRoom(),
               const SizedBox(height: 80),
-              Center(child: ChairsLocation(chairs: chairs)),
+              Center(
+                  child: ChairsLocation(
+                chairs: chairs,
+                cantColums: 23,
+              )),
               const SizedBox(height: 35),
               _typeChair(context),
               const SizedBox(height: 35),
@@ -156,14 +166,15 @@ class _MobileRoom extends StatelessWidget {
               CustomOutlinedButton(
                 width: 600,
                 text: '+ Agregar Confitería',
-                onPressed: () {},
+                onPressed: () => navigateTo(Flurorouter.confectioneryRoute),
               ),
               const SizedBox(height: 15),
               CustomOutlinedButton(
                 width: 600,
                 text: 'Realizar Pago',
-                onPressed: () {},
+                onPressed: () => navigateTo(Flurorouter.purchaseDetailRoute),
               ),
+              const SizedBox(height: 100)
             ],
           ),
         ),

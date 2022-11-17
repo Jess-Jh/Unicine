@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Horario implements Serializable {
     @Column(nullable = false)
     private LocalTime hora;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "horario")
     private List<Funcion> listaFunciones;

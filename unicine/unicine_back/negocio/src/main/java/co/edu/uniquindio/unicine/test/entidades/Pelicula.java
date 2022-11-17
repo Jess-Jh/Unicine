@@ -45,6 +45,7 @@ public class Pelicula implements Serializable {
     @Enumerated(EnumType.STRING)
     private EstadoPelicula estadoPelicula;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "pelicula")
     private List<FuncionSala> listaFuncionSala;

@@ -21,15 +21,13 @@ public class FuncionSala implements Serializable {
     private Integer idFuncionSala;
 
 
-    @JsonIgnore
     @ManyToOne
     private Sala sala;
 
-    @JsonIgnore
+
     @ManyToOne
     private Pelicula pelicula;
 
-    @JsonIgnore
     @ManyToOne
     private Funcion funcion;
 

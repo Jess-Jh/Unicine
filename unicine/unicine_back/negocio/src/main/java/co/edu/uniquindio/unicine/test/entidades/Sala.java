@@ -28,6 +28,7 @@ public class Sala implements Serializable {
     @ManyToOne
     private Teatro teatro;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "sala")
     private List<FuncionSala> listaFuncionSala;
@@ -37,7 +38,6 @@ public class Sala implements Serializable {
     @OneToMany(mappedBy = "sala")
     private List<DistribucionSilla> listaDistribuccionSillas;
 **/
-    @JsonIgnore
     @ManyToOne
     private DistribucionSilla distribucionSilla;
 

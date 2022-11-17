@@ -34,19 +34,18 @@ class _TabletDesktopMenu extends ConsumerWidget {
       decoration: buildBoxDecoration(),
       child: Row(
         children: [
-          const LogoUnicine(),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+                onTap: () => navigateTo(Flurorouter.billboardRoute),
+                child: const LogoUnicine()),
+          ),
           const Spacer(),
           CustomFlatButton(
             text: 'CARTELERA',
             color: Colors.white,
             onPressed: () => navigateTo(Flurorouter.billboardRoute),
             isActive: ctrl.currentPage == Flurorouter.billboardRoute,
-          ),
-          const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'TEATROS',
-            color: Colors.white,
-            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(
@@ -108,12 +107,6 @@ class _MobileMenu extends ConsumerWidget {
             color: Colors.white,
             onPressed: () => navigateTo(Flurorouter.billboardRoute),
             isActive: ctrl.currentPage == Flurorouter.billboardRoute,
-          ),
-          const SizedBox(width: 10),
-          CustomFlatButton(
-            text: 'TEATROS',
-            color: Colors.white,
-            onPressed: () {},
           ),
           const SizedBox(width: 10),
           CustomFlatButton(

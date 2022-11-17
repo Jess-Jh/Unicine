@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/views/unicine/movie_description/list_date_function.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 import 'package:uni_cine/utils/custom_labels.dart';
@@ -102,15 +104,21 @@ class FunctionProgram extends StatelessWidget {
   }
 
   _hourBox() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      alignment: Alignment.center,
-      height: 25,
-      width: 65,
-      color: CustomColors.themeWhite,
-      child: Text(
-        '15:30',
-        style: CustomLabels.h3,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => navigateTo(Flurorouter.roomUnicineRoute),
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          alignment: Alignment.center,
+          height: 25,
+          width: 65,
+          color: CustomColors.themeWhite,
+          child: Text(
+            '15:30',
+            style: CustomLabels.h3,
+          ),
+        ),
       ),
     );
   }
