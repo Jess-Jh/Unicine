@@ -3,10 +3,7 @@ package co.edu.uniquindio.unicine.test.repositorios;
 import co.edu.uniquindio.unicine.test.dto.HorarioSalaDTO;
 import co.edu.uniquindio.unicine.test.dto.PeliculaDTO;
 import co.edu.uniquindio.unicine.test.dto.PeliculaPreventaDTO;
-import co.edu.uniquindio.unicine.test.entidades.Entrada;
-import co.edu.uniquindio.unicine.test.entidades.EstadoPelicula;
-import co.edu.uniquindio.unicine.test.entidades.Funcion;
-import co.edu.uniquindio.unicine.test.entidades.Pelicula;
+import co.edu.uniquindio.unicine.test.entidades.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -50,8 +47,8 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     @Query("select p from Pelicula p where p.estadoPelicula = :preventa")
     List<Pelicula> obtenerPeliculaPreventaCompleta(EstadoPelicula preventa);
 
-    @Query("select f from Funcion f join f.listaFuncionSala fs join fs.pelicula p where p.idPelicula = :idPelicula")
-    List<Funcion> obtenerFuncionPorIdpelicula(Integer idPelicula);
+    @Query("select fs from FuncionSala fs join fs.pelicula p where p.idPelicula = :idPelicula")
+    List<FuncionSala> obtenerFuncionPorIdpelicula(Integer idPelicula);
 
     @Query("select p from Pelicula p join p.listaFuncionSala fs join fs.sala s join s.teatro t join t.ciudad c where c.idCiudad = :idCiudad and p.estadoPelicula = :preventa")
     List<Pelicula> obtenerPeliculaPreventaCiudad(Integer idCiudad, EstadoPelicula preventa);

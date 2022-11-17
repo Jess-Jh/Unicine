@@ -200,7 +200,7 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public List<Funcion> obtenerFuncionesDisponiblesPelicula(Integer idPelicula) {
+    public List<FuncionSala> obtenerFuncionesDisponiblesPelicula(Integer idPelicula) {
         return peliculaRepo.obtenerFuncionPorIdpelicula(idPelicula);
     }
 
