@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/utils/custom_labels.dart';
+import 'package:uni_cine/utils/custom_network_image.dart';
 
-class MovieData extends StatelessWidget {
+class MovieData extends ConsumerWidget {
   const MovieData({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -16,18 +21,19 @@ class MovieData extends StatelessWidget {
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 242, 241, 241),
               borderRadius: BorderRadius.circular(10)),
-          child: FadeInImage.assetNetwork(
-            placeholder: 'assets/images/placeholder_movie2.png',
-            image: 'assets/images/placeholder_movie2.png',
-            imageErrorBuilder: (context, error, stackTrace) => const Icon(
-              Icons.error,
-              size: 64,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CustomNetworkImage(
+              height: 350,
+              imageUrl: ctrl.movieFunction?.imagen ?? '',
+              fit: BoxFit.cover,
+              placeholder: Image.asset('assets/images/placeholder_movie2.png'),
             ),
           ),
         ),
         const SizedBox(height: 10),
         Text(
-          'Nombre película',
+          ctrl.movieFunction?.nombre ?? '',
           style: CustomLabels.h3,
         ),
         const SizedBox(height: 30),
@@ -37,8 +43,10 @@ class MovieData extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Text(
-          'Descripción del reparto',
+          ctrl.movieFunction?.nombre ?? '',
           style: CustomLabels.h4n,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
         ),
         const SizedBox(height: 30),
         Text(
@@ -46,9 +54,14 @@ class MovieData extends StatelessWidget {
           style: CustomLabels.h4,
         ),
         const SizedBox(height: 10),
-        Text(
-          'Descripción sinopsis',
-          style: CustomLabels.h4n,
+        SizedBox(
+          width: 250,
+          child: Text(
+            ctrl.movieFunction?.sinopsis ?? '',
+            style: CustomLabels.h4n,
+            maxLines: 10,
+            textAlign: TextAlign.justify,
+          ),
         ),
       ],
     );

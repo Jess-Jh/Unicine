@@ -3,9 +3,6 @@ import 'package:uni_cine/ui/views/unicine/movie_description/function_program.dar
 import 'package:uni_cine/ui/views/unicine/movie_description/movie_data.dart';
 
 class MovieDescriptionView extends StatelessWidget {
-  // final String urlVideo;
-  // final String movie;
-
   const MovieDescriptionView({super.key});
 
   @override

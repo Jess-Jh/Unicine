@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.controladores;
 
+import co.edu.uniquindio.unicine.test.entidades.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import co.edu.uniquindio.unicine.test.entidades.Ciudad;
-import co.edu.uniquindio.unicine.test.entidades.Confiteria;
-import co.edu.uniquindio.unicine.test.entidades.Cupon;
-import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.servicios.AdminServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -289,5 +286,91 @@ public class AdminController {
         }
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/crear-administrador")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> crearAdminTeatro(@RequestBody Administrador administradorTeatro) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Administrador nuevoAdministradorTeatro = adminServicio.crearAdministradorTeatro(administradorTeatro);
+            res.put("administrador", nuevoAdministradorTeatro);
+            res.put("mensaje", "¡Se ha creado el administrador con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear el administrador");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/actualizar-administrador")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> actualizarAdministrador(@RequestBody Administrador administrador) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Administrador administradorActualizado = adminServicio.actualizarAdministradorTeatro(administrador);
+            res.put("administrador", administradorActualizado);
+            res.put("mensaje", "¡El administrador ha sido actualizado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar el administrador");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/eliminar-administrador/{cedulaAdministrador}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> eliminarAdministrador(@PathVariable String cedulaAdministrador) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            adminServicio.eliminarAdministradorTeatro(cedulaAdministrador);
+            res.put("mensaje", "¡Se ha eliminado el administrador con éxito!");
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al eliminar el administrador con la cédula " + cedulaAdministrador);
+
+            res.put("error", e.getMessage());
+
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/lista-administradores")
+    public ResponseEntity<?> listarAdministradores() {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            List<Administrador> listarAdministradores = adminServicio.listarAdministradorTeatro();
+            res.put("Administradores", listarAdministradores);
+        } catch (Exception e) {
+            res.put("mensaje", "Hubo un error al momento de enviar los administradores");
+            res.put("Error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/detalle-administrador/{cedulaAdministrador}")
+    public ResponseEntity<?> obtenerAdministrador(@PathVariable String cedulaAdministrador) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Administrador administrador = adminServicio.obtenerAdministradorTeatro(cedulaAdministrador);
+            res.put("administrador", administrador);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al buscar el administrador");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
 
 }

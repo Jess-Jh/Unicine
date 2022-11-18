@@ -23,10 +23,10 @@ public class Pelicula implements Serializable {
     @Column(length = 100, nullable = false)
     private String nombre;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 200, nullable = false)
     private String imagen;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 100, nullable = false)
     private String trailer;
 
     @Column(length = 45, nullable = false)

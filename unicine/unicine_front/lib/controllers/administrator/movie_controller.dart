@@ -10,6 +10,8 @@ import 'package:uni_cine/widgets/dialogs.dart';
 class MovieController extends SimpleNotifier {
   final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
   List<Movie> movies = [];
+  Movie? movieFunction;
+
   Movie? editMovie;
   bool loading = true;
   bool isEdit = false;

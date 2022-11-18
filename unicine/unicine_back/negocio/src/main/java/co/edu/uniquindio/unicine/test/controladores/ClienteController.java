@@ -196,8 +196,103 @@ public class ClienteController {
     }
 
     @GetMapping("/filtrar-pelicula-cartelera")
-    public List<Pelicula> filtroPeliculasCartelera(@PathVariable String nombre) {
-        return clienteServicio.buscarPelicula(nombre);
+    public ResponseEntity<?> filtroPeliculasCartelera(@PathVariable String nombre) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<Pelicula> listaPeliculasCartelera = clienteServicio.buscarPelicula(nombre);
+        res.put("listaPeliculas", listaPeliculasCartelera);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
+
+    /*
+    @GetMapping("/obtener-funciones-pelicula/{idPelicula}")
+    public ResponseEntity<?> obtenerFuncionesPelicula(@PathVariable int idPelicula) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<FuncionSala> listaFuncionesPelicula = clienteServicio.obtenerFuncionesDisponiblesPelicula(idPelicula);
+        res.put("clientes", listaClientes);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+     */
+
+    @GetMapping("/obtener-peliculas-ciudad/{nombreCiudad}")
+    public ResponseEntity<?> obtenerPeliculaCiudad(@PathVariable String nombreCiudad) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<Pelicula> listaPeliculasCiudad = clienteServicio.obtenerPeliculasPorCiudad(nombreCiudad);
+        res.put("listaPeliculas", listaPeliculasCiudad);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtener-peliculas-teatro/{nombreTeatro}")
+    public ResponseEntity<?> obtenerPeliculaTeatro(@PathVariable String nombreTeatro) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<Pelicula> listaPeliculasTeatro = clienteServicio.obtenerPeliculasPorTeatro(nombreTeatro);
+        res.put("listaPeliculas", listaPeliculasTeatro);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtener-peliculas-preventa/{idCiudad}")
+    public ResponseEntity<?> obtenerPeliculaPreventa(@PathVariable int idCiudad) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<Pelicula> listaPeliculasPreventa = clienteServicio.obtenerPeliculaPreventa(idCiudad);
+        res.put("listaPeliculas", listaPeliculasPreventa);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/obtener-peliculas-cartelera/{idCiudad}")
+    public ResponseEntity<?> obtenerPeliculaCartelera(@PathVariable int idCiudad) {
+        Map<String, Object> res = new HashMap<>();
+
+        List<Pelicula> listaPeliculasCartelera = clienteServicio.obtenerPeliculaCartelera(idCiudad);
+        res.put("listaPeliculas", listaPeliculasCartelera);
+
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @PostMapping("/registrar-PQRS")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ResponseEntity<?> registrarPQRS(@RequestBody PQRS pqrs) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            PQRS nuevoPQRS = clienteServicio.registrarPQRS(pqrs);
+            res.put("pqrs", nuevoPQRS);
+            res.put("mensaje", "¡Se ha registrado el PQRS con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al crear el PQRS");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/validar-membresia")
+    public ResponseEntity<?> validarMembresia(@PathVariable String email, @PathVariable String contrasena) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            boolean registroMembresia = clienteServicio.obtenerMembresiaCliente(email, contrasena);
+            res.put("respuestaMembresia", registroMembresia);
+            res.put("mensaje", "¡Se ha registrado la membresía con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al registrar la membresía");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+
+    }
+
+
+
+
 
 }

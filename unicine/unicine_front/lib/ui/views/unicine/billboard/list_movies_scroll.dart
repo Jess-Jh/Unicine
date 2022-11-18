@@ -1,24 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/models/administrator/movie.dart';
+import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/image_box.dart';
 
-class ListMoviesScroll extends StatelessWidget {
-  final String img;
+class ListMoviesScroll extends ConsumerWidget {
+  final String placeholder;
   final double? width;
-  final String? duration;
+  final List<Movie>? listMovies;
 
-  const ListMoviesScroll(
-      {Key? key,
-      required this.movies,
-      required this.img,
-      this.width,
-      this.duration})
-      : super(key: key);
-
-  final int movies;
+  const ListMoviesScroll({
+    Key? key,
+    required this.placeholder,
+    this.width,
+    this.listMovies,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
+
     return SizedBox(
       height: 360,
       child: ScrollConfiguration(
@@ -32,9 +36,22 @@ class ListMoviesScroll extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: movies,
-          itemBuilder: (context, movies) =>
-              ImageBox(img: img, width: width, duration: duration),
+          itemCount: ctrl.movies.length,
+          itemBuilder: (context, i) => MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                ctrl.movieFunction = ctrl.movies[i];
+                navigateTo(Flurorouter.movieDescriptionRoute);
+              },
+              child: ImageBox(
+                img: ctrl.movies[i].imagen ?? placeholder,
+                width: width,
+                nameMovie: ctrl.movies[i].nombre,
+                gener: ctrl.movies[i].genero,
+              ),
+            ),
+          ),
         ),
       ),
     );

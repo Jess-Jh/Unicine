@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.2.2
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   dropdown_button2: ^1.8.2
@@ -43,6 +44,7 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   shared_preferences: ^2.0.15
   top_snackbar_flutter: ^2.1.1
+  video_player: ^2.4.7
 
 dev_dependencies:
   flutter_lints: ^2.0.0

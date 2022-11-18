@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uni_cine/router/router.dart';
-import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
 
@@ -8,7 +8,7 @@ import 'package:uni_cine/utils/custom_labels.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/list_movies_scroll.dart';
 
 // ignore: must_be_immutable
-class BillboardView extends StatelessWidget {
+class BillboardView extends ConsumerWidget {
   // Selección de ciudades
   List<String> ciudades = [
     'Pereira',
@@ -24,11 +24,14 @@ class BillboardView extends StatelessWidget {
   String? selectCity = 'Pereira';
   String? selectFilter = 'Películas';
 
-  BillboardView({Key? key}) : super(key: key);
+  BillboardView({Key? key}) : super(key: key) {
+    movieProvider.read.getMovies();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    const int movies = 20;
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
+    int moviesCount = ctrl.movies.length;
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -48,23 +51,14 @@ class BillboardView extends StatelessWidget {
             const SizedBox(height: 20),
             Text('Cartelera', style: CustomLabels.h1),
             const SizedBox(height: 10),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => navigateTo(Flurorouter.movieDescriptionRoute),
-                child: const ListMoviesScroll(
-                  movies: movies,
-                  img: 'assets/images/placeholder_movie.jpg',
-                  duration: 'duration',
-                ),
-              ),
+            const ListMoviesScroll(
+              placeholder: 'assets/images/placeholder_movie.jpg',
             ),
             Text('Preventa', style: CustomLabels.h2),
             const SizedBox(height: 10),
             const ListMoviesScroll(
-              movies: movies,
               width: 170,
-              img: 'assets/images/placeholder_movie2.png',
+              placeholder: 'assets/images/placeholder_movie2.png',
             ),
           ],
         ),
