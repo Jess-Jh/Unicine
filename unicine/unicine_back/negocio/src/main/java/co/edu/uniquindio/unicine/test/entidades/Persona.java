@@ -20,15 +20,15 @@ public class Persona implements Serializable {
     @Column(length = 20)
     private String cedula;
 
-    @Column(length = 45, nullable = false)
+    @Column(length = 255, nullable = false)
     private String nombreCompleto;
 
     @Email
-    @Column(length = 45, nullable = false, unique = true)
+    @Column(length = 255, nullable = false, unique = true)
     private String email;
 
     @ToString.Exclude
-    @Column(length = 100, nullable = false)
+    @Column(length = 255, nullable = false)
     private String contrasena;
 
     //Los dos datos referencia el tipo de usuario
