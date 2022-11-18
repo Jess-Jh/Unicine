@@ -20,19 +20,19 @@ public class Pelicula implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPelicula;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 255, nullable = false)
     private String nombre;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 255, nullable = false)
     private String imagen;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 255, nullable = false)
     private String trailer;
 
     @Column(length = 45, nullable = false)
     private String genero;
 
-    @Column(nullable = false)
+    @Column(length = 255, nullable = false)
     private String sinopsis;
 
     @Column(nullable = false)
