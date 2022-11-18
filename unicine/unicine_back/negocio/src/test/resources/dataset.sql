@@ -52,12 +52,11 @@ insert into administrador values ("12354", "$2a$10$/W/kXAOQZWzRA6b/bybVjOmWV5x.R
 insert into administrador values ("12355", "$2a$10$/W/kXAOQZWzRA6b/bybVjOmWV5x.RgA2hQVz4Z7AhGwmRZpDaKb86", "admin5@gmail.com", 2, "Administrador_Teatro", "administrador 5", 3, 1);
 insert into administrador values ("12356", "$2a$10$/W/kXAOQZWzRA6b/bybVjOmWV5x.RgA2hQVz4Z7AhGwmRZpDaKb86", "admin6@gmail.com", 3, "Administrador_Teatro", "administrador 6", 3, 1);
 
-insert into confiteria values (1, "ruta/img", "confiteria 1", 13000.0);
-insert into confiteria values (2, "ruta/img2", "confiteria 2", 14000.0);
-insert into confiteria values (3, "ruta/img3", "confiteria 3", 15000.0);
-insert into confiteria values (4, "ruta/img4", "confiteria 4", 16000.0);
-insert into confiteria values (5, "ruta/img5", "confiteria 5", 17000.0);
-
+insert into confiteria values (1, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758822/unicine/confiteria/palomitas_nnmn3r.webp", "Palomitas economico", 9000.0);
+insert into confiteria values (2, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758818/unicine/confiteria/gaseosa_zlhj17.jpg", "Gaseosa economico", 5000.0);
+insert into confiteria values (3, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758817/unicine/confiteria/perrocaliente_ah50sp.jpg", "Perro caliente economico", 8000.0);
+insert into confiteria values (4, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758821/unicine/confiteria/nachos_abmshd.png", "Nachos economico", 10000.0);
+insert into confiteria values (5, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758817/unicine/confiteria/combo1_gmon0k.jpg", "combo 1 economico", 18000.0);
 insert into confiteria values (6, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758824/unicine/confiteria/combo2_ogfaaz.png", "Combo 2", 25000.0);
 insert into confiteria values (7, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758822/unicine/confiteria/palomitas_nnmn3r.webp", "Palomitas", 12000.0);
 insert into confiteria values (8, "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667758821/unicine/confiteria/nachos_abmshd.png", "Nachos", 15500.0);
@@ -73,11 +72,11 @@ insert into PQRS values (3, "Mensaje prueba pqrs ccc", "12347");
 insert into PQRS values (4, "Mensaje prueba pqrs ccc", "12348");
 insert into PQRS values (5, "Mensaje prueba pqrs ccc", "12349");
 
-insert into pelicula values (1, "CARTELERA", "thriller", "ruta/img", "pelicula prueba", "jhon doe - jana doe", "sinopsis prueba", "ruta/url");
-insert into pelicula values (2, "CARTELERA", "thriller2", "ruta/img2", "pelicula prueba2", "jhon doe2 - jana doe2", "sinopsis prueba2", "ruta/url2");
-insert into pelicula values (3, "PREVENTA", "thriller3", "ruta/img3", "pelicula prueba3", "jhon doe3 - jana doe3", "sinopsis prueba3", "ruta/url3");
-insert into pelicula values (4, "CARTELERA", "thriller4", "ruta/img4", "pelicula prueba4", "jhon doe4 - jana doe4", "sinopsis prueba4", "ruta/url4");
-insert into pelicula values (5, "PREVENTA", "thriller5", "ruta/img5", "pelicula prueba5", "jhon doe5 - jana doe5", "sinopsis prueba5", "ruta/url5");
+insert into pelicula values (1, "CARTELERA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668793293/unicine/Peliculas/laluzdeldiablo_dzigsb.jpg", "La luz del diablo", "jhon doe - jana doe", "sinopsis prueba", "https://youtu.be/OkEnG6inG4c");
+insert into pelicula values (2, "CARTELERA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668793294/unicine/Peliculas/amanecermuertos_ogb4tl.jpg", "Amanecer de los muertos", "jhon doe2 - jana doe2", "sinopsis prueba2", "https://youtu.be/DV8mJcuYVaA");
+insert into pelicula values (3, "PREVENTA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668793296/unicine/Peliculas/batmansuperman_infxmn.jpg", "Batmana vs Superman", "jhon doe3 - jana doe3", "sinopsis prueba3", "https://youtu.be/NMWAWljzj8M");
+insert into pelicula values (4, "CARTELERA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668793296/unicine/Peliculas/sonic_hx2u2q.jpg", "Sonic", "jhon doe4 - jana doe4", "sinopsis prueba4", "https://youtu.be/MsaAnA2EZQg");
+insert into pelicula values (5, "PREVENTA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668793297/unicine/Peliculas/nochesinpaz_srr2jq.jpg", "Noche sin paz", "jhon doe5 - jana doe5", "sinopsis prueba5", "https://youtu.be/HWSkF36McgA");
 
 insert into pelicula values (6, "CARTELERA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667708707/unicine/Peliculas/batman_hj82mv.jpg", "Batman: el caballero de la noche", "Christian Bale - Michael Caine - Heath Ledger - Gary Oldman - Morgan Freeman", "Batman tiene que mantener el equilibrio entre el heroísmo y el vigilantismo para pelear contra un vil criminal conocido como el Guasón, que pretende sumir Ciudad Gótica en la anarquía.", "https://youtu.be/LDG9bisJEaI");
 insert into pelicula values (7, "CARTELERA", "Comedia", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667708707/unicine/Peliculas/zombieland_mdbczt.jpg", "Tierra de Zombies", "	Woody Harrelson - Jesse Eisenberg - Emma Stone", "Después de que un virus transforma a la mayoría de las personas en zombis", "https://youtu.be/thu_n86IhDY");
@@ -89,6 +88,18 @@ insert into pelicula values (12, "PREVENTA", "Accion", "https://res.cloudinary.c
 insert into pelicula values (13, "CARTELERA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667708703/unicine/Peliculas/pesadilla_pimd8j.jpg", "Pesadilla en la calle Elm", "Heather Langenkamp - Ronee Blakley - John Saxon", "Un grupo de adolescentes sufre unas pesadillas horrendas en las que un ser deforme que porta garras de acero los persigue. Lo más inquietante es que los hechos empiezan a sugerir que lo que ocurre mientras sueñan repercute en la vida real.", "https://youtu.be/aBhok4ziOU4");
 insert into pelicula values (14, "PREVENTA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667708702/unicine/Peliculas/halloween_pm1hky.jpg", "Halloween II", "Jamie Lee Curtis - Donald Pleasence", "El asesino Michael Myers sigue a un blanco herido hasta el hospital el 31 de octubre en Haddonfield, Illinois.", "https://youtu.be/N2dN_3Y-3bU");
 insert into pelicula values (15, "PREVENTA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1667708702/unicine/Peliculas/transformers_cgkvlf.jpg", "Transformers", "Shia LaBeouf - Megan Fox - Tyrese Gibson", "El destino de la humanidad está en juego cuando dos razas de robots, los buenos Autobots y los villanos Decepticons, llevan su guerra a la Tierra.", "https://youtu.be/IBCLUy7pB5w");
+insert into pelicula values (16, "CARTELERA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784433/unicine/Peliculas/mortalkombat_xca5h7.webp", "Mortal Kombat", "Lewis Tan - Hiroyuki Sanada - Joe Taslim - Tadanobu Asano", "Cole Young, luchador de MMA, desconoce su ascendencia y tampoco sabe por qué el emperador Shang Tsung ha enviado a su mejor guerrero para atraparlo.", "https://youtu.be/jBa_aHwCbC4");
+insert into pelicula values (17, "CARTELERA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784436/unicine/Peliculas/avatar_sof34g.jpg", "Avatar", "Sam Worthington - Zoe Saldaña - Sigourney Weaver", "Entramos en el mundo Avatar de la mano de Jake Sully, un ex-Marine en silla de ruedas, que ha sido reclutado para viajar a Pandora, donde existe un mineral raro y muy preciado que puede solucionar la crisis energética existente en la Tierra.", "https://youtu.be/rjRVnVziU2A");
+insert into pelicula values (18, "CARTELERA", "Psicologico", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784437/unicine/Peliculas/elorigen_aq6zcg.jpg", "El origen", "Leonardo DiCaprio - Ken Watanabe - Joseph Gordon-Levitt", "Dom Cobb (Leonardo DiCaprio) es un ladrón con una extraña habilidad para entrar a los sueños de la gente y robarle los secretos de sus subconscientes.", "https://youtu.be/5EiV_HXIIGs");
+insert into pelicula values (19, "CARTELERA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784438/unicine/Peliculas/wakandaporsiempre_brm99y.jpg", "Black Panther: Wakanda Forever", "Letitia Wright - Lupita Nyong'o - Danai Gurira", "Una secuela que seguirá explorando el incomparable mundo de Wakanda y todos los ricos y variados personajes presentados en la película de 2018.", "https://youtu.be/_Z3QKkl1WyM");
+insert into pelicula values (20, "CARTELERA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784441/unicine/Peliculas/destinofinal3d_hodst9.jpg", "Destino final 4", "Bobby Campo - Shantel VanSanten - Haley Webb - Mykelti Williamson", "Un grupo de amigos acude a un circuito de carreras. Durante la competencia, Nick tiene una premonición sobre un accidente y saca a sus amigos del recinto para escapar de la tragedia.", "https://youtu.be/x-MR-onocy0");
+insert into pelicula values (21, "PREVENTA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784445/unicine/Peliculas/light_z2bcxh.jpg", "Lightyear", "Chris Evans - Taika Waititi - James Brolin - Keke Palmer", "Buzz Lightyear se embarca en una aventura intergaláctica con un grupo de reclutas ambiciosos y su compañero robot. Los amigos tendrán que aprender a trabajar juntos para escapar del malvado Zurg y su ejército de robots.", "https://youtu.be/tjcrjrX9Nfo");
+insert into pelicula values (22, "PREVENTA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784444/unicine/Peliculas/tenet_lljggy.jpg", "Tenet", "John David Washington - Robert Pattinson - Elizabeth Debicki - Dimple Kapadia", "Un agente secreto emprende una misión que se desarrolla más allá del tiempo real, para intentar prevenir una Tercera Guerra Mundial.", "https://youtu.be/AZGcmvrTX9M");
+insert into pelicula values (23, "PREVENTA", "Accion", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784448/unicine/Peliculas/blackadam_usramg.png", "Black Adam", "Dwayne Johnson - Aldis Hodge - Noah Centineo", "Unos arqueólogos liberan de su tumba a Black Adam, quien llevaba 5000 años preso tras haber recibido los poderes de los dioses.", "https://youtu.be/2DTtIVRUFx8");
+insert into pelicula values (24, "PREVENTA", "Terror", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784448/unicine/Peliculas/smile_zajehu.jpg", "Smile", "Sosie Bacon - Jessie Usher - Kal Penn", "Tras presencia el dramático incidente sufrido por un paciente, la Dra. Cotter empieza a experimentar hechos aterradores sin explicación aparente.", "https://youtu.be/yhKiQGJop_8");
+insert into pelicula values (25, "PREVENTA", "Comedia", "https://res.cloudinary.com/ddsltuhyg/image/upload/v1668784449/unicine/Peliculas/increibles2_ef5rmp.jpg", "Increibles 2", "Holly Hunter - Craig T. Nelson - Samuel L. Jackson", "Elastigirl parte para luchar contra un ciberdelincuente que planea hipnotizar al mundo a través de las pantallas de las computadoras. Eso deja a Mr. Increíble con uno de sus mayores desafíos: quedarse en casa y cuidar de tres niños traviesos.", "https://youtu.be/1Rwr3IGt0ag");
+
+
 
 
 insert into cupon values (1, "criterio prueba", "descripcion prueba", "2022-10-02", 20000.0);
@@ -125,11 +136,11 @@ insert into sala values (3, "Sala 3 prueba", 2, 1);
 insert into sala values (4, "Sala 4 prueba", 2, 3);
 insert into sala values (5, "Sala 5 prueba", 3, 1);
 
-insert into funcion_sala values (1, 2, 2, 1);
-insert into funcion_sala values (2, 1, 1, 1);
-insert into funcion_sala values (3, 1, 2, 1);
-insert into funcion_sala values (4, 2, 1, 1);
-insert into funcion_sala values (5, 3, 2, 1);
+insert into funcion_sala values (1, 2, 6, 1); -- funcion sala, funcion id, pelicula id, sala id
+insert into funcion_sala values (2, 1, 7, 1);
+insert into funcion_sala values (3, 1, 8, 1);
+insert into funcion_sala values (4, 2, 9, 1);
+insert into funcion_sala values (5, 3, 10, 1);
 
 insert into cupon_cliente values (1, 1, "12345", 1);
 insert into cupon_cliente values (2, 1, "12346", 2);

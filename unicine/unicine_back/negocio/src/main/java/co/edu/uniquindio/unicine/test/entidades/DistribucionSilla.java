@@ -35,6 +35,7 @@ public class DistribucionSilla implements Serializable {
     private Sala sala;
 **/
     @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "distribucionSilla")
     private List<Sala> listaSalas;
 

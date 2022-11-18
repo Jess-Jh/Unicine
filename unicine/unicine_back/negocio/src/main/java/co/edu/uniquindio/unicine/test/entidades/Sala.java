@@ -24,7 +24,6 @@ public class Sala implements Serializable {
     private String nombre;
 
     @JsonIgnore
-    @ToString.Exclude
     @ManyToOne
     private Teatro teatro;
 

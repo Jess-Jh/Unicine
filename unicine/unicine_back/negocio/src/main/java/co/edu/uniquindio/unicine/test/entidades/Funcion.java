@@ -23,7 +23,7 @@ public class Funcion implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
-    @ToString.Exclude
+
     @ManyToOne
     private Horario horario;
 

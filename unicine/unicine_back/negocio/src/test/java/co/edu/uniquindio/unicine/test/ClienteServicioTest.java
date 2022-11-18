@@ -1,6 +1,8 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
+import co.edu.uniquindio.unicine.test.entidades.FuncionSala;
+import co.edu.uniquindio.unicine.test.entidades.Pelicula;
 import co.edu.uniquindio.unicine.test.servicios.ClienteServicio;
 import co.edu.uniquindio.unicine.test.servicios.EmailServicio;
 import org.junit.jupiter.api.Assertions;
@@ -10,9 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @SpringBootTest
 @Transactional
@@ -76,5 +76,33 @@ public class ClienteServicioTest {
     @Test
     public void enviarEmailTest(){
         emailServicio.enviarEmail("Prueba de envio", "Este es un mensaje", "imanork13@gmail.com");
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerFuncionesDisponiblesPelicula(){
+        List<FuncionSala> lista = clienteServicio.obtenerFuncionesDisponiblesPelicula(6);
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculasPorTeatro(){
+        List<Pelicula> lista = clienteServicio.obtenerPeliculasPorTeatro("Teatro 1 prueba");
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculaPreventa(){
+        List<Pelicula> lista = clienteServicio.obtenerPeliculaPreventa(1);
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculaCartelera(){
+        List<Pelicula> lista = clienteServicio.obtenerPeliculaCartelera(1);
+        lista.forEach(System.out::println);
     }
 }
