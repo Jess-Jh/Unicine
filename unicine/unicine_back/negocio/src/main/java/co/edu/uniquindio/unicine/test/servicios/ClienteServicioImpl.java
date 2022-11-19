@@ -230,14 +230,28 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
-    public boolean obtenerMembresiaCliente(String email, String contrasena) {
+    public List<PQRS> listarPQRS() {
+        return pqrsRepo.findAll();
+    }
+
+    @Override
+    public List<PQRS> obtenerPQRSEmailCliente(String email) {
+        return pqrsRepo.obtenerPQRSCliente(email);
+    }
+
+    @Override
+    public boolean obtenerMembresiaCliente(String email, String contrasena) throws Exception {
         Cliente cliente = clienteRepo.comprobarAutenticacion(email, contrasena);
         if (cliente == null){
             return false;
         }else {
-            cliente.setMembresia(true);
-            clienteRepo.save(cliente);
-            return true;
+            if (cliente.getMembresia().equals(true)){
+                throw new Exception("El cliente ya cuenta con una membresia");
+            }else {
+                cliente.setMembresia(true);
+                clienteRepo.save(cliente);
+                return true;
+            }
         }
     }
 

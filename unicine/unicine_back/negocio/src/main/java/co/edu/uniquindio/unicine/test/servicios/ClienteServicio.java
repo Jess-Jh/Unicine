@@ -43,5 +43,11 @@ public interface ClienteServicio {
 
     PQRS registrarPQRS(PQRS pqrs);
 
-    boolean obtenerMembresiaCliente(String email, String contrasena);
+    List<PQRS> listarPQRS();
+
+    List<PQRS> obtenerPQRSEmailCliente(String email);
+
+    boolean obtenerMembresiaCliente(String email, String contrasena) throws Exception;
+
+
 }
