@@ -5,26 +5,37 @@ import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
-import 'package:uni_cine/ui/shared/type_init_chairs.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_box.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/screen_room.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
 import 'package:uni_cine/utils/custom_network_image.dart';
 
-class RoomUnicineView extends StatelessWidget {
-  List<dynamic> chairs = TypeInitChars.type2();
-  RoomUnicineView({super.key});
+class RoomUnicineView extends ConsumerWidget {
+  const RoomUnicineView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
     final size = MediaQuery.of(context).size;
+    List<dynamic> chairs = ctrl.chairs;
+    int columns = ctrl.distributionChairs?.columnas ?? 0;
     String? selectedTickets = '1';
+
+    print(ctrl.distributionChairs?.columnas);
 
     int cantChairs = _enabledChairs(chairs);
 
     return (size.width >= 720)
-        ? _TabletDesktopRoom(cantChairs: cantChairs, chairs: chairs, size: size)
-        : _MobileRoom(cantChairs: cantChairs, chairs: chairs, size: size);
+        ? _TabletDesktopRoom(
+            cantChairs: cantChairs,
+            chairs: chairs,
+            size: size,
+            columns: columns)
+        : _MobileRoom(
+            cantChairs: cantChairs,
+            chairs: chairs,
+            size: size,
+            columns: columns);
   }
 
   int _enabledChairs(List chairs) {
@@ -41,9 +52,13 @@ class _TabletDesktopRoom extends ConsumerWidget {
   final String? selectedTickets = '1';
   final int cantChairs;
   final Size size;
+  final int columns;
 
   const _TabletDesktopRoom(
-      {required this.chairs, required this.cantChairs, required this.size});
+      {required this.chairs,
+      required this.cantChairs,
+      required this.size,
+      required this.columns});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -65,7 +80,8 @@ class _TabletDesktopRoom extends ConsumerWidget {
                     const ScreenRoom(),
                     const SizedBox(height: 80),
                     Center(
-                        child: ChairsLocation(chairs: chairs, cantColums: 33)),
+                        child: ChairsLocation(
+                            chairs: chairs, cantColums: columns)),
                     const SizedBox(height: 35),
                     _typeChair(context),
                     const SizedBox(height: 55),
@@ -130,9 +146,13 @@ class _MobileRoom extends StatelessWidget {
   final String? selectedTickets = '1';
   final int cantChairs;
   final Size size;
+  final int columns;
 
   const _MobileRoom(
-      {required this.chairs, required this.cantChairs, required this.size});
+      {required this.chairs,
+      required this.cantChairs,
+      required this.size,
+      required this.columns});
 
   @override
   Widget build(BuildContext context) {

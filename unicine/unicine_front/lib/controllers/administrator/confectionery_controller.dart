@@ -20,6 +20,10 @@ class ConfectioneryController extends SimpleNotifier {
   String precio = '0';
   String nombre = '';
 
+  // Dates functions
+  int cantBuyConfectionery = 0;
+  double priceTotalBuy = 0;
+
   bool validateForm(formConfectioneryKey) {
     if (formConfectioneryKey.currentState!.validate()) {
       return true;
@@ -161,5 +165,20 @@ class ConfectioneryController extends SimpleNotifier {
       );
       log(runtimeType, 'Error en newConfectionery ConfectioneryController $e');
     }
+  }
+
+  void getMoreBuy(int i) {
+    cantBuyConfectionery++;
+    confectioneries[i].cant = (confectioneries[i].cant ?? 0) + 1;
+    priceTotalBuy = priceTotalBuy + (confectioneries[i].precio ?? 0);
+
+    notify();
+  }
+
+  void getLessBuy(int i) {
+    cantBuyConfectionery--;
+    confectioneries[i].cant = (confectioneries[i].cant ?? 0) - 1;
+    priceTotalBuy = priceTotalBuy - (confectioneries[i].precio ?? 0);
+    notify();
   }
 }

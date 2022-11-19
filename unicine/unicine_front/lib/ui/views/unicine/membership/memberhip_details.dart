@@ -1,15 +1,19 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'dart:math' as math;
-import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 
-class MembershipDetails extends StatelessWidget {
+class MembershipDetails extends ConsumerWidget {
   const MembershipDetails({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(clientProvider);
     final size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: SizedBox(
@@ -21,18 +25,23 @@ class MembershipDetails extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Column(
-                        children: [
-                          const Spacer(),
-                          CustomFormInput(
-                            inputForm: TextFormField(
+                      child: Form(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        key: ctrl.formMembershipKey,
+                        child: Column(
+                          children: [
+                            const Spacer(),
+                            TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Ingrese su correo electrónico';
                                 }
+                                if (!EmailValidator.validate(value)) {
+                                  return 'Email no válido';
+                                }
                                 return null;
                               },
-                              obscureText: true,
+                              onChanged: (value) => ctrl.email = value,
                               keyboardType: TextInputType.name,
                               style: const TextStyle(fontSize: 13),
                               decoration: CustomInputs.loginInputDecoration(
@@ -41,16 +50,15 @@ class MembershipDetails extends StatelessWidget {
                                 icon: Icons.email_outlined,
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 20),
-                          CustomFormInput(
-                            inputForm: TextFormField(
+                            const SizedBox(height: 20),
+                            TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Ingrese la contraseña';
                                 }
                                 return null;
                               },
+                              onChanged: (value) => ctrl.password = value,
                               obscureText: true,
                               keyboardType: TextInputType.name,
                               style: const TextStyle(fontSize: 13),
@@ -60,10 +68,10 @@ class MembershipDetails extends StatelessWidget {
                                 icon: Icons.password_rounded,
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          const Spacer()
-                        ],
+                            const SizedBox(height: 10),
+                            const Spacer()
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(width: 60),
@@ -76,18 +84,23 @@ class MembershipDetails extends StatelessWidget {
                 child: Column(
                   children: [
                     Expanded(
-                      child: Column(
-                        children: [
-                          const Spacer(),
-                          CustomFormInput(
-                            inputForm: TextFormField(
+                      child: Form(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        key: ctrl.formMembershipKey,
+                        child: Column(
+                          children: [
+                            const Spacer(),
+                            TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Ingrese su correo electrónico';
                                 }
+                                if (!EmailValidator.validate(value)) {
+                                  return 'Email no válido';
+                                }
                                 return null;
                               },
-                              obscureText: true,
+                              onChanged: (value) => ctrl.email = value,
                               keyboardType: TextInputType.name,
                               style: const TextStyle(fontSize: 13),
                               decoration: CustomInputs.loginInputDecoration(
@@ -96,16 +109,15 @@ class MembershipDetails extends StatelessWidget {
                                 icon: Icons.email_outlined,
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 20),
-                          CustomFormInput(
-                            inputForm: TextFormField(
+                            const SizedBox(height: 20),
+                            TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Ingrese la contraseña';
                                 }
                                 return null;
                               },
+                              onChanged: (value) => ctrl.password = value,
                               obscureText: true,
                               keyboardType: TextInputType.name,
                               style: const TextStyle(fontSize: 13),
@@ -115,10 +127,10 @@ class MembershipDetails extends StatelessWidget {
                                 icon: Icons.password_rounded,
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 10),
-                          const Spacer()
-                        ],
+                            const SizedBox(height: 10),
+                            const Spacer()
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(width: 60),
@@ -131,7 +143,9 @@ class MembershipDetails extends StatelessWidget {
               fontSize: 18,
               width: size.width / 2,
               text: 'Comprar',
-              onPressed: () {},
+              onPressed: () {
+                ctrl.registerBuyMembreship(context);
+              },
             ),
           ],
         ),
@@ -145,28 +159,29 @@ class MembershipDetails extends StatelessWidget {
             child: Transform.rotate(
               angle: math.pi / 28,
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(30),
                 height: 280,
                 width: 130,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
+                decoration: buildBoxDecoration(),
                 child: Column(
                   children: const [
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Tarjeta de Membresía',
-                        style: TextStyle(fontSize: 23, color: Colors.grey),
+                        style: TextStyle(
+                          fontSize: 23,
+                          color: Color.fromARGB(255, 8, 8, 8),
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.left,
                       ),
                     ),
                     Spacer(),
                     Text(
                       'Descuento de 30% en boletería,\n 20% de descuento en confitería.',
-                      style: TextStyle(fontSize: 23, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: 23, color: Color.fromARGB(255, 95, 95, 95)),
                     ),
                     Spacer(),
                     Align(
@@ -190,25 +205,24 @@ class MembershipDetails extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 height: 280,
                 width: 530,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey),
-                ),
+                decoration: buildBoxDecoration(),
                 child: Column(
                   children: const [
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Tarjeta de Membresía',
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                        style: TextStyle(
+                            fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
                         textAlign: TextAlign.left,
                       ),
                     ),
                     Spacer(),
                     Text(
                       'Descuento de 30% en boletería,\n 20% de descuento en confitería.',
-                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color.fromARGB(255, 109, 109, 109)),
                     ),
                     Spacer(),
                     Align(
@@ -226,4 +240,20 @@ class MembershipDetails extends StatelessWidget {
             ),
           );
   }
+
+  BoxDecoration buildBoxDecoration() => BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromARGB(255, 255, 191, 0),
+            Color.fromARGB(255, 234, 164, 0),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10,
+          )
+        ],
+      );
 }

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/models/administrator/confectionery.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/utils/custom_labels.dart';
 import 'package:uni_cine/utils/custom_network_image.dart';
 
 class ConfectioneryBox extends StatelessWidget {
-  final String name;
-  final String price;
-  final String img;
-  const ConfectioneryBox(
-      {super.key, required this.name, required this.price, required this.img});
+  final int index;
+  final Confectionery confectionery;
+  const ConfectioneryBox({
+    super.key,
+    required this.index,
+    required this.confectionery,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,65 +36,73 @@ class ConfectioneryBox extends StatelessWidget {
                 fit: BoxFit.cover,
                 placeholder:
                     Image.asset('assets/images/placeholder_confectionary.jpg'),
-                imageUrl: img,
+                imageUrl: confectionery.imagen ?? '',
               ),
             ),
             const SizedBox(height: 5),
             Text(
-              name,
+              confectionery.nombre ?? '',
               style: CustomLabels.h3,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
             const SizedBox(height: 5),
             Text(
-              r'$ ' + price,
+              r'$ ' + confectionery.precio.toString(),
               style: CustomLabels.h3,
             ),
             const SizedBox(height: 10),
-            Container(
-              width: 210,
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
-                child: Row(
-                  children: [
-                    MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: 35,
-                            child: Text(
-                              '-',
-                              style: CustomLabels.h3,
-                            ),
-                          ),
-                        )),
-                    const Spacer(),
-                    Text('0', style: CustomLabels.h3),
-                    const Spacer(),
-                    MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: 35,
-                            child: Text(
-                              '+',
-                              style: CustomLabels.h3,
-                            ),
-                          ),
-                        )),
-                  ],
+            Consumer(builder: (context, ref, _) {
+              final ctrl = ref.watch(confectioneryProvider);
+              return Container(
+                width: 210,
+                height: 30,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-            )
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 10.0),
+                  child: Row(
+                    children: [
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => ctrl.getLessBuy(index),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 35,
+                              child: Text(
+                                '-',
+                                style: CustomLabels.h3,
+                              ),
+                            ),
+                          )),
+                      const Spacer(),
+                      Text(
+                        '${confectionery.cant ?? 0}',
+                        style: CustomLabels.h3,
+                      ),
+                      const Spacer(),
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => ctrl.getMoreBuy(index),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 35,
+                              child: Text(
+                                '+',
+                                style: CustomLabels.h3,
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              );
+            })
           ],
         ),
       ),

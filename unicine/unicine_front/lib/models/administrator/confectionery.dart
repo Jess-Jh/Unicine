@@ -10,6 +10,8 @@ class Confectionery {
     this.imagen,
     this.precio,
     this.nombre,
+    this.cant,
+
     // this.listaConfiteriaCompra,
   });
 
@@ -17,6 +19,7 @@ class Confectionery {
   String? imagen;
   double? precio;
   String? nombre;
+  int? cant;
   // List<ListaConfiteriaCompra> listaConfiteriaCompra;
 
   factory Confectionery.fromJson(String str) =>

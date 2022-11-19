@@ -274,7 +274,7 @@ public class ClienteController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
-    @PostMapping("/validar-membresia")
+    @GetMapping("/validar-membresia/{email}/{contrasena}")
     public ResponseEntity<?> validarMembresia(@PathVariable String email, @PathVariable String contrasena) {
         Map<String, Object> res = new HashMap<>();
 

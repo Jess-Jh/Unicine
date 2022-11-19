@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/controllers/administrator/confectionery_controller.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
@@ -31,9 +32,10 @@ class ConfectioneryView extends ConsumerWidget {
               const SizedBox(width: 20),
               Text('Confitería', style: CustomLabels.h1),
               const Spacer(),
-              _iconShopping(),
+              _iconShopping(ctrl),
               const SizedBox(width: 15),
-              Text(r'$ 0.000', style: CustomLabels.h3),
+              Text(r'$ ' + ctrl.priceTotalBuy.toString(),
+                  style: CustomLabels.h3),
               const SizedBox(width: 100)
             ],
           ),
@@ -83,7 +85,7 @@ class ConfectioneryView extends ConsumerWidget {
     );
   }
 
-  _iconShopping() {
+  _iconShopping(ConfectioneryController ctrl) {
     return Stack(
       alignment: Alignment.topRight,
       children: [
@@ -100,7 +102,7 @@ class ConfectioneryView extends ConsumerWidget {
             shape: BoxShape.circle,
           ),
           child: Text(
-            '0',
+            ctrl.cantBuyConfectionery.toString(),
             style: TextStyle(fontSize: 8, color: CustomColors.themeWhite),
           ),
         ),

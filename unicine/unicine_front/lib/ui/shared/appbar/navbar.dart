@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/main.dart';
 import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
 
 class Navbar extends StatelessWidget {
@@ -15,6 +16,7 @@ class Navbar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       width: double.infinity,
       height: 50,
       decoration: buildBoxDecoration(),
@@ -46,11 +48,34 @@ class Navbar extends StatelessWidget {
               text: text,
             ),
           ],
-          if (text2 == null)
+          if (text2 == null) ...[
             CustomNavbarButton(
               onPressed: () => authProvider.read.logout(),
               text: text,
             ),
+            const SizedBox(width: 10),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => navigateTo(Flurorouter.userDetailsRoute),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.transparent,
+                  child: ClipOval(
+                    child: Image.network(
+                      'https://via.placeholder.com/150',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.person);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
           const SizedBox(width: 10)
         ],
       ),

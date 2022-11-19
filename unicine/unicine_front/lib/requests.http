@@ -235,4 +235,14 @@ Authorization: {{tokenType}} {{authToken}}
 GET {{apiRest}}/obtener-funciones-pelicula/6
 Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZsjG+jwJ26rGLtywe+jXk4jJldnh95fl5DVh71ekfjnb1KOgwD3px6PiWnixF/H63FvP5F2mQThlPYFyPhO7QKakg+1JaoKBrBvaWE+dftygyHYBNEXvCW9J5TLgDM4RM4W1OzcFL7FsY1tz39kkgg7
 
+### Validar membresía
+GET {{apiRest}}/validar-membresia/correo@gmail.com/123
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZu/7Ag8qJDb2qK/Pg6kEFztj528yWPIKeLTKONsqj2Vy/SiwtEpiIZ1h9+mRcWoVZPR40KPnaomwDE+tu3etDylLN9a/Lnt/JKnp1Ze7wHqRncVBHKj2/4mLrCIWMCT3KdjK+LNfWoYrcHEtwmMrUaG
+
+### Obtener 
+GET {{apiRest}}/validar-membresia/correo@gmail.com/123
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZu/7Ag8qJDb2qK/Pg6kEFztj528yWPIKeLTKONsqj2Vy/SiwtEpiIZ1h9+mRcWoVZPR40KPnaomwDE+tu3etDylLN9a/Lnt/JKnp1Ze7wHqRncVBHKj2/4mLrCIWMCT3KdjK+LNfWoYrcHEtwmMrUaG
+
+
+
 // ------------------------------------------------------------------------------------------------------------------\\
