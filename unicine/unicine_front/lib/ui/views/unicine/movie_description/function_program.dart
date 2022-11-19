@@ -122,7 +122,8 @@ class _FunctionProgramState extends State<FunctionProgram> {
           height: 50,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(5), topRight: Radius.circular(5)),
             color: CustomColors.themeWhite,
             border: Border.all(color: CustomColors.principal, width: 2),
           ),

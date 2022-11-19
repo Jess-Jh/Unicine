@@ -31,6 +31,7 @@ public class Teatro implements Serializable {
     @ManyToOne
     private Ciudad ciudad;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "teatro")
     private List<Sala> listaSalas;

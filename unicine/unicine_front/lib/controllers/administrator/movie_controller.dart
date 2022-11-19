@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/administrator/movie.dart';
+import 'package:uni_cine/models/unicine/function_room.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/utils/util.dart';
 import 'package:uni_cine/widgets/dialogs.dart';
@@ -10,6 +11,7 @@ import 'package:uni_cine/widgets/dialogs.dart';
 class MovieController extends SimpleNotifier {
   final GlobalKey<FormState> formMovieKey = GlobalKey<FormState>();
   List<Movie> movies = [];
+  List<FunctionRoom> functionsMovie = [];
   Movie? movieFunction;
 
   Movie? editMovie;
@@ -163,6 +165,21 @@ class MovieController extends SimpleNotifier {
       );
       log(runtimeType, 'Error en newMovie MovieController $e');
     }
+  }
+
+  void getFunctionsMovie() async {
+    print(movieFunction?.idPelicula);
+    var res = await UnicineApi.httpGet(
+        '/obtener-funciones-pelicula/${movieFunction?.idPelicula}');
+
+    print(res);
+
+    for (final i in res['listaFunciones']) {
+      functionsMovie.add(FunctionRoom.fromMap(i));
+      functionsMovie.toList();
+    }
+    loading = false;
+    notify();
   }
 
   void isUpdateMovie() {

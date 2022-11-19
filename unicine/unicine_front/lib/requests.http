@@ -222,3 +222,10 @@ GET {{apiRest}}/lista-funciones
 Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh790RuNBzgaDPbrF5GXEZB6dH5l9jrkL+buDHzv1pUBWEQm3cTYYI5hIMWAOPtLuEZi9gOdvq+o4/x9ChQGMQhIhy69VNJ079artozrD+ZN36x/X50aYQ7qJlffTDr+y4Q+h8otoT1Y8HXlxFrS9+IA
 
 // ------------------------------------------------------------------------------------------------------------------\\
+
+// ----------------------------------------- Rest Cliente  ---------------------------------------------->>
+### Funciones película 
+GET {{apiRest}}/obtener-funciones-pelicula/1
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZuKkKDtYpY/cLVJAYTmbmN3XFUrYE1/bGZHGpQyjKUm5PCh/fC6dLAL419U7Rng5GCX4jA/bOGqLLW987hcoXi5Uuw/+p3mhzu6slRgDyGn+qslQuob8vm+Y3kzbUekCAIrm/Xm08NKVLx8F6YhCZPf
+
+// ------------------------------------------------------------------------------------------------------------------\\

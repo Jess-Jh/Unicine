@@ -205,17 +205,17 @@ public class ClienteController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
-    /*
+
     @GetMapping("/obtener-funciones-pelicula/{idPelicula}")
     public ResponseEntity<?> obtenerFuncionesPelicula(@PathVariable int idPelicula) {
         Map<String, Object> res = new HashMap<>();
 
         List<FuncionSala> listaFuncionesPelicula = clienteServicio.obtenerFuncionesDisponiblesPelicula(idPelicula);
-        res.put("clientes", listaClientes);
+        res.put("listaFunciones", listaFuncionesPelicula);
 
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
-     */
+
 
     @GetMapping("/obtener-peliculas-ciudad/{nombreCiudad}")
     public ResponseEntity<?> obtenerPeliculaCiudad(@PathVariable String nombreCiudad) {

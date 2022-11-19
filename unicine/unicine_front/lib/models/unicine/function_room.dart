@@ -6,7 +6,7 @@ import 'dart:convert';
 
 import 'package:uni_cine/models/administrator/movie.dart';
 import 'package:uni_cine/models/administrator_theater/hour.dart';
-import 'package:uni_cine/models/administrator_theater/room.dart';
+import 'package:uni_cine/models/unicine/room_function.dart';
 
 class FunctionRoom {
   FunctionRoom({
@@ -17,7 +17,7 @@ class FunctionRoom {
   });
 
   int? idFuncionSala;
-  Room? sala;
+  RoomFunction? sala;
   Movie? pelicula;
   Funcion? funcion;
 
@@ -28,7 +28,7 @@ class FunctionRoom {
 
   factory FunctionRoom.fromMap(Map<String, dynamic> json) => FunctionRoom(
         idFuncionSala: json["idFuncionSala"],
-        sala: Room.fromMap(json["sala"]),
+        sala: RoomFunction.fromMap(json["sala"]),
         pelicula: Movie.fromMap(json["pelicula"]),
         funcion: Funcion.fromMap(json["funcion"]),
       );
