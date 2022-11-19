@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/combo_box/combo_box_filter.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
-class MovieAndTicketsBox extends StatelessWidget {
+class MovieAndTicketsBox extends ConsumerWidget {
   final String selectedTickets;
   final int cantTickets;
   final double? width;
@@ -16,7 +18,9 @@ class MovieAndTicketsBox extends StatelessWidget {
       this.height});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
+
     final aux = List<int>.generate(cantTickets, (i) => i + 1);
     final List<String> tickets = [
       for (int i = 0; i < aux.length; i++) aux[i].toString()
@@ -50,17 +54,21 @@ class MovieAndTicketsBox extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Row(
-              children: const [
-                Text(
-                  'Nombre Pelicula',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
+              children: [
+                SizedBox(
+                  width: 100,
+                  child: Text(
+                    ctrl.movieFunction?.nombre ?? '',
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
-                Spacer(),
-                Text(
+                const Spacer(),
+                const Text(
                   'Fecha y hora',
                   style: TextStyle(
                     color: Colors.white,
@@ -80,9 +88,9 @@ class MovieAndTicketsBox extends StatelessWidget {
                           color: Colors.grey[400],
                           fontSize: 12,
                         )),
-                    const Text(
-                      'Nombre teatro',
-                      style: TextStyle(
+                    Text(
+                      ctrl.theater?.nombre ?? '',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                       ),

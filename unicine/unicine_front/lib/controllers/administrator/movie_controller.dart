@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/administrator/movie.dart';
+import 'package:uni_cine/models/administrator/theater.dart';
+import 'package:uni_cine/models/administrator_theater/distribution_chairs.dart';
+import 'package:uni_cine/models/administrator_theater/hour.dart';
 import 'package:uni_cine/models/unicine/function_room.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
+import 'package:uni_cine/ui/shared/type_init_chairs.dart';
 import 'package:uni_cine/utils/util.dart';
 import 'package:uni_cine/widgets/dialogs.dart';
 
@@ -27,6 +31,12 @@ class MovieController extends SimpleNotifier {
   String reparto = '';
   String estado = '';
   String sinopsis = '';
+
+  // Dates function
+  Theater? theater;
+  List<Hour> functionsDates = [];
+  List<dynamic> chairs = [];
+  DistributionChairs? distributionChairs;
 
   bool validateForm(formMovieKey) {
     if (formMovieKey.currentState!.validate()) {
@@ -168,17 +178,17 @@ class MovieController extends SimpleNotifier {
   }
 
   void getFunctionsMovie() async {
-    print(movieFunction?.idPelicula);
+    functionsMovie = [];
     var res = await UnicineApi.httpGet(
         '/obtener-funciones-pelicula/${movieFunction?.idPelicula}');
-
-    print(res);
 
     for (final i in res['listaFunciones']) {
       functionsMovie.add(FunctionRoom.fromMap(i));
       functionsMovie.toList();
     }
+
     loading = false;
+    getDatesFunction();
     notify();
   }
 
@@ -197,6 +207,27 @@ class MovieController extends SimpleNotifier {
       notSelected = true;
     } else {
       notSelected = false;
+    }
+    notify();
+  }
+
+  void getDatesFunction() {
+    if (loading == false) {
+      for (var t in functionsMovie) {
+        theater = t.sala?.teatro;
+        functionsDates.add(t.funcion!.horario!);
+        distributionChairs = t.sala?.distribucionSilla;
+        validateChairs(t.sala?.distribucionSilla);
+      }
+    }
+    notify();
+  }
+
+  void validateChairs(DistributionChairs? distribucionSilla) {
+    if (loading == false) {
+      if (distribucionSilla?.filas == 12) chairs = TypeInitChars.initChairs();
+      if (distribucionSilla?.filas == 17) chairs = TypeInitChars.type2();
+      if (distribucionSilla?.filas == 11) chairs = TypeInitChars.type3();
     }
     notify();
   }

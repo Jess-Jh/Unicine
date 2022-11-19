@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
@@ -140,68 +141,76 @@ class _FunctionProgramState extends State<FunctionProgram> {
       color: CustomColors.principal,
       width: 600,
       height: 160,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Nombre Teatro',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      child: Consumer(builder: (context, ref, _) {
+        final ctrl = ref.watch(movieProvider);
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              ctrl.theater?.nombre ?? '',
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const Text(
-            'Dirección teatro',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            const SizedBox(height: 10),
+            Text(
+              ctrl.theater?.direccion ?? '',
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          const Text(
-            'HORARIOS DISPONIBLES',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            const SizedBox(height: 30),
+            const Text(
+              'HORARIOS DISPONIBLES',
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            width: 600,
-            height: 25,
-            child: ListView.builder(
-              physics: const AlwaysScrollableScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: hours,
-              itemBuilder: (context, hours) => _hourBox(),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 600,
+              height: 25,
+              child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: ctrl.functionsDates.length,
+                itemBuilder: (context, i) => _hourBox(i),
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 
-  _hourBox() {
+  _hourBox(int i) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => navigateTo(Flurorouter.roomUnicineRoute),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 5),
-          alignment: Alignment.center,
-          height: 25,
-          width: 65,
-          color: CustomColors.themeWhite,
-          child: Text(
-            '15:30',
-            style: CustomLabels.h3,
+      child: Consumer(builder: (context, ref, _) {
+        final ctrl = ref.watch(movieProvider);
+
+        return GestureDetector(
+          onTap: () => navigateTo(Flurorouter.roomUnicineRoute),
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5),
+            alignment: Alignment.center,
+            height: 25,
+            width: 65,
+            color: CustomColors.themeWhite,
+            child: Text(
+              ctrl.functionsDates[i].hora ?? '',
+              style: CustomLabels.h3,
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

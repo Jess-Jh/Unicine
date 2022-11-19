@@ -22,7 +22,7 @@ class UnicineHandlers {
   static Handler register         = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: BillboardView(), routeName: Flurorouter.registerRoute )));
   static Handler billboard        = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: BillboardView(), routeName: Flurorouter.billboardRoute )));
   static Handler roomUnicine      = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: RoomUnicineView(), routeName: Flurorouter.roomUnicineRoute )));
-  static Handler confectionery    = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const ConfectioneryView(), routeName: Flurorouter.confectioneryRoute )));
+  static Handler confectionery    = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: ConfectioneryView(), routeName: Flurorouter.confectioneryRoute )));
   static Handler movieDescription = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MovieDescriptionView(), routeName: Flurorouter.movieDescriptionRoute )));
   static Handler purchaseDetail   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
   static Handler membership       = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MembershipView(), routeName: Flurorouter.membershipRoute )));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
@@ -7,12 +9,16 @@ import 'package:uni_cine/ui/views/unicine/confectionery/list_confectioneries.scr
 import 'package:uni_cine/utils/custom_colors.dart';
 import 'package:uni_cine/utils/custom_labels.dart';
 
-class ConfectioneryView extends StatelessWidget {
-  const ConfectioneryView({super.key});
+class ConfectioneryView extends ConsumerWidget {
+  ConfectioneryView({super.key}) {
+    confectioneryProvider.read.getConfectioneries();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    const int confectioneries = 30;
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(confectioneryProvider);
+
+    int confectioneries = ctrl.confectioneries.length;
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -32,7 +38,7 @@ class ConfectioneryView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 40),
-          const ListConfectioneriesScroll(
+          ListConfectioneriesScroll(
             confectioneries: confectioneries,
             name: 'Nombre confitería',
             price: r'$ 00.0000',

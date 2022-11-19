@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/router/router.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
@@ -7,9 +9,10 @@ import 'package:uni_cine/ui/shared/type_init_chairs.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_box.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/screen_room.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
+import 'package:uni_cine/utils/custom_network_image.dart';
 
 class RoomUnicineView extends StatelessWidget {
-  List<dynamic> chairs = TypeInitChars.initChairs();
+  List<dynamic> chairs = TypeInitChars.type2();
   RoomUnicineView({super.key});
 
   @override
@@ -33,7 +36,7 @@ class RoomUnicineView extends StatelessWidget {
   }
 }
 
-class _TabletDesktopRoom extends StatelessWidget {
+class _TabletDesktopRoom extends ConsumerWidget {
   final List<dynamic> chairs;
   final String? selectedTickets = '1';
   final int cantChairs;
@@ -43,7 +46,8 @@ class _TabletDesktopRoom extends StatelessWidget {
       {required this.chairs, required this.cantChairs, required this.size});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -61,7 +65,7 @@ class _TabletDesktopRoom extends StatelessWidget {
                     const ScreenRoom(),
                     const SizedBox(height: 80),
                     Center(
-                        child: ChairsLocation(chairs: chairs, cantColums: 23)),
+                        child: ChairsLocation(chairs: chairs, cantColums: 33)),
                     const SizedBox(height: 35),
                     _typeChair(context),
                     const SizedBox(height: 55),
@@ -93,17 +97,14 @@ class _TabletDesktopRoom extends StatelessWidget {
                       SizedBox(
                         height: size.height / 3.0,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'assets/images/placeholder_movie2.png',
-                            image: 'assets/images/placeholder_movie2.png',
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                const Icon(
-                              Icons.error,
-                              size: 64,
-                            ),
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            child: CustomNetworkImage(
+                              imageUrl: ctrl.movieFunction?.imagen ??
+                                  'assets/images/placeholder_movie2.png',
+                              placeholder: Image.asset(
+                                  'assets/images/placeholder_movie2.png'),
+                              fit: BoxFit.cover,
+                            )),
                       ),
                       const SizedBox(height: 15),
                       MovieAndTicketsBox(

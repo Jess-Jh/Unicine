@@ -30,6 +30,11 @@ Content-Type: application/json
 // ----------------------------------------- Rest Client ---------------------------------------------->>
 @apiRest = http://localhost:8080
 
+###
+# @name VARIABLES
+@authToken = {{login.response.body.access_token}}
+@tokenType = {{login.response.body.token_type}}
+
 ### Creando cliente
 POST {{apiRest}}/auth/register
 Content-Type: application/json
@@ -56,12 +61,14 @@ Content-Type: application/json
 }
 
 ### Autenticación administrador
+# @name login
 GET {{apiRest}}/auth/login/admin6@gmail.com/123
 Content-Type: application/json
 Accept: application/json
 Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
 
 ### Autenticación cliente
+# @name login
 GET {{apiRest}}/auth/login/correo@gmail.com/123
 Content-Type: application/json
 Accept: application/json
@@ -98,7 +105,7 @@ GET {{apiRest}}/obtener-ciudad/1
 ###
 GET {{apiRest}}/detalle-usuarios
 Content-Type: application/json
-Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJ4rh8wCMREADC2oxzsRbPeLrs1pcoFdbZmx5d3VNyFBFJCUd58RCGmM6ODI7amoWZYTNobnz9uKV+VCRWPlPyIDHV5x2U97K7msyJXnKJIVmVmY/cNNOL+XXk2U+4YcM4hD6y2fKPYpReMlkoWb3yhJzE8a6eEfGUq+To4wMSMnvlURWI1Xm7pWWDuodr8hhD7Uo0bmSi1HoL8Qk6u3R4z
+Authorization: {{tokenType}} {{authToken}}
 
 ### Obtener usuario por cédula
 GET {{apiRest}}/detalle-usuario/2432343425
@@ -219,13 +226,13 @@ Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/
 
 ### Lista funciones
 GET {{apiRest}}/lista-funciones
-Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh790RuNBzgaDPbrF5GXEZB6dH5l9jrkL+buDHzv1pUBWEQm3cTYYI5hIMWAOPtLuEZi9gOdvq+o4/x9ChQGMQhIhy69VNJ079artozrD+ZN36x/X50aYQ7qJlffTDr+y4Q+h8otoT1Y8HXlxFrS9+IA
+Authorization: {{tokenType}} {{authToken}}
 
 // ------------------------------------------------------------------------------------------------------------------\\
 
 // ----------------------------------------- Rest Cliente  ---------------------------------------------->>
 ### Funciones película 
-GET {{apiRest}}/obtener-funciones-pelicula/1
-Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZuKkKDtYpY/cLVJAYTmbmN3XFUrYE1/bGZHGpQyjKUm5PCh/fC6dLAL419U7Rng5GCX4jA/bOGqLLW987hcoXi5Uuw/+p3mhzu6slRgDyGn+qslQuob8vm+Y3kzbUekCAIrm/Xm08NKVLx8F6YhCZPf
+GET {{apiRest}}/obtener-funciones-pelicula/6
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZsjG+jwJ26rGLtywe+jXk4jJldnh95fl5DVh71ekfjnb1KOgwD3px6PiWnixF/H63FvP5F2mQThlPYFyPhO7QKakg+1JaoKBrBvaWE+dftygyHYBNEXvCW9J5TLgDM4RM4W1OzcFL7FsY1tz39kkgg7
 
 // ------------------------------------------------------------------------------------------------------------------\\

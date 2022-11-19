@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/utils/custom_labels.dart';
+import 'package:uni_cine/utils/custom_network_image.dart';
 
 class ConfectioneryBox extends StatelessWidget {
   final String name;
@@ -24,23 +25,25 @@ class ConfectioneryBox extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: FadeInImage.assetNetwork(
-                placeholder: img,
-                image: img,
-                imageErrorBuilder: (context, error, stackTrace) => const Icon(
-                  Icons.error,
-                  size: 64,
-                ),
+              child: CustomNetworkImage(
+                height: 190,
+                width: 200,
+                fit: BoxFit.cover,
+                placeholder:
+                    Image.asset('assets/images/placeholder_confectionary.jpg'),
+                imageUrl: img,
               ),
             ),
             const SizedBox(height: 5),
             Text(
               name,
               style: CustomLabels.h3,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
             const SizedBox(height: 5),
             Text(
-              price,
+              r'$ ' + price,
               style: CustomLabels.h3,
             ),
             const SizedBox(height: 10),
@@ -53,14 +56,36 @@ class ConfectioneryBox extends StatelessWidget {
               ),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0),
+                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
                 child: Row(
                   children: [
-                    Text('-', style: CustomLabels.h3),
+                    MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 35,
+                            child: Text(
+                              '-',
+                              style: CustomLabels.h3,
+                            ),
+                          ),
+                        )),
                     const Spacer(),
                     Text('0', style: CustomLabels.h3),
                     const Spacer(),
-                    Text('+', style: CustomLabels.h3),
+                    MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 35,
+                            child: Text(
+                              '+',
+                              style: CustomLabels.h3,
+                            ),
+                          ),
+                        )),
                   ],
                 ),
               ),

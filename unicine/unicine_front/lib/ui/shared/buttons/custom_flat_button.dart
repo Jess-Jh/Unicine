@@ -5,6 +5,7 @@ class CustomFlatButton extends StatefulWidget {
   final Color color;
   final Function onPressed;
   final bool isActive;
+  final double? width;
 
   const CustomFlatButton({
     super.key,
@@ -12,6 +13,7 @@ class CustomFlatButton extends StatefulWidget {
     this.color = Colors.lightBlueAccent,
     required this.onPressed,
     this.isActive = false,
+    this.width,
   });
 
   @override
@@ -24,6 +26,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      width: widget.width,
       duration: const Duration(milliseconds: 250),
       color: isHovered
           ? Colors.white.withOpacity(0.1)
@@ -39,7 +42,7 @@ class _CustomFlatButtonState extends State<CustomFlatButton> {
             onExit: (_) => setState(() => isHovered = false),
             child: TextButton(
               style: TextButton.styleFrom(
-                primary: widget.color,
+                foregroundColor: widget.color,
               ),
               onPressed: () => widget.onPressed(),
               child: Padding(
