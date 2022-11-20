@@ -43,16 +43,17 @@ public class ClienteController {
     @PostMapping("/auth/register")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> registrarCliente(@RequestBody Cliente cliente) throws Exception {
-        Cliente clienteNuevo = null;
+
         Map<String, Object> res = new HashMap<>();
 
         try {
-            cliente = clienteServicio.registrarCliente(cliente);
-            String emailCliente = encriptarEmail(cliente.getEmail());
-            String route = "auth/activacion/"+emailCliente;
-            this.emailServicio.enviarEmail("Registro de cuenta en Unicine", route, cliente.getEmail());
-            res.put("cliente", cliente);
-            res.put("mensaje", "¡El cliente " + clienteNuevo.getNombreCompleto() + ", ha sido registrado con éxito!. Se le ha enviado un correo para que active su cuenta.");
+            clienteServicio.registrarCliente(cliente);
+            //String emailCliente = encriptarEmail(cliente.getEmail());
+            //String route = "auth/activacion/"+emailCliente;
+            //this.emailServicio.enviarEmail("Registro de cuenta en Unicine", "¡El cliente " + cliente.getNombreCompleto() + ", ha sido registrado con éxito!. Se le ha enviado un correo para que active su cuenta.", cliente.getEmail());
+            // res.put("cliente", cliente);
+
+            res.put("mensaje", "¡El cliente " + cliente.getNombreCompleto() + ", ha sido registrado con éxito!. Se le ha enviado un correo para que active su cuenta.");
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
         }catch(Exception e) {
             res.put("mensaje", "Error al registrarse en unicine");
@@ -61,22 +62,20 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/activar-cuenta/{emailUsuario}")
+    @GetMapping("/activar-cuenta/{email}")
     public ResponseEntity<?> activarCuenta(@PathVariable String email){
-        Map<String, Object> response = new HashMap<>();
-        try{
-            String emailUsuario = JwtEncript.decrypt(email);
-            Cliente cliente = this.clienteServicio.findByEmail(email);
-            cliente.setEstado(true);
-            this.clienteServicio.actualizarCliente(cliente);
-            response.put("mensaje", "¡Su cuenta ha sido activada con éxito!");
-            response.put("estado", cliente.getEstado());
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-        }catch(Exception e){
-            response.put("mensaje", "Error en la activación de la cuenta");
-            response.put("error", "No se ha encontrado el cliente");
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            boolean activarCuenta = clienteServicio.activarCuentaCliente(email);
+            res.put("respuestaCuenta", activarCuenta);
+            res.put("mensaje", "¡Su cuenta ha sido activada con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error en la activación de la cuenta");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     private String encriptarEmail(String email){

@@ -38,6 +38,7 @@ Content-Type: application/json
 ### Creando cliente
 POST {{apiRest}}/auth/register
 Content-Type: application/json
+Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
 
 {
     "id" : 1,
@@ -45,7 +46,24 @@ Content-Type: application/json
     "cedula" : "567567",
     "imagenPerfil" : "urlImagen",
     "nombreCompleto" : "Felipe Hernandez",
-    "email": "Felipe@gmail.com",
+    "email": "yjospinap@uqvirtual.edu.co",
+    "contrasena" : "1234567",
+    "membresia" : 1,
+    "estado" : 1
+}
+
+### Creando cliente
+POST {{apiRest}}/auth/register
+Content-Type: application/json
+Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
+
+{
+    "id" : 1,
+    "label" : "Cliente",
+    "cedula" : "567567",
+    "imagenPerfil" : "urlImagen",
+    "nombreCompleto" : "Felipe Hernandez",
+    "email": "jessjo.324@gmail.com",
     "contrasena" : "1234567",
     "membresia" : 1,
     "estado" : 1
@@ -105,7 +123,7 @@ GET {{apiRest}}/obtener-ciudad/1
 ###
 GET {{apiRest}}/detalle-usuarios
 Content-Type: application/json
-Authorization: {{tokenType}} {{authToken}}
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh7IhfzrjYkWEHXdtPW38ZKC7jQbGhzETkXaeqwOj2e4RKpMkqc5/N5wqz6c5Ogi9dN4CtPm0WhpdtaXz7+5/mnots452a/s2sHN5cv8vvHrMQ/dztmeeTjZm/a3cvf5G/EeiY/A751vXxmzAeOCNgRj
 
 ### Obtener usuario por cédula
 GET {{apiRest}}/detalle-usuario/2432343425

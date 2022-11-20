@@ -9,8 +9,8 @@ import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/views/custom_card_view.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
-class ActivateCount extends ConsumerWidget {
-  const ActivateCount({super.key});
+class ChangePassword extends ConsumerWidget {
+  const ChangePassword({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -19,16 +19,16 @@ class ActivateCount extends ConsumerWidget {
     return const Padding(
       padding: EdgeInsets.all(20.0),
       child: CustomCardView(
-        title: 'Activar Cuenta',
+        title: 'Cambiar Contraseña',
         sizeLetter: 40,
-        formView: ActivateCountUser(),
+        formView: ChangePasswordUser(),
       ),
     );
   }
 }
 
-class ActivateCountUser extends StatelessWidget {
-  const ActivateCountUser({super.key});
+class ChangePasswordUser extends StatelessWidget {
+  const ChangePasswordUser({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class ActivateCountUser extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'De clic en el botón para activar la cuenta.',
+                  'De clic en el botón para cambiar su contraseña.',
                   style: GoogleFonts.rubik(
                     fontSize: 20,
                   ),
@@ -101,11 +101,11 @@ class ActivateCountUser extends StatelessWidget {
                     fontSize: 18,
                     width: size.width / 2,
                     height: 15,
-                    text: 'Activar Cuenta',
+                    text: 'Cambiar Contraseña',
                     onPressed: () {
                       ctrl.activateCount(context);
                       if (ctrl.loading == false) {
-                        navigateTo(Flurorouter.billboardRoute);
+                        navigateTo(Flurorouter.userChangePasswordRoute);
                       }
                     },
                   );

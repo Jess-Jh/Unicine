@@ -30,15 +30,16 @@ public class Cliente extends Persona implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<PQRS> pqrs;
 
-    @JsonIgnore
     @ManyToOne
     private Ciudad ciudad;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<CuponCliente> listaCuponClientes;
 

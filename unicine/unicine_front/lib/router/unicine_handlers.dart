@@ -16,20 +16,22 @@ import 'package:uni_cine/ui/views/unicine/login/register_view.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/billboard_view.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/room_unicine_view.dart';
 import 'package:uni_cine/ui/views/unicine/user/activate_count.dart';
+import 'package:uni_cine/ui/views/unicine/user/change_password.dart';
 import 'package:uni_cine/ui/views/unicine/user/user_details_view.dart';
 
 class UnicineHandlers {
-  static Handler login             = Handler(handlerFunc: ((context, parameters) => ValidateView(view: LoginView(), view2: BillboardView(), routeName: Flurorouter.loginRoute )));
-  static Handler register          = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: BillboardView(), routeName: Flurorouter.registerRoute )));
-  static Handler billboard         = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: BillboardView(), routeName: Flurorouter.billboardRoute )));
-  static Handler roomUnicine       = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: RoomUnicineView(), routeName: Flurorouter.roomUnicineRoute )));
-  static Handler confectionery     = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: ConfectioneryView(), routeName: Flurorouter.confectioneryRoute )));
-  static Handler movieDescription  = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MovieDescriptionView(), routeName: Flurorouter.movieDescriptionRoute )));
-  static Handler purchaseDetail    = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
-  static Handler membership        = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MembershipView(), routeName: Flurorouter.membershipRoute )));
-  static Handler pqrs              = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const PQRSView(), routeName: Flurorouter.pqrsRoute )));
-  static Handler userDetails       = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: UserDetailsView(), routeName: Flurorouter.userDetailsRoute )));
-  static Handler userActivateCount = Handler(handlerFunc: ((context, parameters) => ValidateView(view: ActivateCount(), view2: BillboardView(), routeName: Flurorouter.userActivateCountRoute )));
+  static Handler login              = Handler(handlerFunc: ((context, parameters) => ValidateView(view: LoginView(), view2: BillboardView(), routeName: Flurorouter.loginRoute )));
+  static Handler register           = Handler(handlerFunc: ((context, parameters) => ValidateView(view: RegisterView(), view2: BillboardView(), routeName: Flurorouter.registerRoute )));
+  static Handler billboard          = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: BillboardView(), routeName: Flurorouter.billboardRoute )));
+  static Handler roomUnicine        = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const RoomUnicineView(), routeName: Flurorouter.roomUnicineRoute )));
+  static Handler confectionery      = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: ConfectioneryView(), routeName: Flurorouter.confectioneryRoute )));
+  static Handler movieDescription   = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MovieDescriptionView(), routeName: Flurorouter.movieDescriptionRoute )));
+  static Handler purchaseDetail     = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: PurchaseDetailView(), routeName: Flurorouter.purchaseDetailRoute )));
+  static Handler membership         = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const MembershipView(), routeName: Flurorouter.membershipRoute )));
+  static Handler pqrs               = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: const PQRSView(), routeName: Flurorouter.pqrsRoute )));
+  static Handler userDetails        = Handler(handlerFunc: ((context, parameters) => ValidateView(view2: UserDetailsView(), routeName: Flurorouter.userDetailsRoute )));
+  static Handler userActivateCount  = Handler(handlerFunc: ((context, parameters) => ValidateView(view: const ActivateCount(), view2: BillboardView(), routeName: Flurorouter.userActivateCountRoute )));
+  static Handler userChangePassword = Handler(handlerFunc: ((context, parameters) => ValidateView(view: const ChangePasswordUser(), view2: BillboardView(), routeName: Flurorouter.userChangePasswordRoute )));
 }
 
 class ValidateView extends ConsumerWidget {

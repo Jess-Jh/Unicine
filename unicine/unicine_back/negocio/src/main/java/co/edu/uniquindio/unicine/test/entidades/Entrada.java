@@ -28,7 +28,6 @@ public class Entrada implements Serializable {
     @Column(nullable = false)
     private Double precio;
 
-    @JsonIgnore
     @ManyToOne
     private Compra compra;
 

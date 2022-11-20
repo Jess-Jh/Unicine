@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_theater_layout.dart';
 
 class ChairsLocation extends StatelessWidget {
   final List<dynamic> chairs;
@@ -20,7 +22,7 @@ class ChairsLocation extends StatelessWidget {
   }
 }
 
-class _TabletDesktopRoom extends StatelessWidget {
+class _TabletDesktopRoom extends ConsumerWidget {
   final List<dynamic> chairs;
   final Size size;
   final int cantColums;
@@ -29,7 +31,8 @@ class _TabletDesktopRoom extends StatelessWidget {
       {required this.chairs, required this.size, required this.cantColums});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(roomManageProvider);
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
         dragDevices: {
@@ -57,8 +60,13 @@ class _TabletDesktopRoom extends StatelessWidget {
                           ? MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                  onTap: () {},
-                                  child: const Icon(Icons.chair_outlined)),
+                                  onTap: () {
+                                    ctrl.changeColor(i);
+                                  },
+                                  child: const Icon(
+                                    Icons.chair_outlined,
+                                    color: Colors.black,
+                                  )),
                             )
                           : Center(
                               child: Text(

@@ -25,11 +25,9 @@ public class ConfiteriaCompra implements Serializable {
     @Column(nullable = false)
     private Integer unidades;
 
-    @JsonIgnore
     @ManyToOne
     private Compra compra;
 
-    @JsonIgnore
     @ManyToOne
     private Confiteria confiteria;
 

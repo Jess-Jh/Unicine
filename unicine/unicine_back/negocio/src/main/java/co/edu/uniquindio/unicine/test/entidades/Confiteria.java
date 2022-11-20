@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Confiteria implements Serializable {
     private String nombre;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "confiteria")
     private List<ConfiteriaCompra> listaConfiteriaCompra;
 

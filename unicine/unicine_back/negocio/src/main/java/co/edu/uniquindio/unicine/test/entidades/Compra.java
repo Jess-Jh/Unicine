@@ -33,11 +33,10 @@ public class Compra implements Serializable {
     @Column(nullable = false)
     private Double total;
 
-    @JsonIgnore
+
     @ManyToOne
     private Cliente cliente;
 
-    @JsonIgnore
     @ManyToOne
     private FuncionSala funcionSala;
 
@@ -46,10 +45,10 @@ public class Compra implements Serializable {
     private List<Entrada> listaEntradas;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "compra")
     private List<ConfiteriaCompra> listaConfiteriaCompra;
 
-    @JsonIgnore
     @ManyToOne
     private CuponCliente cuponCliente;
 

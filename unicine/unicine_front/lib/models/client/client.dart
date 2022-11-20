@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:uni_cine/models/client/rol.dart';
+
 Client userFromJson(String str) => Client.fromJson(json.decode(str));
 String userToJson(Client data) => json.encode(data.toJson());
 
@@ -15,7 +17,7 @@ class Client {
     this.membresia,
     this.estado,
     this.telefonos,
-    // this.rol,
+    this.rol,
   });
 
   String? cedula;
@@ -24,7 +26,7 @@ class Client {
   String? contrasena;
   int? id;
   String? label;
-  // Rol rol;
+  Rol? rol;
   String? imagenPerfil;
   bool? membresia;
   bool? estado;
@@ -41,7 +43,7 @@ class Client {
         contrasena: json["contrasena"],
         id: json["id"],
         label: json["label"],
-        // rol: Rol.fromMap(json["rol"]),
+        rol: Rol.fromMap(json["rol"]),
         imagenPerfil: json["imagenPerfil"],
         membresia: json["membresia"],
         estado: json["estado"],

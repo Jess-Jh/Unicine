@@ -150,7 +150,7 @@ class RegisterView extends ConsumerWidget {
                         }
                         return null;
                       },
-                      onChanged: (value) => ctrl.email = value,
+                      onChanged: (value) => ctrl.emailUser = value,
                       decoration: CustomInputs.loginInputDecoration(
                         hint: 'Ingrese su correo electrónico',
                         label: 'Email',
@@ -179,10 +179,10 @@ class RegisterView extends ConsumerWidget {
                     ),
                     const SizedBox(height: 25),
                     CustomOutlinedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final validForm = ctrl.validateForm(formKey);
                         if (!validForm) return;
-                        ctrl.register(context);
+                        await ctrl.register(context);
                       },
                       text: 'Crear Cuenta',
                     )

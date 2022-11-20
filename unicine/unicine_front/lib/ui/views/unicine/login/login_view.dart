@@ -84,7 +84,7 @@ class LoginView extends StatelessWidget {
                           }
                           return null;
                         },
-                        onChanged: (value) => ctrl.email = value,
+                        onChanged: (value) => ctrl.emailUser = value,
                         decoration: CustomInputs.loginInputDecoration(
                           hint: 'Ingrese su correo',
                           label: 'Email',
@@ -144,6 +144,7 @@ class LoginView extends StatelessWidget {
 
   void onFormSubmit(AuthController ctrl, BuildContext context) {
     final isValid = ctrl.validateForm(formKey);
-    if (isValid) authProvider.read.login(ctrl.email, ctrl.password, context);
+    if (isValid)
+      authProvider.read.login(ctrl.emailUser, ctrl.password, context);
   }
 }

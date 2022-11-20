@@ -21,15 +21,14 @@ public class CuponCliente implements Serializable {
 
     private Integer isDisponible;
 
-    @JsonIgnore
     @ManyToOne
     private Cupon cupon;
 
-    @JsonIgnore
     @ManyToOne
     private Cliente cliente;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "cuponCliente")
     private List<Compra> listaCompras;
 

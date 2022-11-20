@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Cupon implements Serializable {
     private String criterio;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> listaCuponClientes;
 

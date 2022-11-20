@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 
@@ -9,7 +8,7 @@ import 'package:uni_cine/utils/custom_labels.dart';
 import 'package:uni_cine/ui/views/unicine/billboard/list_movies_scroll.dart';
 
 // ignore: must_be_immutable
-class BillboardView extends ConsumerWidget {
+class BillboardView extends StatelessWidget {
   // Selección de ciudades
   List<String> ciudades = [
     'Pereira',
@@ -31,9 +30,7 @@ class BillboardView extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ref) {
-    final ctrl = ref.watch(movieProvider);
-    int moviesCount = ctrl.movies.length;
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Container(

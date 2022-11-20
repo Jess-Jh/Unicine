@@ -1,4 +1,6 @@
 
+import 'package:uni_cine/ui/views/unicine/room_unicine/chair.dart';
+
 class TypeInitChars {
 
   static List<dynamic> initChairs() {
@@ -6,6 +8,9 @@ class TypeInitChars {
     List chairs;
   
     chairs = [
+
+      // Chair(column: 1, row: 'A', color: Colors.transparent, status: 0), 
+
       0, 0, 1, 1, 'A', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'A', 1, 1, 0, 0,
       1, 1, 1, 1, 'B', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'B', 1, 1, 1, 1,
       1, 1, 1, 1, 'C', 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 'C', 1, 1, 1, 1,
@@ -76,5 +81,7 @@ class TypeInitChars {
 
     return chairs;
   }
+
+  
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/account/auth_response.dart';
 import 'package:uni_cine/models/client/client.dart';
+import 'package:uni_cine/models/client/rol.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/services/local_storage.dart';
@@ -28,7 +29,7 @@ class AuthController extends SimpleNotifier {
   String cedula = '';
   String nombre = '';
   String telefono = '';
-  String email = '';
+  String emailUser = '';
   String password = '';
 
   Client? clientLogin;
@@ -119,40 +120,61 @@ class AuthController extends SimpleNotifier {
     return true;
   }
 
-  void register(BuildContext context) {
+  Future<void> register(BuildContext context) async {
+    final rol = Rol(codigo: 3, nombre: 'CLIENTE');
     final client = Client(
       id: 1,
       label: "Cliente",
       cedula: cedula,
       imagenPerfil: urlImagen,
       nombreCompleto: nombre,
-      email: email,
+      email: emailUser,
+      telefonos: [],
+      rol: rol,
       contrasena: password,
       membresia: false,
       estado: false,
     );
+    LocalStorage.prefs.setString('user', '${client.email}');
+    try {
+      await UnicineApi.post('/auth/register', client.toJson()).then((json) {
+        loading = false;
 
-    UnicineApi.post('/auth/register', client).then((json) {
-      final client = Client.fromJson(json);
+        Dialogs.showSnackbarTop(
+          context,
+          json['mensaje'],
+          isError: false,
+        );
 
-      authStatus = AuthStatus.authenticated;
-      LocalStorage.prefs.setString('token', '${client.contrasena}');
-      NavigationService.replaceTo(Flurorouter.billboardRoute);
-      UnicineApi.configureDio();
-
+        notify();
+      }).catchError((e) => throw e);
+    } catch (e) {
       Dialogs.showSnackbarTop(
         context,
-        'El cliente ha quedado registrado con éxito',
-        isError: false,
-      );
-
-      notify();
-    }).catchError((e) {
-      Dialogs.showSnackbarTop(
-        context,
-        'Error en $e',
+        '$e',
         isError: true,
       );
+    }
+  }
+
+  void activateCount(BuildContext context) async {
+    final email = LocalStorage.prefs.getString('user');
+    print(email);
+    await UnicineApi.httpGet('/activar-cuenta/$email').then((json) {
+      Dialogs.showSnackbarTop(
+        context,
+        json['mensaje'],
+        isError: false,
+        backgroundColor: Colors.white,
+      );
+
+      // authStatus = AuthStatus.authenticated;
+      // NavigationService.replaceTo(Flurorouter.billboardRoute);
+      // UnicineApi.configureDio();
+
+      loading = false;
+      LocalStorage.prefs.remove('user');
+      notify();
     });
   }
 
@@ -163,47 +185,6 @@ class AuthController extends SimpleNotifier {
     authStatus = AuthStatus.notAuthenticated;
     notify();
   }
+
+  void changePassword() {}
 }
-
-
-  // Future<void> _saveClient(
-  //     BuildContext context, void Function(Client client)? onSuccess) async {
-  //   final client = Client(
-  //     id: 1,
-  //     label: "Cliente",
-  //     idUser: cedula,
-  //     profilePicture: urlImagen,
-  //     fullName: nombre,
-  //     email: email,
-  //     membership: false,
-  //     status: false,
-  //   );
-
-  //   try {
-  //     Dialogs.showLoadingDialog(context, true);
-  //     await registerRepository
-  //         .registerClient(client: client)
-  //         .then((value) async {
-  //       Dialogs.showLoadingDialog(context, false);
-  //       await Future.delayed(const Duration(milliseconds: 1000)).then((_) {
-  //         Dialogs.showSnackbarTop(
-  //           context,
-  //           'El cliente ha quedado registrado con éxito',
-  //           isError: false,
-  //         );
-  //         onSuccess?.call(value);
-  //       });
-  //     }).catchError((error) {
-  //       Dialogs.showLoadingDialog(context, false);
-  //       throw error;
-  //     });
-  //   } on FetchDataException {
-  //     Dialogs.showSnackbarTop(context, 'Error de conexión');
-  //   } on ValidationException catch (e) {
-  //     log(runtimeType, e.message);
-  //   } catch (e) {
-  //     log(runtimeType, 'add Client: $e');
-  //     Dialogs.showSnackbarTop(context, 'Error desconocido');
-  //   }
-  // }
-

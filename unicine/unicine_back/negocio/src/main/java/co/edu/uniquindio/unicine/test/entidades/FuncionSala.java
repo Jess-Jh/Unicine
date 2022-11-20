@@ -31,6 +31,7 @@ public class FuncionSala implements Serializable {
     @ManyToOne
     private Funcion funcion;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "funcionSala")
     private List<Compra> listaCompras;
