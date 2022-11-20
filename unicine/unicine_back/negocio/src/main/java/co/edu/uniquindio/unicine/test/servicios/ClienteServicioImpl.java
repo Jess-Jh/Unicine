@@ -95,7 +95,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         if (correoExiste){
             throw new Exception("El correo ya se encuentra registrado");
         }
-        emailServicio.enviarEmail("Registro en unicine", "Hola debe ir al siguiente enlace para activar la cueenta", cliente.getEmail());
+        emailServicio.enviarEmail("Registro en unicine", "Hola debe ir al siguiente enlace para activar la cuenta  http://localhost:49449/#/unicine", cliente.getEmail());
 
         return clienteRepo.save(cliente);
     }
