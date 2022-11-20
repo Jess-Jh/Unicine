@@ -266,4 +266,16 @@ public class ClienteServicioImpl implements ClienteServicio{
         }
     }
 
+    @Override
+    public boolean activarCuentaCliente(String email) throws Exception {
+        Optional<Cliente> buscar = clienteRepo.findByEmail(email);
+        if (buscar.isEmpty()){
+            throw new Exception("No existe este correo para activar la cuenta");
+        }else {
+            buscar.get().setEstado(true);
+            clienteRepo.save(buscar.get());
+            return true;
+        }
+    }
+
 }

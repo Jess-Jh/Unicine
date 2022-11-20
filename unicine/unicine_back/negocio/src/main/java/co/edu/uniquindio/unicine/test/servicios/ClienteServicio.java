@@ -50,5 +50,6 @@ public interface ClienteServicio {
 
     boolean obtenerMembresiaCliente(String email, String contrasena) throws Exception;
 
+    boolean activarCuentaCliente(String email) throws Exception;
 
 }
