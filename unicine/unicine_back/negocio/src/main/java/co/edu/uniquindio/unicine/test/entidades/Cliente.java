@@ -25,6 +25,7 @@ public class Cliente extends Persona implements Serializable {
     @ElementCollection
     private List<String> telefonos;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
     private List<PQRS> pqrs;

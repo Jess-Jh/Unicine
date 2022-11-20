@@ -222,7 +222,6 @@ class MovieController extends SimpleNotifier {
   }
 
   void validateChairs(DistributionChairs? distribucionSilla) {
-    print('entro..... ${distribucionSilla?.filas}');
     if (distribucionSilla?.filas == 14) chairs = TypeInitChars.initChairs();
     if (distribucionSilla?.filas == 19) chairs = TypeInitChars.type2();
     if (distribucionSilla?.filas == 12) chairs = TypeInitChars.type3();

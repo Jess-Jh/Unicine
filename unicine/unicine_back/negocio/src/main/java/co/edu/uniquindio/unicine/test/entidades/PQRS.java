@@ -22,7 +22,6 @@ public class PQRS implements Serializable {
     @Column(nullable = false)
     private String mensaje;
 
-    @JsonIgnore
     @ToString.Exclude
     @ManyToOne
     private Cliente cliente;

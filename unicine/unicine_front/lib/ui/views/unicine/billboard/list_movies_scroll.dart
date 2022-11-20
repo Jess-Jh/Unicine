@@ -42,7 +42,6 @@ class ListMoviesScroll extends ConsumerWidget {
             child: GestureDetector(
               onTap: () {
                 ctrl.movieFunction = ctrl.movies[i];
-                print('yapped');
                 ctrl.getFunctionsMovie();
                 navigateTo(Flurorouter.movieDescriptionRoute);
               },

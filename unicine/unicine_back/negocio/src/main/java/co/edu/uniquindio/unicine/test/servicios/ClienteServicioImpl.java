@@ -44,6 +44,17 @@ public class ClienteServicioImpl implements ClienteServicio{
     }
 
     @Override
+    public Cliente obtenerClienteEmail(String email) throws Exception {
+        Optional<Cliente> guardado = clienteRepo.findByEmail(email);
+
+        if (guardado.isEmpty()){
+            throw new Exception("El cliente no existe");
+        }
+
+        return guardado.get();
+    }
+
+    @Override
     public Cliente login(String email, String contrasena) throws Exception {
         Cliente cliente = clienteRepo.comprobarAutenticacion(email, contrasena);
         if(cliente == null){

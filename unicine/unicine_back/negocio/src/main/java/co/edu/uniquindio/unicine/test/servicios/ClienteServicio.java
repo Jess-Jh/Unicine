@@ -7,6 +7,7 @@ import java.util.List;
 public interface ClienteServicio {
 
     Cliente obtenerCliente(String cedula) throws Exception;
+    Cliente obtenerClienteEmail(String email) throws Exception;
     Cliente login(String email, String contrasena) throws Exception;
 
     Object login2(String email, String contrasena) throws Exception;

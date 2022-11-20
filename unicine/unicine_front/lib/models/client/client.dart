@@ -5,56 +5,60 @@ String userToJson(Client data) => json.encode(data.toJson());
 
 class Client {
   Client({
+    this.cedula,
+    this.nombreCompleto,
+    this.email,
+    this.contrasena,
     this.id,
     this.label,
-    this.idUser,
-    this.profilePicture,
-    this.fullName,
-    this.email,
-    this.password,
-    this.membership,
-    this.status,
-    this.telephones,
+    // this.rol,
+    this.imagenPerfil,
+    this.membresia,
+    this.estado,
+    this.telefonos,
   });
 
+  String? cedula;
+  String? nombreCompleto;
+  String? email;
+  String? contrasena;
   int? id;
   String? label;
-  String? idUser;
-  String? profilePicture;
-  String? fullName;
-  String? email;
-  String? password;
-  bool? membership;
-  bool? status;
-  List<String>? telephones;
+  // Rol rol;
+  String? imagenPerfil;
+  bool? membresia;
+  bool? estado;
+  List<String>? telefonos;
 
-  factory Client.fromJson(Map<String, dynamic> json) {
-    return Client(
-      id: json["id"],
-      label: json["label"],
-      idUser: json["cedula"]?.toString(),
-      profilePicture: json["imagenPerfil"],
-      fullName: json["nombreCompleto"],
-      email: json["email"],
-      password: json["contrasena"],
-      membership: json["membresia"],
-      status: json["estado"],
-      telephones: json["telefonos"],
-    );
-  }
+  factory Client.fromJson(String str) => Client.fromMap(json.decode(str));
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> json = {};
-    if (id != null) json["id"] = id;
-    if (label != null) json["label"] = label;
-    if (idUser != null) json["cedula"] = idUser;
-    if (fullName != null) json["nombreCompleto"] = fullName;
-    if (email != null) json["email"] = email;
-    if (password != null) json["contrasena"] = password;
-    if (membership != null) json["membresia"] = membership;
-    if (status != null) json["estado"] = status;
-    if (telephones != null) json["telefonos"] = telephones;
+  String toJson() => json.encode(toMap());
 
-    return json;
-  }
+  factory Client.fromMap(Map<String, dynamic> json) => Client(
+        cedula: json["cedula"],
+        nombreCompleto: json["nombreCompleto"],
+        email: json["email"],
+        contrasena: json["contrasena"],
+        id: json["id"],
+        label: json["label"],
+        // rol: Rol.fromMap(json["rol"]),
+        imagenPerfil: json["imagenPerfil"],
+        membresia: json["membresia"],
+        estado: json["estado"],
+        telefonos: List<String>.from(json["telefonos"].map((x) => x)),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "cedula": cedula,
+        "nombreCompleto": nombreCompleto,
+        "email": email,
+        "contrasena": contrasena,
+        "id": id,
+        "label": label,
+        // "rol": rol.toMap(),
+        "imagenPerfil": imagenPerfil,
+        "membresia": membresia,
+        "estado": estado,
+        "telefonos": List<dynamic>.from(telefonos!.map((x) => x)),
+      };
 }

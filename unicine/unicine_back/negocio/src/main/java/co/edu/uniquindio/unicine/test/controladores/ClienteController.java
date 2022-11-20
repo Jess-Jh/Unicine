@@ -154,6 +154,26 @@ public class ClienteController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @GetMapping("/obtener-cliente-email/{email}")
+    public ResponseEntity<?> obtenerClienteEmail(@PathVariable String email) {
+        Map<String, Object> res = new HashMap<>();
+        Cliente cliente;
+
+        try {
+            cliente = clienteServicio.obtenerClienteEmail(email);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al realizar la búsqueda del cliente en la base de datos");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        if(cliente == null) {
+            res.put("mensaje", "¡El cliente con el correo " + email.toString()+" no éxiste en la base de datos!");
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        res.put("cliente", cliente);
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
     @GetMapping("/detalle-usuarios")
     public ResponseEntity<?> obtenerClientes() {
         Map<String, Object> res = new HashMap<>();
@@ -288,7 +308,34 @@ public class ClienteController {
             return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+    }
 
+    @GetMapping("/lista-pqrs")
+    public ResponseEntity<?> listaPQRS() {
+        Map<String, Object> res = new HashMap<>();
+        try {
+            List<PQRS> listaPQRS = clienteServicio.listarPQRS();
+            res.put("listaPQRS", listaPQRS);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al cargar los pqrs");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/lista-pqrs-cliente")
+    public ResponseEntity<?> listaPQRSCliente(@PathVariable String email) {
+        Map<String, Object> res = new HashMap<>();
+        try {
+            List<PQRS> listaPQRSCliente = clienteServicio.obtenerPQRSEmailCliente(email);
+            res.put("listaPQRSCliente", listaPQRSCliente);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al cargar los pqrs del cliente");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
 

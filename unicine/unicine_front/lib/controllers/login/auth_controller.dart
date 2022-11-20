@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/account/auth_response.dart';
-import 'package:uni_cine/models/account/user.dart';
 import 'package:uni_cine/models/client/client.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/router/router.dart';
@@ -20,14 +19,9 @@ enum AuthStatus {
 class AuthController extends SimpleNotifier {
   String? _token;
   AuthResponse? authResponse;
-  User? user = User(
-      id: 2,
-      label: 'Administrador',
-      idUser: '2321',
-      email: 'admin98@gmail.com',
-      password: '345353');
   AuthStatus authStatus = AuthStatus.checking;
   bool? buttonAuthenticated = false;
+  bool loading = true;
 
   // inputs
   String urlImagen = '';
@@ -36,6 +30,8 @@ class AuthController extends SimpleNotifier {
   String telefono = '';
   String email = '';
   String password = '';
+
+  Client? clientLogin;
 
   bool validateForm(formKey) {
     if (formKey.currentState!.validate()) {
@@ -55,6 +51,7 @@ class AuthController extends SimpleNotifier {
 
       LocalStorage.prefs.setString('token', '${authResponse?.jwttoken}');
       LocalStorage.prefs.setString('rol', '${authResponse?.rol}');
+      LocalStorage.prefs.setString('user', '${authResponse?.email}');
       UnicineApi.configureDio();
       isAuthenticated();
 
@@ -64,6 +61,8 @@ class AuthController extends SimpleNotifier {
         isError: false,
         backgroundColor: Colors.white,
       );
+
+      saveUser();
       notify();
     }).catchError((e) {
       Dialogs.showSnackbarTop(
@@ -72,6 +71,17 @@ class AuthController extends SimpleNotifier {
         isError: true,
       );
     });
+  }
+
+  void saveUser() async {
+    String emailUser = LocalStorage.prefs.getString('user') ?? '';
+
+    await UnicineApi.httpGet('/obtener-cliente-email/$emailUser').then((json) {
+      clientLogin = Client.fromMap(json['cliente']);
+    });
+
+    loading = false;
+    notify();
   }
 
   Future<bool> isAuthenticated() async {
@@ -113,20 +123,20 @@ class AuthController extends SimpleNotifier {
     final client = Client(
       id: 1,
       label: "Cliente",
-      idUser: cedula,
-      profilePicture: urlImagen,
-      fullName: nombre,
+      cedula: cedula,
+      imagenPerfil: urlImagen,
+      nombreCompleto: nombre,
       email: email,
-      password: password,
-      membership: false,
-      status: false,
+      contrasena: password,
+      membresia: false,
+      estado: false,
     );
 
     UnicineApi.post('/auth/register', client).then((json) {
       final client = Client.fromJson(json);
 
       authStatus = AuthStatus.authenticated;
-      LocalStorage.prefs.setString('token', '${client.password}');
+      LocalStorage.prefs.setString('token', '${client.contrasena}');
       NavigationService.replaceTo(Flurorouter.billboardRoute);
       UnicineApi.configureDio();
 
@@ -149,6 +159,7 @@ class AuthController extends SimpleNotifier {
   logout() {
     LocalStorage.prefs.remove('token');
     LocalStorage.prefs.remove('rol');
+    LocalStorage.prefs.remove('user');
     authStatus = AuthStatus.notAuthenticated;
     notify();
   }

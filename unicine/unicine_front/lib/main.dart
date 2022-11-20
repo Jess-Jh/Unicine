@@ -25,6 +25,7 @@ void main() async {
   await LocalStorage.configurePrefs();
   UnicineApi.configureDio();
   Flurorouter.configureRoutes();
+  authProvider.read.saveUser();
   runApp(MyApp());
 }
 
