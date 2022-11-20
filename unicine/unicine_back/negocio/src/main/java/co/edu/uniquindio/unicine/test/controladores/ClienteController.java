@@ -190,12 +190,24 @@ public class ClienteController {
     }
 
     @PutMapping("/update")
-    public Cliente actualizarCliente(@RequestBody Cliente cliente) throws Exception {
-        return clienteServicio.actualizarCliente(cliente);
+    public ResponseEntity<?> actualizarCliente(@RequestBody Cliente cliente) throws Exception {
+
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Cliente clienteActualizado = clienteServicio.actualizarCliente(cliente);
+            res.put("cliente", clienteActualizado);
+            res.put("mensaje", "¡El usuario ha sido actualizado con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al actualizar el cliente");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('CLIENTE')")
-    @GetMapping("/historial-compras")
+
+    @GetMapping("/historial-compras/{email}")
     public List<Compra> listarHistorialCompras(@PathVariable String email) {
         return clienteServicio.listarHistorialCompra(email);
     }
@@ -215,7 +227,7 @@ public class ClienteController {
         return clienteServicio.cambiarContrasena(email, contrasena);
     }
 
-    @GetMapping("/filtrar-pelicula-cartelera")
+    @GetMapping("/filtrar-pelicula-cartelera/{nombre}")
     public ResponseEntity<?> filtroPeliculasCartelera(@PathVariable String nombre) {
         Map<String, Object> res = new HashMap<>();
 

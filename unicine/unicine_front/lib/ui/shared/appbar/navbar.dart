@@ -4,6 +4,7 @@ import 'package:uni_cine/main.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
+import 'package:uni_cine/utils/custom_network_image.dart';
 
 class Navbar extends StatelessWidget {
   final String text;
@@ -62,14 +63,14 @@ class Navbar extends StatelessWidget {
                   radius: 20,
                   backgroundColor: Colors.transparent,
                   child: ClipOval(
-                    child: Image.network(
-                      'https://via.placeholder.com/150',
-                      width: 100,
+                    child: CustomNetworkImage(
                       height: 100,
+                      width: 100,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(Icons.person);
-                      },
+                      placeholder:
+                          Image.asset('assets/images/image_perfil.jpeg'),
+                      imageUrl:
+                          authProvider.read.clientLogin?.imagenPerfil ?? '',
                     ),
                   ),
                 ),

@@ -11,11 +11,11 @@ class Client {
     this.contrasena,
     this.id,
     this.label,
-    // this.rol,
     this.imagenPerfil,
     this.membresia,
     this.estado,
     this.telefonos,
+    // this.rol,
   });
 
   String? cedula;

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/views/custom_card_view.dart';
 import 'package:uni_cine/ui/views/unicine/user/user_details.dart';
 
 class UserDetailsView extends StatelessWidget {
-  const UserDetailsView({super.key});
+  UserDetailsView({super.key}) {
+    clientProvider.read.getPurchaseClient();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -51,7 +51,7 @@ class _UnicineLayoutPageState extends State<UnicineLayoutPage>
                 // const Spacer(),
                 Expanded(
                   child: Container(
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 244, 244, 244),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),

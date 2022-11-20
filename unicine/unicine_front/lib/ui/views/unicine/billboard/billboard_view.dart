@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
 
@@ -26,6 +27,7 @@ class BillboardView extends ConsumerWidget {
 
   BillboardView({Key? key}) : super(key: key) {
     movieProvider.read.getMovies();
+    clientProvider.read.getClients();
   }
 
   @override

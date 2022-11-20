@@ -30,7 +30,7 @@ public class JwtProvider {
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setAudience("David")
+        return Jwts.builder().setClaims(claims).setSubject(subject).setAudience("User")
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY*1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }

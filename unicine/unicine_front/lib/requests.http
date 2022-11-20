@@ -243,6 +243,10 @@ Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4j
 GET {{apiRest}}/lista-pqrs
 Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZs9GvCSoaLQ7rRjWTldD4nczBd3E3n0sRsPslO0U2vS9EYagEtvKXw4TMdrs5LM1Y2VR8zsDCuUYYUSBR8WwEftHCB2I0fk0quLlrZo2LfJnETgEZYbWGorX70tmItCSRJP8khxPL/gh5IhP80UZSHY
 
+### Obtener compras cliente
+GET {{apiRest}}/historial-compras/correo@gmail.com
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZseaC012FEPcYtBfRi67Iyu8omKRGlHbPX++wTSKsX7x8pQTY97sodotgFP4cUxpE6sPcnWDMIUIJKR+Nqh96866m8YFQNU4N1nCCsdnLBiMABRWqgZZHLykzcpQRN6tIzqGHmsi1Hq2HCVLKt3KE00
+
 
 
 // ------------------------------------------------------------------------------------------------------------------\\

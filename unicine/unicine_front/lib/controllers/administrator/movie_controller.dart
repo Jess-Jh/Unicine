@@ -111,7 +111,6 @@ class MovieController extends SimpleNotifier {
   }
 
   Future<void> updateMovie(BuildContext context) async {
-    log(runtimeType, estado);
     try {
       if (editMovie == null && editMovie!.idPelicula == null) return;
       isUpdateMovie();
