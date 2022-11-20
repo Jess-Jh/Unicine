@@ -52,4 +52,5 @@ public interface ClienteServicio {
 
     boolean activarCuentaCliente(String email) throws Exception;
 
+    List<Ciudad> listarCiudades();
 }

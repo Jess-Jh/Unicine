@@ -20,9 +20,11 @@ public class ClienteServicioImpl implements ClienteServicio{
     private final AdministradorRepo administradorRepo;
     private final PQRSRepo pqrsRepo;
 
+    private final CiudadRepo ciudadRepo;
+
     public ClienteServicioImpl(ClienteRepo clienteRepo, EmailServicio emailServicio, PeliculaRepo peliculaRepo,
                                CompraRepo compraRepo, CuponClienteRepo cuponClienteRepo, AdministradorRepo administradorRepo,
-                               PQRSRepo pqrsRepo) {
+                               PQRSRepo pqrsRepo, CiudadRepo ciudadRepo) {
         this.clienteRepo = clienteRepo;
         this.emailServicio = emailServicio;
         this.peliculaRepo = peliculaRepo;
@@ -30,6 +32,7 @@ public class ClienteServicioImpl implements ClienteServicio{
         this.cuponClienteRepo = cuponClienteRepo;
         this.administradorRepo = administradorRepo;
         this.pqrsRepo = pqrsRepo;
+        this.ciudadRepo = ciudadRepo;
     }
 
     @Override
@@ -276,6 +279,11 @@ public class ClienteServicioImpl implements ClienteServicio{
             clienteRepo.save(buscar.get());
             return true;
         }
+    }
+
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
     }
 
 }
