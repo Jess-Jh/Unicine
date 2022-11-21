@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/combo_box/combo_box_filter.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_input_data.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
+import 'package:uni_cine/ui/views/unicine/cards/purchase_detail_card.dart';
+import 'package:uni_cine/utils/util.dart';
 
 class FormPurchase extends StatelessWidget {
   final String? selectCoupon;
@@ -20,14 +25,17 @@ class FormPurchase extends StatelessWidget {
   }
 }
 
-class _TabletDesktopForm extends StatelessWidget {
+class _TabletDesktopForm extends ConsumerWidget {
   final String? selectCoupon;
   final List<String> coupons;
 
   const _TabletDesktopForm({this.selectCoupon, required this.coupons});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final size = MediaQuery.of(context).size;
+    final ctrl = ref.watch(movieProvider);
+    final ctrlClient = ref.watch(clientProvider);
+    final ctrlConfectionery = ref.watch(confectioneryProvider);
 
     return SizedBox(
       height: 360,
@@ -35,31 +43,43 @@ class _TabletDesktopForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               CustomInputData(
-                  data: 'Nombre cliente', nameColumn: 'Nombre cliente'),
-              SizedBox(width: 10),
-              CustomInputData(data: 'Teatro', nameColumn: 'Teatro'),
-              SizedBox(width: 10),
-              CustomInputData(data: 'Nº Sillas', nameColumn: 'Sillas'),
+                  data: ctrlClient.nombre, nameColumn: 'Nombre cliente'),
+              const SizedBox(width: 10),
+              CustomInputData(
+                  data: ctrl.theater?.nombre ?? '', nameColumn: 'Teatro'),
+              const SizedBox(width: 10),
+              const CustomInputData(data: 'Nº Sillas', nameColumn: 'Sillas'),
             ],
           ),
           const SizedBox(height: 15),
           Row(
-            children: const [
-              CustomInputData(data: 'Horario', nameColumn: 'Horario'),
-              SizedBox(width: 10),
-              CustomInputData(data: 'Película', nameColumn: 'Película'),
-              SizedBox(width: 10),
-              CustomInputData(data: 'Fecha de compra', nameColumn: 'Fecha'),
+            children: [
+              CustomInputData(
+                data: ctrl.hourFunction?.hora ?? '',
+                nameColumn: 'Horario',
+              ),
+              const SizedBox(width: 10),
+              CustomInputData(
+                data: ctrl.movieFunction?.nombre ?? '',
+                nameColumn: 'Película',
+              ),
+              const SizedBox(width: 10),
+              CustomInputData(
+                data: getStringDateFromDateTime(ctrl.hourFunction!.fecha!),
+                nameColumn: 'Fecha de compra',
+              ),
             ],
           ),
           const SizedBox(height: 15),
           Row(
-            children: const [
-              CustomInputData(data: 'Confitería', nameColumn: 'Confitería'),
-              SizedBox(width: 10),
-              CustomInputData(data: 'Método de pago', nameColumn: 'pago'),
+            children: [
+              CustomInputData(
+                  data: ctrlConfectionery.priceTotalBuy.toString(),
+                  nameColumn: 'Valor Confitería'),
+              const SizedBox(width: 10),
+              const CustomInputData(data: 'Método de pago', nameColumn: 'pago'),
             ],
           ),
           const SizedBox(height: 15),
@@ -79,7 +99,9 @@ class _TabletDesktopForm extends StatelessWidget {
               CustomOutlinedButton(
                 width: size.width / 3.3,
                 text: 'Realizar Pago',
-                onPressed: () {},
+                onPressed: () {
+                  const PurchaseDetailCard();
+                },
               ),
               SizedBox(width: size.width / 6),
               TotalPurchaseBox(

@@ -9,6 +9,7 @@ import 'package:uni_cine/models/administrator_theater/hour.dart';
 import 'package:uni_cine/models/unicine/function_room.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/ui/shared/type_init_chairs.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/chair.dart';
 import 'package:uni_cine/utils/util.dart';
 import 'package:uni_cine/widgets/dialogs.dart';
 
@@ -35,10 +36,14 @@ class MovieController extends SimpleNotifier {
   // Dates function
   Theater? theater;
   List<Hour> functionsDates = [];
-  List<dynamic> chairs = [];
+  List<Chair> chairs = [];
   DistributionChairs? distributionChairs;
   String? cantTicketsFunction = '';
   Hour? hourFunction;
+  Color? colorChair;
+  List<String> listChairsUser = [];
+  double? totalPurchase = 0;
+  double priceConfectionery = 0;
 
   bool validateForm(formMovieKey) {
     if (formMovieKey.currentState!.validate()) {
@@ -231,6 +236,35 @@ class MovieController extends SimpleNotifier {
 
   void onChangeTickets(value) {
     cantTicketsFunction = value;
+    notify();
+  }
+
+  void changeColor(int i) {
+    if (chairs[i].status == 1) {
+      chairs[i].status = 2;
+    }
+    if (chairs[i].status == 2) {
+      chairs[i].status = 1;
+    }
+    notify();
+  }
+
+  void addChairUser(String column, String row) {
+    listChairsUser.add('$column $row');
+    notify();
+  }
+
+  void sumTotalPurchase() {
+    double valueTickets = 0;
+
+    print('Entraa ... .$priceConfectionery');
+
+    if (cantTicketsFunction != '0') {
+      valueTickets = double.parse(cantTicketsFunction!) * 20000;
+    }
+
+    totalPurchase = totalPurchase! + valueTickets;
+    totalPurchase = totalPurchase! + priceConfectionery;
     notify();
   }
 }

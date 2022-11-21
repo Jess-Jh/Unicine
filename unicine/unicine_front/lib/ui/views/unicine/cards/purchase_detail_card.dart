@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/main.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/cards/white_card.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_input_data.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
 import 'package:uni_cine/ui/shared/widgets/logoUnicine.dart';
+import 'package:uni_cine/utils/util.dart';
 
 class PurchaseDetailCard extends StatelessWidget {
   final String? selectCoupon;
-  final List<String> coupons;
+  final List<String>? coupons;
 
-  const PurchaseDetailCard(
-      {super.key, this.selectCoupon, required this.coupons});
+  const PurchaseDetailCard({super.key, this.selectCoupon, this.coupons});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constraints) => (constraints.maxWidth > 720)
-          ? _TabletDesktopForm(coupons: coupons, selectCoupon: selectCoupon)
-          : _MobileForm(selectCoupon, coupons),
+          ? _TabletDesktopForm(
+              coupons: coupons ?? [], selectCoupon: selectCoupon)
+          : _MobileForm(selectCoupon, coupons ?? []),
     );
   }
 }
 
-class _TabletDesktopForm extends StatelessWidget {
+class _TabletDesktopForm extends ConsumerWidget {
   final String? selectCoupon;
   final List<String> coupons;
 
   const _TabletDesktopForm({this.selectCoupon, required this.coupons});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final size = MediaQuery.of(context).size;
+    final ctrl = ref.watch(movieProvider);
+    final ctrlClient = ref.watch(authProvider);
+    final ctrlConfectionery = ref.watch(confectioneryProvider);
 
     return Padding(
       padding: const EdgeInsets.all(15.0),
@@ -51,23 +58,33 @@ class _TabletDesktopForm extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               Row(
-                children: const [
+                children: [
                   CustomInputData(
-                      data: 'Nombre cliente ', nameColumn: 'Nombre cliente'),
-                  SizedBox(width: 10),
-                  CustomInputData(data: 'Teatro', nameColumn: 'Teatro'),
-                  SizedBox(width: 10),
-                  CustomInputData(data: 'Nº Sillas', nameColumn: 'Sillas'),
+                      data: ctrlClient.clientLogin?.nombreCompleto ?? '',
+                      nameColumn: 'Nombre cliente '),
+                  const SizedBox(width: 10),
+                  CustomInputData(
+                      data: 'Teatro', nameColumn: ctrl.theater?.nombre ?? ''),
+                  const SizedBox(width: 10),
+                  const CustomInputData(
+                      data: 'Nº Sillas', nameColumn: 'Sillas'),
                 ],
               ),
               const SizedBox(height: 15),
               Row(
-                children: const [
-                  CustomInputData(data: 'Horario', nameColumn: 'Horario'),
-                  SizedBox(width: 10),
-                  CustomInputData(data: 'Película', nameColumn: 'Película'),
-                  SizedBox(width: 10),
-                  CustomInputData(data: 'Fecha de compra', nameColumn: 'Fecha'),
+                children: [
+                  CustomInputData(
+                      data: 'Horario',
+                      nameColumn: ctrl.hourFunction?.hora ?? ''),
+                  const SizedBox(width: 10),
+                  CustomInputData(
+                      data: 'Película',
+                      nameColumn: ctrl.movieFunction?.nombre ?? ''),
+                  const SizedBox(width: 10),
+                  CustomInputData(
+                      data: 'Fecha de compra',
+                      nameColumn:
+                          getStringDateFromDateTime(ctrl.hourFunction!.fecha!)),
                 ],
               ),
               const SizedBox(height: 15),
@@ -82,13 +99,14 @@ class _TabletDesktopForm extends StatelessWidget {
                             width: size.width / 1.68,
                             // height: 180,
                             child: Row(
-                              children: const [
+                              children: [
                                 CustomInputData(
-                                  data: 'Confitería',
-                                  nameColumn: 'Confitería',
+                                  data: 'Valor Confitería',
+                                  nameColumn: ctrlConfectionery.priceTotalBuy
+                                      .toString(),
                                 ),
-                                SizedBox(width: 10),
-                                CustomInputData(
+                                const SizedBox(width: 10),
+                                const CustomInputData(
                                   data: 'Método de pago',
                                   nameColumn: 'pago',
                                 ),

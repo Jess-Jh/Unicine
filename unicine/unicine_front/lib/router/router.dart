@@ -41,6 +41,7 @@ class Flurorouter {
   static String userDetailsRoute          = '$_domain/usuario/detalle-usuario';
   static String userActivateCountRoute    = '$_domain/usuario/activar-cuenta';
   static String userChangePasswordRoute   = '$_domain/usuario/cambiar-contrasena';
+  static String purchaseDetailsCardRoute  = '$_domain/usuario/detalles-compra-recibo';
 
 
   static void configureRoutes() {
@@ -51,16 +52,17 @@ class Flurorouter {
     router.define( registerRoute, handler: UnicineHandlers.register, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
     // User Routes
-    router.define( billboardRoute,          handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( roomUnicineRoute,        handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( confectioneryRoute,      handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( movieDescriptionRoute,   handler: UnicineHandlers.movieDescription, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( purchaseDetailRoute,     handler: UnicineHandlers.purchaseDetail, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( membershipRoute,         handler: UnicineHandlers.membership, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( pqrsRoute,               handler: UnicineHandlers.pqrs, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( userDetailsRoute,        handler: UnicineHandlers.userDetails, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( userActivateCountRoute,  handler: UnicineHandlers.userActivateCount, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
-    router.define( userChangePasswordRoute, handler: UnicineHandlers.userChangePassword, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( billboardRoute,           handler: UnicineHandlers.billboard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( roomUnicineRoute,         handler: UnicineHandlers.roomUnicine, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( confectioneryRoute,       handler: UnicineHandlers.confectionery, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( movieDescriptionRoute,    handler: UnicineHandlers.movieDescription, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( purchaseDetailRoute,      handler: UnicineHandlers.purchaseDetail, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( membershipRoute,          handler: UnicineHandlers.membership, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( pqrsRoute,                handler: UnicineHandlers.pqrs, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( userDetailsRoute,         handler: UnicineHandlers.userDetails, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( userActivateCountRoute,   handler: UnicineHandlers.userActivateCount, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( userChangePasswordRoute,  handler: UnicineHandlers.userChangePassword, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
+    router.define( purchaseDetailsCardRoute, handler: UnicineHandlers.purchaseDetailsCard, transitionDuration: const Duration(milliseconds: 300), transitionType: TransitionType.fadeIn);
 
 
     // Administrator Routes

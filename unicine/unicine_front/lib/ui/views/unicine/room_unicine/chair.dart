@@ -11,7 +11,7 @@ class Chair {
     this.column,
     this.icon,
     this.row,
-    this.color,
+    this.color = Colors.black,
     this.status,
   });
 }

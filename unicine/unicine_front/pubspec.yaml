@@ -44,8 +44,6 @@ dependencies:
   modal_bottom_sheet: ^2.1.2
   shared_preferences: ^2.0.15
   top_snackbar_flutter: ^2.1.1
-  video_player: ^2.4.7
-  video_player_web_hls: ^0.1.11+6
   youtube_player_iframe: ^3.1.0
 
 dev_dependencies:

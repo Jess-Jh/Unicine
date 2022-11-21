@@ -18,6 +18,8 @@ class ConfectioneryView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(confectioneryProvider);
+    final ctrlFunction = ref.watch(movieProvider);
+    ctrlFunction.priceConfectionery = ctrl.priceTotalBuy;
 
     int confectioneries = ctrl.confectioneries.length;
     final size = MediaQuery.of(context).size;

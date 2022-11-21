@@ -11,6 +11,7 @@ class ComboBoxFilter extends StatelessWidget {
   final String? hint;
   final double? borderRadius;
   final Color? colorText;
+  final bool? haveIcon;
   final void Function(String? item)? onChange;
 
   const ComboBoxFilter({
@@ -25,6 +26,7 @@ class ComboBoxFilter extends StatelessWidget {
     this.borderRadius,
     this.onChange,
     this.colorText,
+    this.haveIcon = true,
   });
 
   @override
@@ -35,11 +37,12 @@ class ComboBoxFilter extends StatelessWidget {
           isExpanded: true,
           hint: Row(
             children: [
-              Icon(
-                Icons.list,
-                size: 20,
-                color: Theme.of(context).hintColor,
-              ),
+              if (haveIcon == true)
+                Icon(
+                  Icons.list,
+                  size: 20,
+                  color: Theme.of(context).hintColor,
+                ),
               const SizedBox(
                 width: 6,
               ),

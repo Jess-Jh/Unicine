@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
 
-class TotalPurchaseBox extends StatelessWidget {
+class TotalPurchaseBox extends ConsumerWidget {
   final double? width;
   final double? height;
   final bool? showText;
@@ -17,7 +19,8 @@ class TotalPurchaseBox extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final ctrl = ref.watch(movieProvider);
     return SizedBox(
       width: width ?? 250,
       child: Column(
@@ -46,7 +49,7 @@ class TotalPurchaseBox extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  r'$00.000',
+                  r'$ ' + ctrl.totalPurchase.toString(),
                   style: TextStyle(color: colorText ?? Colors.white),
                 )
               ],

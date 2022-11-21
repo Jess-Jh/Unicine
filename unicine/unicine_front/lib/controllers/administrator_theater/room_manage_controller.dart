@@ -17,7 +17,6 @@ class RoomManageController extends SimpleNotifier {
   bool changeDistributionChairs = false;
   PageController formPageController = PageController();
   int valuePage = 0;
-  Color? colorChair;
 
   // Inputs
   int idRoom = 0;
@@ -181,14 +180,5 @@ class RoomManageController extends SimpleNotifier {
     );
     valuePage--;
     notify();
-  }
-
-  void changeColor(int i) {
-    // if (color == Colors.blue) {
-    //   colorChair = Colors.black;
-    // }
-    // if (color == Colors.black) {
-    //   colorChair = Colors.blue;
-    // }
   }
 }

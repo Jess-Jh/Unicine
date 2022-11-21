@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_meedu/ui.dart';
-import 'package:uni_cine/ui/layouts/administrator_theater_layout.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/chair.dart';
 
 class ChairsLocation extends StatelessWidget {
-  final List<dynamic> chairs;
+  final List<Chair> chairs;
   final int cantColums;
 
   const ChairsLocation({
@@ -23,7 +24,7 @@ class ChairsLocation extends StatelessWidget {
 }
 
 class _TabletDesktopRoom extends ConsumerWidget {
-  final List<dynamic> chairs;
+  final List<Chair> chairs;
   final Size size;
   final int cantColums;
 
@@ -32,7 +33,7 @@ class _TabletDesktopRoom extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final ctrl = ref.watch(roomManageProvider);
+    final ctrl = ref.watch(movieProvider);
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
         dragDevices: {
@@ -54,28 +55,49 @@ class _TabletDesktopRoom extends ConsumerWidget {
                     crossAxisSpacing: 6),
                 itemCount: chairs.length,
                 itemBuilder: (_, i) {
-                  return (chairs[i] == 0)
+                  return (chairs[i].status == 0)
                       ? const Text('')
-                      : (chairs[i] == 1)
+                      : (chairs[i].status == 1)
                           ? MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                  onTap: () {
-                                    ctrl.changeColor(i);
-                                  },
-                                  child: const Icon(
-                                    Icons.chair_outlined,
-                                    color: Colors.black,
-                                  )),
-                            )
-                          : Center(
-                              child: Text(
-                                chairs[i].toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                onTap: () {
+                                  ctrl.addChairUser(
+                                    chairs[i].column.toString(),
+                                    chairs[i].row ?? '',
+                                  );
+                                  ctrl.changeColor(i);
+                                },
+                                child: const Icon(
+                                  Icons.chair_outlined,
+                                  color: Colors.black,
                                 ),
                               ),
-                            );
+                            )
+                          : (chairs[i].status == 2)
+                              ? MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => ctrl.changeColor(i),
+                                    child: const Icon(
+                                      Icons.chair,
+                                      color: Color.fromARGB(255, 0, 119, 255),
+                                    ),
+                                  ),
+                                )
+                              : (chairs[i].status == 3)
+                                  ? const Icon(
+                                      Icons.chair,
+                                      color: Colors.red,
+                                    )
+                                  : Center(
+                                      child: Text(
+                                        chairs[i].status.toString(),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    );
                 },
               ),
             ),

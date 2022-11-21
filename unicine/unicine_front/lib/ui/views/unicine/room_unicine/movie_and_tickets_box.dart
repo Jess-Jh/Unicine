@@ -32,7 +32,7 @@ class MovieAndTicketsBox extends ConsumerWidget {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(20),
-        width: width ?? 250,
+        width: width ?? 280,
         height: height ?? 210,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -52,10 +52,14 @@ class MovieAndTicketsBox extends ConsumerWidget {
                   itemSelected: ctrl.cantTicketsFunction == ''
                       ? '1'
                       : ctrl.cantTicketsFunction,
-                  onChange: (value) => ctrl.onChangeTickets(value),
+                  onChange: (value) {
+                    ctrl.onChangeTickets(value);
+                    ctrl.sumTotalPurchase();
+                  },
                   listItems: tickets,
                   colorBox: Colors.white,
                   buttonHeight: 25,
+                  haveIcon: false,
                 )
               ],
             ),
@@ -135,6 +139,7 @@ class MovieAndTicketsBox extends ConsumerWidget {
                 fontSize: 12,
               ),
             ),
+            const SizedBox(height: 10),
             const Text(
               'Lista Sillas',
               style: TextStyle(

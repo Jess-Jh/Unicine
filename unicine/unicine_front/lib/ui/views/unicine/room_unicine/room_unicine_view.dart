@@ -4,6 +4,7 @@ import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
+import 'package:uni_cine/ui/views/unicine/room_unicine/chair.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chairs_location.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/movie_and_tickets_box.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/screen_room.dart';
@@ -17,7 +18,8 @@ class RoomUnicineView extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(movieProvider);
     final size = MediaQuery.of(context).size;
-    List<dynamic> chairs = ctrl.chairs;
+    List<Chair> chairs = ctrl.chairs;
+
     int columns = ctrl.distributionChairs?.columnas ?? 0;
 
     int cantChairs = _enabledChairs(chairs);
@@ -37,15 +39,15 @@ class RoomUnicineView extends ConsumerWidget {
 
   int _enabledChairs(List chairs) {
     int cantChairs = 0;
-    for (var chair in chairs) {
-      if (chair == 1) cantChairs++;
+    for (Chair chair in chairs) {
+      if (chair.status == 1) cantChairs++;
     }
     return cantChairs;
   }
 }
 
 class _TabletDesktopRoom extends ConsumerWidget {
-  final List<dynamic> chairs;
+  final List<Chair> chairs;
   final int cantChairs;
   final Size size;
   final int columns;
@@ -140,7 +142,7 @@ class _TabletDesktopRoom extends ConsumerWidget {
 }
 
 class _MobileRoom extends StatelessWidget {
-  final List<dynamic> chairs;
+  final List<Chair> chairs;
   final String? selectedTickets = '1';
   final int cantChairs;
   final Size size;
