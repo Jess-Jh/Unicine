@@ -7,5 +7,11 @@ class Chair {
   IconData? icon;
   dynamic status;
 
-  Chair({this.column, this.icon, this.row, this.color, this.status});
+  Chair({
+    this.column,
+    this.icon,
+    this.row,
+    this.color,
+    this.status,
+  });
 }

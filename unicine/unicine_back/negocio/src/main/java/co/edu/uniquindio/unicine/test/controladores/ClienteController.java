@@ -349,6 +349,20 @@ public class ClienteController {
         return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
+    @GetMapping("/lista-ciudades")
+    public ResponseEntity<?> listaCiudades() {
+        Map<String, Object> res = new HashMap<>();
+        try {
+            List<Ciudad> listaCiudades = clienteServicio.listarCiudades();
+            res.put("listaCiudades", listaCiudades);
+        } catch (Exception e) {
+            res.put("mensaje", "Error al cargar las ciudades");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+    }
+
 
 
 

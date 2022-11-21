@@ -102,8 +102,9 @@ class ActivateCountUser extends StatelessWidget {
                     width: size.width / 2,
                     height: 15,
                     text: 'Activar Cuenta',
-                    onPressed: () {
-                      ctrl.activateCount(context);
+                    onPressed: () async {
+                      await ctrl.activateCount(context);
+
                       if (ctrl.loading == false) {
                         navigateTo(Flurorouter.billboardRoute);
                       }

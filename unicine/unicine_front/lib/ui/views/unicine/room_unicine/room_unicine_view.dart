@@ -19,9 +19,6 @@ class RoomUnicineView extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     List<dynamic> chairs = ctrl.chairs;
     int columns = ctrl.distributionChairs?.columnas ?? 0;
-    String? selectedTickets = '1';
-
-    print(ctrl.distributionChairs?.columnas);
 
     int cantChairs = _enabledChairs(chairs);
 
@@ -49,7 +46,6 @@ class RoomUnicineView extends ConsumerWidget {
 
 class _TabletDesktopRoom extends ConsumerWidget {
   final List<dynamic> chairs;
-  final String? selectedTickets = '1';
   final int cantChairs;
   final Size size;
   final int columns;
@@ -63,6 +59,8 @@ class _TabletDesktopRoom extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(movieProvider);
+    final String selectedTickets = ctrl.cantTicketsFunction ?? '1';
+
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -124,7 +122,7 @@ class _TabletDesktopRoom extends ConsumerWidget {
                       ),
                       const SizedBox(height: 15),
                       MovieAndTicketsBox(
-                        selectedTickets: selectedTickets!,
+                        selectedTickets: selectedTickets,
                         cantTickets: cantChairs,
                       ),
                       const SizedBox(height: 20),

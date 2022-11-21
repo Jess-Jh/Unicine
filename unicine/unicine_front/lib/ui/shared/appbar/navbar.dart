@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/controllers/sidemenu_controller.dart';
 import 'package:uni_cine/main.dart';
 import 'package:uni_cine/router/router.dart';
@@ -6,15 +7,16 @@ import 'package:uni_cine/ui/shared/appbar/custom_app_menu.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_navbar_button.dart';
 import 'package:uni_cine/utils/custom_network_image.dart';
 
-class Navbar extends StatelessWidget {
+class Navbar extends ConsumerWidget {
   final String text;
   final String? text2;
 
   const Navbar({super.key, required this.text, this.text2});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final size = MediaQuery.of(context).size;
+    final ctrl = ref.watch(authProvider);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -37,7 +39,7 @@ class Navbar extends StatelessWidget {
           //     child: const SearchText(),
           //   ),
           const Spacer(),
-          if (text2 != null && (!authProvider.read.buttonAuthenticated!)) ...[
+          if (text2 != null && (!ctrl.buttonAuthenticated!)) ...[
             CustomNavbarButton(
               onPressed: () =>
                   Navigator.pushNamed(context, Flurorouter.registerRoute),
@@ -45,13 +47,13 @@ class Navbar extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             CustomNavbarButton(
-              onPressed: () => authProvider.read.logout(),
+              onPressed: () => ctrl.logout(),
               text: text,
             ),
           ],
           if (text2 == null) ...[
             CustomNavbarButton(
-              onPressed: () => authProvider.read.logout(),
+              onPressed: () => ctrl.logout(),
               text: text,
             ),
             const SizedBox(width: 10),
@@ -69,8 +71,7 @@ class Navbar extends StatelessWidget {
                       fit: BoxFit.cover,
                       placeholder:
                           Image.asset('assets/images/image_perfil.jpeg'),
-                      imageUrl:
-                          authProvider.read.clientLogin?.imagenPerfil ?? '',
+                      imageUrl: ctrl.clientLogin?.imagenPerfil ?? '',
                     ),
                   ),
                 ),

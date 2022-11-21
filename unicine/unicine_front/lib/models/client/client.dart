@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:uni_cine/models/client/rol.dart';
+import 'package:uni_cine/models/unicine/City.dart';
 
 Client userFromJson(String str) => Client.fromJson(json.decode(str));
 String userToJson(Client data) => json.encode(data.toJson());
@@ -13,11 +14,12 @@ class Client {
     this.contrasena,
     this.id,
     this.label,
+    this.rol,
     this.imagenPerfil,
     this.membresia,
     this.estado,
     this.telefonos,
-    this.rol,
+    this.ciudad,
   });
 
   String? cedula;
@@ -31,6 +33,7 @@ class Client {
   bool? membresia;
   bool? estado;
   List<String>? telefonos;
+  City? ciudad;
 
   factory Client.fromJson(String str) => Client.fromMap(json.decode(str));
 

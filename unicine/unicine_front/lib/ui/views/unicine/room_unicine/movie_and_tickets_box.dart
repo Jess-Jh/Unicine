@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/combo_box/combo_box_filter.dart';
 import 'package:uni_cine/utils/custom_colors.dart';
+import 'package:uni_cine/utils/util.dart';
 
 class MovieAndTicketsBox extends ConsumerWidget {
   final String selectedTickets;
@@ -10,12 +13,13 @@ class MovieAndTicketsBox extends ConsumerWidget {
   final double? width;
   final double? height;
 
-  const MovieAndTicketsBox(
-      {super.key,
-      required this.selectedTickets,
-      required this.cantTickets,
-      this.width,
-      this.height});
+  const MovieAndTicketsBox({
+    super.key,
+    required this.selectedTickets,
+    required this.cantTickets,
+    this.width,
+    this.height,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
@@ -45,8 +49,11 @@ class MovieAndTicketsBox extends ConsumerWidget {
                 ),
                 const SizedBox(width: 15),
                 ComboBoxFilter(
+                  itemSelected: ctrl.cantTicketsFunction == ''
+                      ? '1'
+                      : ctrl.cantTicketsFunction,
+                  onChange: (value) => ctrl.onChangeTickets(value),
                   listItems: tickets,
-                  itemSelected: selectedTickets,
                   colorBox: Colors.white,
                   buttonHeight: 25,
                 )
@@ -68,9 +75,10 @@ class MovieAndTicketsBox extends ConsumerWidget {
                   ),
                 ),
                 const Spacer(),
-                const Text(
-                  'Fecha y hora',
-                  style: TextStyle(
+                Text(
+                  getStringDateFromDateTime(
+                      ctrl.hourFunction?.fecha ?? DateTime.now()),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
@@ -108,9 +116,9 @@ class MovieAndTicketsBox extends ConsumerWidget {
                         fontSize: 12,
                       ),
                     ),
-                    const Text(
-                      'Código compra',
-                      style: TextStyle(
+                    Text(
+                      '${Random().nextInt(1000) + 150}'.toString(),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                       ),

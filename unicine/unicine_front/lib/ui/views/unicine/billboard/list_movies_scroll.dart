@@ -11,12 +11,14 @@ class ListMoviesScroll extends ConsumerWidget {
   final String placeholder;
   final double? width;
   final List<Movie>? listMovies;
+  final bool? isCartelera;
 
   const ListMoviesScroll({
     Key? key,
     required this.placeholder,
     this.width,
     this.listMovies,
+    this.isCartelera = false,
   }) : super(key: key);
 
   @override
@@ -37,22 +39,35 @@ class ListMoviesScroll extends ConsumerWidget {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: ctrl.movies.length,
-          itemBuilder: (context, i) => MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () {
-                ctrl.movieFunction = ctrl.movies[i];
-                ctrl.getFunctionsMovie();
-                navigateTo(Flurorouter.movieDescriptionRoute);
-              },
-              child: ImageBox(
-                img: ctrl.movies[i].imagen ?? placeholder,
-                width: width,
-                nameMovie: ctrl.movies[i].nombre,
-                gener: ctrl.movies[i].genero,
-              ),
-            ),
-          ),
+          itemBuilder: (context, i) {
+            return MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    if (ctrl.movies[i].estadoPelicula != 'CARTELERA') return;
+                    ctrl.movieFunction = ctrl.movies[i];
+                    ctrl.getFunctionsMovie();
+                    navigateTo(Flurorouter.movieDescriptionRoute);
+                  },
+                  child: (ctrl.movies[i].estadoPelicula == 'CARTELERA' &&
+                          isCartelera!)
+                      ? ImageBox(
+                          img: ctrl.movies[i].imagen ?? placeholder,
+                          width: width,
+                          nameMovie: ctrl.movies[i].nombre,
+                          gener: ctrl.movies[i].genero,
+                        )
+                      : (ctrl.movies[i].estadoPelicula != 'CARTELERA' &&
+                              !isCartelera!)
+                          ? ImageBox(
+                              img: ctrl.movies[i].imagen ?? placeholder,
+                              width: width,
+                              nameMovie: ctrl.movies[i].nombre,
+                              gener: ctrl.movies[i].genero,
+                            )
+                          : const SizedBox(),
+                ));
+          },
         ),
       ),
     );

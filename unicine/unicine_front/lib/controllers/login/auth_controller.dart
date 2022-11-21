@@ -3,6 +3,7 @@ import 'package:flutter_meedu/meedu.dart';
 import 'package:uni_cine/models/account/auth_response.dart';
 import 'package:uni_cine/models/client/client.dart';
 import 'package:uni_cine/models/client/rol.dart';
+import 'package:uni_cine/models/unicine/City.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
 import 'package:uni_cine/router/router.dart';
 import 'package:uni_cine/services/local_storage.dart';
@@ -122,6 +123,7 @@ class AuthController extends SimpleNotifier {
 
   Future<void> register(BuildContext context) async {
     final rol = Rol(codigo: 3, nombre: 'CLIENTE');
+    final ciudad = City(idCiudad: 1, nombre: 'armenia');
     final client = Client(
       id: 1,
       label: "Cliente",
@@ -134,6 +136,7 @@ class AuthController extends SimpleNotifier {
       contrasena: password,
       membresia: false,
       estado: false,
+      ciudad: ciudad,
     );
     LocalStorage.prefs.setString('user', '${client.email}');
     try {
@@ -157,9 +160,8 @@ class AuthController extends SimpleNotifier {
     }
   }
 
-  void activateCount(BuildContext context) async {
+  Future<void> activateCount(BuildContext context) async {
     final email = LocalStorage.prefs.getString('user');
-    print(email);
     await UnicineApi.httpGet('/activar-cuenta/$email').then((json) {
       Dialogs.showSnackbarTop(
         context,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
-import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 
 import 'package:uni_cine/ui/views/unicine/billboard/custom_app_bar.dart';
 
@@ -26,7 +25,7 @@ class BillboardView extends StatelessWidget {
 
   BillboardView({Key? key}) : super(key: key) {
     movieProvider.read.getMovies();
-    clientProvider.read.getClients();
+    // clientProvider.read.getClients();
   }
 
   @override
@@ -52,7 +51,9 @@ class BillboardView extends StatelessWidget {
             const SizedBox(height: 10),
             const ListMoviesScroll(
               placeholder: 'assets/images/placeholder_movie.jpg',
+              isCartelera: true,
             ),
+            const SizedBox(height: 20),
             Text('Preventa', style: CustomLabels.h2),
             const SizedBox(height: 10),
             const ListMoviesScroll(

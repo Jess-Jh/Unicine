@@ -37,6 +37,8 @@ class MovieController extends SimpleNotifier {
   List<Hour> functionsDates = [];
   List<dynamic> chairs = [];
   DistributionChairs? distributionChairs;
+  String? cantTicketsFunction = '';
+  Hour? hourFunction;
 
   bool validateForm(formMovieKey) {
     if (formMovieKey.currentState!.validate()) {
@@ -224,6 +226,11 @@ class MovieController extends SimpleNotifier {
     if (distribucionSilla?.filas == 14) chairs = TypeInitChars.initChairs();
     if (distribucionSilla?.filas == 19) chairs = TypeInitChars.type2();
     if (distribucionSilla?.filas == 12) chairs = TypeInitChars.type3();
+    notify();
+  }
+
+  void onChangeTickets(value) {
+    cantTicketsFunction = value;
     notify();
   }
 }

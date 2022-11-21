@@ -123,7 +123,12 @@ GET {{apiRest}}/obtener-ciudad/1
 ###
 GET {{apiRest}}/detalle-usuarios
 Content-Type: application/json
-Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh7IhfzrjYkWEHXdtPW38ZKC7jQbGhzETkXaeqwOj2e4RKpMkqc5/N5wqz6c5Ogi9dN4CtPm0WhpdtaXz7+5/mnots452a/s2sHN5cv8vvHrMQ/dztmeeTjZm/a3cvf5G/EeiY/A751vXxmzAeOCNgRj
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZsrL6qcV11Ii1jqLhxRhWA/ztxi3nmQcdEDWW8tVMFiLIs2Killbpt7W96F275HwxycM2CLuYOWCp+EdhRw5SLLfe3pGz3ANzRGaXdzcq5u6A5DRqwK3u7iPJLrj76acO45lh7DUihWJqH3Pgeqx0VY
+
+###
+GET {{apiRest}}/lista-ciudades
+Content-Type: application/json
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZtPonn2uJKgYC7a7NrIFMYMf7/+u/0PFe/3tr5xTjdBP4wvwglS/v/X8Zxhxv3iXu1xyMcgc0sIzWToTTCJdTi1qfUHRRpB3LM9SBDyiXnYY7Vz22KKFHLl6vlkIV5/do/JYUsX3IQCT9GbKR+yP+hv
 
 ### Obtener usuario por cédula
 GET {{apiRest}}/detalle-usuario/2432343425

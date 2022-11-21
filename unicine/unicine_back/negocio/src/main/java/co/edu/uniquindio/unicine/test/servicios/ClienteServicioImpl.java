@@ -3,6 +3,7 @@ package co.edu.uniquindio.unicine.test.servicios;
 import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 import co.edu.uniquindio.unicine.test.repositorios.*;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -68,15 +69,32 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public Object login2(String email, String contrasena) throws Exception {
-        Cliente cliente = clienteRepo.comprobarAutenticacion(email, contrasena);
-        if(cliente != null){
+        Cliente cliente = clienteRepo.findByEmail(email).orElse(null);
+        if(cliente != null) {
+
+            if(!cliente.getEstado()) {
+                throw new Exception("La cuenta del usuario está inactiva, debe activarla con el enlace que fue enviado a su correo");
+            }
+
+            StrongPasswordEncryptor strongPasswordEncryptor = new StrongPasswordEncryptor();
+
+            if(!strongPasswordEncryptor.checkPassword(contrasena, cliente.getContrasena())) {
+                throw new Exception("La contraseña es incorrecta");
+            }
             return cliente;
         } else {
-           Administrador administrador = administradorRepo.comprobarAutenticacionAdmin(email, contrasena);
+           Administrador administrador = administradorRepo.findByEmail(email).orElse(null);
            if (administrador != null){
+
+               StrongPasswordEncryptor strongPasswordEncryptor = new StrongPasswordEncryptor();
+
+               if(!strongPasswordEncryptor.checkPassword(contrasena, administrador.getContrasena())) {
+                   throw new Exception("La contraseña es incorrecta");
+               }
+
                return administrador;
            } else {
-               throw new Exception("No existe ningun usuario con el email y contrasena");
+               throw new Exception("No existe ningún usuario con el email y contraseña");
            }
         }
     }
@@ -98,6 +116,9 @@ public class ClienteServicioImpl implements ClienteServicio{
         if (correoExiste){
             throw new Exception("El correo ya se encuentra registrado");
         }
+        StrongPasswordEncryptor strongPasswordEncryptor = new StrongPasswordEncryptor();
+        cliente.setContrasena(strongPasswordEncryptor.encryptPassword(cliente.getContrasena()));
+
         emailServicio.enviarEmail("Registro en unicine", "Hola debe ir al siguiente enlace para activar la cuenta  http://localhost:57851/#/unicine/usuario/activar-cuenta", cliente.getEmail());
 
         return clienteRepo.save(cliente);
