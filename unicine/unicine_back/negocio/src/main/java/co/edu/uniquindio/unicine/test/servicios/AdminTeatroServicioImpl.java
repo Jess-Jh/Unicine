@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 import co.edu.uniquindio.unicine.test.repositorios.*;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,11 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
     private final FuncionSalaRepo funcionSalaRepo;
     private final PQRSRepo pqrsRepo;
 
+    private final CompraRepo compraRepo;
+
     public AdminTeatroServicioImpl(HorarioRepo horarioRepo, FuncionRepo funcionRepo, SalaRepo salaRepo, TeatroRepo teatroRepo,
-                                   DistribucionSillaRepo distribucionSillaRepo, FuncionSalaRepo funcionSalaRepo, PQRSRepo pqrsRepo) {
+                                   DistribucionSillaRepo distribucionSillaRepo, FuncionSalaRepo funcionSalaRepo, PQRSRepo pqrsRepo,
+                                   CompraRepo compraRepo) {
         this.horarioRepo = horarioRepo;
         this.funcionRepo = funcionRepo;
         this.salaRepo = salaRepo;
@@ -27,6 +31,7 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         this.distribucionSillaRepo = distribucionSillaRepo;
         this.funcionSalaRepo = funcionSalaRepo;
         this.pqrsRepo = pqrsRepo;
+        this.compraRepo = compraRepo;
     }
 
     @Override
@@ -330,6 +335,10 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         return guardado.get();
     }
 
+    @Override
+    public List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala) {
+        return compraRepo.obtenerSillasOcupadas2(idSala);
+    }
 
 
 }

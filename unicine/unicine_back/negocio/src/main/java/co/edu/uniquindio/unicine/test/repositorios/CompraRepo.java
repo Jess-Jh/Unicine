@@ -35,4 +35,9 @@ public interface CompraRepo extends JpaRepository<Compra, Integer> {
             " from Compra comp join comp.listaEntradas e join comp.funcionSala fs join fs.funcion f " +
             " where f.idFuncion = :funcion")
     List<SillasOcupadasDTO> obtenerSillasOcupadas(Integer funcion);
+
+    @Query("select new co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO( e.columnaSilla, e.filaSilla )" +
+            " from Compra comp join comp.listaEntradas e join comp.funcionSala fs join fs.sala s " +
+            " where s.idSala = :sala")
+    List<SillasOcupadasDTO> obtenerSillasOcupadas2(Integer sala);
 }

@@ -1,8 +1,10 @@
 package co.edu.uniquindio.unicine.test;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.Cliente;
 import co.edu.uniquindio.unicine.test.entidades.FuncionSala;
 import co.edu.uniquindio.unicine.test.entidades.Pelicula;
+import co.edu.uniquindio.unicine.test.servicios.AdminTeatroServicio;
 import co.edu.uniquindio.unicine.test.servicios.ClienteServicio;
 import co.edu.uniquindio.unicine.test.servicios.EmailServicio;
 import org.junit.jupiter.api.Assertions;
@@ -23,6 +25,9 @@ public class ClienteServicioTest {
 
     @Autowired
     private EmailServicio emailServicio;
+
+    @Autowired
+    AdminTeatroServicio adminTeatroServicio;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -103,6 +108,12 @@ public class ClienteServicioTest {
     @Sql("classpath:dataset.sql")
     public void obtenerPeliculaCartelera(){
         List<Pelicula> lista = clienteServicio.obtenerPeliculaCartelera(1);
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    public void listaSillasOcupadasPorSala(){
+        List<SillasOcupadasDTO> lista = adminTeatroServicio.listaSillasOcupadasPorSala(1);
         lista.forEach(System.out::println);
     }
 }

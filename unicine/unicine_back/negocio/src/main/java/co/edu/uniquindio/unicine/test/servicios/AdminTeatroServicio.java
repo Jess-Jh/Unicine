@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 
 import java.util.List;
@@ -72,5 +73,6 @@ public interface AdminTeatroServicio {
     FuncionSala obtenerFuncionSala(Integer idFuncionSala) throws Exception;
 
 
+    List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala);
 
 }

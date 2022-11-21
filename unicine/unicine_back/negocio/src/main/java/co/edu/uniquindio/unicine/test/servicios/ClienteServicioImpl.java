@@ -159,7 +159,7 @@ public class ClienteServicioImpl implements ClienteServicio{
 
         String columnaO = ""; String filaO = "";
         LocalDate ahora = LocalDate.now();
-        List<SillasOcupadasDTO> listaSillas = compraRepo.obtenerSillasOcupadas(compra.getFuncionSala().getFuncion().getIdFuncion());
+        List<SillasOcupadasDTO> listaSillas = compraRepo.obtenerSillasOcupadas2(compra.getFuncionSala().getSala().getIdSala());
 
         for(int i=0; i < listaSillas.size(); i++){
             for(int z = 0; z < compra.getListaEntradas().size(); z++){
