@@ -26,8 +26,6 @@ public class ClienteServicioTest {
     @Autowired
     private EmailServicio emailServicio;
 
-    @Autowired
-    AdminTeatroServicio adminTeatroServicio;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -113,7 +111,7 @@ public class ClienteServicioTest {
 
     @Test
     public void listaSillasOcupadasPorSala(){
-        List<SillasOcupadasDTO> lista = adminTeatroServicio.listaSillasOcupadasPorSala(1);
+        List<SillasOcupadasDTO> lista = clienteServicio.listaSillasOcupadasPorSala(1);
         lista.forEach(System.out::println);
     }
 }

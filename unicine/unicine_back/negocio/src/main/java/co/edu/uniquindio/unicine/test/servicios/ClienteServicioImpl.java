@@ -286,4 +286,8 @@ public class ClienteServicioImpl implements ClienteServicio{
         return ciudadRepo.findAll();
     }
 
+    @Override
+    public List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala) {
+        return compraRepo.obtenerSillasOcupadas2(idSala);
+    }
 }

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.unicine.test.servicios;
 
+import co.edu.uniquindio.unicine.test.dto.SillasOcupadasDTO;
 import co.edu.uniquindio.unicine.test.entidades.*;
 
 import java.util.List;
@@ -53,4 +54,6 @@ public interface ClienteServicio {
     boolean activarCuentaCliente(String email) throws Exception;
 
     List<Ciudad> listarCiudades();
+
+    List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala);
 }

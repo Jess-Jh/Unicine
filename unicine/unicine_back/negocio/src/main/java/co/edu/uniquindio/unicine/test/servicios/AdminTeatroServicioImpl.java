@@ -335,10 +335,5 @@ public class AdminTeatroServicioImpl implements  AdminTeatroServicio{
         return guardado.get();
     }
 
-    @Override
-    public List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala) {
-        return compraRepo.obtenerSillasOcupadas2(idSala);
-    }
-
 
 }
