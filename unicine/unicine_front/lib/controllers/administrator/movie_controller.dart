@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/meedu.dart';
@@ -8,6 +9,7 @@ import 'package:uni_cine/models/administrator_theater/distribution_chairs.dart';
 import 'package:uni_cine/models/administrator_theater/hour.dart';
 import 'package:uni_cine/models/unicine/function_room.dart';
 import 'package:uni_cine/repositories/api/unicine_api.dart';
+import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
 import 'package:uni_cine/ui/shared/type_init_chairs.dart';
 import 'package:uni_cine/ui/views/unicine/room_unicine/chair.dart';
 import 'package:uni_cine/utils/util.dart';
@@ -43,7 +45,9 @@ class MovieController extends SimpleNotifier {
   Color? colorChair;
   List<String> listChairsUser = [];
   double? totalPurchase = 0;
-  double priceConfectionery = 0;
+  double priceConfectionery = confectioneryProvider.read.priceTotalBuy;
+  String codigoCompra = '${Random().nextInt(1000) + 150}'.toString();
+  String paymentMthod = '';
 
   bool validateForm(formMovieKey) {
     if (formMovieKey.currentState!.validate()) {
@@ -198,6 +202,37 @@ class MovieController extends SimpleNotifier {
     notify();
   }
 
+  Future<void> newPurchase(BuildContext context) async {
+    // Purchase purchase = Purchase(
+    //   idCompra: 0,
+    //   fechaCompra: hourFunction?.fecha,
+    //   metodoPago: paymentMthod,
+    //   subtotal: totalPurchase,
+    //   total: totalPurchase,
+    // );
+    // try {
+    //   await UnicineApi.post('/registrar-compra', purchase.toJson())
+    //       .then((json) {
+    // final newPurchase = Purchase.fromMap(json['compra']);
+    loading = false;
+    Dialogs.showSnackbarTop(
+      context,
+      'Se ha registrado su compra con éxito',
+      isError: false,
+    );
+    _cleanInputs();
+    notify();
+    //   }).catchError((e) => throw e);
+    // } catch (e) {
+    //   Dialogs.showSnackbarTop(
+    //     context,
+    //     e.toString(),
+    //     isError: true,
+    //   );
+    //   log(runtimeType, 'Error en newPurchase MovieController $e');
+    // }
+  }
+
   void isUpdateMovie() {
     isEdit = !isEdit;
     notify();
@@ -242,10 +277,10 @@ class MovieController extends SimpleNotifier {
   void changeColor(int i) {
     if (chairs[i].status == 1) {
       chairs[i].status = 2;
-    }
-    if (chairs[i].status == 2) {
+    } else if (chairs[i].status == 2) {
       chairs[i].status = 1;
     }
+
     notify();
   }
 
@@ -254,17 +289,40 @@ class MovieController extends SimpleNotifier {
     notify();
   }
 
-  void sumTotalPurchase() {
+  void sumTotalPurchaseTickets() {
     double valueTickets = 0;
-
-    print('Entraa ... .$priceConfectionery');
 
     if (cantTicketsFunction != '0') {
       valueTickets = double.parse(cantTicketsFunction!) * 20000;
     }
-
-    totalPurchase = totalPurchase! + valueTickets;
-    totalPurchase = totalPurchase! + priceConfectionery;
+    totalPurchase = valueTickets;
     notify();
+  }
+
+  void sumConfectioneryBuy(double priceTotalBuy) {
+    totalPurchase = totalPurchase! + priceTotalBuy;
+    notify();
+  }
+
+  void validateChairTickets(context) {
+    int chairSelected = cantChairSelected();
+
+    if (int.parse(cantTicketsFunction!) < chairSelected) {
+      Dialogs.showSnackbarTop(
+        context,
+        'La cantidad de sillas seleccionadas es mayor a los tiquetes adquiridos',
+        isError: true,
+      );
+    }
+  }
+
+  int cantChairSelected() {
+    int cantChair = 1;
+    for (var chair in chairs) {
+      if (chair.status == 2) {
+        cantChair++;
+      }
+    }
+    return cantChair;
   }
 }

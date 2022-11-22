@@ -16,8 +16,8 @@ class Purchase {
   int? idCompra;
   DateTime? fechaCompra;
   String? metodoPago;
-  int? subtotal;
-  int? total;
+  double? subtotal;
+  double? total;
 
   factory Purchase.fromJson(String str) => Purchase.fromMap(json.decode(str));
 

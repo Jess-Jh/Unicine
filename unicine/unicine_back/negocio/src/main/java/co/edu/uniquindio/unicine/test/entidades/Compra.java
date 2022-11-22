@@ -40,6 +40,7 @@ public class Compra implements Serializable {
     @ManyToOne
     private FuncionSala funcionSala;
 
+    @JsonIgnore
     @ToString.Exclude
     @OneToMany(mappedBy = "compra")
     private List<Entrada> listaEntradas;

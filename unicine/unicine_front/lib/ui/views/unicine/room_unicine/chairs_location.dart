@@ -62,6 +62,7 @@ class _TabletDesktopRoom extends ConsumerWidget {
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
                                 onTap: () {
+                                  ctrl.validateChairTickets(context);
                                   ctrl.addChairUser(
                                     chairs[i].column.toString(),
                                     chairs[i].row ?? '',

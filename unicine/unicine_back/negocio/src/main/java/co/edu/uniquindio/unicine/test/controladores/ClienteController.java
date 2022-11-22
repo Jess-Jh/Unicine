@@ -212,8 +212,20 @@ public class ClienteController {
     }
 
     @PostMapping("/registrar-compra")
-    public Compra registrarCompra(@RequestBody Compra compra) throws Exception {
-        return clienteServicio.registrarCompra(compra);
+    public ResponseEntity<?> registrarCompra(@RequestBody Compra compra) throws Exception {
+
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            Compra nuevaCompra = clienteServicio.registrarCompra(compra);
+            res.put("compra", nuevaCompra);
+            res.put("mensaje", "¡Se ha registrado su compra con éxito!");
+        } catch (Exception e) {
+            res.put("mensaje", "Error al registrar su compra");
+            res.put("error", e.getMessage());
+            return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
     }
 
     @PostMapping("/redimir-cupon")

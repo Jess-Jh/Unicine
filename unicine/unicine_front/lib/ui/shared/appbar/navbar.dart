@@ -57,26 +57,27 @@ class Navbar extends ConsumerWidget {
               text: text,
             ),
             const SizedBox(width: 10),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => navigateTo(Flurorouter.userDetailsRoute),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.transparent,
-                  child: ClipOval(
-                    child: CustomNetworkImage(
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                      placeholder:
-                          Image.asset('assets/images/image_perfil.jpeg'),
-                      imageUrl: ctrl.clientLogin?.imagenPerfil ?? '',
+            if (ctrl.clientLogin?.rol?.nombre == 'CLIENTE')
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => navigateTo(Flurorouter.userDetailsRoute),
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.transparent,
+                    child: ClipOval(
+                      child: CustomNetworkImage(
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                        placeholder:
+                            Image.asset('assets/images/image_perfil.jpeg'),
+                        imageUrl: ctrl.clientLogin?.imagenPerfil ?? '',
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
           ],
           const SizedBox(width: 10)
         ],

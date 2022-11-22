@@ -13,7 +13,7 @@ class TableConfectionaries extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
 
     return PaginatedDataTable(
-      columnSpacing: size.width / 5,
+      columnSpacing: size.width / 6,
       source:
           ConfectionariesDTS(ctrl.loading ? [] : ctrl.confectioneries, context),
       header: const Text(

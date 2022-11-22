@@ -100,13 +100,11 @@ Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
 
 
 ### Autenticación administrador teatro
-GET {{apiRest}}/auth/login/admin2@gmail.com/123
+GET {{apiRest}}/auth/login/admin6@gmail.com/123
 Content-Type: application/json
+Accept: application/json
+Authorization: Basic YWRtaW4yQGdtYWlsLmNvbToxMjM=
 
-{
-    "email": "admin2@gmail.com",
-    "contrasena" : "123",
-}
 
 ### Autenticación
 GET {{apiRest}}/auth
@@ -270,6 +268,9 @@ Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4j
 GET {{apiRest}}/historial-compras/correo@gmail.com
 Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJMaMuaSeEDJfjX4jrOE2UG96fDQYm14fcRivWAzf5m5p67Le9gUPe6piBxxiqsJZseaC012FEPcYtBfRi67Iyu8omKRGlHbPX++wTSKsX7x8pQTY97sodotgFP4cUxpE6sPcnWDMIUIJKR+Nqh96866m8YFQNU4N1nCCsdnLBiMABRWqgZZHLykzcpQRN6tIzqGHmsi1Hq2HCVLKt3KE00
 
+### Obtener 
+GET {{apiRest}}/lista-funciones-sala
+Authorization: Bearer Mp9ox0pHtshkmgptH/c3xA9yEOqhLONVyeiStw8l5OJUXdNh9MSsQ4DJV/v4UB6tBTn4Y/EN0x1xjz8DluQFKkEvzafnB8vm0V1dbqLLFh6huXH+jYR131pibt7HLmhgQiRUTupHKUVUS2u4uA5k/l4/5vAWnQCBK3P2LA3a1rR/bR+q+bs+yPMKURW7nNvJwqE5hFI9Z9cDzqp/p9FxCbNJsFPeMWBPJE+zx1tYFIm52nqhSyvxBa3WmmrlxQ5Z
 
 
 // ------------------------------------------------------------------------------------------------------------------\\

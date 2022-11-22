@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
+import 'package:uni_cine/main.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
-import 'package:uni_cine/ui/layouts/unicine_layout_page.dart';
 import 'package:uni_cine/ui/shared/buttons/custom_outlined_button.dart';
 import 'package:uni_cine/ui/shared/combo_box/combo_box_filter.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_form_input.dart';
 import 'package:uni_cine/ui/shared/inputs/custom_input_data.dart';
+import 'package:uni_cine/ui/shared/inputs/custom_inputs.dart';
 import 'package:uni_cine/ui/shared/total_purchase_box.dart';
-import 'package:uni_cine/ui/views/unicine/cards/purchase_detail_card.dart';
 import 'package:uni_cine/utils/util.dart';
 
 class FormPurchase extends StatelessWidget {
@@ -34,7 +35,7 @@ class _TabletDesktopForm extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final size = MediaQuery.of(context).size;
     final ctrl = ref.watch(movieProvider);
-    final ctrlClient = ref.watch(clientProvider);
+    final ctrlClient = ref.watch(authProvider);
     final ctrlConfectionery = ref.watch(confectioneryProvider);
 
     return SizedBox(
@@ -45,7 +46,8 @@ class _TabletDesktopForm extends ConsumerWidget {
           Row(
             children: [
               CustomInputData(
-                  data: ctrlClient.nombre, nameColumn: 'Nombre cliente'),
+                  data: ctrlClient.clientLogin?.nombreCompleto ?? '',
+                  nameColumn: 'Nombre cliente'),
               const SizedBox(width: 10),
               CustomInputData(
                   data: ctrl.theater?.nombre ?? '', nameColumn: 'Teatro'),
@@ -74,12 +76,29 @@ class _TabletDesktopForm extends ConsumerWidget {
           ),
           const SizedBox(height: 15),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomInputData(
                   data: ctrlConfectionery.priceTotalBuy.toString(),
-                  nameColumn: 'Valor Confitería'),
+                  nameColumn: 'Método de pago'),
               const SizedBox(width: 10),
-              const CustomInputData(data: 'Método de pago', nameColumn: 'pago'),
+              CustomFormInput(
+                inputForm: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese el método de pago';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) => ctrl.paymentMthod = value,
+                  style: const TextStyle(fontSize: 13),
+                  decoration: CustomInputs.loginInputDecoration(
+                    hint: 'Ingrese el método de pago',
+                    label: 'Método de pago',
+                    icon: Icons.price_check_sharp,
+                  ),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 15),
@@ -100,7 +119,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                 width: size.width / 3.3,
                 text: 'Realizar Pago',
                 onPressed: () {
-                  const PurchaseDetailCard();
+                  ctrl.newPurchase(context);
                 },
               ),
               SizedBox(width: size.width / 6),

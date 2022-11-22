@@ -5,13 +5,13 @@ import 'package:uni_cine/ui/views/unicine/purchase_detail/form_purchase.dart';
 class PurchaseDetailView extends StatelessWidget {
   // Selección de cupones
   List<String> coupons = [
-    'Cupón 1',
-    'Cupón 2',
-    'Cupón 3',
+    'Descuento Registro 15%',
+    'Descuento compra 10%',
+    'Adquisición membresía 10%',
   ];
 
   // Filtro de cupones
-  String? selectCoupon = 'Cupón 1';
+  String? selectCoupon = 'Descuento Registro 15%';
 
   PurchaseDetailView({super.key});
 

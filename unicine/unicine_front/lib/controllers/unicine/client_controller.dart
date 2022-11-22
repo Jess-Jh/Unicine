@@ -101,7 +101,7 @@ class ClientController extends SimpleNotifier {
 
     try {
       await UnicineApi.post('/registrar-PQRS', pqrs.toJson()).then((json) {
-        final newPQRS = Pqrs.fromMap(json['pqrs']);
+        // final newPQRS = Pqrs.fromMap(json['pqrs']);
         loading = false;
         Dialogs.showSnackbarTop(
           context,

@@ -12,7 +12,7 @@ class TableMovies extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
 
     return PaginatedDataTable(
-      columnSpacing: size.width / 8,
+      columnSpacing: size.width / 9,
       source: MoviesDTS(ctrl.loading ? [] : ctrl.movies, context),
       header: const Text(
         'Lista de películas',

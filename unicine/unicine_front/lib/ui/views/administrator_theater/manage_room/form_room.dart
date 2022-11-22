@@ -227,7 +227,9 @@ class FormRoom extends ConsumerWidget {
                       CustomFlatButton(
                         text: '<< Anterior ',
                         onPressed: () {
-                          ctrl.previusPageTypeRoom();
+                          if (ctrl.loading == false) {
+                            ctrl.previusPageTypeRoom();
+                          }
                         },
                       ),
                     const SizedBox(width: 30),
@@ -251,7 +253,9 @@ class FormRoom extends ConsumerWidget {
                       CustomFlatButton(
                         text: 'Siguiente >>',
                         onPressed: () {
-                          ctrl.nextPageTypeRoom();
+                          if (ctrl.loading == false) {
+                            ctrl.nextPageTypeRoom();
+                          }
                         },
                       ),
                   ],

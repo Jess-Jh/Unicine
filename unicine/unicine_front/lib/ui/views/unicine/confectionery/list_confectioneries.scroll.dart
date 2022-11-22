@@ -6,15 +6,9 @@ import 'package:uni_cine/ui/views/unicine/confectionery/confectionery_box.dart';
 
 class ListConfectioneriesScroll extends StatelessWidget {
   final int confectioneries;
-  final String name;
-  final String price;
-  final String img;
   const ListConfectioneriesScroll({
     super.key,
     required this.confectioneries,
-    required this.price,
-    required this.img,
-    required this.name,
   });
 
   @override

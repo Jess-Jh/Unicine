@@ -19,7 +19,6 @@ class ConfectioneryView extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final ctrl = ref.watch(confectioneryProvider);
     final ctrlFunction = ref.watch(movieProvider);
-    ctrlFunction.priceConfectionery = ctrl.priceTotalBuy;
 
     int confectioneries = ctrl.confectioneries.length;
     final size = MediaQuery.of(context).size;
@@ -44,9 +43,6 @@ class ConfectioneryView extends ConsumerWidget {
           const SizedBox(height: 40),
           ListConfectioneriesScroll(
             confectioneries: confectioneries,
-            name: 'Nombre confitería',
-            price: r'$ 00.0000',
-            img: 'assets/images/placeholder_confectionary.jpg',
           ),
           const SizedBox(height: 40),
           if (size.width > 850)
@@ -57,7 +53,11 @@ class ConfectioneryView extends ConsumerWidget {
                 CustomOutlinedButton(
                   width: size.width / 3.3,
                   text: 'Realizar Pago',
-                  onPressed: () => navigateTo(Flurorouter.purchaseDetailRoute),
+                  onPressed: () {
+                    ctrlFunction.sumConfectioneryBuy(ctrl.priceTotalBuy);
+
+                    navigateTo(Flurorouter.purchaseDetailRoute);
+                  },
                 ),
                 SizedBox(width: size.width / 6),
                 TotalPurchaseBox(

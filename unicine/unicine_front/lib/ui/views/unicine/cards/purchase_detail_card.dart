@@ -64,7 +64,7 @@ class _TabletDesktopForm extends ConsumerWidget {
                       nameColumn: 'Nombre cliente '),
                   const SizedBox(width: 10),
                   CustomInputData(
-                      data: 'Teatro', nameColumn: ctrl.theater?.nombre ?? ''),
+                      data: ctrl.theater?.nombre ?? '', nameColumn: 'Teatro'),
                   const SizedBox(width: 10),
                   const CustomInputData(
                       data: 'Nº Sillas', nameColumn: 'Sillas'),
@@ -74,17 +74,17 @@ class _TabletDesktopForm extends ConsumerWidget {
               Row(
                 children: [
                   CustomInputData(
-                      data: 'Horario',
-                      nameColumn: ctrl.hourFunction?.hora ?? ''),
+                      data: ctrl.hourFunction?.hora ?? '',
+                      nameColumn: 'Horario'),
                   const SizedBox(width: 10),
                   CustomInputData(
                       data: 'Película',
                       nameColumn: ctrl.movieFunction?.nombre ?? ''),
                   const SizedBox(width: 10),
                   CustomInputData(
-                      data: 'Fecha de compra',
-                      nameColumn:
-                          getStringDateFromDateTime(ctrl.hourFunction!.fecha!)),
+                      data:
+                          getStringDateFromDateTime(ctrl.hourFunction!.fecha!),
+                      nameColumn: 'Fecha de compra'),
                 ],
               ),
               const SizedBox(height: 15),
@@ -101,9 +101,9 @@ class _TabletDesktopForm extends ConsumerWidget {
                             child: Row(
                               children: [
                                 CustomInputData(
-                                  data: 'Valor Confitería',
-                                  nameColumn: ctrlConfectionery.priceTotalBuy
+                                  data: ctrlConfectionery.priceTotalBuy
                                       .toString(),
+                                  nameColumn: 'Valor Confitería',
                                 ),
                                 const SizedBox(width: 10),
                                 const CustomInputData(

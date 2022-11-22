@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'package:uni_cine/ui/layouts/administrator_layout_page.dart';
@@ -54,7 +52,7 @@ class MovieAndTicketsBox extends ConsumerWidget {
                       : ctrl.cantTicketsFunction,
                   onChange: (value) {
                     ctrl.onChangeTickets(value);
-                    ctrl.sumTotalPurchase();
+                    ctrl.sumTotalPurchaseTickets();
                   },
                   listItems: tickets,
                   colorBox: Colors.white,
@@ -121,7 +119,7 @@ class MovieAndTicketsBox extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '${Random().nextInt(1000) + 150}'.toString(),
+                      ctrl.codigoCompra,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
