@@ -72,7 +72,4 @@ public interface AdminTeatroServicio {
 
     FuncionSala obtenerFuncionSala(Integer idFuncionSala) throws Exception;
 
-
-    List<SillasOcupadasDTO> listaSillasOcupadasPorSala(Integer idSala);
-
 }
